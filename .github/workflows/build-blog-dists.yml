@@ -10,6 +10,9 @@ on:
 permissions:
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 concurrency:
   group: blog-dists-${{ github.ref }}
   cancel-in-progress: true
@@ -21,10 +24,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -73,7 +76,7 @@ jobs:
           cp -a astro-blog/dist/. release-dists/astro/
 
       - name: Upload Hexo dist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: hexo-dist
           path: hexo-blog/public
@@ -81,7 +84,7 @@ jobs:
           retention-days: 30
 
       - name: Upload Hugo dist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: hugo-dist
           path: hugo-blog/public
@@ -89,7 +92,7 @@ jobs:
           retention-days: 30
 
       - name: Upload Astro dist
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: astro-dist
           path: astro-blog/dist
@@ -97,7 +100,7 @@ jobs:
           retention-days: 30
 
       - name: Upload combined dists
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: all-blog-dists
           path: release-dists
