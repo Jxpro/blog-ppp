@@ -68,49 +68,26 @@ jobs:
           npm ci --legacy-peer-deps
           npm run build
 
-      - name: Publish dists to branches
-        run: |
-          set -euo pipefail
+      - name: Deploy Hexo dist
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: dist-hexo
+          folder: hexo-blog/public
+          clean: true
+          single-commit: true
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Deploy Hugo dist
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: dist-hugo
+          folder: hugo-blog/public
+          clean: true
+          single-commit: true
 
-          publish_dist() {
-            local source_dir="$1"
-            local branch="$2"
-            local worktree=".deploy-${branch}"
-
-            if [ ! -d "$source_dir" ]; then
-              echo "Missing dist directory: $source_dir" >&2
-              exit 1
-            fi
-
-            git worktree remove "$worktree" --force 2>/dev/null || true
-            git worktree prune
-
-            if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
-              git fetch origin "$branch"
-              git worktree add "$worktree" "origin/$branch"
-            else
-              git worktree add --detach "$worktree"
-              git -C "$worktree" checkout --orphan "$branch"
-            fi
-
-            find "$worktree" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-            cp -a "$source_dir"/. "$worktree"/
-            touch "$worktree/.nojekyll"
-
-            git -C "$worktree" add -A
-            if git -C "$worktree" diff --cached --quiet; then
-              echo "No changes for $branch"
-            else
-              git -C "$worktree" commit -m "Deploy ${branch} from ${GITHUB_SHA}"
-              git -C "$worktree" push origin HEAD:"$branch" --force
-            fi
-
-            git worktree remove "$worktree" --force
-          }
-
-          publish_dist "hexo-blog/public" "dist-hexo"
-          publish_dist "hugo-blog/public" "dist-hugo"
-          publish_dist "astro-blog/dist" "dist-astro"
+      - name: Deploy Astro dist
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: dist-astro
+          folder: astro-blog/dist
+          clean: true
+          single-commit: true
