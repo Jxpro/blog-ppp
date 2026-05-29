@@ -68,6 +68,12 @@ jobs:
           npm ci --legacy-peer-deps
           npm run build
 
+      - name: Add .nojekyll files
+        run: |
+          touch hexo-blog/public/.nojekyll
+          touch hugo-blog/public/.nojekyll
+          touch astro-blog/dist/.nojekyll
+
       - name: Deploy Hexo dist
         uses: JamesIves/github-pages-deploy-action@v4
         with:
