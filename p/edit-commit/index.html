@@ -1,0 +1,125 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="修改历史commit信息 [TOC]\n一、修改最新的 log 如果只修改最新一条提交信息的log内容，直接使用命令 git commit --amend 就可以完成修改啦，可以直接参考 git 文档，也就是下面的重写历史功能，比较简单。\n二、修改历史的 log 如果要修改历史的版本信息(非最新一条)，这里用到的方法就是 git命令的重写历史功能：\n"><title>修改历史commit信息</title><link rel=canonical href=https://example.org/p/edit-commit/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="修改历史commit信息"><meta property='og:description' content="修改历史commit信息 [TOC]\n一、修改最新的 log 如果只修改最新一条提交信息的log内容，直接使用命令 git commit --amend 就可以完成修改啦，可以直接参考 git 文档，也就是下面的重写历史功能，比较简单。\n二、修改历史的 log 如果要修改历史的版本信息(非最新一条)，这里用到的方法就是 git命令的重写历史功能：\n"><meta property='og:url' content='https://example.org/p/edit-commit/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Tool'><meta property='article:tag' content='Git'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="修改历史commit信息"><meta name=twitter:description content="修改历史commit信息 [TOC]\n一、修改最新的 log 如果只修改最新一条提交信息的log内容，直接使用命令 git commit --amend 就可以完成修改啦，可以直接参考 git 文档，也就是下面的重写历史功能，比较简单。\n二、修改历史的 log 如果要修改历史的版本信息(非最新一条)，这里用到的方法就是 git命令的重写历史功能：\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一修改最新的-log>一、修改最新的 log</a></li><li><a href=#二修改历史的-log>二、修改历史的 log</a></li><li><a href=#三修改提交作者或邮箱>三、修改提交作者或邮箱</a></li><li><a href=#四rebase-过程报错>四、rebase 过程报错</a></li><li><a href=#五git-clean>五、git clean</a><ol><li><a href=#51-慎用-git-clean>5.1 慎用 git clean</a></li><li><a href=#52-参数说明>5.2 参数说明</a></li><li><a href=#53-运行示例>5.3 运行示例</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tool/ style=background-color:#d7beef;color:#270f3d>Tool
+</a><a href=/categories/git/ style=background-color:#bedcef;color:#0f2c3d>Git</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/edit-commit/>修改历史commit信息</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 4 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一修改最新的-log>一、修改最新的 log</a></li><li><a href=#二修改历史的-log>二、修改历史的 log</a></li><li><a href=#三修改提交作者或邮箱>三、修改提交作者或邮箱</a></li><li><a href=#四rebase-过程报错>四、rebase 过程报错</a></li><li><a href=#五git-clean>五、git clean</a><ol><li><a href=#51-慎用-git-clean>5.1 慎用 git clean</a></li><li><a href=#52-参数说明>5.2 参数说明</a></li><li><a href=#53-运行示例>5.3 运行示例</a></li></ol></li></ol></nav></details></aside><section class=article-content><h1 id=修改历史commit信息><a href=#%e4%bf%ae%e6%94%b9%e5%8e%86%e5%8f%b2commit%e4%bf%a1%e6%81%af class=header-anchor></a>修改历史commit信息</h1><p>[TOC]</p><h2 id=一修改最新的-log><a href=#%e4%b8%80%e4%bf%ae%e6%94%b9%e6%9c%80%e6%96%b0%e7%9a%84-log class=header-anchor></a>一、修改最新的 log</h2><p>如果只修改<strong>最新</strong>一条提交信息的<code>log</code>内容，直接使用命令 <code>git commit --amend</code> 就可以完成修改啦，可以直接参考 git 文档，也就是下面的重写历史功能，比较简单。</p><h2 id=二修改历史的-log><a href=#%e4%ba%8c%e4%bf%ae%e6%94%b9%e5%8e%86%e5%8f%b2%e7%9a%84-log class=header-anchor></a>二、修改历史的 log</h2><p>如果要修改<strong>历史</strong>的版本信息(非最新一条)，这里用到的方法就是 <code>git</code>命令的<a class=link href=https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2 target=_blank rel=noopener>重写历史</a>功能：</p><ol><li><p>执行<code>git</code>命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 回溯到近三次的信息</span>
+</span></span><span class=line><span class=cl>git rebase -i HEAD~3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 回溯到根信息</span>
+</span></span><span class=line><span class=cl>git rebase -i --root
+</span></span></code></pre></td></tr></table></div></div></li><li><p>找到要修改要的<code>log</code>，将其<code>pick</code> 修改为<code>edit</code>, 然后 <code>:wq</code> 退出</p></li><li><p>然后修改对应的提交消息，修改完成后 <code>:wq</code> 退出</p></li><li><p>执行 <code>git commit --amend</code>重新提交</p></li><li><p>然后执行 <code>git rebase --continue</code> ，完成此次<code>log</code>的<code>rebase</code></p></li><li><p>这样<strong>本地修改</strong>就完成了，可用 <code>git log</code> 查看一下，且发现<code>commit</code>的时间没有变化</p></li><li><p>最后 <code>push</code> 到远程仓库，加上 <code>-f</code> <strong>强制推送</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>git push -f origin main
+</span></span></code></pre></td></tr></table></div></div></li><li><p>但是在<code>GitHub</code>上查看会发现<code>commit</code>的时间发生了变化</p></li><li><p>为此可执行以下指令来恢复时间戳</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>git rebase -i --root --committer-date-is-author-date
+</span></span></code></pre></td></tr></table></div></div><ul><li>必须加上<code>-i --root</code>或<code>-i HEAD~3</code>，不然<code>--committer-date-is-author-date</code>会重置<code>rebase</code>的更改</li><li><code>-i --root</code>弹出的窗口直接关闭，不用选择任何一项<code>edit</code>，然后等待<code>rebase</code>完成即可</li></ul></li><li><p>最后再次<code>push</code> 到远程仓库，加上 <code>-f</code> <strong>强制推送</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>git push -f origin main
+</span></span></code></pre></td></tr></table></div></div></li></ol><h2 id=三修改提交作者或邮箱><a href=#%e4%b8%89%e4%bf%ae%e6%94%b9%e6%8f%90%e4%ba%a4%e4%bd%9c%e8%80%85%e6%88%96%e9%82%ae%e7%ae%b1 class=header-anchor></a>三、修改提交作者或邮箱</h2><p>由于电脑配置<code>git</code>的账号填错了邮箱或用户名，导致<code>github</code>的提交记录提交错误，为了将之前的提交用户信息都恢复至正确的账号上，所以需要修改本地的git用户信息：</p><ol><li><p>首先修改<code>user.name</code>和<code>user.email</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ git config user.name <span class=s1>&#39;xxx&#39;</span>
+</span></span><span class=line><span class=cl>$ git config user.email xxx@xx.com
+</span></span></code></pre></td></tr></table></div></div></li><li><p>查询之前的提交记录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 查询到近三次的信息</span>
+</span></span><span class=line><span class=cl>git rebase -i HEAD~3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查询到根信息</span>
+</span></span><span class=line><span class=cl>git rebase -i --root
+</span></span></code></pre></td></tr></table></div></div></li><li><p>找到要修改要的日志，将其<code>pick</code> 修改为<code>edit</code>, 然后 <code>:wq</code> 退出</p></li><li><p>执行 <code>git commit --amend --reset-author</code>重新提交并重置作者</p></li><li><p>然后执行 <code>git rebase --continue</code> ，完成此次<code>log</code>的<code>rebase</code></p></li><li><p>但此时提交的时间戳也被改变，使用<code>--committer-date-is-author-date</code>也会将时间戳变为<code>reset-author</code>后提交的时间，<strong>即使是reset的用户名和之前的用户名一致</strong></p></li><li><p>为此，我们需要在<code>Step 4</code>使用<code>git commit --amend</code>时加上<code>--date="commit_time"</code>来指定时间戳，或者在<code>reset-author</code>以后再进行一次<code>rebase</code>来修改时间戳，其基本格式如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>--date<span class=o>=</span><span class=s2>&#34;Thu, 31 Mar 2022 00:54:24 +0800&#34;</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><p>同样，要使``GitHub<code>上的时间戳也发生改变，需要在</code>&ndash;date<code>后再次使用</code>&ndash;committer-date-is-author-date`</p></li><li><p>最后再次<code>push</code> 到远程仓库，加上 <code>-f</code> <strong>强制推送</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>git push -f origin main
+</span></span></code></pre></td></tr></table></div></div></li></ol><h2 id=四rebase-过程报错><a href=#%e5%9b%9brebase-%e8%bf%87%e7%a8%8b%e6%8a%a5%e9%94%99 class=header-anchor></a>四、rebase 过程报错</h2><p><strong>error：The following untracked working tree files would be overwritten by merge</strong></p><p>解决方案：输入<code>git clean -d -fx</code></p><p><code>clean</code>具体用法见下一节</p><h2 id=五git-clean><a href=#%e4%ba%94git-clean class=header-anchor></a>五、git clean</h2><p>参考文章：<a class=link href=https://blog.csdn.net/weixin_44137575/article/details/108142088 target=_blank rel=noopener>git clean 的用法详解_一定要学_一定要慎用</a></p><h3 id=51-慎用-git-clean><a href=#51-%e6%85%8e%e7%94%a8-git-clean class=header-anchor></a>5.1 慎用 git clean</h3><p>git clean 从你的工作目录中删除所有<strong>没有 tracked ，没有被管理</strong>过的文件。删除了找回很麻烦，甚至很难找回来了，所以一定要<strong>慎用</strong>!!!</p><blockquote><p><strong>git clean 和 git reset &ndash;hard 结合使用</strong></p><p>clean 影响没有被 track 过的文件（清除未被 add 或被 commit 的本地修改）</p><p>reset 影响被 track 过的文件 （回退到上一个 commit）</p><p>所以需要 clean 来删除没有 track 过的文件，reset 删除被 track 过的文件</p><p>结合两命令 → 让你的工作目录<strong>完全</strong>回到一个指定的 <commit>的状态</p></blockquote><h3 id=52-参数说明><a href=#52-%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e class=header-anchor></a>5.2 参数说明</h3><ul><li>n ：显示将要被删除的文件</li><li>d ：删除未被添加到 git 路径中的文件（将 .gitignore 文件标记的文件全部删除）</li><li>f ：强制运行</li><li>x ：删除没有被 track 的文件</li></ul><h3 id=53-运行示例><a href=#53-%e8%bf%90%e8%a1%8c%e7%a4%ba%e4%be%8b class=header-anchor></a>5.3 运行示例</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>git clean -n
+</span></span><span class=line><span class=cl>// 是一次 clean 的演习, 告诉你哪些文件会被删除，不会真的删除
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clean -f
+</span></span><span class=line><span class=cl>// 删除当前目录下所有没有 track 过的文件
+</span></span><span class=line><span class=cl>// 不会删除 .gitignore 文件里面指定的文件夹和文件, 不管这些文件有没有被 track 过
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clean -f &lt;path&gt;
+</span></span><span class=line><span class=cl>// 删除指定路径下的没有被 track 过的文件
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clean -df
+</span></span><span class=line><span class=cl>// 删除当前目录下没有被 track 过的文件和文件夹
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clean -xf
+</span></span><span class=line><span class=cl>// 删除当前目录下所有没有 track 过的文件.
+</span></span><span class=line><span class=cl>// 不管是否是 .gitignore 文件里面指定的文件夹和文件
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clean
+</span></span><span class=line><span class=cl>// 对于刚编译过的项目也非常有用
+</span></span><span class=line><span class=cl>// 如, 他能轻易删除掉编译后生成的 .o 和 .exe 等文件. 这个在打包要发布一个 release 的时候非常有用
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git reset --hard
+</span></span><span class=line><span class=cl>git clean -df
+</span></span><span class=line><span class=cl>git status
+</span></span><span class=line><span class=cl>// 运行后, 工作目录和缓存区回到最近一次 commit 时候一摸一样的状态。
+</span></span><span class=line><span class=cl>// 此时建议运行 git status，会告诉你这是一个干净的工作目录, 又是一个新的开始了！
+</span></span></code></pre></td></tr></table></div></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/tool/>Tool</a>
+<a href=/tags/git/>Git</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/delete-history/><div class=article-details><h2 class=article-title>从历史记录中删除文件</h2></div></a></article><article><a href=/p/command/><div class=article-details><h2 class=article-title>Git的基本使用</h2></div></a></article><article><a href=/p/server/><div class=article-details><h2 class=article-title>FRP 服务端配置</h2></div></a></article><article><a href=/p/client/><div class=article-details><h2 class=article-title>FRP 客户端配置</h2></div></a></article><article><a href=/p/setup/><div class=article-details><h2 class=article-title>阿里云Linux服务器安装Docker</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

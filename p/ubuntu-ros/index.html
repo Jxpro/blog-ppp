@@ -1,0 +1,775 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="ROS笔记 [TOC]\n一、软硬件版本 名称 版本 系统版本（uname -a） Linux ubuntu 5.4.0-96-generic rosdistro melodic rosversion 1.14.12 参考学习视频：古月·ROS入门21讲\n"><title>ROS笔记</title><link rel=canonical href=https://example.org/p/ubuntu-ros/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="ROS笔记"><meta property='og:description' content="ROS笔记 [TOC]\n一、软硬件版本 名称 版本 系统版本（uname -a） Linux ubuntu 5.4.0-96-generic rosdistro melodic rosversion 1.14.12 参考学习视频：古月·ROS入门21讲\n"><meta property='og:url' content='https://example.org/p/ubuntu-ros/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='System'><meta property='article:tag' content='Linux'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="ROS笔记"><meta name=twitter:description content="ROS笔记 [TOC]\n一、软硬件版本 名称 版本 系统版本（uname -a） Linux ubuntu 5.4.0-96-generic rosdistro melodic rosversion 1.14.12 参考学习视频：古月·ROS入门21讲\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一软硬件版本>一、软硬件版本</a></li><li><a href=#二安装ros>二、安装ROS</a><ol><li><a href=#21-配置软件仓库>2.1 配置软件仓库</a></li><li><a href=#22-添加ros软件源>2.2 添加ROS软件源</a></li><li><a href=#23-添加密钥>2.3 添加密钥</a></li><li><a href=#24-安装>2.4 安装</a></li><li><a href=#25-设置环境变量>2.5 设置环境变量</a></li><li><a href=#27-安装相关依赖>2.7 安装相关依赖</a></li><li><a href=#28-初始化rosdep>2.8 初始化rosdep</a></li></ol></li><li><a href=#三运行海龟测试用例>三、运行海龟测试用例</a></li><li><a href=#四创建工作空间与功能包>四、创建工作空间与功能包</a><ol><li><a href=#41-创建并初始化工作区>4.1 创建并初始化工作区</a></li><li><a href=#42-编译工作空间可为空>4.2 编译工作空间（可为空）</a></li><li><a href=#43-设置环境变量>4.3 设置环境变量</a></li><li><a href=#44-创建功能包开发的最小模块单位>4.4 创建功能包（开发的最小模块单位）</a></li><li><a href=#45-编译功能包>4.5 编译功能包</a></li></ol></li><li><a href=#五ros的两种通信机制>五、ROS的两种通信机制</a></li><li><a href=#六topic控制海龟示例>六、topic控制海龟示例</a><ol><li><a href=#c实现>C++实现</a></li><li><a href=#python实现>Python实现</a></li></ol></li><li><a href=#七自定义topic消息格式>七、自定义topic消息格式</a></li><li><a href=#八service控制海龟示例>八、service控制海龟示例</a><ol><li><a href=#python实现-1>Python实现</a></li></ol></li><li><a href=#九分布式多机通信>九、分布式多机通信</a></li><li><a href=#十示例代码python>十、示例代码（Python）</a><ol><li><a href=#velocity_publisherpy>velocity_publisher.py</a></li><li><a href=#pose_subscriberpy>pose_subscriber.py：</a></li><li><a href=#turtle_spawn_clientpy>turtle_spawn_client.py：</a></li><li><a href=#turtle_command_serverpy>turtle_command_server.py：</a></li><li><a href=#parameter_configpy>parameter_config.py</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/system/ style=background-color:#bed5ef;color:#0f253d>System
+</a><a href=/categories/linux/ style=background-color:#bec0ef;color:#0f123d>Linux</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/ubuntu-ros/>ROS笔记</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 7 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一软硬件版本>一、软硬件版本</a></li><li><a href=#二安装ros>二、安装ROS</a><ol><li><a href=#21-配置软件仓库>2.1 配置软件仓库</a></li><li><a href=#22-添加ros软件源>2.2 添加ROS软件源</a></li><li><a href=#23-添加密钥>2.3 添加密钥</a></li><li><a href=#24-安装>2.4 安装</a></li><li><a href=#25-设置环境变量>2.5 设置环境变量</a></li><li><a href=#27-安装相关依赖>2.7 安装相关依赖</a></li><li><a href=#28-初始化rosdep>2.8 初始化rosdep</a></li></ol></li><li><a href=#三运行海龟测试用例>三、运行海龟测试用例</a></li><li><a href=#四创建工作空间与功能包>四、创建工作空间与功能包</a><ol><li><a href=#41-创建并初始化工作区>4.1 创建并初始化工作区</a></li><li><a href=#42-编译工作空间可为空>4.2 编译工作空间（可为空）</a></li><li><a href=#43-设置环境变量>4.3 设置环境变量</a></li><li><a href=#44-创建功能包开发的最小模块单位>4.4 创建功能包（开发的最小模块单位）</a></li><li><a href=#45-编译功能包>4.5 编译功能包</a></li></ol></li><li><a href=#五ros的两种通信机制>五、ROS的两种通信机制</a></li><li><a href=#六topic控制海龟示例>六、topic控制海龟示例</a><ol><li><a href=#c实现>C++实现</a></li><li><a href=#python实现>Python实现</a></li></ol></li><li><a href=#七自定义topic消息格式>七、自定义topic消息格式</a></li><li><a href=#八service控制海龟示例>八、service控制海龟示例</a><ol><li><a href=#python实现-1>Python实现</a></li></ol></li><li><a href=#九分布式多机通信>九、分布式多机通信</a></li><li><a href=#十示例代码python>十、示例代码（Python）</a><ol><li><a href=#velocity_publisherpy>velocity_publisher.py</a></li><li><a href=#pose_subscriberpy>pose_subscriber.py：</a></li><li><a href=#turtle_spawn_clientpy>turtle_spawn_client.py：</a></li><li><a href=#turtle_command_serverpy>turtle_command_server.py：</a></li><li><a href=#parameter_configpy>parameter_config.py</a></li></ol></li></ol></nav></details></aside><section class=article-content><h1 id=ros笔记><a href=#ros%e7%ac%94%e8%ae%b0 class=header-anchor></a>ROS笔记</h1><p>[TOC]</p><h2 id=一软硬件版本><a href=#%e4%b8%80%e8%bd%af%e7%a1%ac%e4%bb%b6%e7%89%88%e6%9c%ac class=header-anchor></a>一、软硬件版本</h2><div class=table-wrapper><table><thead><tr><th style=text-align:center>名称</th><th style=text-align:center>版本</th></tr></thead><tbody><tr><td style=text-align:center>系统版本（uname -a）</td><td style=text-align:center>Linux ubuntu 5.4.0-96-generic</td></tr><tr><td style=text-align:center>rosdistro</td><td style=text-align:center>melodic</td></tr><tr><td style=text-align:center>rosversion</td><td style=text-align:center>1.14.12</td></tr></tbody></table></div><p>参考学习视频：<a class=link href=https://www.bilibili.com/video/BV1zt411G7Vn target=_blank rel=noopener>古月·ROS入门21讲</a></p><h2 id=二安装ros><a href=#%e4%ba%8c%e5%ae%89%e8%a3%85ros class=header-anchor></a>二、安装ROS</h2><h3 id=21-配置软件仓库><a href=#21-%e9%85%8d%e7%bd%ae%e8%bd%af%e4%bb%b6%e4%bb%93%e5%ba%93 class=header-anchor></a>2.1 配置软件仓库</h3><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2022/01/2022-01-28-194521.png alt=image-20220128194520014 loading=lazy></p><h3 id=22-添加ros软件源><a href=#22-%e6%b7%bb%e5%8a%a0ros%e8%bd%af%e4%bb%b6%e6%ba%90 class=header-anchor></a>2.2 添加ROS软件源</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo sh -c <span class=s1>&#39;echo &#34;deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main&#34; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=23-添加密钥><a href=#23-%e6%b7%bb%e5%8a%a0%e5%af%86%e9%92%a5 class=header-anchor></a>2.3 添加密钥</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc <span class=p>|</span> sudo apt-key add -
+</span></span></code></pre></td></tr></table></div></div><h3 id=24-安装><a href=#24-%e5%ae%89%e8%a3%85 class=header-anchor></a>2.4 安装</h3><p>更新软件索引：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update
+</span></span></code></pre></td></tr></table></div></div><p>安装<code>Desktop-Full</code>版本（约五到十分钟）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install ros-melodic-desktop-full
+</span></span></code></pre></td></tr></table></div></div><h3 id=25-设置环境变量><a href=#25-%e8%ae%be%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f class=header-anchor></a>2.5 设置环境变量</h3><p>修改<code>.bashrc</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;source /opt/ros/melodic/setup.bash&#34;</span> &gt;&gt; ~/.bashrc
+</span></span></code></pre></td></tr></table></div></div><p>重启终端或使用<code>source</code>命令重新加载：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>source</span> ~/.bashrc
+</span></span></code></pre></td></tr></table></div></div><h3 id=27-安装相关依赖><a href=#27-%e5%ae%89%e8%a3%85%e7%9b%b8%e5%85%b3%e4%be%9d%e8%b5%96 class=header-anchor></a>2.7 安装相关依赖</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+</span></span></code></pre></td></tr></table></div></div><h3 id=28-初始化rosdep><a href=#28-%e5%88%9d%e5%a7%8b%e5%8c%96rosdep class=header-anchor></a>2.8 初始化rosdep</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo rosdep init
+</span></span><span class=line><span class=cl>rosdep update
+</span></span></code></pre></td></tr></table></div></div><h2 id=三运行海龟测试用例><a href=#%e4%b8%89%e8%bf%90%e8%a1%8c%e6%b5%b7%e9%be%9f%e6%b5%8b%e8%af%95%e7%94%a8%e4%be%8b class=header-anchor></a>三、运行海龟测试用例</h2><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2022/01/2022-01-28-195945.png alt=image-20220128195943951 loading=lazy></p><p>启动以后：</p><ol><li>可通过方向键控制海龟移动</li><li>如下通过topic消息移动</li></ol><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2022/01/2022-01-28-202300.png alt=image-20220128202259525 loading=lazy></p><h2 id=四创建工作空间与功能包><a href=#%e5%9b%9b%e5%88%9b%e5%bb%ba%e5%b7%a5%e4%bd%9c%e7%a9%ba%e9%97%b4%e4%b8%8e%e5%8a%9f%e8%83%bd%e5%8c%85 class=header-anchor></a>四、创建工作空间与功能包</h2><h3 id=41-创建并初始化工作区><a href=#41-%e5%88%9b%e5%bb%ba%e5%b9%b6%e5%88%9d%e5%a7%8b%e5%8c%96%e5%b7%a5%e4%bd%9c%e5%8c%ba class=header-anchor></a>4.1 创建并初始化工作区</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>mkdir -p ~/catkin_ws/src
+</span></span><span class=line><span class=cl><span class=nb>cd</span> catkin_ ws/src
+</span></span><span class=line><span class=cl>catkin_init_workspace
+</span></span></code></pre></td></tr></table></div></div><h3 id=42-编译工作空间可为空><a href=#42-%e7%bc%96%e8%af%91%e5%b7%a5%e4%bd%9c%e7%a9%ba%e9%97%b4%e5%8f%af%e4%b8%ba%e7%a9%ba class=header-anchor></a>4.2 编译工作空间（可为空）</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> catkin_ws/
+</span></span><span class=line><span class=cl>catkin_make         <span class=c1>#不产生install文件夹</span>
+</span></span><span class=line><span class=cl>catkin_make install <span class=c1>#产生install文件夹</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=43-设置环境变量><a href=#43-%e8%ae%be%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f class=header-anchor></a>4.3 设置环境变量</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>source</span> devel/setup.bash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=nv>$ROS_PACKAGE_PATH</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=44-创建功能包开发的最小模块单位><a href=#44-%e5%88%9b%e5%bb%ba%e5%8a%9f%e8%83%bd%e5%8c%85%e5%bc%80%e5%8f%91%e7%9a%84%e6%9c%80%e5%b0%8f%e6%a8%a1%e5%9d%97%e5%8d%95%e4%bd%8d class=header-anchor></a>4.4 创建功能包（开发的最小模块单位）</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> ~/catkin_ws/src
+</span></span><span class=line><span class=cl>catkin_create_pkg test_pkg std_msgs rospy roscpp
+</span></span></code></pre></td></tr></table></div></div><h3 id=45-编译功能包><a href=#45-%e7%bc%96%e8%af%91%e5%8a%9f%e8%83%bd%e5%8c%85 class=header-anchor></a>4.5 编译功能包</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> ~/catkin_ws
+</span></span><span class=line><span class=cl>catkin_make
+</span></span><span class=line><span class=cl><span class=nb>source</span> ~/catkin_ws/devel/setup.bash
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>同一个工作空间下,不允许存在同名功能包；但不同工作空间下,允许存在同名功能包</p></blockquote><h2 id=五ros的两种通信机制><a href=#%e4%ba%94ros%e7%9a%84%e4%b8%a4%e7%a7%8d%e9%80%9a%e4%bf%a1%e6%9c%ba%e5%88%b6 class=header-anchor></a>五、ROS的两种通信机制</h2><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2022/01/2022-01-29-232605.png alt=image-20220129232603881 loading=lazy></p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2022/01/2022-01-29-232630.png alt=image-20220129232628750 loading=lazy></p><h2 id=六topic控制海龟示例><a href=#%e5%85%adtopic%e6%8e%a7%e5%88%b6%e6%b5%b7%e9%be%9f%e7%a4%ba%e4%be%8b class=header-anchor></a>六、topic控制海龟示例</h2><p>创建功能包：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ catkin_create_pkg learning_topic roscpp rospy std_msgs geometry_msgs turtlesim
+</span></span></code></pre></td></tr></table></div></div><h3 id=c实现><a href=#c%e5%ae%9e%e7%8e%b0 class=header-anchor></a>C++实现</h3><p>代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=cm>/**
+</span></span></span><span class=line><span class=cl><span class=cm> * 该例程将发布turtle1/cmd_vel话题，消息类型geometry_msgs::Twist
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;ros/ros.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;geometry_msgs/Twist.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>**</span><span class=n>argv</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// ROS节点初始化
+</span></span></span><span class=line><span class=cl>	<span class=n>ros</span><span class=o>::</span><span class=n>init</span><span class=p>(</span><span class=n>argc</span><span class=p>,</span> <span class=n>argv</span><span class=p>,</span> <span class=s>&#34;velocity_publisher&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// 创建节点句柄
+</span></span></span><span class=line><span class=cl>	<span class=n>ros</span><span class=o>::</span><span class=n>NodeHandle</span> <span class=n>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// 创建一个Publisher，发布名为/turtle1/cmd_vel的topic，消息类型为geometry_msgs::Twist，队列长度10
+</span></span></span><span class=line><span class=cl>	<span class=n>ros</span><span class=o>::</span><span class=n>Publisher</span> <span class=n>turtle_vel_pub</span> <span class=o>=</span> <span class=n>n</span><span class=p>.</span><span class=n>advertise</span><span class=o>&lt;</span><span class=n>geometry_msgs</span><span class=o>::</span><span class=n>Twist</span><span class=o>&gt;</span><span class=p>(</span><span class=s>&#34;/turtle1/cmd_vel&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>// 设置循环的频率
+</span></span></span><span class=line><span class=cl>	<span class=n>ros</span><span class=o>::</span><span class=n>Rate</span> <span class=n>loop_rate</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>while</span> <span class=p>(</span><span class=n>ros</span><span class=o>::</span><span class=n>ok</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>	<span class=p>{</span>
+</span></span><span class=line><span class=cl>	    <span class=c1>// 初始化geometry_msgs::Twist类型的消息
+</span></span></span><span class=line><span class=cl>		<span class=n>geometry_msgs</span><span class=o>::</span><span class=n>Twist</span> <span class=n>vel_msg</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=n>vel_msg</span><span class=p>.</span><span class=n>linear</span><span class=p>.</span><span class=n>x</span> <span class=o>=</span> <span class=mf>0.5</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=n>vel_msg</span><span class=p>.</span><span class=n>angular</span><span class=p>.</span><span class=n>z</span> <span class=o>=</span> <span class=mf>0.2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	    <span class=c1>// 发布消息
+</span></span></span><span class=line><span class=cl>		<span class=n>turtle_vel_pub</span><span class=p>.</span><span class=n>publish</span><span class=p>(</span><span class=n>vel_msg</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>ROS_INFO</span><span class=p>(</span><span class=s>&#34;Publsh turtle velocity command[%0.2f m/s, %0.2f rad/s]&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>				<span class=n>vel_msg</span><span class=p>.</span><span class=n>linear</span><span class=p>.</span><span class=n>x</span><span class=p>,</span> <span class=n>vel_msg</span><span class=p>.</span><span class=n>angular</span><span class=p>.</span><span class=n>z</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	    <span class=c1>// 按照循环频率延时
+</span></span></span><span class=line><span class=cl>	    <span class=n>loop_rate</span><span class=p>.</span><span class=n>sleep</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>修改<code>CMakeLists.txt</code>文件，加入以下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c++ data-lang=c++><span class=line><span class=cl><span class=n>add_executable</span><span class=p>(</span><span class=n>velocity_publisher</span> <span class=n>src</span><span class=o>/</span><span class=n>velocity_publisher</span><span class=p>.</span><span class=n>cpp</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>target_link_libraries</span><span class=p>(</span><span class=n>velocity_publisher</span> <span class=err>$</span><span class=p>{</span><span class=n>catkin_LIBRARIES</span><span class=p>})</span>
+</span></span></code></pre></td></tr></table></div></div><p>在<code>learning_topic</code>下执行<code>catkin_make</code>命令，编译完成后执行<code>source devel/setup.bash</code>加入环境变量；</p><p>启动节点：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ roscore
+</span></span><span class=line><span class=cl>$ rosrun turtlesim turtlesim_node
+</span></span><span class=line><span class=cl>$ rosrun learning_topic velocity_publisher
+</span></span></code></pre></td></tr></table></div></div><p>效果如下：</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2022/01/2022-01-28-221543.png alt=image-20220128221542372 loading=lazy></p><h3 id=python实现><a href=#python%e5%ae%9e%e7%8e%b0 class=header-anchor></a>Python实现</h3><p>代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程将发布turtle1/cmd_vel话题，消息类型geometry_msgs::Twist</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>geometry_msgs.msg</span> <span class=kn>import</span> <span class=n>Twist</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>velocity_publisher</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;velocity_publisher&#39;</span><span class=p>,</span> <span class=n>anonymous</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 创建一个Publisher，发布名为/turtle1/cmd_vel的topic，消息类型为geometry_msgs::Twist，队列长度10</span>
+</span></span><span class=line><span class=cl>    <span class=n>turtle_vel_pub</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>Publisher</span><span class=p>(</span><span class=s1>&#39;/turtle1/cmd_vel&#39;</span><span class=p>,</span> <span class=n>Twist</span><span class=p>,</span> <span class=n>queue_size</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>#设置循环的频率</span>
+</span></span><span class=line><span class=cl>    <span class=n>rate</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>Rate</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=ow>not</span> <span class=n>rospy</span><span class=o>.</span><span class=n>is_shutdown</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>		<span class=c1># 初始化geometry_msgs::Twist类型的消息</span>
+</span></span><span class=line><span class=cl>        <span class=n>vel_msg</span> <span class=o>=</span> <span class=n>Twist</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>vel_msg</span><span class=o>.</span><span class=n>linear</span><span class=o>.</span><span class=n>x</span> <span class=o>=</span> <span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>        <span class=n>vel_msg</span><span class=o>.</span><span class=n>angular</span><span class=o>.</span><span class=n>z</span> <span class=o>=</span> <span class=mf>0.2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 发布消息</span>
+</span></span><span class=line><span class=cl>        <span class=n>turtle_vel_pub</span><span class=o>.</span><span class=n>publish</span><span class=p>(</span><span class=n>vel_msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    	<span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Publsh turtle velocity command[</span><span class=si>%0.2f</span><span class=s2> m/s, </span><span class=si>%0.2f</span><span class=s2> rad/s]&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>				<span class=n>vel_msg</span><span class=o>.</span><span class=n>linear</span><span class=o>.</span><span class=n>x</span><span class=p>,</span> <span class=n>vel_msg</span><span class=o>.</span><span class=n>angular</span><span class=o>.</span><span class=n>z</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 按照循环频率延时</span>
+</span></span><span class=line><span class=cl>        <span class=n>rate</span><span class=o>.</span><span class=n>sleep</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>velocity_publisher</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ROSInterruptException</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>pass</span>
+</span></span></code></pre></td></tr></table></div></div><p>（<code>Python2.7</code>）执行指令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ python locity_publisher.py
+</span></span></code></pre></td></tr></table></div></div><p>报错：</p><blockquote><p>ImportError: No module named yaml</p><p>ImportError: No module named rospkg</p><p>&mldr;&mldr;</p></blockquote><p>执行以下指令即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt-get install python-rosinstall
+</span></span><span class=line><span class=cl>sudo pip install -U rosinstall
+</span></span></code></pre></td></tr></table></div></div><h2 id=七自定义topic消息格式><a href=#%e4%b8%83%e8%87%aa%e5%ae%9a%e4%b9%89topic%e6%b6%88%e6%81%af%e6%a0%bc%e5%bc%8f class=header-anchor></a>七、自定义topic消息格式</h2><p>先在对应功能包下，新建msg文件夹，文件名<strong>不可随意更改！！！</strong></p><p>然后创建对应的<code>.msg</code>文件，格式如下：</p><blockquote><p>上面指定了变量，下面指定了常量</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>string name
+</span></span><span class=line><span class=cl>uint8  age
+</span></span><span class=line><span class=cl>uint8  sex
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>uint8 unknown = 0
+</span></span><span class=line><span class=cl>uint8 male    = 1
+</span></span><span class=line><span class=cl>uint8 female  = 2
+</span></span></code></pre></td></tr></table></div></div><p>然后在<code>package.xml</code>中添加功能包依赖：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl>  <span class=nt>&lt;build_depend&gt;</span>message_generation<span class=nt>&lt;/build_depend&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&lt;exec_depend&gt;</span>message_runtime<span class=nt>&lt;/exec_depend&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>在<code>CMakeLists.txt</code>对应位置（见注释）添加编译选项：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>find_package(catkin REQUIRED COMPONENTS
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>  message_generation
+</span></span><span class=line><span class=cl>)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>add_message_files(
+</span></span><span class=line><span class=cl>  FILES
+</span></span><span class=line><span class=cl>  Person.msg
+</span></span><span class=line><span class=cl>)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>generate_messages(
+</span></span><span class=line><span class=cl>  DEPENDENCIES
+</span></span><span class=line><span class=cl>  std_msgs
+</span></span><span class=line><span class=cl>)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>catkin_package(
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs turtlesim message_runtime
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>)
+</span></span></code></pre></td></tr></table></div></div><p>最后回到工作区根目录执行<code>catkin_make</code>，即可生成对应文件：</p><ul><li><code>.h</code>文件位于<code>ws_name/devel/include/pkg_name/</code></li><li><code>.py</code>文件位于<code>ws_name/devel/lib/python2.7/dist-packages/pkg_name/msg</code></li></ul><h2 id=八service控制海龟示例><a href=#%e5%85%abservice%e6%8e%a7%e5%88%b6%e6%b5%b7%e9%be%9f%e7%a4%ba%e4%be%8b class=header-anchor></a>八、service控制海龟示例</h2><p>创建功能包：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ catkin_create_pkg learning_service roscpp rospy std_msgs geometry_msgs turtlesim
+</span></span></code></pre></td></tr></table></div></div><h3 id=python实现-1><a href=#python%e5%ae%9e%e7%8e%b0-1 class=header-anchor></a>Python实现</h3><p>代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程将请求/spawn服务，服务数据类型turtlesim::Spawn</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>sys</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>turtlesim.srv</span> <span class=kn>import</span> <span class=n>Spawn</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>turtle_spawn</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;turtle_spawn&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 发现/spawn服务后，创建一个服务客户端，连接名为/spawn的service</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>wait_for_service</span><span class=p>(</span><span class=s1>&#39;/spawn&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>add_turtle</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ServiceProxy</span><span class=p>(</span><span class=s1>&#39;/spawn&#39;</span><span class=p>,</span> <span class=n>Spawn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 请求服务调用，输入请求数据</span>
+</span></span><span class=line><span class=cl>        <span class=n>response</span> <span class=o>=</span> <span class=n>add_turtle</span><span class=p>(</span><span class=mf>2.0</span><span class=p>,</span> <span class=mf>2.0</span><span class=p>,</span> <span class=mf>0.0</span><span class=p>,</span> <span class=s2>&#34;turtle2&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>response</span><span class=o>.</span><span class=n>name</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ServiceException</span><span class=p>,</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span> <span class=s2>&#34;Service call failed: </span><span class=si>%s</span><span class=s2>&#34;</span><span class=o>%</span><span class=n>e</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>	<span class=c1>#服务调用并显示调用结果</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span> <span class=s2>&#34;Spwan turtle successfully [name:</span><span class=si>%s</span><span class=s2>]&#34;</span> <span class=o>%</span><span class=p>(</span><span class=n>turtle_spawn</span><span class=p>())</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=九分布式多机通信><a href=#%e4%b9%9d%e5%88%86%e5%b8%83%e5%bc%8f%e5%a4%9a%e6%9c%ba%e9%80%9a%e4%bf%a1 class=header-anchor></a>九、分布式多机通信</h2><p><strong>暂未实践</strong>，最全参考博客：<a class=link href=https://blog.csdn.net/hehedadaq/article/details/82898307 target=_blank rel=noopener>ROS分布式多机通信完整教程</a></p><h2 id=十示例代码python><a href=#%e5%8d%81%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81python class=header-anchor></a>十、示例代码（Python）</h2><h3 id=velocity_publisherpy><a href=#velocity_publisherpy class=header-anchor></a>velocity_publisher.py</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl><span class=c1>####          Copyright 2020 GuYueHome (www.guyuehome.com).          ###</span>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程将发布turtle1/cmd_vel话题，消息类型geometry_msgs::Twist</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>geometry_msgs.msg</span> <span class=kn>import</span> <span class=n>Twist</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>velocity_publisher</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;velocity_publisher&#39;</span><span class=p>,</span> <span class=n>anonymous</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 创建一个Publisher，发布名为/turtle1/cmd_vel的topic，消息类型为geometry_msgs::Twist，队列长度10</span>
+</span></span><span class=line><span class=cl>    <span class=n>turtle_vel_pub</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>Publisher</span><span class=p>(</span><span class=s1>&#39;/turtle1/cmd_vel&#39;</span><span class=p>,</span> <span class=n>Twist</span><span class=p>,</span> <span class=n>queue_size</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>#设置循环的频率</span>
+</span></span><span class=line><span class=cl>    <span class=n>rate</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>Rate</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=ow>not</span> <span class=n>rospy</span><span class=o>.</span><span class=n>is_shutdown</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>		<span class=c1># 初始化geometry_msgs::Twist类型的消息</span>
+</span></span><span class=line><span class=cl>        <span class=n>vel_msg</span> <span class=o>=</span> <span class=n>Twist</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>vel_msg</span><span class=o>.</span><span class=n>linear</span><span class=o>.</span><span class=n>x</span> <span class=o>=</span> <span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>        <span class=n>vel_msg</span><span class=o>.</span><span class=n>angular</span><span class=o>.</span><span class=n>z</span> <span class=o>=</span> <span class=mf>0.2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 发布消息</span>
+</span></span><span class=line><span class=cl>        <span class=n>turtle_vel_pub</span><span class=o>.</span><span class=n>publish</span><span class=p>(</span><span class=n>vel_msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    	<span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Publsh turtle velocity command[</span><span class=si>%0.2f</span><span class=s2> m/s, </span><span class=si>%0.2f</span><span class=s2> rad/s]&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>				<span class=n>vel_msg</span><span class=o>.</span><span class=n>linear</span><span class=o>.</span><span class=n>x</span><span class=p>,</span> <span class=n>vel_msg</span><span class=o>.</span><span class=n>angular</span><span class=o>.</span><span class=n>z</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 按照循环频率延时</span>
+</span></span><span class=line><span class=cl>        <span class=n>rate</span><span class=o>.</span><span class=n>sleep</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>velocity_publisher</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ROSInterruptException</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>pass</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=pose_subscriberpy><a href=#pose_subscriberpy class=header-anchor></a>pose_subscriber.py：</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl><span class=c1>####          Copyright 2020 GuYueHome (www.guyuehome.com).          ###</span>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程将订阅/turtle1/pose话题，消息类型turtlesim::Pose</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>turtlesim.msg</span> <span class=kn>import</span> <span class=n>Pose</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>poseCallback</span><span class=p>(</span><span class=n>msg</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Turtle pose: x:</span><span class=si>%0.6f</span><span class=s2>, y:</span><span class=si>%0.6f</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>msg</span><span class=o>.</span><span class=n>x</span><span class=p>,</span> <span class=n>msg</span><span class=o>.</span><span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>pose_subscriber</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;pose_subscriber&#39;</span><span class=p>,</span> <span class=n>anonymous</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 创建一个Subscriber，订阅名为/turtle1/pose的topic，注册回调函数poseCallback</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>Subscriber</span><span class=p>(</span><span class=s2>&#34;/turtle1/pose&#34;</span><span class=p>,</span> <span class=n>Pose</span><span class=p>,</span> <span class=n>poseCallback</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 循环等待回调函数</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>spin</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>pose_subscriber</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=turtle_spawn_clientpy><a href=#turtle_spawn_clientpy class=header-anchor></a>turtle_spawn_client.py：</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl><span class=c1>####          Copyright 2020 GuYueHome (www.guyuehome.com).          ###</span>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程将请求/spawn服务，服务数据类型turtlesim::Spawn</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>sys</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>turtlesim.srv</span> <span class=kn>import</span> <span class=n>Spawn</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>turtle_spawn</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;turtle_spawn&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 发现/spawn服务后，创建一个服务客户端，连接名为/spawn的service</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>wait_for_service</span><span class=p>(</span><span class=s1>&#39;/spawn&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>add_turtle</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ServiceProxy</span><span class=p>(</span><span class=s1>&#39;/spawn&#39;</span><span class=p>,</span> <span class=n>Spawn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 请求服务调用，输入请求数据</span>
+</span></span><span class=line><span class=cl>        <span class=n>response</span> <span class=o>=</span> <span class=n>add_turtle</span><span class=p>(</span><span class=mf>2.0</span><span class=p>,</span> <span class=mf>2.0</span><span class=p>,</span> <span class=mf>0.0</span><span class=p>,</span> <span class=s2>&#34;turtle2&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>response</span><span class=o>.</span><span class=n>name</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ServiceException</span><span class=p>,</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span> <span class=s2>&#34;Service call failed: </span><span class=si>%s</span><span class=s2>&#34;</span><span class=o>%</span><span class=n>e</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>	<span class=c1>#服务调用并显示调用结果</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span> <span class=s2>&#34;Spwan turtle successfully [name:</span><span class=si>%s</span><span class=s2>]&#34;</span> <span class=o>%</span><span class=p>(</span><span class=n>turtle_spawn</span><span class=p>())</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=turtle_command_serverpy><a href=#turtle_command_serverpy class=header-anchor></a>turtle_command_server.py：</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl><span class=c1>####          Copyright 2020 GuYueHome (www.guyuehome.com).          ###</span>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程将执行/turtle_command服务，服务数据类型std_srvs/Trigger</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>thread</span><span class=o>,</span><span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>geometry_msgs.msg</span> <span class=kn>import</span> <span class=n>Twist</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>std_srvs.srv</span> <span class=kn>import</span> <span class=n>Trigger</span><span class=p>,</span> <span class=n>TriggerResponse</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>pubCommand</span> <span class=o>=</span> <span class=kc>False</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>turtle_vel_pub</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>Publisher</span><span class=p>(</span><span class=s1>&#39;/turtle1/cmd_vel&#39;</span><span class=p>,</span> <span class=n>Twist</span><span class=p>,</span> <span class=n>queue_size</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>command_thread</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=n>pubCommand</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>			<span class=n>vel_msg</span> <span class=o>=</span> <span class=n>Twist</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>			<span class=n>vel_msg</span><span class=o>.</span><span class=n>linear</span><span class=o>.</span><span class=n>x</span> <span class=o>=</span> <span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>			<span class=n>vel_msg</span><span class=o>.</span><span class=n>angular</span><span class=o>.</span><span class=n>z</span> <span class=o>=</span> <span class=mf>0.2</span>
+</span></span><span class=line><span class=cl>			<span class=n>turtle_vel_pub</span><span class=o>.</span><span class=n>publish</span><span class=p>(</span><span class=n>vel_msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mf>0.1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>commandCallback</span><span class=p>(</span><span class=n>req</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>	<span class=k>global</span> <span class=n>pubCommand</span>
+</span></span><span class=line><span class=cl>	<span class=n>pubCommand</span> <span class=o>=</span> <span class=nb>bool</span><span class=p>(</span><span class=mi>1</span><span class=o>-</span><span class=n>pubCommand</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 显示请求数据</span>
+</span></span><span class=line><span class=cl>	<span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Publish turtle velocity command![</span><span class=si>%d</span><span class=s2>]&#34;</span><span class=p>,</span> <span class=n>pubCommand</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 反馈数据</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>TriggerResponse</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=s2>&#34;Change turtle command state!&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>turtle_command_server</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;turtle_command_server&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 创建一个名为/turtle_command的server，注册回调函数commandCallback</span>
+</span></span><span class=line><span class=cl>    <span class=n>s</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>Service</span><span class=p>(</span><span class=s1>&#39;/turtle_command&#39;</span><span class=p>,</span> <span class=n>Trigger</span><span class=p>,</span> <span class=n>commandCallback</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 循环等待回调函数</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span> <span class=s2>&#34;Ready to receive turtle command.&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>thread</span><span class=o>.</span><span class=n>start_new_thread</span><span class=p>(</span><span class=n>command_thread</span><span class=p>,</span> <span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>spin</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>turtle_command_server</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=parameter_configpy><a href=#parameter_configpy class=header-anchor></a>parameter_config.py</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf-8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl><span class=c1>####          Copyright 2020 GuYueHome (www.guyuehome.com).          ###</span>
+</span></span><span class=line><span class=cl><span class=c1>########################################################################</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 该例程设置/读取海龟例程中的参数</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>sys</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>rospy</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>std_srvs.srv</span> <span class=kn>import</span> <span class=n>Empty</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>parameter_config</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>	<span class=c1># ROS节点初始化</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>init_node</span><span class=p>(</span><span class=s1>&#39;parameter_config&#39;</span><span class=p>,</span> <span class=n>anonymous</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 读取背景颜色参数</span>
+</span></span><span class=line><span class=cl>    <span class=n>red</span>   <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>get_param</span><span class=p>(</span><span class=s1>&#39;/background_r&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>green</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>get_param</span><span class=p>(</span><span class=s1>&#39;/background_g&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>blue</span>  <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>get_param</span><span class=p>(</span><span class=s1>&#39;/background_b&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Get Backgroud Color[</span><span class=si>%d</span><span class=s2>, </span><span class=si>%d</span><span class=s2>, </span><span class=si>%d</span><span class=s2>]&#34;</span><span class=p>,</span> <span class=n>red</span><span class=p>,</span> <span class=n>green</span><span class=p>,</span> <span class=n>blue</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 设置背景颜色参数</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>set_param</span><span class=p>(</span><span class=s2>&#34;/background_r&#34;</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>set_param</span><span class=p>(</span><span class=s2>&#34;/background_g&#34;</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>set_param</span><span class=p>(</span><span class=s2>&#34;/background_b&#34;</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Set Backgroud Color[255, 255, 255]&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 读取背景颜色参数</span>
+</span></span><span class=line><span class=cl>    <span class=n>red</span>   <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>get_param</span><span class=p>(</span><span class=s1>&#39;/background_r&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>green</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>get_param</span><span class=p>(</span><span class=s1>&#39;/background_g&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>blue</span>  <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>get_param</span><span class=p>(</span><span class=s1>&#39;/background_b&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>loginfo</span><span class=p>(</span><span class=s2>&#34;Get Backgroud Color[</span><span class=si>%d</span><span class=s2>, </span><span class=si>%d</span><span class=s2>, </span><span class=si>%d</span><span class=s2>]&#34;</span><span class=p>,</span> <span class=n>red</span><span class=p>,</span> <span class=n>green</span><span class=p>,</span> <span class=n>blue</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1># 发现/spawn服务后，创建一个服务客户端，连接名为/spawn的service</span>
+</span></span><span class=line><span class=cl>    <span class=n>rospy</span><span class=o>.</span><span class=n>wait_for_service</span><span class=p>(</span><span class=s1>&#39;/clear&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>clear_background</span> <span class=o>=</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ServiceProxy</span><span class=p>(</span><span class=s1>&#39;/clear&#39;</span><span class=p>,</span> <span class=n>Empty</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1># 请求服务调用，输入请求数据</span>
+</span></span><span class=line><span class=cl>        <span class=n>response</span> <span class=o>=</span> <span class=n>clear_background</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>response</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>rospy</span><span class=o>.</span><span class=n>ServiceException</span><span class=p>,</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span> <span class=s2>&#34;Service call failed: </span><span class=si>%s</span><span class=s2>&#34;</span><span class=o>%</span><span class=n>e</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>parameter_config</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/system/>System</a>
+<a href=/tags/linux/>Linux</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/ubuntu-ftp/><div class=article-details><h2 class=article-title>Ubuntu下配置FTP</h2></div></a></article><article><a href=/p/profile-bashrc/><div class=article-details><h2 class=article-title>.bashrc与.profile等的区别</h2></div></a></article><article><a href=/p/nginx-module/><div class=article-details><h2 class=article-title>nginx 配置模块化设计</h2></div></a></article><article><a href=/p/initial-config/><div class=article-details><h2 class=article-title>Linux服务器从零配置</h2></div></a></article><article><a href=/p/command/><div class=article-details><h2 class=article-title>Linux常用指令</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

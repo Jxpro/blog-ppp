@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Golang on Markdown Notes</title><link>https://example.org/tags/golang/</link><description>Recent content in Golang on Markdown Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2026 09:22:25 +0000</lastBuildDate><atom:link href="https://example.org/tags/golang/index.xml" rel="self" type="application/rss+xml"/><item><title>Golang基本语法</title><link>https://example.org/p/3-basic-syntax/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/3-basic-syntax/</guid><description>&lt;h1 id="golang基本语法"&gt;&lt;a href="#golang%e5%9f%ba%e6%9c%ac%e8%af%ad%e6%b3%95" class="header-anchor"&gt;&lt;/a&gt;Golang基本语法
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="1-基本结构"&gt;&lt;a href="#1-%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" class="header-anchor"&gt;&lt;/a&gt;1. 基本结构
+&lt;/h2&gt;&lt;h3 id="11-分号是可选的"&gt;&lt;a href="#11-%e5%88%86%e5%8f%b7%e6%98%af%e5%8f%af%e9%80%89%e7%9a%84" class="header-anchor"&gt;&lt;/a&gt;1.1 分号是可选的
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;编译器工作原理：&lt;/p&gt;
+&lt;p&gt;首先在一行中寻找成对的符号，比如一对字符串的引号，一对圆括号，一对大括号&lt;/p&gt;
+&lt;p&gt;上述任务完成后，在一行中没有其他成对的标示，然后就在行尾追加分号&lt;/p&gt;
+&lt;p&gt;所以一行一个语句，结尾不用加分号&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;举例：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;import&lt;/code&gt;后面每个包写一行，后面自动追加分号&lt;/p&gt;
+&lt;p&gt;圆括号在这里是语法要求的，一次导入多个包,必须加圆括号，否则报错&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;#34;math&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 写一行，要写成&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;math&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="12-go源码特征解读"&gt;&lt;a href="#12-go%e6%ba%90%e7%a0%81%e7%89%b9%e5%be%81%e8%a7%a3%e8%af%bb" class="header-anchor"&gt;&lt;/a&gt;1.2 Go源码特征解读
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;源程序以&lt;code&gt;.go&lt;/code&gt;为&lt;strong&gt;后缀&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;语句结尾的&lt;strong&gt;分号可以省略&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt;函数代表Go程序入口函数，main函数所在的&lt;strong&gt;包名必须是main&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;所有的Go源程序文件头部必须有一个&lt;strong&gt;包声明语句&lt;/strong&gt;，Go通过包来管理命名空间&lt;/li&gt;
+&lt;li&gt;源程序默认为&lt;strong&gt;UTF-8编码&lt;/strong&gt;，标识符&lt;strong&gt;区分大小写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;函数以&lt;code&gt;func&lt;/code&gt;开头，函数体开头的&lt;code&gt;{&lt;/code&gt;必须在函数头&lt;strong&gt;所在行尾部&lt;/strong&gt;，不能单独起一行&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;调用包&lt;/strong&gt;里面的方法通过点&lt;code&gt;.&lt;/code&gt;访问符，比如示例中的 fmt.Printf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="2-变量声明"&gt;&lt;a href="#2-%e5%8f%98%e9%87%8f%e5%a3%b0%e6%98%8e" class="header-anchor"&gt;&lt;/a&gt;2. 变量声明
+&lt;/h2&gt;&lt;p&gt;声明变量的&lt;strong&gt;一般形式&lt;/strong&gt;是使用 var 关键字，可以一次声明多个变量：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;varName&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dataType&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;varName1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;varName2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dataType&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="21-指定变量类型"&gt;&lt;a href="#21-%e6%8c%87%e5%ae%9a%e5%8f%98%e9%87%8f%e7%b1%bb%e5%9e%8b" class="header-anchor"&gt;&lt;/a&gt;2.1 指定变量类型
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;如果没有初始化，则变量默认为零值&lt;/p&gt;
+&lt;p&gt;零值就是变量没有做初始化时系统默认设置的值&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;varName&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;dataType&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;varName&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="22-自动推导变量类型"&gt;&lt;a href="#22-%e8%87%aa%e5%8a%a8%e6%8e%a8%e5%af%bc%e5%8f%98%e9%87%8f%e7%b1%bb%e5%9e%8b" class="header-anchor"&gt;&lt;/a&gt;2.2 自动推导变量类型
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;varName&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="23-使用--声明变量省略变量类型和var关键字"&gt;&lt;a href="#23-%e4%bd%bf%e7%94%a8--%e5%a3%b0%e6%98%8e%e5%8f%98%e9%87%8f%e7%9c%81%e7%95%a5%e5%8f%98%e9%87%8f%e7%b1%bb%e5%9e%8b%e5%92%8cvar%e5%85%b3%e9%94%ae%e5%ad%97" class="header-anchor"&gt;&lt;/a&gt;2.3 使用 &lt;em&gt;:=&lt;/em&gt; 声明变量，省略变量类型和var关键字
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;如果变量已经使用&lt;code&gt;var&lt;/code&gt;声明过了，再使用&lt;code&gt;:=&lt;/code&gt;声明变量，就产生编译错误&lt;/p&gt;
+&lt;p&gt;因为变量声明过后只能使用&lt;code&gt;=&lt;/code&gt;进行赋值了&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;varName&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;:=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="24-多变量声明"&gt;&lt;a href="#24-%e5%a4%9a%e5%8f%98%e9%87%8f%e5%a3%b0%e6%98%8e" class="header-anchor"&gt;&lt;/a&gt;2.4 多变量声明
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;类型相同多个变量&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="err"&gt;非全局变量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;var&lt;/span&gt; &lt;span class="n"&gt;vname1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname3&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vname1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;和&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="err"&gt;很像&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="err"&gt;不需要显示声明类型，自动推断&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;var&lt;/span&gt; &lt;span class="n"&gt;vname1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v3&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;出现在&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;左侧的变量不应该是已经被声明过的，否则会导致编译错误&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;vname1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vname3&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v3&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;这种因式分解关键字的写法一般用于声明全局变量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vname1&lt;/span&gt; &lt;span class="n"&gt;v_type1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;vname2&lt;/span&gt; &lt;span class="n"&gt;v_type2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="25-变量类型位置"&gt;&lt;a href="#25-%e5%8f%98%e9%87%8f%e7%b1%bb%e5%9e%8b%e4%bd%8d%e7%bd%ae" class="header-anchor"&gt;&lt;/a&gt;2.5 变量类型位置
+&lt;/h3&gt;&lt;p&gt;Go语言和许多编程语言不同，它在声明变量时将变量的类型放在变量的名称之后
+这样做的好处就是可以避免像C语言中那样&lt;strong&gt;含糊不清的声明形式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在C语言中，&lt;code&gt;int* a, b;&lt;/code&gt; ，其中只有 a 是指针而 b 不是，如果你想要这两个变量都是指针，则需要将它们分开书写&lt;/li&gt;
+&lt;li&gt;而在 Go 中，则可以和轻松地将它们都声明为指针类型：&lt;code&gt;var a, b *int&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Golang开发环境搭建</title><link>https://example.org/p/1-setup/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/1-setup/</guid><description>&lt;h1 id="golang开发环境搭建"&gt;&lt;a href="#golang%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="header-anchor"&gt;&lt;/a&gt;Golang开发环境搭建
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一安装"&gt;&lt;a href="#%e4%b8%80%e5%ae%89%e8%a3%85" class="header-anchor"&gt;&lt;/a&gt;一、安装
+&lt;/h2&gt;&lt;p&gt;Go 语言开发包
+国外：&lt;a class="link" href="https://golang.org/dl/" target="_blank" rel="noopener"
+ &gt;https://golang.org/dl/&lt;/a&gt;
+国内(推荐)： &lt;a class="link" href="https://golang.google.cn/dl/" target="_blank" rel="noopener"
+ &gt;https://golang.google.cn/dl/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="二测试安装"&gt;&lt;a href="#%e4%ba%8c%e6%b5%8b%e8%af%95%e5%ae%89%e8%a3%85" class="header-anchor"&gt;&lt;/a&gt;二、测试安装
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ go version
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go version go1.17.3 windows/amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看环境配置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ go env
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;GO111MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;GOARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 配置文件目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;GOENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\x&lt;/span&gt;in&lt;span class="se"&gt;\A&lt;/span&gt;ppData&lt;span class="se"&gt;\R&lt;/span&gt;oaming&lt;span class="se"&gt;\g&lt;/span&gt;o&lt;span class="se"&gt;\e&lt;/span&gt;nv
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="三修改相关配置"&gt;&lt;a href="#%e4%b8%89%e4%bf%ae%e6%94%b9%e7%9b%b8%e5%85%b3%e9%85%8d%e7%bd%ae" class="header-anchor"&gt;&lt;/a&gt;三、修改相关配置
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 设置GOPROXY，将Go Module下载请求重定向到GOPROXY指向的缓存库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go env -w &lt;span class="nv"&gt;GO111MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;on &lt;span class="o"&gt;(&lt;/span&gt;auto&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go env -w &lt;span class="nv"&gt;GOPROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://goproxy.cn,direct
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Go 1.13设置了默认的GOSUMDB=sum.golang.org&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 是用来验证包的有效性。这个网址由于墙的原因可能无法访问，所以可以使用下面命令来关闭：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go env -w &lt;span class="nv"&gt;GOSUMDB&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;off
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 修改GOPATH默认路径，报错直接修改环境变量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# warning: go env -w GOPATH=...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# does not override conflicting OS environment variable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go env -w &lt;span class="nv"&gt;GOPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;D:&lt;span class="se"&gt;\T&lt;/span&gt;ASK&lt;span class="se"&gt;\P&lt;/span&gt;rogram&lt;span class="se"&gt;\G&lt;/span&gt;o
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="四gopath目录结构"&gt;&lt;a href="#%e5%9b%9bgopath%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84" class="header-anchor"&gt;&lt;/a&gt;四、GOPATH目录结构
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;GOROOT
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	--src &amp;lt;&amp;lt;--- Go 语言自带的源代码
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	--pkg &amp;lt;&amp;lt;--- 编译的中间文件放在此文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	--bin &amp;lt;&amp;lt;--- 编译的目标文件放在此文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;GOPATH
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	--src &amp;lt;&amp;lt;--- 项目源代码放置在此文件夹。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!!
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		--HelloWorld &amp;lt;&amp;lt;--- 我们项目源代码所在的文件夹。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!!
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		--vendor &amp;lt;&amp;lt;--- 第三方开源代码文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;			--github.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;				--...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	--pkg &amp;lt;&amp;lt;--- 编译的中间文件放在此文件夹，Go编译器自动生成此文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	--bin &amp;lt;&amp;lt;--- 编译的目标文件放在此文件夹，Go编译器自动生成此文件夹
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="五-第一个golang程序"&gt;&lt;a href="#%e4%ba%94-%e7%ac%ac%e4%b8%80%e4%b8%aagolang%e7%a8%8b%e5%ba%8f" class="header-anchor"&gt;&lt;/a&gt;五、 第一个Golang程序
+&lt;/h2&gt;&lt;p&gt;文件位置：D:\TASK\Program\Go\src\helloworld\app.go&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;hello world&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;编译运行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ go run .&lt;span class="se"&gt;\a&lt;/span&gt;pp.go
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;hello world
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ go build .&lt;span class="se"&gt;\a&lt;/span&gt;pp.go
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ .&lt;span class="se"&gt;\a&lt;/span&gt;pp.exe
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;hello world
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="六参考文章"&gt;&lt;a href="#%e5%85%ad%e5%8f%82%e8%80%83%e6%96%87%e7%ab%a0" class="header-anchor"&gt;&lt;/a&gt;六、参考文章
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/299095514" target="_blank" rel="noopener"
+ &gt;Golang开发环境搭建&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.cnblogs.com/leokale-zz/p/14651078.html" target="_blank" rel="noopener"
+ &gt;Golang环境搭建&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.csdn.net/quicmous/article/details/80360126" target="_blank" rel="noopener"
+ &gt;Go 语言 GOPATH 设置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="七问题一"&gt;&lt;a href="#%e4%b8%83%e9%97%ae%e9%a2%98%e4%b8%80" class="header-anchor"&gt;&lt;/a&gt;七、问题一
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;报错详情&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go.mod file not found in current directory or any parent directory&lt;span class="p"&gt;;&lt;/span&gt; see &lt;span class="s1"&gt;&amp;#39;go help modules&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;原因分析&lt;/p&gt;
+&lt;p&gt;go环境设置存在问题&lt;/p&gt;
+&lt;p&gt;具体搜索&lt;code&gt;go modules&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解决办法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;( 过了很长一段时间&amp;hellip; )重新安装&amp;hellip;&lt;/li&gt;
+&lt;li&gt;以下方法本人尝试后无效:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go env -w &lt;span class="nv"&gt;GO111MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;auto
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;参考文章：&lt;a class="link" href="https://blog.csdn.net/weixin_40179091/article/details/117163598" target="_blank" rel="noopener"
+ &gt;CSDN&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="八问题二"&gt;&lt;a href="#%e5%85%ab%e9%97%ae%e9%a2%98%e4%ba%8c" class="header-anchor"&gt;&lt;/a&gt;八、问题二
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;报错详情&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Error running &lt;span class="s1"&gt;&amp;#39;go build awesomeProject (1)&amp;#39;&lt;/span&gt;: Cannot run program &lt;span class="s2"&gt;&amp;#34;C:\Users\erbin\AppData\Local\Temp\___go_build_awesomeProject__1_.exe&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;in directory &lt;span class="s2"&gt;&amp;#34;G:\Language Proctice\Goworks\src\awesomeProject&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;: CreateProcess &lt;span class="nv"&gt;error&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;216, 该版本的 %1 与你运行的 Windows 版本不兼容。请查看计算机的系统信息，然后联系软件发布者。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 此时的代码为&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;awesomeProject&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;原因分析&lt;/p&gt;
+&lt;p&gt;在go中，应用程序的入口包要为&lt;code&gt;main&lt;/code&gt;，而编译源码没有&lt;code&gt;main包&lt;/code&gt;时，将无法编译输出可执行的文件，也就会导致这里的错误&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解决办法&lt;/p&gt;
+&lt;p&gt;将main函数所在的包名改为main，改之后如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 代码成功运行&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;package&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;func&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>Golang依赖管理</title><link>https://example.org/p/2-module/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/2-module/</guid><description>&lt;h1 id="golang依赖管理"&gt;&lt;a href="#golang%e4%be%9d%e8%b5%96%e7%ae%a1%e7%90%86" class="header-anchor"&gt;&lt;/a&gt;Golang依赖管理
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一为什么需要依赖管理"&gt;&lt;a href="#%e4%b8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e4%be%9d%e8%b5%96%e7%ae%a1%e7%90%86" class="header-anchor"&gt;&lt;/a&gt;一、为什么需要依赖管理
+&lt;/h2&gt;&lt;p&gt;最早的时候，Go所依赖的所有的第三方库都放在&lt;code&gt;GOPATH&lt;/code&gt;这个目录下面。这就导致了同一个库只能保存一个版本的代码。如果不同的项目依赖同一个第三方的库的不同版本，应该怎么解决？&lt;/p&gt;
+&lt;h2 id="二godep"&gt;&lt;a href="#%e4%ba%8cgodep" class="header-anchor"&gt;&lt;/a&gt;二、godep
+&lt;/h2&gt;&lt;p&gt;Go语言从&lt;strong&gt;v1.5&lt;/strong&gt;开始开始引入&lt;code&gt;vendor&lt;/code&gt;模式，如果项目目录下有&lt;code&gt;vendor&lt;/code&gt;目录，那么&lt;strong&gt;go工具链&lt;/strong&gt;会优先使用&lt;code&gt;vendor&lt;/code&gt;内的包进行&lt;strong&gt;编译、测试&lt;/strong&gt;等&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;godep&lt;/code&gt;是一个通过&lt;code&gt;vender&lt;/code&gt;模式实现的Go语言的&lt;strong&gt;第三方依赖管理工具&lt;/strong&gt;，类似的还有由社区维护准官方包管理工具&lt;code&gt;dep&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="21-安装"&gt;&lt;a href="#21-%e5%ae%89%e8%a3%85" class="header-anchor"&gt;&lt;/a&gt;2.1 安装
+&lt;/h3&gt;&lt;p&gt;执行以下命令安装&lt;code&gt;godep&lt;/code&gt;工具&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go get github.com/tools/godep
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="22-基本命令"&gt;&lt;a href="#22-%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4" class="header-anchor"&gt;&lt;/a&gt;2.2 基本命令
+&lt;/h3&gt;&lt;p&gt;安装好&lt;code&gt;godep&lt;/code&gt;之后，在终端输入&lt;code&gt;godep&lt;/code&gt;查看支持的&lt;strong&gt;所有命令&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep save 将依赖项输出并复制到Godeps.json文件中
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep go 使用保存的依赖项运行go工具
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep get 下载并安装具有指定依赖项的包
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep path 打印依赖的GOPATH路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep restore 在GOPATH中拉取依赖的版本
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep update 更新选定的包或go版本
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep diff 显示当前和以前保存的依赖项集之间的差异
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;godep version 查看版本信息
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;godep help \\[command\\]&lt;/code&gt;可以看看&lt;strong&gt;具体命令&lt;/strong&gt;的帮助信息&lt;/p&gt;
+&lt;h3 id="23-使用godep"&gt;&lt;a href="#23-%e4%bd%bf%e7%94%a8godep" class="header-anchor"&gt;&lt;/a&gt;2.3 使用godep
+&lt;/h3&gt;&lt;p&gt;在项目目录下执行&lt;code&gt;godep save&lt;/code&gt;命令，会在当前项目中创建&lt;code&gt;Godeps&lt;/code&gt;和&lt;code&gt;vender&lt;/code&gt;两个文件夹&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;Godeps&lt;/code&gt;文件夹下有一个&lt;code&gt;Godeps.json&lt;/code&gt;的文件，里面记录了项目所依赖的&lt;strong&gt;包信息&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;vender&lt;/code&gt;文件夹下是项目依赖的包的&lt;strong&gt;源代码&lt;/strong&gt;文件&lt;/p&gt;
+&lt;h3 id="24-vender机制"&gt;&lt;a href="#24-vender%e6%9c%ba%e5%88%b6" class="header-anchor"&gt;&lt;/a&gt;2.4 vender机制
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Go1.5&lt;/strong&gt;版本之后开始支持，能够控制Go语言程序编译时依赖包搜索路径的优先级&lt;/p&gt;
+&lt;p&gt;例如查找项目的某个依赖包，首先会在项目根目录下的&lt;code&gt;vender&lt;/code&gt;文件夹中查找，如果没有找到就会去&lt;code&gt;$GOAPTH/src&lt;/code&gt;目录下查找&lt;/p&gt;
+&lt;h3 id="25-godep开发流程"&gt;&lt;a href="#25-godep%e5%bc%80%e5%8f%91%e6%b5%81%e7%a8%8b" class="header-anchor"&gt;&lt;/a&gt;2.5 godep开发流程
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;保证程序能够正常编译&lt;/li&gt;
+&lt;li&gt;执行&lt;code&gt;godep save&lt;/code&gt;保存当前项目的所有&lt;strong&gt;第三方依赖的版本信息和代码&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;提交Godeps目录和vender目录到代码库&lt;/li&gt;
+&lt;li&gt;如果要更新依赖的版本，可以直接修改&lt;code&gt;Godeps.json&lt;/code&gt;文件中的对应项&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="三-go-module"&gt;&lt;a href="#%e4%b8%89-go-module" class="header-anchor"&gt;&lt;/a&gt;三. go module
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;go module&lt;/code&gt;是&lt;strong&gt;Go1.11版本&lt;/strong&gt;之后官方推出的版本管理工具，并且从Go1.13版本开始，&lt;code&gt;go module&lt;/code&gt;将是Go语言默认的依赖管理工具&lt;/p&gt;
+&lt;h3 id="31-go111module"&gt;&lt;a href="#31-go111module" class="header-anchor"&gt;&lt;/a&gt;3.1 GO111MODULE
+&lt;/h3&gt;&lt;p&gt;要启用&lt;code&gt;go module&lt;/code&gt;支持首先要设置环境变量&lt;code&gt;GO111MODULE&lt;/code&gt;，通过它可以开启或关闭模块支持，它有三个可选值：&lt;code&gt;off&lt;/code&gt;、&lt;code&gt;on&lt;/code&gt;、&lt;code&gt;auto&lt;/code&gt;，默认值是&lt;code&gt;auto&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GO111MODULE=off&lt;/code&gt;禁用模块支持，编译时会从&lt;code&gt;GOPATH&lt;/code&gt;和&lt;code&gt;vendor&lt;/code&gt;文件夹中查找包&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GO111MODULE=on&lt;/code&gt;启用模块支持，编译时会忽略&lt;code&gt;GOPATH&lt;/code&gt;和&lt;code&gt;vendor&lt;/code&gt;文件夹，只根据 &lt;code&gt;go.mod&lt;/code&gt;下载依赖&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GO111MODULE=auto&lt;/code&gt;，当&lt;strong&gt;项目在&lt;code&gt;$GOPATH/src&lt;/code&gt;外&lt;/strong&gt;且项目根目录有&lt;code&gt;go.mod&lt;/code&gt;文件时，开启模块支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用&lt;code&gt;go module&lt;/code&gt;管理依赖后会在项目根目录下生成两个文件&lt;code&gt;go.mod&lt;/code&gt;和&lt;code&gt;go.sum&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;简单来说，设置&lt;code&gt;GO111MODULE=on&lt;/code&gt;之后就可以使用&lt;code&gt;go module&lt;/code&gt;了，以后就没有必要在&lt;code&gt;GOPATH&lt;/code&gt;中创建项目了，并且还能够很好的管理项目依赖的第三方包信息&lt;/p&gt;
+&lt;h3 id="32-goproxy"&gt;&lt;a href="#32-goproxy" class="header-anchor"&gt;&lt;/a&gt;3.2 GOPROXY
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Go1.11之后&lt;/strong&gt;设置GOPROXY命令为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;GOPROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://goproxy.cn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Go1.13之后&lt;/strong&gt;&lt;code&gt;GOPROXY&lt;/code&gt;默认值为&lt;code&gt;https://proxy.golang.org&lt;/code&gt;，在国内是无法访问的，所以十分建议大家设置GOPROXY，这里我推荐使用&lt;code&gt;goproxy.cn&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go env -w &lt;span class="nv"&gt;GOPROXY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://goproxy.cn,direct
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="33-go-mod命令"&gt;&lt;a href="#33-go-mod%e5%91%bd%e4%bb%a4" class="header-anchor"&gt;&lt;/a&gt;3.3 go mod命令
+&lt;/h3&gt;&lt;p&gt;常用的&lt;code&gt;go mod&lt;/code&gt;命令如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod download 下载依赖的module到本地cache（默认为&lt;span class="nv"&gt;$GOPATH&lt;/span&gt;/pkg/mod目录）
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod edit 编辑go.mod文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod graph 打印模块依赖图
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod init 初始化当前文件夹, 创建go.mod文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod tidy 增加缺少的module，删除无用的module
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod vendor 将依赖复制到vendor下
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod verify 校验依赖
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod why 解释为什么需要依赖
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="34-gomod"&gt;&lt;a href="#34-gomod" class="header-anchor"&gt;&lt;/a&gt;3.4 go.mod
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;go.mod&lt;/code&gt;文件记录了项目所有的依赖信息，其结构大致如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;Q1mi&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;studygo&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;blogger&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1.12&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;require&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;DeanThompson&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;ginpprof&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.0.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20190408063150&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="nx"&gt;be636683586&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;gin&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;gonic&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;gin&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.4.0&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;sql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nx"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;mysql&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.4.1&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;jmoiron&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;sqlx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.2.0&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;satori&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;uuid&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.2.0&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;appengine&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v1&lt;/span&gt;&lt;span class="mf"&gt;.6.1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// indirect&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;module&lt;/code&gt;用来定义&lt;strong&gt;包名&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;require&lt;/code&gt;用来定义&lt;strong&gt;依赖包及版本&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;indirect&lt;/code&gt;表示&lt;strong&gt;间接引用&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="34-依赖的版本"&gt;&lt;a href="#34-%e4%be%9d%e8%b5%96%e7%9a%84%e7%89%88%e6%9c%ac" class="header-anchor"&gt;&lt;/a&gt;3.4 依赖的版本
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;go mod&lt;/code&gt;支持&lt;strong&gt;语义化版本号&lt;/strong&gt;，比如&lt;code&gt;go get foo@v1.2.3&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;也可以跟git的&lt;strong&gt;分支或tag&lt;/strong&gt;，比如&lt;code&gt;go get foo@master&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;还可以跟git提交&lt;strong&gt;哈希&lt;/strong&gt;，比如&lt;code&gt;go get foo@e3702bed2&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="35-replace"&gt;&lt;a href="#35-replace" class="header-anchor"&gt;&lt;/a&gt;3.5 replace
+&lt;/h3&gt;&lt;p&gt;在国内访问&lt;code&gt;golang.org/x&lt;/code&gt;的各个包都需要翻墙，你可以在&lt;code&gt;go.mod&lt;/code&gt;中使用&lt;code&gt;replace&lt;/code&gt;替换成&lt;code&gt;github&lt;/code&gt;上对应的库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;replace&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;crypto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.0.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20180820150726&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;614&lt;/span&gt;&lt;span class="nx"&gt;d502a4dac&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;crypto&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.0.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20180820150726&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;614&lt;/span&gt;&lt;span class="nx"&gt;d502a4dac&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;net&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.0.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20180821023952&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;922&lt;/span&gt;&lt;span class="nx"&gt;f4815f713&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;net&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.0.0&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;20180826012351&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="nx"&gt;a410e7b638d&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;	&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;text&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.3.0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;golang&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;text&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;v0&lt;/span&gt;&lt;span class="mf"&gt;.3.0&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="36-go-get"&gt;&lt;a href="#36-go-get" class="header-anchor"&gt;&lt;/a&gt;3.6 go get
+&lt;/h3&gt;&lt;p&gt;在项目中执行&lt;code&gt;go get&lt;/code&gt;命令可以下载依赖包，并且还&lt;strong&gt;可以指定下载的版本&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运行&lt;code&gt;go get -u&lt;/code&gt;将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)&lt;/li&gt;
+&lt;li&gt;运行&lt;code&gt;go get -u=patch&lt;/code&gt;将会升级到最新的修订版本&lt;/li&gt;
+&lt;li&gt;运行&lt;code&gt;go get package@version&lt;/code&gt;将会升级到指定的版本号version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果下载所有依赖可以使用&lt;code&gt;go mod download&lt;/code&gt;命令&lt;/p&gt;
+&lt;h3 id="37-整理依赖"&gt;&lt;a href="#37-%e6%95%b4%e7%90%86%e4%be%9d%e8%b5%96" class="header-anchor"&gt;&lt;/a&gt;3.7 整理依赖
+&lt;/h3&gt;&lt;p&gt;我们在代码中删除依赖代码后，相关的依赖库并不会在go.mod文件中自动移除。这种情况下我们可以使用&lt;code&gt;go mod tidy&lt;/code&gt;命令&lt;strong&gt;更新go.mod中的依赖关系&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="38-导入机制"&gt;&lt;a href="#38-%e5%af%bc%e5%85%a5%e6%9c%ba%e5%88%b6" class="header-anchor"&gt;&lt;/a&gt;3.8 导入机制
+&lt;/h3&gt;&lt;p&gt;与Java不同，Go没有类似于Java的&lt;code&gt;package&lt;/code&gt;声明来抽象地定义包的命名空间。在Go中，包的命名空间直接映射到它们在文件系统中的位置。包名通常与其所在的目录名相同，且一个目录下的所有Go文件都应声明属于同一包。&lt;/p&gt;
+&lt;p&gt;如果一个标识符（如函数、变量等）的首字母大写，则它可以被其他包访问（公开的）。如果首字母小写，则只能在同一个包内访问（私有的）。&lt;/p&gt;
+&lt;h2 id="四go-mod-edit"&gt;&lt;a href="#%e5%9b%9bgo-mod-edit" class="header-anchor"&gt;&lt;/a&gt;四、go mod edit
+&lt;/h2&gt;&lt;h3 id="41-格式化"&gt;&lt;a href="#41-%e6%a0%bc%e5%bc%8f%e5%8c%96" class="header-anchor"&gt;&lt;/a&gt;4.1 格式化
+&lt;/h3&gt;&lt;p&gt;因为我们可以手动修改go.mod文件，所以有些时候需要&lt;strong&gt;格式化&lt;/strong&gt;该文件。Go提供了一下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod edit -fmt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="42-添加依赖项"&gt;&lt;a href="#42-%e6%b7%bb%e5%8a%a0%e4%be%9d%e8%b5%96%e9%a1%b9" class="header-anchor"&gt;&lt;/a&gt;4.2 添加依赖项
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod edit -require&lt;span class="o"&gt;=&lt;/span&gt;golang.org/x/text
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="43-移除依赖项"&gt;&lt;a href="#43-%e7%a7%bb%e9%99%a4%e4%be%9d%e8%b5%96%e9%a1%b9" class="header-anchor"&gt;&lt;/a&gt;4.3 移除依赖项
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;go mod edit -droprequire&lt;span class="o"&gt;=&lt;/span&gt;golang.org/x/text
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;关于go mod edit的更多用法可以通过&lt;code&gt;go help mod edit&lt;/code&gt;查看&lt;/p&gt;
+&lt;h2 id="五项目中使用go-module"&gt;&lt;a href="#%e4%ba%94%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8go-module" class="header-anchor"&gt;&lt;/a&gt;五、项目中使用go module
+&lt;/h2&gt;&lt;h3 id="51-既有项目"&gt;&lt;a href="#51-%e6%97%a2%e6%9c%89%e9%a1%b9%e7%9b%ae" class="header-anchor"&gt;&lt;/a&gt;5.1 既有项目
+&lt;/h3&gt;&lt;p&gt;如果需要对一个已经存在的项目启用&lt;code&gt;go module&lt;/code&gt;，可以按照以下步骤操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在项目目录下执行&lt;code&gt;go mod init&lt;/code&gt;，生成一个&lt;code&gt;go.mod&lt;/code&gt;文件&lt;/li&gt;
+&lt;li&gt;执行&lt;code&gt;go get&lt;/code&gt;，查找并记录当前项目的依赖&lt;/li&gt;
+&lt;li&gt;同时生成一个&lt;code&gt;go.sum&lt;/code&gt;记录每个依赖库的版本和哈希值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="52-新项目"&gt;&lt;a href="#52-%e6%96%b0%e9%a1%b9%e7%9b%ae" class="header-anchor"&gt;&lt;/a&gt;5.2 新项目
+&lt;/h3&gt;&lt;p&gt;对于一个新创建的项目，我们可以在项目文件夹下按照以下步骤操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;执行&lt;code&gt;go mod init&lt;/code&gt;项目名命令，在当前项目文件夹下创建一个&lt;code&gt;go.mod&lt;/code&gt;文件&lt;/li&gt;
+&lt;li&gt;手动编辑&lt;code&gt;go.mod&lt;/code&gt;中的&lt;code&gt;require&lt;/code&gt;依赖项或执行&lt;code&gt;go get&lt;/code&gt;自动发现、维护依赖&lt;/li&gt;
+&lt;/ol&gt;</description></item></channel></rss>

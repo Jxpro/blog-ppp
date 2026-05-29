@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Android on Markdown Notes</title><link>https://example.org/tags/android/</link><description>Recent content in Android on Markdown Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2026 09:22:25 +0000</lastBuildDate><atom:link href="https://example.org/tags/android/index.xml" rel="self" type="application/rss+xml"/><item><title>Android Studio相关</title><link>https://example.org/p/as-setup/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/as-setup/</guid><description>&lt;h1 id="android-studio相关"&gt;&lt;a href="#android-studio%e7%9b%b8%e5%85%b3" class="header-anchor"&gt;&lt;/a&gt;Android Studio相关
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一安装与配置"&gt;&lt;a href="#%e4%b8%80%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" class="header-anchor"&gt;&lt;/a&gt;一、安装与配置
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;官网下载&lt;a class="link" href="https://developer.android.com/studio" target="_blank" rel="noopener"
+ &gt;Android Studio&lt;/a&gt;并进行安装，然后打开&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提示第一次启动无法访问&lt;code&gt;Android SDK&lt;/code&gt;，直接&lt;code&gt;cancel&lt;/code&gt;即可，后面安装会再次下载&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-161244.png" alt="image-20220501161242605" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进入欢迎页面，直接下一步&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装类型，选择自定义，以修改文件存储目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后选择环境UI，SDK的安装位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后是模拟器相关设置，通常默认即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最后确认安装，等待下载完成&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="二修改gradle位置"&gt;&lt;a href="#%e4%ba%8c%e4%bf%ae%e6%94%b9gradle%e4%bd%8d%e7%bd%ae" class="header-anchor"&gt;&lt;/a&gt;二、修改.gradle位置
+&lt;/h2&gt;&lt;h3 id="21-问题"&gt;&lt;a href="#21-%e9%97%ae%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;2.1 问题
+&lt;/h3&gt;&lt;p&gt;使用&lt;code&gt;Android Studio&lt;/code&gt;时，默认在C盘用户目录下创建&lt;code&gt;.gradle&lt;/code&gt;文件夹存放&lt;code&gt;Gradle&lt;/code&gt;相关文件，一般占用空间较大，但如果在当前项目设置里的&lt;code&gt;gradle&lt;/code&gt;文件夹路径，每次新建项目后都会重置为C盘下的路径。&lt;/p&gt;
+&lt;p&gt;下面提供两种解决方案，但是特别注意的是，&lt;strong&gt;自定义的.gradle路径必须要让所有用户都具有读写权限！！！&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="22-方法一"&gt;&lt;a href="#22-%e6%96%b9%e6%b3%95%e4%b8%80" class="header-anchor"&gt;&lt;/a&gt;2.2 方法一
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;该方法才是&lt;strong&gt;最终解决方案&lt;/strong&gt;，直接修改系统默认值，最有效！！！&lt;/p&gt;
+&lt;p&gt;设置了这个就可以不用设置下面的方法二了。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;在系统环境变量中添加&lt;code&gt;GRADLE_USER_HOME&lt;/code&gt;，值为自定义的&lt;code&gt;.gradle&lt;/code&gt;文件夹路径，修改后最好重启。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-162656.png" alt="image-20220501162655053" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;h3 id="23-方法二"&gt;&lt;a href="#23-%e6%96%b9%e6%b3%95%e4%ba%8c" class="header-anchor"&gt;&lt;/a&gt;2.3 方法二
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;该方法&lt;strong&gt;有bug&lt;/strong&gt;，只有新建项目的名字是用过一次的名字才有效！！！&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;首先关闭当前项目&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-162922.png" alt="image-20220501162920046" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后在全局配置里修改gradle路径&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-162950.png" alt="image-20220501162947823" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-163017.png" alt="image-20220501163013655" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="三修改avd文件位置"&gt;&lt;a href="#%e4%b8%89%e4%bf%ae%e6%94%b9avd%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae" class="header-anchor"&gt;&lt;/a&gt;三、修改AVD文件位置
+&lt;/h2&gt;&lt;p&gt;默认的AVD是下载在&lt;code&gt;C:\Users\用户名\.android\avd&lt;/code&gt;文件夹下的，一个&lt;code&gt;AVD&lt;/code&gt;往往占用4G以上的内存空间。&lt;/p&gt;
+&lt;p&gt;为了释放C盘空间，可以将上述文件夹中的&lt;code&gt;除ini文件以外&lt;/code&gt;的文件剪贴到电脑的任意位置。&lt;/p&gt;
+&lt;p&gt;再逐个将&lt;code&gt;C:\Users\用户名\.android\avd&lt;/code&gt;文件夹里面的&lt;code&gt;ini文件&lt;/code&gt;，将&lt;code&gt;path&lt;/code&gt;修改为你自己&lt;code&gt;avd&lt;/code&gt;存放的路径即可。&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;ul&gt;
+&lt;li&gt;每一个&lt;code&gt;ini&lt;/code&gt;文件对应一个&lt;code&gt;avd&lt;/code&gt;文件&lt;/li&gt;
+&lt;li&gt;路径中尽量避免空格&lt;/li&gt;
+&lt;/ul&gt;
+
+ &lt;/blockquote&gt;
+&lt;h2 id="四haxm安装失败"&gt;&lt;a href="#%e5%9b%9bhaxm%e5%ae%89%e8%a3%85%e5%a4%b1%e8%b4%a5" class="header-anchor"&gt;&lt;/a&gt;四、HAXM安装失败
+&lt;/h2&gt;&lt;h3 id="41-问题"&gt;&lt;a href="#41-%e9%97%ae%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;4.1 问题
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;Intel® HAXM installation failed.&lt;/p&gt;
+&lt;p&gt;To install Intel® HAXM follow the instructions found at: &lt;a class="link" href="https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows" target="_blank" rel="noopener"
+ &gt;https://github.com/intel/haxm/wiki/Installation-Instructions-on-Windows&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h3 id="42-方法"&gt;&lt;a href="#42-%e6%96%b9%e6%b3%95" class="header-anchor"&gt;&lt;/a&gt;4.2 方法
+&lt;/h3&gt;&lt;p&gt;这大概率是由于&lt;code&gt;Hyper-V&lt;/code&gt;未彻底关闭造成的，解决办法有两个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一是使用官网提供工具：&lt;a class="link" href="https://www.microsoft.com/en-us/download/details.aspx?id=53337" target="_blank" rel="noopener"
+ &gt;dgreadiness_v3.6&lt;/a&gt;，下载完后解压，然后在 &lt;code&gt;Powershell&lt;/code&gt; 中运行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;DG_Readiness_Tool_v3.6.ps1 -Disable
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;二是使用知乎大佬提供的脚本，将下面代码保存为bat文件并以管理员运行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Online&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Disable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;microsoft&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;hyper&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NoRestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Online&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Disable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;IsolatedUserMode&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NoRestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Online&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Disable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Hyper&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Hypervisor&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NoRestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Online&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Disable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Microsoft&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Hyper&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Online&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NoRestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Online&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Disable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Feature&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;HypervisorPlatform&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;NoRestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;REM&lt;/span&gt; &lt;span class="o"&gt;===========================================&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;mountvol&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;copy&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;WINDIR&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;\&lt;span class="n"&gt;System32&lt;/span&gt;\&lt;span class="n"&gt;SecConfig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;efi&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;\&lt;span class="n"&gt;EFI&lt;/span&gt;\&lt;span class="n"&gt;Microsoft&lt;/span&gt;\&lt;span class="n"&gt;Boot&lt;/span&gt;\&lt;span class="n"&gt;SecConfig&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;efi&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;bcdedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;cb3b571&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;f2e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4343&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a879&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d86a476d7215&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;DebugTool&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;application&lt;/span&gt; &lt;span class="n"&gt;osloader&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;bcdedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;cb3b571&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;f2e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4343&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a879&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d86a476d7215&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;\EFI\Microsoft\Boot\SecConfig.efi&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;bcdedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;bootmgr&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;bootsequence&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;cb3b571&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;f2e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4343&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a879&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d86a476d7215&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;bcdedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;cb3b571&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;f2e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4343&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a879&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d86a476d7215&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;loadoptions&lt;/span&gt; &lt;span class="n"&gt;DISABLE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;LSA&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ISO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;DISABLE&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;VBS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;bcdedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;cb3b571&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="n"&gt;f2e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4343&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;a879&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d86a476d7215&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;device&lt;/span&gt; &lt;span class="n"&gt;partition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;mountvol&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;bcdedit&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt; &lt;span class="n"&gt;hypervisorlaunchtype&lt;/span&gt; &lt;span class="n"&gt;off&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;REG&lt;/span&gt; &lt;span class="n"&gt;DELETE&lt;/span&gt; &lt;span class="n"&gt;HKLM&lt;/span&gt;\&lt;span class="n"&gt;SYSTEM&lt;/span&gt;\&lt;span class="n"&gt;CurrentControlSet&lt;/span&gt;\&lt;span class="ne"&gt;Control&lt;/span&gt;\&lt;span class="n"&gt;DeviceGuard&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="n"&gt;EnableVirtualizationBasedSecurity&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;接下来&lt;/span&gt; &lt;span class="err"&gt;请重新启动您的计算机，完成剩下的操作。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;请注意！重启时的屏幕提示！&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="n"&gt;PS&lt;/span&gt;&lt;span class="err"&gt;：在重启时，过了&lt;/span&gt;&lt;span class="n"&gt;BIOS自检之后&lt;/span&gt;&lt;span class="err"&gt;，看到黑白字符提示你按键的时候……&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;……死按，狂按&lt;/span&gt; &lt;span class="n"&gt;F3键&lt;/span&gt;&lt;span class="err"&gt;，只到它自动重启为止！&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;可以关闭此窗口了，重启电脑吧。。。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;pause&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;nul&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;echo&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上述方法二选一，运行完以后都需要重启，重启时如有提示，请根据提示进行操作&lt;/p&gt;
+&lt;h2 id="五android-sdk-manager-无法启动"&gt;&lt;a href="#%e4%ba%94android-sdk-manager-%e6%97%a0%e6%b3%95%e5%90%af%e5%8a%a8" class="header-anchor"&gt;&lt;/a&gt;五、Android SDK Manager 无法启动
+&lt;/h2&gt;&lt;p&gt;可能的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;SDK/tools&lt;/code&gt;的问题&lt;/li&gt;
+&lt;li&gt;排查&lt;code&gt;find_java.bat&lt;/code&gt;文件&lt;/li&gt;
+&lt;li&gt;删除 &lt;code&gt;C:\Windows\system32\&lt;/code&gt;下的&lt;code&gt;java.exe、javaw.exe、javaws.exe&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="51-情况-1"&gt;&lt;a href="#51-%e6%83%85%e5%86%b5-1" class="header-anchor"&gt;&lt;/a&gt;5.1 情况 1
+&lt;/h3&gt;&lt;p&gt;参考：&lt;a class="link" href="https://blog.csdn.net/wang295689649/article/details/60960953" target="_blank" rel="noopener"
+ &gt;android SDK SDK Manager.exe 无法打开，一闪而过最终解决办法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;方法：到&lt;a class="link" href="https://www.androiddevtools.cn/" target="_blank" rel="noopener"
+ &gt;AndroidDevTools&lt;/a&gt;下载下列压缩包，替换掉&lt;code&gt;SDK/tools&lt;/code&gt;下的内容即可&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-160023.png" alt="image-20220501160022209" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;h3 id="52-情况2"&gt;&lt;a href="#52-%e6%83%85%e5%86%b52" class="header-anchor"&gt;&lt;/a&gt;5.2 情况2
+&lt;/h3&gt;&lt;p&gt;参考：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/yubin_yubin/article/details/8916389" target="_blank" rel="noopener"
+ &gt;android sdk manager无法启动，一闪而过的解决方案&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/hueise_h/article/details/9134237" target="_blank" rel="noopener"
+ &gt;Android SDK总结 SDK Manager无法启动、一闪而过的解决办法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;方法：到&lt;code&gt;SDK\tools\lib&lt;/code&gt;下，&lt;code&gt;cmd&lt;/code&gt;运行&lt;code&gt;find_java.bat&lt;/code&gt;，看到如下输出：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-160301.png" alt="image-20220501160300114" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;说明**jdk版本（或发行商）**存在问题，修改&lt;code&gt;java_home&lt;/code&gt;的指向，再次运行，输出未空则说明没有问题：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-05-01-160340.png" alt="image-20220501160339195" loading="lazy"&gt;
+&lt;/p&gt;</description></item></channel></rss>

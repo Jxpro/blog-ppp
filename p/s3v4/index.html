@@ -1,0 +1,261 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="S3V4 签名校验 [TOC]\n在同时使用了nginx反代和cloudflare代理的情况下通过api/sdk访问minio-server报错\n1 The request signature we calculated does not match the signature you provided. Check your key and signing method. 于是开始查找原因，一开始还以为是cloudflare代理的锅，其实是因为nginx会修改host字段，而该字段会参与s3v4签名值的计算。\n"><title>S3V4 签名校验</title><link rel=canonical href=https://example.org/p/s3v4/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="S3V4 签名校验"><meta property='og:description' content="S3V4 签名校验 [TOC]\n在同时使用了nginx反代和cloudflare代理的情况下通过api/sdk访问minio-server报错\n1 The request signature we calculated does not match the signature you provided. Check your key and signing method. 于是开始查找原因，一开始还以为是cloudflare代理的锅，其实是因为nginx会修改host字段，而该字段会参与s3v4签名值的计算。\n"><meta property='og:url' content='https://example.org/p/s3v4/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Tool'><meta property='article:tag' content='MinIO'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="S3V4 签名校验"><meta name=twitter:description content="S3V4 签名校验 [TOC]\n在同时使用了nginx反代和cloudflare代理的情况下通过api/sdk访问minio-server报错\n1 The request signature we calculated does not match the signature you provided. Check your key and signing method. 于是开始查找原因，一开始还以为是cloudflare代理的锅，其实是因为nginx会修改host字段，而该字段会参与s3v4签名值的计算。\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#minio-client查看报文>minio-client查看报文</a></li><li><a href=#对比报文找错误原因>对比报文找错误原因</a></li><li><a href=#确定问题得到解决办法>确定问题得到解决办法</a></li><li><a href=#工具s3v4-python实现>工具：S3V4 Python实现</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tool/ style=background-color:#d7beef;color:#270f3d>Tool
+</a><a href=/categories/minio/ style=background-color:#bed2ef;color:#0f223d>MinIO</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/s3v4/>S3V4 签名校验</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#minio-client查看报文>minio-client查看报文</a></li><li><a href=#对比报文找错误原因>对比报文找错误原因</a></li><li><a href=#确定问题得到解决办法>确定问题得到解决办法</a></li><li><a href=#工具s3v4-python实现>工具：S3V4 Python实现</a></li></ol></nav></details></aside><section class=article-content><h1 id=s3v4-签名校验><a href=#s3v4-%e7%ad%be%e5%90%8d%e6%a0%a1%e9%aa%8c class=header-anchor></a>S3V4 签名校验</h1><p>[TOC]</p><p>在同时使用了<code>nginx</code>反代和<code>cloudflare</code>代理的情况下通过<code>api/sdk</code>访问<code>minio-server</code>报错</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>The request signature we calculated does not match the signature you provided. Check your key and signing method.
+</span></span></code></pre></td></tr></table></div></div><p>于是开始查找原因，一开始还以为是<code>cloudflare</code>代理的锅，其实是因为<code>nginx</code>会修改<code>host</code>字段，而该字段会参与<code>s3v4</code>签名值的计算。</p><h2 id=minio-client查看报文><a href=#minio-client%e6%9f%a5%e7%9c%8b%e6%8a%a5%e6%96%87 class=header-anchor></a>minio-client查看报文</h2><p>运行下面命令然后向服务端发送请求，即可查看详细的数据报文</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mc admin trace -a -v minio
+</span></span></code></pre></td></tr></table></div></div><h2 id=对比报文找错误原因><a href=#%e5%af%b9%e6%af%94%e6%8a%a5%e6%96%87%e6%89%be%e9%94%99%e8%af%af%e5%8e%9f%e5%9b%a0 class=header-anchor></a>对比报文找错误原因</h2><p>直接使用<code>ip:port</code>，可以得到正确响应：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>172.171.214.134:9000 <span class=o>[</span>REQUEST s3.ListBuckets<span class=o>]</span> <span class=o>[</span>2024-02-02T00:22:49.155<span class=o>]</span> <span class=o>[</span>Client IP: 172.171.214.134<span class=o>]</span>
+</span></span><span class=line><span class=cl>172.171.214.134:9000 GET /
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Proto: HTTP/1.1
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Host: 172.171.214.134:9000
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Accept-Encoding: gzip
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Authorization: AWS4-HMAC-SHA256 <span class=nv>Credential</span><span class=o>=</span>HM4NrwdpvzXSODIaYqFM/20240201/us-east-1/s3/aws4_request, <span class=nv>SignedHeaders</span><span class=o>=</span>host<span class=p>;</span>x-amz-content-sha256<span class=p>;</span>x-amz-date, <span class=nv>Signature</span><span class=o>=</span>836d7cb626b6a3c7fdde555c9f583a379ddbd6922d2554e4b9929298f4971d23
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Content-Length: <span class=m>0</span>
+</span></span><span class=line><span class=cl>172.171.214.134:9000 User-Agent: MinIO <span class=o>(</span>windows<span class=p>;</span> amd64<span class=o>)</span> minio-go/v7.0.66
+</span></span><span class=line><span class=cl>172.171.214.134:9000 X-Amz-Content-Sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+</span></span><span class=line><span class=cl>172.171.214.134:9000 X-Amz-Date: 20240201T162248Z
+</span></span><span class=line><span class=cl>172.171.214.134:9000
+</span></span><span class=line><span class=cl>172.171.214.134:9000 <span class=o>[</span>RESPONSE<span class=o>]</span> <span class=o>[</span>2024-02-02T00:22:49.156<span class=o>]</span> <span class=o>[</span> Duration 297µs TTFB 287.996µs ↑ <span class=m>93</span> B  ↓ <span class=m>362</span> B <span class=o>]</span>
+</span></span><span class=line><span class=cl>172.171.214.134:9000 <span class=m>200</span> OK
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Accept-Ranges: bytes
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Vary: Origin,Accept-Encoding
+</span></span><span class=line><span class=cl>172.171.214.134:9000 X-Amz-Id-2: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8
+</span></span><span class=line><span class=cl>172.171.214.134:9000 X-Xss-Protection: 1<span class=p>;</span> <span class=nv>mode</span><span class=o>=</span>block
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Content-Length: <span class=m>362</span>
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Content-Type: application/xml
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Server: MinIO
+</span></span><span class=line><span class=cl>172.171.214.134:9000 Strict-Transport-Security: max-age<span class=o>=</span>31536000<span class=p>;</span> includeSubDomains
+</span></span><span class=line><span class=cl>172.171.214.134:9000 X-Amz-Request-Id: 17AFC9B66D8AF42F
+</span></span><span class=line><span class=cl>172.171.214.134:9000 X-Content-Type-Options: nosniff
+</span></span><span class=line><span class=cl>172.171.214.134:9000 &lt;?xml <span class=nv>version</span><span class=o>=</span><span class=s2>&#34;1.0&#34;</span> <span class=nv>encoding</span><span class=o>=</span><span class=s2>&#34;UTF-8&#34;</span>?&gt;
+</span></span><span class=line><span class=cl>&lt;ListAllMyBucketsResult <span class=nv>xmlns</span><span class=o>=</span><span class=s2>&#34;http://s3.amazonaws.com/doc/2006-03-01/&#34;</span>&gt;&lt;Owner&gt;&lt;ID&gt;02d6176db174dc93cb1b899f7c6078f08654445fe8cf1b6ce98d8855f66bdbf4&lt;/ID&gt;&lt;DisplayName&gt;minio&lt;/DisplayName&gt;&lt;/Owner&gt;&lt;Buckets&gt;&lt;Bucket&gt;&lt;Name&gt;main&lt;/Name&gt;&lt;CreationDate&gt;2024-01-30T15:33:03.365Z&lt;/CreationDate&gt;&lt;/Bucket&gt;&lt;/Buckets&gt;&lt;/ListAllMyBucketsResult&gt;
+</span></span><span class=line><span class=cl>172.171.214.134:9000
+</span></span></code></pre></td></tr></table></div></div><p>使用了<code>nginx</code>反向代理但未正确配置，错误响应：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>localhost:9000 [REQUEST s3.ListBuckets] [2024-02-02T00:23:38.208] [Client IP: 172.171.214.134]
+</span></span><span class=line><span class=cl>localhost:9000 GET /
+</span></span><span class=line><span class=cl>localhost:9000 Proto: HTTP/1.0
+</span></span><span class=line><span class=cl>localhost:9000 Host: localhost:9000
+</span></span><span class=line><span class=cl>localhost:9000 Cdn-Loop: cloudflare
+</span></span><span class=line><span class=cl>localhost:9000 Connection: close
+</span></span><span class=line><span class=cl>localhost:9000 Content-Length: 0
+</span></span><span class=line><span class=cl>localhost:9000 User-Agent: MinIO (windows; amd64) minio-go/v7.0.66
+</span></span><span class=line><span class=cl>localhost:9000 X-Amz-Date: 20240201T162337Z
+</span></span><span class=line><span class=cl>localhost:9000 X-Forwarded-Proto: https
+</span></span><span class=line><span class=cl>localhost:9000 Cf-Ray: 84eb8a3fa8893b5a-IAD
+</span></span><span class=line><span class=cl>localhost:9000 Cf-Visitor: {&#34;scheme&#34;:&#34;https&#34;}
+</span></span><span class=line><span class=cl>localhost:9000 X-Amz-Content-Sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+</span></span><span class=line><span class=cl>localhost:9000 Accept-Encoding: identity
+</span></span><span class=line><span class=cl>localhost:9000 Authorization: AWS4-HMAC-SHA256 Credential=HM4NrwdpvzXSODIaYqFM/20240201/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=cfb475a761513a2cd48553b2c24aea1980e5a2e43461802c24889d4c136f725a
+</span></span><span class=line><span class=cl>localhost:9000 Cf-Connecting-Ip: 172.171.214.134
+</span></span><span class=line><span class=cl>localhost:9000 Cf-Ipcountry: US
+</span></span><span class=line><span class=cl>localhost:9000 X-Forwarded-For: 172.171.214.134
+</span></span><span class=line><span class=cl>localhost:9000
+</span></span><span class=line><span class=cl>localhost:9000 [RESPONSE] [2024-02-02T00:23:38.208] [ Duration 169µs TTFB 160.798µs ↑ 195 B  ↓ 362 B ]
+</span></span><span class=line><span class=cl>localhost:9000 403 Forbidden
+</span></span><span class=line><span class=cl>localhost:9000 X-Amz-Request-Id: 17AFC9C1D94D051F
+</span></span><span class=line><span class=cl>localhost:9000 X-Content-Type-Options: nosniff
+</span></span><span class=line><span class=cl>localhost:9000 X-Xss-Protection: 1; mode=block
+</span></span><span class=line><span class=cl>localhost:9000 Content-Length: 362
+</span></span><span class=line><span class=cl>localhost:9000 Content-Type: application/xml
+</span></span><span class=line><span class=cl>localhost:9000 Server: MinIO
+</span></span><span class=line><span class=cl>localhost:9000 Strict-Transport-Security: max-age=31536000; includeSubDomains
+</span></span><span class=line><span class=cl>localhost:9000 X-Amz-Id-2: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8
+</span></span><span class=line><span class=cl>localhost:9000 Accept-Ranges: bytes
+</span></span><span class=line><span class=cl>localhost:9000 Vary: Origin,Accept-Encoding
+</span></span><span class=line><span class=cl>localhost:9000 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span></span><span class=line><span class=cl>&lt;Error&gt;&lt;Code&gt;SignatureDoesNotMatch&lt;/Code&gt;&lt;Message&gt;The request signature we calculated does not match the signature you provided. Check your key and signing method.&lt;/Message&gt;&lt;Resource&gt;/&lt;/Resource&gt;&lt;RequestId&gt;17AFC9C1D94D051F&lt;/RequestId&gt;&lt;HostId&gt;dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8&lt;/HostId&gt;&lt;/Error&gt;
+</span></span><span class=line><span class=cl>localhost:9000
+</span></span></code></pre></td></tr></table></div></div><h2 id=确定问题得到解决办法><a href=#%e7%a1%ae%e5%ae%9a%e9%97%ae%e9%a2%98%e5%be%97%e5%88%b0%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95 class=header-anchor></a>确定问题得到解决办法</h2><p>在<code>nginx.conf</code>对应的<code>server</code>中加入以下配置，让<code>Host</code>保持原来的值即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>proxy_set_header Host $host;
+</span></span></code></pre></td></tr></table></div></div><h2 id=工具s3v4-python实现><a href=#%e5%b7%a5%e5%85%b7s3v4-python%e5%ae%9e%e7%8e%b0 class=header-anchor></a>工具：S3V4 Python实现</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hashlib</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>hmac</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># sign function</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>sign</span><span class=p>(</span><span class=n>key</span><span class=p>,</span> <span class=n>msg</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>hmac</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>key</span><span class=p>,</span> <span class=n>msg</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>),</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>sha256</span><span class=p>)</span><span class=o>.</span><span class=n>digest</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Secret Key</span>
+</span></span><span class=line><span class=cl><span class=n>accessKeyID</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{AccessKeyID}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>secretAccessKey</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{SecretAccessKey}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Canonical Request</span>
+</span></span><span class=line><span class=cl><span class=n>method</span> <span class=o>=</span> <span class=s2>&#34;GET&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>canonical_uri</span> <span class=o>=</span> <span class=s2>&#34;/&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>canonical_querystring</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>canonical_headers</span> <span class=o>=</span> <span class=s1>&#39;host:</span><span class=si>{host}</span><span class=se>\n</span><span class=s1>x-amz-content-sha256:{x-amz-content-sha256}</span><span class=se>\n</span><span class=s1>x-amz-date:{x-amz-date}</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>signedHeaders</span> <span class=o>=</span> <span class=s2>&#34;host;x-amz-content-sha256;x-amz-date&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>payload_hash</span> <span class=o>=</span> <span class=s1>&#39;</span><span class=si>{payload_hash}</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>canonical_request</span> <span class=o>=</span> <span class=p>(</span><span class=n>method</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                     <span class=o>+</span> <span class=n>canonical_uri</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                     <span class=o>+</span> <span class=n>canonical_querystring</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                     <span class=o>+</span> <span class=n>canonical_headers</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                     <span class=o>+</span> <span class=n>signedHeaders</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                     <span class=o>+</span> <span class=n>payload_hash</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># StringToSign</span>
+</span></span><span class=line><span class=cl><span class=n>algorithm</span> <span class=o>=</span> <span class=s1>&#39;AWS4-HMAC-SHA256&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>x_amz_date</span> <span class=o>=</span> <span class=s2>&#34;{Format IS08601,e.g.20130524T000000Z}&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>Credential</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{Credential}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>string_to_sign</span> <span class=o>=</span> <span class=p>(</span><span class=n>algorithm</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                  <span class=o>+</span> <span class=n>x_amz_date</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                  <span class=o>+</span> <span class=n>Credential</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                  <span class=o>+</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>sha256</span><span class=p>(</span><span class=n>canonical_request</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>))</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Signature</span>
+</span></span><span class=line><span class=cl><span class=n>yyyymmdd</span> <span class=o>=</span> <span class=n>Credential</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>region</span> <span class=o>=</span> <span class=n>Credential</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=mi>2</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>service</span> <span class=o>=</span> <span class=n>Credential</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=mi>3</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>date_key</span> <span class=o>=</span> <span class=n>sign</span><span class=p>((</span><span class=s1>&#39;AWS4&#39;</span> <span class=o>+</span> <span class=n>secretAccessKey</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>),</span> <span class=n>yyyymmdd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>date_region_key</span> <span class=o>=</span> <span class=n>sign</span><span class=p>(</span><span class=n>date_key</span><span class=p>,</span> <span class=n>region</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>date_region_service_key</span> <span class=o>=</span> <span class=n>sign</span><span class=p>(</span><span class=n>date_region_key</span><span class=p>,</span> <span class=n>service</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>signing_key</span> <span class=o>=</span> <span class=n>sign</span><span class=p>(</span><span class=n>date_region_service_key</span><span class=p>,</span> <span class=s1>&#39;aws4_request&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>signature</span> <span class=o>=</span> <span class=n>hmac</span><span class=o>.</span><span class=n>new</span><span class=p>(</span><span class=n>signing_key</span><span class=p>,</span> <span class=n>string_to_sign</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;utf-8&#39;</span><span class=p>),</span> <span class=n>hashlib</span><span class=o>.</span><span class=n>sha256</span><span class=p>)</span><span class=o>.</span><span class=n>hexdigest</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>signature</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/tool/>Tool</a>
+<a href=/tags/minio/>MinIO</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/client/><div class=article-details><h2 class=article-title>MinIO Client</h2></div></a></article><article><a href=/p/typora-key/><div class=article-details><h2 class=article-title>typora快捷键</h2></div></a></article><article><a href=/p/typora-crack/><div class=article-details><h2 class=article-title>破解 Typora 验证</h2></div></a></article><article><a href=/p/superior-focus/><div class=article-details><h2 class=article-title>给md-focus区域的二级标题加样式</h2></div></a></article><article><a href=/p/snippets/><div class=article-details><h2 class=article-title>snippets</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

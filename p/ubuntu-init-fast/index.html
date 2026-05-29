@@ -1,0 +1,285 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 ) [TOC]\n一、软件版本 名称 版本 System Ubuntu 22.04 LTS (GNU/Linux 5.15.0-107-generic) Kubernetes 1.30 Docker 27.0.1 二、系统设置 因为默认满足要求或已前置，以下省略了：\n"><title>Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )</title><link rel=canonical href=https://example.org/p/ubuntu-init-fast/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )"><meta property='og:description' content="Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 ) [TOC]\n一、软件版本 名称 版本 System Ubuntu 22.04 LTS (GNU/Linux 5.15.0-107-generic) Kubernetes 1.30 Docker 27.0.1 二、系统设置 因为默认满足要求或已前置，以下省略了：\n"><meta property='og:url' content='https://example.org/p/ubuntu-init-fast/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Tool'><meta property='article:tag' content='Kubernetes'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )"><meta name=twitter:description content="Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 ) [TOC]\n一、软件版本 名称 版本 System Ubuntu 22.04 LTS (GNU/Linux 5.15.0-107-generic) Kubernetes 1.30 Docker 27.0.1 二、系统设置 因为默认满足要求或已前置，以下省略了：\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一软件版本>一、软件版本</a></li><li><a href=#二系统设置>二、系统设置</a><ol><li><a href=#21-dns>2.1 DNS</a></li><li><a href=#22-内核模块>2.2 内核模块</a></li><li><a href=#23-防火墙>2.3 防火墙</a></li><li><a href=#24-ipvs-可选>2.4 IPVS (可选)</a></li></ol></li><li><a href=#三软件安装>三、软件安装</a><ol><li><a href=#31-docker>3.1 Docker</a></li><li><a href=#32-containerd>3.2 Containerd</a></li><li><a href=#33-kubernetes>3.3 Kubernetes</a></li></ol></li><li><a href=#四配置-master>四、配置 Master</a><ol><li><a href=#41-拉取镜像>4.1 拉取镜像</a></li><li><a href=#42-初始化>4.2 初始化</a></li><li><a href=#43-命令行工具>4.3 命令行工具</a></li></ol></li><li><a href=#五添加-worker>五、添加 Worker</a><ol><li><a href=#51-加入集群>5.1 加入集群</a></li><li><a href=#52-查看节点>5.2 查看节点</a></li></ol></li><li><a href=#六网络插件-calico>六、网络插件 Calico</a><ol><li><a href=#61-创建-tigera-operator>6.1 创建 tigera-operator</a></li><li><a href=#62-启动-calico>6.2 启动 calico</a></li><li><a href=#63-遇到的问题>6.3 遇到的问题</a></li><li><a href=#64-解决方案>6.4 解决方案</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tool/ style=background-color:#d7beef;color:#270f3d>Tool
+</a><a href=/categories/kubernetes/ style=background-color:#c7efbe;color:#183d0f>Kubernetes</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/ubuntu-init-fast/>Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一软件版本>一、软件版本</a></li><li><a href=#二系统设置>二、系统设置</a><ol><li><a href=#21-dns>2.1 DNS</a></li><li><a href=#22-内核模块>2.2 内核模块</a></li><li><a href=#23-防火墙>2.3 防火墙</a></li><li><a href=#24-ipvs-可选>2.4 IPVS (可选)</a></li></ol></li><li><a href=#三软件安装>三、软件安装</a><ol><li><a href=#31-docker>3.1 Docker</a></li><li><a href=#32-containerd>3.2 Containerd</a></li><li><a href=#33-kubernetes>3.3 Kubernetes</a></li></ol></li><li><a href=#四配置-master>四、配置 Master</a><ol><li><a href=#41-拉取镜像>4.1 拉取镜像</a></li><li><a href=#42-初始化>4.2 初始化</a></li><li><a href=#43-命令行工具>4.3 命令行工具</a></li></ol></li><li><a href=#五添加-worker>五、添加 Worker</a><ol><li><a href=#51-加入集群>5.1 加入集群</a></li><li><a href=#52-查看节点>5.2 查看节点</a></li></ol></li><li><a href=#六网络插件-calico>六、网络插件 Calico</a><ol><li><a href=#61-创建-tigera-operator>6.1 创建 tigera-operator</a></li><li><a href=#62-启动-calico>6.2 启动 calico</a></li><li><a href=#63-遇到的问题>6.3 遇到的问题</a></li><li><a href=#64-解决方案>6.4 解决方案</a></li></ol></li></ol></nav></details></aside><section class=article-content><h1 id=ubuntu-搭建-k8s-集群--内网快速纯命令版-><a href=#ubuntu-%e6%90%ad%e5%bb%ba-k8s-%e9%9b%86%e7%be%a4--%e5%86%85%e7%bd%91%e5%bf%ab%e9%80%9f%e7%ba%af%e5%91%bd%e4%bb%a4%e7%89%88- class=header-anchor></a>Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )</h1><p>[TOC]</p><h2 id=一软件版本><a href=#%e4%b8%80%e8%bd%af%e4%bb%b6%e7%89%88%e6%9c%ac class=header-anchor></a>一、软件版本</h2><div class=table-wrapper><table><thead><tr><th style=text-align:center>名称</th><th style=text-align:center>版本</th></tr></thead><tbody><tr><td style=text-align:center>System</td><td style=text-align:center>Ubuntu 22.04 LTS (GNU/Linux 5.15.0-107-generic)</td></tr><tr><td style=text-align:center>Kubernetes</td><td style=text-align:center>1.30</td></tr><tr><td style=text-align:center>Docker</td><td style=text-align:center>27.0.1</td></tr></tbody></table></div><h2 id=二系统设置><a href=#%e4%ba%8c%e7%b3%bb%e7%bb%9f%e8%ae%be%e7%bd%ae class=header-anchor></a>二、系统设置</h2><blockquote><p>因为默认满足要求或已前置，以下省略了：</p><ul><li>SELinux （Ubuntu 没有）</li><li>主机名设置（hostnamectl 设置）</li><li>防火墙详细设置（ufw 设置）</li><li>虚拟内存（free -m 查看）</li><li>时钟同步（timedatectl 设置）</li><li>网络配置（sysctl 查看）</li><li>IPVS（可选）</li></ul></blockquote><h3 id=21-dns><a href=#21-dns class=header-anchor></a>2.1 DNS</h3><p>修改 <code>hosts</code> 文件，将IP地址和主机名填进去</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo tee -a /etc/hosts <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s># k8s cluster
+</span></span></span><span class=line><span class=cl><span class=s>172.29.140.34 master
+</span></span></span><span class=line><span class=cl><span class=s>172.29.140.35 node1
+</span></span></span><span class=line><span class=cl><span class=s>172.29.140.36 node2
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=22-内核模块><a href=#22-%e5%86%85%e6%a0%b8%e6%a8%a1%e5%9d%97 class=header-anchor></a>2.2 内核模块</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo tee /etc/modules-load.d/k8s.conf <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>overlay
+</span></span></span><span class=line><span class=cl><span class=s>br_netfilter
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo modprobe overlay
+</span></span><span class=line><span class=cl>sudo modprobe br_netfilter
+</span></span></code></pre></td></tr></table></div></div><h3 id=23-防火墙><a href=#23-%e9%98%b2%e7%81%ab%e5%a2%99 class=header-anchor></a>2.3 防火墙</h3><p>云服务需要在安全组中操作防火墙，建议先开启所有端口，测试通过后逐一关闭</p><h3 id=24-ipvs-可选><a href=#24-ipvs-%e5%8f%af%e9%80%89 class=header-anchor></a>2.4 IPVS (可选)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update <span class=o>&amp;&amp;</span> sudo apt install -y ipset ipvsadm
+</span></span><span class=line><span class=cl>sudo tee /etc/modules-load.d/ipvs.conf <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>ip_vs
+</span></span></span><span class=line><span class=cl><span class=s>ip_vs_rr
+</span></span></span><span class=line><span class=cl><span class=s>ip_vs_wrr
+</span></span></span><span class=line><span class=cl><span class=s>ip_vs_sh
+</span></span></span><span class=line><span class=cl><span class=s>nf_conntrack
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=三软件安装><a href=#%e4%b8%89%e8%bd%af%e4%bb%b6%e5%ae%89%e8%a3%85 class=header-anchor></a>三、软件安装</h2><h3 id=31-docker><a href=#31-docker class=header-anchor></a>3.1 Docker</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=k>for</span> pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc<span class=p>;</span> <span class=k>do</span> sudo apt-get remove <span class=nv>$pkg</span><span class=p>;</span> <span class=k>done</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Add Docker&#39;s official GPG key:</span>
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y ca-certificates curl
+</span></span><span class=line><span class=cl>sudo install -m <span class=m>0755</span> -d /etc/apt/keyrings
+</span></span><span class=line><span class=cl>sudo curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+</span></span><span class=line><span class=cl>sudo chmod a+r /etc/apt/keyrings/docker.asc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Add the repository to Apt sources:</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span>   <span class=s2>&#34;deb [arch=</span><span class=k>$(</span>dpkg --print-architecture<span class=k>)</span><span class=s2> signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/ \
+</span></span></span><span class=line><span class=cl><span class=s2>  </span><span class=k>$(</span>. /etc/os-release <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$VERSION_CODENAME</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2> stable&#34;</span> <span class=p>|</span>   sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install using the apt repository</span>
+</span></span><span class=line><span class=cl>sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Configure the registry mirrors</span>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/docker
+</span></span><span class=line><span class=cl>sudo tee /etc/docker/daemon.json <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>{
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;registry-mirrors&#34;: [&#34;https://mirrors.docker.com&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>}
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>sudo systemctl daemon-reload
+</span></span><span class=line><span class=cl>sudo systemctl restart docker
+</span></span></code></pre></td></tr></table></div></div><h3 id=32-containerd><a href=#32-containerd class=header-anchor></a>3.2 Containerd</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo containerd config default <span class=p>|</span> sudo tee /etc/containerd/config.toml &gt; /dev/null
+</span></span><span class=line><span class=cl>sudo sed -i <span class=s1>&#39;/registry.k8s.io\/pause/s|3.8|3.9|&#39;</span> /etc/containerd/config.toml
+</span></span><span class=line><span class=cl>sudo sed -i <span class=s1>&#39;s/SystemdCgroup\ =\ false/SystemdCgroup\ =\ true/g&#39;</span> /etc/containerd/config.toml
+</span></span><span class=line><span class=cl>sudo sed -i <span class=s1>&#39;s/config_path\ =\ &#34;&#34;/config_path\ =\ &#34;\/etc\/containerd\/certs.d&#34;/g&#39;</span> /etc/containerd/config.toml
+</span></span><span class=line><span class=cl>sudo systemctl restart containerd
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo mkdir -p /etc/containerd/certs.d/docker.io
+</span></span><span class=line><span class=cl>sudo tee /etc/containerd/certs.d/docker.io/hosts.toml <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>server = &#34;https://docker.io&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>[host.&#34;https://mirrors.docker.com&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>  capabilities = [&#34;pull&#34;, &#34;resolve&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/containerd/certs.d/registry-1.docker.io
+</span></span><span class=line><span class=cl>sudo tee /etc/containerd/certs.d/registry-1.docker.io/hosts.toml <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>server = &#34;https://registry-1.docker.io&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>[host.&#34;https://mirrors.docker.com&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>  capabilities = [&#34;pull&#34;, &#34;resolve&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/containerd/certs.d/registry.k8s.io
+</span></span><span class=line><span class=cl>sudo tee /etc/containerd/certs.d/registry.k8s.io/hosts.toml <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>server = &#34;https://registry.k8s.io&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>[host.&#34;https://mirrors.k8s.com&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>  capabilities = [&#34;pull&#34;, &#34;resolve&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo mkdir -p /etc/containerd/certs.d/quay.io
+</span></span><span class=line><span class=cl>sudo tee /etc/containerd/certs.d/quay.io/hosts.toml <span class=s>&lt;&lt; &#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s>server = &#34;https://quay.io&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>[host.&#34;https://mirrors.quay.com&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>  capabilities = [&#34;pull&#34;, &#34;resolve&#34;]
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=33-kubernetes><a href=#33-kubernetes class=header-anchor></a>3.3 Kubernetes</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt update <span class=o>&amp;&amp;</span> sudo apt install -y apt-transport-https
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>curl -fsSL https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.30/deb/Release.key <span class=p>|</span> sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.30/deb/ /&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/kubernetes.list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo apt update
+</span></span><span class=line><span class=cl>sudo apt install -y kubelet kubeadm kubectl
+</span></span><span class=line><span class=cl>sudo apt-mark hold kubelet kubeadm kubectl
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>tee -a .zshrc <span class=s>&lt;&lt;-&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=s># k8s completion
+</span></span></span><span class=line><span class=cl><span class=s>source &lt;(kubectl completion zsh)
+</span></span></span><span class=line><span class=cl><span class=s>source &lt;(kubeadm completion zsh)
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=四配置-master><a href=#%e5%9b%9b%e9%85%8d%e7%bd%ae-master class=header-anchor></a>四、配置 Master</h2><h3 id=41-拉取镜像><a href=#41-%e6%8b%89%e5%8f%96%e9%95%9c%e5%83%8f class=header-anchor></a>4.1 拉取镜像</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo kubeadm config images pull --kubernetes-version<span class=o>=</span><span class=k>$(</span>kubeadm version -o short<span class=k>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=42-初始化><a href=#42-%e5%88%9d%e5%a7%8b%e5%8c%96 class=header-anchor></a>4.2 初始化</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo kubeadm init <span class=se>\
+</span></span></span><span class=line><span class=cl>      --apiserver-advertise-address<span class=o>=</span>172.29.140.34 <span class=se>\
+</span></span></span><span class=line><span class=cl>      --pod-network-cidr<span class=o>=</span>192.168.0.0/16 <span class=se>\
+</span></span></span><span class=line><span class=cl>      --service-cidr<span class=o>=</span>10.96.0.0/16 <span class=se>\
+</span></span></span><span class=line><span class=cl>      --kubernetes-version<span class=o>=</span><span class=k>$(</span>kubeadm version -o short<span class=k>)</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=43-命令行工具><a href=#43-%e5%91%bd%e4%bb%a4%e8%a1%8c%e5%b7%a5%e5%85%b7 class=header-anchor></a>4.3 命令行工具</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>mkdir -p <span class=nv>$HOME</span>/.kube
+</span></span><span class=line><span class=cl>sudo cp -i /etc/kubernetes/admin.conf <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>sudo chown <span class=k>$(</span>id -u<span class=k>)</span>:<span class=k>$(</span>id -g<span class=k>)</span> <span class=nv>$HOME</span>/.kube/config
+</span></span></code></pre></td></tr></table></div></div><h2 id=五添加-worker><a href=#%e4%ba%94%e6%b7%bb%e5%8a%a0-worker class=header-anchor></a>五、添加 Worker</h2><h3 id=51-加入集群><a href=#51-%e5%8a%a0%e5%85%a5%e9%9b%86%e7%be%a4 class=header-anchor></a>5.1 加入集群</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo kubeadm join ip:port --token xxxxxx <span class=se>\
+</span></span></span><span class=line><span class=cl>        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxx
+</span></span></code></pre></td></tr></table></div></div><h3 id=52-查看节点><a href=#52-%e6%9f%a5%e7%9c%8b%e8%8a%82%e7%82%b9 class=header-anchor></a>5.2 查看节点</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>kubectl get nodes
+</span></span><span class=line><span class=cl>NAME         STATUS     ROLES           AGE     VERSION
+</span></span><span class=line><span class=cl>k8s-master   NotReady   control-plane   4m14s   v1.30.2
+</span></span><span class=line><span class=cl>k8s-node1    NotReady   &lt;none&gt;          25s     v1.30.2
+</span></span></code></pre></td></tr></table></div></div><h2 id=六网络插件-calico><a href=#%e5%85%ad%e7%bd%91%e7%bb%9c%e6%8f%92%e4%bb%b6-calico class=header-anchor></a>六、网络插件 Calico</h2><blockquote><p>在 <code>Master</code> 节点上操作，直接看 <code>6.4</code> 节的解决方案</p></blockquote><h3 id=61-创建-tigera-operator><a href=#61-%e5%88%9b%e5%bb%ba-tigera-operator class=header-anchor></a>6.1 创建 tigera-operator</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>wget https://raw.staticdn.net/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
+</span></span><span class=line><span class=cl>kubectl create -f tigera-operator.yaml
+</span></span></code></pre></td></tr></table></div></div><h3 id=62-启动-calico><a href=#62-%e5%90%af%e5%8a%a8-calico class=header-anchor></a>6.2 启动 calico</h3><p>下载或打开配置文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>wget https://raw.staticdn.net/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml
+</span></span><span class=line><span class=cl>kubectl apply -f custom-resources.yaml
+</span></span></code></pre></td></tr></table></div></div><h3 id=63-遇到的问题><a href=#63-%e9%81%87%e5%88%b0%e7%9a%84%e9%97%ae%e9%a2%98 class=header-anchor></a>6.3 遇到的问题</h3><p>相比于公网 Pod 无法启动，内网集群 Pod 虽然可以启动，但是仍然无法通信，目前没找到解决办法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>Readiness probe failed: calico/node is not ready: BIRD is not ready: Error querying BIRD: unable to connect to BIRDv4 socket: dial unix /var/run/calico/bird.ctl: connect: connection refused
+</span></span></code></pre></td></tr></table></div></div><h3 id=64-解决方案><a href=#64-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88 class=header-anchor></a>6.4 解决方案</h3><blockquote><p>上面的命令都不用管了</p></blockquote><p>使用 <code>v3.25</code> 版本的另一种部署方式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>kubectl apply -f https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml
+</span></span></code></pre></td></tr></table></div></div><p>虽然仍然报错，甚至也说 <code>BGP</code> 无法连接</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>  Warning  Unhealthy  3m19s  kubelet            Readiness probe failed: calico/node is not ready: BIRD is not ready: Error querying BIRD: unable to connect to BIRDv4 socket: dial unix /var/run/bird/bird.ctl: connect: no such file or directory
+</span></span><span class=line><span class=cl>  Warning  Unhealthy  3m18s  kubelet            Readiness probe failed: calico/node is not ready: BIRD is not ready: Error querying BIRD: unable to connect to BIRDv4 socket: dial unix /var/run/calico/bird.ctl: connect: connection refused
+</span></span><span class=line><span class=cl>  Warning  Unhealthy  3m15s  kubelet            Readiness probe failed: 2024-07-09 12:44:59.682 <span class=o>[</span>INFO<span class=o>][</span>225<span class=o>]</span> confd/health.go 180: Number of node<span class=o>(</span>s<span class=o>)</span> with BGP peering <span class=nv>established</span> <span class=o>=</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>calico/node is not ready: BIRD is not ready: BGP not established with 172.29.140.27
+</span></span></code></pre></td></tr></table></div></div><p>但是 <code>Pod</code> 之间可以通信了！！！目前不懂为什么</p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/tool/>Tool</a>
+<a href=/tags/kubernetes/>Kubernetes</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/init-cluster/><div class=article-details><h2 class=article-title>Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )</h2></div></a></article><article><a href=/p/submodule/><div class=article-details><h2 class=article-title>Git 子模块</h2></div></a></article><article><a href=/p/recover/><div class=article-details><h2 class=article-title>找回误删文件</h2></div></a></article><article><a href=/p/readme-stats/><div class=article-details><h2 class=article-title>在自己的Vercel服务器部署GitHub Stats</h2></div></a></article><article><a href=/p/proxy/><div class=article-details><h2 class=article-title>Git设置代理</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

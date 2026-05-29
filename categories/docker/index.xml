@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Markdown Notes</title><link>https://example.org/categories/docker/</link><description>Recent content in Docker on Markdown Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2026 09:22:25 +0000</lastBuildDate><atom:link href="https://example.org/categories/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>Docker 中安装宝塔面板</title><link>https://example.org/p/bt-install/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/bt-install/</guid><description>&lt;h1 id="docker-中安装宝塔面板"&gt;&lt;a href="#docker-%e4%b8%ad%e5%ae%89%e8%a3%85%e5%ae%9d%e5%a1%94%e9%9d%a2%e6%9d%bf" class="header-anchor"&gt;&lt;/a&gt;Docker 中安装宝塔面板
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一软硬件版本"&gt;&lt;a href="#%e4%b8%80%e8%bd%af%e7%a1%ac%e4%bb%b6%e7%89%88%e6%9c%ac" class="header-anchor"&gt;&lt;/a&gt;一、软硬件版本
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: center"&gt;名称&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;版本&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;系统版本&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ubuntu 18.04.6 LTS (GNU/Linux 4.15.0-48-generic x86_64)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;docker&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;20.10.10&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="二安装基于centos镜像"&gt;&lt;a href="#%e4%ba%8c%e5%ae%89%e8%a3%85%e5%9f%ba%e4%ba%8ecentos%e9%95%9c%e5%83%8f" class="header-anchor"&gt;&lt;/a&gt;二、安装(基于centos镜像)
+&lt;/h2&gt;&lt;p&gt;拉取镜像，宝塔对centos7**兼容性&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;**最好 ，且centos8的docker镜像下载不了&lt;code&gt;step3&lt;/code&gt;的`screen&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker pull centos:7
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;创建一个命名为&lt;code&gt;centos&lt;/code&gt;容器并进入，命名为&lt;code&gt;btpanel&lt;/code&gt;&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;将宿主机的&lt;code&gt;20，21，80，443，888，8888&lt;/code&gt;这五个&lt;strong&gt;端口映射&lt;/strong&gt;到&lt;code&gt;docker&lt;/code&gt;容器中去&lt;/p&gt;
+&lt;p&gt;并将宿主机的&lt;code&gt;/home/www&lt;/code&gt;&lt;strong&gt;文件夹挂载&lt;/strong&gt;到&lt;code&gt;docker&lt;/code&gt;容器的&lt;code&gt;/www&lt;/code&gt;上去&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(注意：文件目录如果不存在。宿主机和容器会自己创建，无需手动创建)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;(注意：如果报错没有权限还是自己手动创建一下)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;privileged&lt;/code&gt;表示在运行容器的时候，给容器加特权，设置容器有写文件的&lt;strong&gt;权限&lt;/strong&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 没有启动 vsftpd 服务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -it --name btpanel -p 20:20 -p 21:21 -p 80:80 -p 443:443 -p 888:888 -p 3306:3306 -p 8888:8888 --privileged&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; --restart always -v /data/www:/www centos:7 /bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 启动了的话改变一下映射端口或者关一下 vsftpd 服务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -it --name btpanel -p 20:20 -p 210:21 -p 80:80 -p 443:443 -p 888:888 -p 3306:3306 -p 8888:8888 --privileged&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; --restart always -v /data/www:/www centos:7 /bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;由于docker中是一个&lt;strong&gt;纯净版本&lt;/strong&gt;，我们首先需要给他升级并且安装必要的软件&lt;/p&gt;
+&lt;p&gt;这里使用&lt;code&gt;yum update -y&lt;/code&gt;会升级系统和内核，但是因为是纯净版本，所以升级很快&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# centos 7&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yum update -y &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; yum install initscripts screen wget -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# centos 8 下报错&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# No match for argument: screen&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Error: Unable to find a match: screen&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 所以centos 8下暂时无法安装screen包，但不影响宝塔安装&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;yum update -y &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; yum install initscripts wget -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;执行&lt;code&gt;Centos&lt;/code&gt;宝塔面板的安装命令，期间会有一个安装确认，输入&lt;code&gt;y&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget -O i.sh http://download.bt.cn/install/install_6.0.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sh i.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装完成&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;外网面板地址: http://119.23.209.135:8888/7d2e5682
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;内网面板地址: http://172.18.0.2:8888/7d2e5682
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223358.png" alt="img" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;Tips：&lt;strong&gt;删除镜像&lt;/strong&gt;后记得删除&lt;code&gt;/data/www&lt;/code&gt;目录&lt;/p&gt;
+&lt;h2 id="三安装直接使用baota镜像"&gt;&lt;a href="#%e4%b8%89%e5%ae%89%e8%a3%85%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8baota%e9%95%9c%e5%83%8f" class="header-anchor"&gt;&lt;/a&gt;三、安装(直接使用baota镜像)
+&lt;/h2&gt;&lt;p&gt;使用说明：https://github.com/pch18-docker/baota&lt;/p&gt;
+&lt;p&gt;Dockerfile：https://github.com/pch18-docker/baota/blob/clear/Dockerfile&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -d --name btpanel --net&lt;span class="o"&gt;=&lt;/span&gt;host --privileged&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;true&lt;/span&gt; --restart always -v /data/wwwroot:/wwwroot pch18/baota:lnp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;登陆地址 &lt;code&gt;http://{{面板ip地址}}:8888&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始账号 &lt;code&gt;username&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初始密码 &lt;code&gt;password&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+ &lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;pch18/baota&lt;/code&gt;或&lt;code&gt;pch18/baota:latest&lt;/code&gt;等同&lt;code&gt;pch18/baota:lnmp&lt;/code&gt;
+&lt;code&gt;pch18/baota:lnmp&lt;/code&gt;为最新版本的官方纯净安装的基础上安装&lt;code&gt;nginx&lt;/code&gt;,&lt;code&gt;mysql&lt;/code&gt;,&lt;code&gt;php&lt;/code&gt;
+&lt;code&gt;pch18/baota:lnp&lt;/code&gt; 为官方版本纯净安装的基础上安装&lt;code&gt;nginx&lt;/code&gt;,&lt;code&gt;php&lt;/code&gt;(不内置&lt;code&gt;mysql&lt;/code&gt;,用于外置数据库的环境)
+&lt;code&gt;pch18/baota:lamp&lt;/code&gt; 为官方版本纯净安装的基础上安装&lt;code&gt;apache&lt;/code&gt;,&lt;code&gt;php&lt;/code&gt;
+&lt;code&gt;pch18/baota:lap&lt;/code&gt; 为官方版本纯净安装的基础上安装&lt;code&gt;apache&lt;/code&gt;,&lt;code&gt;php&lt;/code&gt;(不内置&lt;code&gt;mysql&lt;/code&gt;,用于外置数据库的环境)
+&lt;code&gt;pch18/baota:clear&lt;/code&gt; 为官方版本纯净安装, 不默认安装&lt;code&gt;nginx&lt;/code&gt;,&lt;code&gt;mysql&lt;/code&gt;,&lt;code&gt;php&lt;/code&gt;等程序&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h2 id="四问题"&gt;&lt;a href="#%e5%9b%9b%e9%97%ae%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;四、问题
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Step2 出现错误&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker: Error response from daemon: driver failed programming external connectivity on endpoint btpanel &lt;span class="o"&gt;(&lt;/span&gt;daaeec405d1d7b088754e6a7fe621f9c584a10a5df294e241aa574317b757716&lt;span class="o"&gt;)&lt;/span&gt;: Error starting userland proxy: listen tcp4 0.0.0.0:21: bind: address already in use.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原因：FTP服务 ( &lt;code&gt;vsftpd&lt;/code&gt; ) 默认占用21端口&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关闭并禁止自启动 &lt;code&gt;vsftpd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;更改映射端口&lt;/li&gt;
+&lt;li&gt;修改 &lt;code&gt;vsftpd&lt;/code&gt; 配置端口&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Setp4 运行出现提示：&lt;/p&gt;
+&lt;p&gt;注意: &lt;strong&gt;5.x系列&lt;/strong&gt;Linux面板从2020年1月1日起终止维护，与技术支持，请考虑安装全新的7.x版本 宝塔官网: &lt;a class="link" href="https://www.bt.cn" target="_blank" rel="noopener"
+ &gt;https://www.bt.cn&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget -O i.sh http://download.bt.cn/install/install.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sh i.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;修改为
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget -O i.sh http://download.bt.cn/install/install_6.0.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sh i.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Setp4 运行出现错误&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;install.sh: line 1: --2021-10-28: &lt;span class="nb"&gt;command&lt;/span&gt; not found
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;install.sh: line 2: syntax error near unexpected token &lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;install.sh: line 2: `Resolving download.bt.cn (download.bt.cn)... 116.10.184.143, 240e:a5:4200:89::143&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原因：参考文章：&lt;a class="link" href="https://www.cnblogs.com/sx66/p/11887022.html" target="_blank" rel="noopener"
+ &gt;wget命令详解&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# step4 原命令&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget -o i.sh https://download.bt.cn/install/install_6.0.sh &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sh i.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 错误位置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-o -&amp;gt; -O
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 区别&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-o, --output-file&lt;span class="o"&gt;=&lt;/span&gt;FILE 将日志信息写入 FILE
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;-O, --output-document&lt;span class="o"&gt;=&lt;/span&gt;FILE 将文档写入 FILE
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span style="color:crimson"&gt;Error: DBUS_ERROR: Failed to connect to socket /run/dbus/system_bus_socket: No such file or directory&lt;/span&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;确定两点：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1. dbus是否启动？如果没启动，则：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/etc/init.d/dbus start
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2. dbus启动了，守护进程dbus-daemon是否启动？如果没启动，则：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;dbus-daemon --system
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原因：&lt;strong&gt;实际上 &lt;strong&gt;docker 下的 centos 镜像&lt;/strong&gt;没有&lt;/strong&gt; dbus，但是不影响宝塔正常运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="五宝塔管理"&gt;&lt;a href="#%e4%ba%94%e5%ae%9d%e5%a1%94%e7%ae%a1%e7%90%86" class="header-anchor"&gt;&lt;/a&gt;五、宝塔管理
+&lt;/h2&gt;&lt;p&gt;直接进入容器，输入&lt;code&gt;bt&lt;/code&gt;，根据提示进行操作：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it btpanel bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-06-19-204146.png" alt="image-20220619204145165" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;其他说明：&lt;a class="link" href="https://www.xp8.net/server/392.html" target="_blank" rel="noopener"
+ &gt;宝塔linux面板重启、重置等命令&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;span class="lnt"&gt;43
+&lt;/span&gt;&lt;span class="lnt"&gt;44
+&lt;/span&gt;&lt;span class="lnt"&gt;45
+&lt;/span&gt;&lt;span class="lnt"&gt;46
+&lt;/span&gt;&lt;span class="lnt"&gt;47
+&lt;/span&gt;&lt;span class="lnt"&gt;48
+&lt;/span&gt;&lt;span class="lnt"&gt;49
+&lt;/span&gt;&lt;span class="lnt"&gt;50
+&lt;/span&gt;&lt;span class="lnt"&gt;51
+&lt;/span&gt;&lt;span class="lnt"&gt;52
+&lt;/span&gt;&lt;span class="lnt"&gt;53
+&lt;/span&gt;&lt;span class="lnt"&gt;54
+&lt;/span&gt;&lt;span class="lnt"&gt;55
+&lt;/span&gt;&lt;span class="lnt"&gt;56
+&lt;/span&gt;&lt;span class="lnt"&gt;57
+&lt;/span&gt;&lt;span class="lnt"&gt;58
+&lt;/span&gt;&lt;span class="lnt"&gt;59
+&lt;/span&gt;&lt;span class="lnt"&gt;60
+&lt;/span&gt;&lt;span class="lnt"&gt;61
+&lt;/span&gt;&lt;span class="lnt"&gt;62
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看默认入口和账号密码&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/etc/init.d/bt default
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 停止&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/etc/init.d/bt stop
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 启动&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/etc/init.d/bt start
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 重启&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/etc/init.d/bt restart
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 卸载&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/etc/init.d/bt stop &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; chkconfig --del bt &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm -f /etc/init.d/bt &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm -rf /www/server/panel
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看当前面板端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /www/server/panel/data/port.pl
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 修改面板端口，如要改成8881（centos 6 系统）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8881&amp;#39;&lt;/span&gt; &amp;gt; /www/server/panel/data/port.pl &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /etc/init.d/bt restart
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport &lt;span class="m"&gt;8881&lt;/span&gt; -j ACCEPT
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service iptables save
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;service iptables restart
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 修改面板端口，如要改成8881（centos 7 系统）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8881&amp;#39;&lt;/span&gt; &amp;gt; /www/server/panel/data/port.pl &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /etc/init.d/bt restart
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;firewall-cmd --permanent --zone&lt;span class="o"&gt;=&lt;/span&gt;public --add-port&lt;span class="o"&gt;=&lt;/span&gt;8881/tcp
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;firewall-cmd --reload
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 强制修改MySQL管理(root)密码，如要改成123456&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /www/server/panel &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; python tools.pyc root &lt;span class="m"&gt;123456&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 修改面板密码，如要改成123456&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /www/server/panel &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; python tools.pyc panel &lt;span class="m"&gt;123456&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看宝塔日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /tmp/panelBoot.pl
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看软件安装日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /tmp/panelExec.log
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 站点配置文件位置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/server/panel/vhost
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 删除域名绑定面板&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rm -f /www/server/panel/data/domain.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 清理登陆限制&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rm -f /www/server/panel/data/*.login
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看面板授权IP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /www/server/panel/data/limitip.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 关闭访问限制&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rm -f /www/server/panel/data/limitip.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看许可域名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /www/server/panel/data/domain.conf
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 关闭面板SSL&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rm -f /www/server/panel/data/ssl.pl &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; /etc/init.d/bt restart
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看面板错误日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /tmp/panelBoot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 查看数据库错误日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat /www/server/data/*.err
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;站点配置文件目录&lt;span class="o"&gt;(&lt;/span&gt;nginx&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/server/panel/vhost/nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;站点配置文件目录&lt;span class="o"&gt;(&lt;/span&gt;apache&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/server/panel/vhost/apache
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;站点默认目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/wwwroot
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;数据库备份目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/backup/database
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;站点备份目录
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/backup/site
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;站点日志
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;/www/wwwlogs
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;系统兼容性顺序：Centos7.x &amp;gt; Debian10 &amp;gt; Ubuntu 20.04 &amp;gt; Cenots8.x &amp;gt; Ubuntu 18.04 &amp;gt; 其它系统&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>Docker的基本使用</title><link>https://example.org/p/command/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/command/</guid><description>&lt;h1 id="docker的基本使用"&gt;&lt;a href="#docker%e7%9a%84%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8" class="header-anchor"&gt;&lt;/a&gt;Docker的基本使用
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="常用命令"&gt;&lt;a href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4" class="header-anchor"&gt;&lt;/a&gt;常用命令
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;命令&lt;/th&gt;
+					&lt;th&gt;作用&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker search xxx&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;搜索&lt;/strong&gt;镜像&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker pull xxx&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;下载&lt;/strong&gt;镜像&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker start 容器id&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;启动&lt;/strong&gt;容器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker restart 容器id&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;重启&lt;/strong&gt;容器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker stop 容器id&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;停止&lt;/strong&gt;当前正在运行的容器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker kill 容器id&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;强制停止&lt;/strong&gt;当前运行的容器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker run -d &amp;ndash;name tomcat01 tomcat&lt;/td&gt;
+					&lt;td&gt;新建容器并以后台运行，并&lt;strong&gt;命名&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker run -d -p 主机端口:容器内端口 tomcat&lt;/td&gt;
+					&lt;td&gt;新建容器并以后台运行，并&lt;strong&gt;映射端口&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker run -d -v 主机目录:容器内目录 tomcat&lt;/td&gt;
+					&lt;td&gt;新建容器并以后台运行，并&lt;strong&gt;挂载目录&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker run -it tomcat /bin/bash&lt;/td&gt;
+					&lt;td&gt;以&lt;strong&gt;交互模式新建&lt;/strong&gt;容器并使用bash作为伪终端&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;del&gt;docker run -it -d tomcat /bin/bash&lt;/del&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;del&gt;以交互模式新建容器并 exit 退出后&lt;strong&gt;保持运行&lt;/strong&gt;&lt;/del&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker exec -it 容器ID/名称 /bin/bash&lt;/td&gt;
+					&lt;td&gt;以交互模式&lt;strong&gt;进入&lt;/strong&gt;容器并使用bash作为伪终端&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker run -it &amp;ndash;rm tomcat /bin/bash&lt;/td&gt;
+					&lt;td&gt;交互模式&lt;strong&gt;临时&lt;/strong&gt;新建容器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker rm -f (docker ps -aq)&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;删除容器&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker rmi -f (docker images -aq)&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;删除镜像&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker inspect 容器ID/名称&lt;/td&gt;
+					&lt;td&gt;查看容器的&lt;strong&gt;元数据&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;docker port 容器ID/名称&lt;/td&gt;
+					&lt;td&gt;查看容器的&lt;strong&gt;映射端口&lt;/strong&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;exit&lt;/td&gt;
+					&lt;td&gt;退出并关闭容器 &lt;del&gt;( -d 可以保持运行 )&lt;/del&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;ctrl +P +Q&lt;/td&gt;
+					&lt;td&gt;退出但不关闭容器&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="run-命令"&gt;&lt;a href="#run-%e5%91%bd%e4%bb%a4" class="header-anchor"&gt;&lt;/a&gt;run 命令
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run &lt;span class="o"&gt;[&lt;/span&gt;OPTIONS&lt;span class="o"&gt;]&lt;/span&gt; IMAGE &lt;span class="o"&gt;[&lt;/span&gt;COMMAND&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;ARG...&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 示例一&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -d -p 8080:8080 --name tomcat01 tomcat
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it tomcat01 /bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker stop aa664b0c8ed9
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;OPTIONS说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;-a stdin:&lt;/strong&gt; 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-d:&lt;/strong&gt; 后台运行容器，并返回容器ID；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-i:&lt;/strong&gt; 以交互模式运行容器，通常与 -t 同时使用；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-P:&lt;/strong&gt; 随机端口映射，容器内部端口&lt;strong&gt;随机&lt;/strong&gt;映射到主机的端口&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-p:&lt;/strong&gt; 指定端口映射，格式为：&lt;strong&gt;主机(宿主)端口:容器端口&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-t:&lt;/strong&gt; 为容器重新分配一个伪输入终端，通常与 -i 同时使用；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;name &amp;ldquo;xxx&amp;rdquo;:&lt;/strong&gt; 为容器指定一个名称；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;dns 8.8.8.8:&lt;/strong&gt; 指定容器使用的DNS服务器，默认和宿主一致；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;dns-search example.com:&lt;/strong&gt; 指定容器DNS搜索域名，默认和宿主一致；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-h :&lt;/strong&gt; 指定容器的hostname；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-e username &amp;ldquo;ritchie&amp;rdquo;:&lt;/strong&gt; 设置环境变量；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;env-file:&lt;/strong&gt; 从指定文件读入环境变量；&lt;/li&gt;
+&lt;li&gt;**-m :**设置容器使用内存最大值；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;net:&lt;/strong&gt; 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;link:&lt;/strong&gt; 添加链接到另一个容器；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;expose:&lt;/strong&gt; 开放一个端口或一组端口；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&amp;ndash;volume , -v:&lt;/strong&gt; 绑定一个卷&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ps-format"&gt;&lt;a href="#ps-format" class="header-anchor"&gt;&lt;/a&gt;ps &amp;ndash;format
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Valid placeholders:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.ID - Container ID.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Image - Image ID.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Command - Quoted command.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.CreatedAt - Time when the container was created.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.RunningFor - Elapsed &lt;span class="nb"&gt;time&lt;/span&gt; since the container was started.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Ports - Exposed ports.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Status - Container status.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Size - Container disk size.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Names - Container names.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Labels - All labels assigned to the container.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Label - Value of a specific label &lt;span class="k"&gt;for&lt;/span&gt; this container.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.Mounts - Names of the volumes mounted in this container.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# example&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps -a --format &lt;span class="s2"&gt;&amp;#34;table {{.ID}}\t{{.Command}}\t{{.Names}}\t{{.Status}}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="rm--rmi"&gt;&lt;a href="#rm--rmi" class="header-anchor"&gt;&lt;/a&gt;rm &amp;amp; rmi
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker rm -f &lt;span class="k"&gt;$(&lt;/span&gt;docker ps -aq&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker rmi -f &lt;span class="k"&gt;$(&lt;/span&gt;docker images -aq&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker rm 容器id 				&lt;span class="c1"&gt;#删除指定的容器，强制删除: rm -rf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker rm -f &lt;span class="k"&gt;$(&lt;/span&gt;docker ps -aq&lt;span class="k"&gt;)&lt;/span&gt; 	 &lt;span class="c1"&gt;#删除所有的容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps -aq&lt;span class="p"&gt;|&lt;/span&gt;xargs docker rm &lt;span class="c1"&gt;#删除所有的容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>docker容器添加对外映射端口</title><link>https://example.org/p/add-port/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/add-port/</guid><description>&lt;h1 id="docker容器添加对外映射端口"&gt;&lt;a href="#docker%e5%ae%b9%e5%99%a8%e6%b7%bb%e5%8a%a0%e5%af%b9%e5%a4%96%e6%98%a0%e5%b0%84%e7%ab%af%e5%8f%a3" class="header-anchor"&gt;&lt;/a&gt;docker容器添加对外映射端口
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一背景"&gt;&lt;a href="#%e4%b8%80%e8%83%8c%e6%99%af" class="header-anchor"&gt;&lt;/a&gt;一、背景
+&lt;/h2&gt;&lt;p&gt;一般在运行容器时，我们都会通过参数&lt;code&gt;-p&lt;/code&gt;（使用大写的&lt;code&gt;-P&lt;/code&gt;参数则会随机选择宿主机的一个端口进行映射）来指定宿主机和容器&lt;strong&gt;端口的映射&lt;/strong&gt;，例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -it -d --name [container-name] -p 8088:80 [image-name]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这里是将容器内的80端口映射到宿主机的8088端口&lt;/p&gt;
+&lt;p&gt;参数说明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-d 表示后台运行容器&lt;/li&gt;
+&lt;li&gt;-t 为docker分配一个伪终端并绑定到容器的标准输入上&lt;/li&gt;
+&lt;li&gt;-i 是让容器的标准输入保持打开状态&lt;/li&gt;
+&lt;li&gt;-p 指定映射端口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在运行容器时指定映射端口运行后，如果想要添加新的端口映射，可以使用以下两种方式：&lt;/p&gt;
+&lt;h2 id="二方法一重新制作镜像"&gt;&lt;a href="#%e4%ba%8c%e6%96%b9%e6%b3%95%e4%b8%80%e9%87%8d%e6%96%b0%e5%88%b6%e4%bd%9c%e9%95%9c%e5%83%8f" class="header-anchor"&gt;&lt;/a&gt;二、方法一：重新制作镜像
+&lt;/h2&gt;&lt;p&gt;将现有的容器&lt;strong&gt;打包成镜像&lt;/strong&gt;，然后在使用新的镜像运行容器时&lt;strong&gt;重新指定要映射的端口&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;过程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;停止现有容器
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker stop container-name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;将容器commit成为一个镜像
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker commit container-name new-image-name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;用新镜像运行容器
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -it -d --name container-name -p p1:p1 -p p2:p2 new-image-name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="三方法二修改配置文件"&gt;&lt;a href="#%e4%b8%89%e6%96%b9%e6%b3%95%e4%ba%8c%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="header-anchor"&gt;&lt;/a&gt;三、方法二：修改配置文件
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;修改&lt;/strong&gt;要端口映射的容器的&lt;strong&gt;配置文件&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;过程如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;停止现有容器
+&lt;code&gt;shell docker stop 容器ID &lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;停止docker服务，&lt;strong&gt;必须先停止，不然修改不生效&lt;/strong&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl stop docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;进入/var/lib/docker/containers 目录下找到与 Id 相同的目录
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;containers&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;容器&lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;修改 hostconfig.json 和 config.v2.json文件：
+&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223332.png" alt="img" loading="lazy"&gt;
+&lt;/li&gt;
+&lt;li&gt;修改&lt;code&gt;hostconfig.json&lt;/code&gt;，在&lt;code&gt;PortBindings&lt;/code&gt;后加上要&lt;strong&gt;绑定的端口&lt;/strong&gt;，添加端口绑定：
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 表示绑定端口 3306&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;3306/tcp&amp;#34;&lt;/span&gt;: &lt;span class="o"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;HostIp&amp;#34;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;,&lt;span class="s2"&gt;&amp;#34;HostPort&amp;#34;&lt;/span&gt;: &lt;span class="s2"&gt;&amp;#34;3306&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;}]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223343.png" alt="img" loading="lazy"&gt;
+&lt;/li&gt;
+&lt;li&gt;修改&lt;code&gt;config.v2.json&lt;/code&gt;在&lt;code&gt;ExposedPorts&lt;/code&gt;后加上要&lt;strong&gt;暴露的端口&lt;/strong&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 表示暴露端口 3306&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;3306/tcp&amp;#34;&lt;/span&gt;:&lt;span class="o"&gt;{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223349.png" alt="img" loading="lazy"&gt;
+&lt;/li&gt;
+&lt;li&gt;改完之后保存启动docker，查看添加的端口是否已映射绑定上
+&lt;code&gt;systemctl start docker&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="四查看端口映射成功"&gt;&lt;a href="#%e5%9b%9b%e6%9f%a5%e7%9c%8b%e7%ab%af%e5%8f%a3%e6%98%a0%e5%b0%84%e6%88%90%e5%8a%9f" class="header-anchor"&gt;&lt;/a&gt;四、查看端口映射成功
+&lt;/h2&gt;&lt;p&gt;在容器外执行&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;netstat -an |grep 3306
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果有进程存在则表示有映射&lt;/p&gt;
+&lt;h2 id="五参考文章"&gt;&lt;a href="#%e4%ba%94%e5%8f%82%e8%80%83%e6%96%87%e7%ab%a0" class="header-anchor"&gt;&lt;/a&gt;五、参考文章
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.cnblogs.com/zhumengke/articles/13525837.html" target="_blank" rel="noopener"
+ &gt;docker容器添加对外映射端口&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>阿里云Linux服务器安装Docker</title><link>https://example.org/p/setup/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/setup/</guid><description>&lt;h1 id="阿里云linux服务器安装docker"&gt;&lt;a href="#%e9%98%bf%e9%87%8c%e4%ba%91linux%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%89%e8%a3%85docker" class="header-anchor"&gt;&lt;/a&gt;阿里云Linux服务器安装Docker
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一使用官方安装脚本自动安装-仅适用于公网环境"&gt;&lt;a href="#%e4%b8%80%e4%bd%bf%e7%94%a8%e5%ae%98%e6%96%b9%e5%ae%89%e8%a3%85%e8%84%9a%e6%9c%ac%e8%87%aa%e5%8a%a8%e5%ae%89%e8%a3%85-%e4%bb%85%e9%80%82%e7%94%a8%e4%ba%8e%e5%85%ac%e7%bd%91%e7%8e%af%e5%a2%83" class="header-anchor"&gt;&lt;/a&gt;一、使用官方安装脚本自动安装 （仅适用于公网环境）
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -fsSL https://get.docker.com &lt;span class="p"&gt;|&lt;/span&gt; bash -s docker --mirror Aliyun
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="二安装校验"&gt;&lt;a href="#%e4%ba%8c%e5%ae%89%e8%a3%85%e6%a0%a1%e9%aa%8c" class="header-anchor"&gt;&lt;/a&gt;二、安装校验
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;root@iZwz91577x7sn2pgjejf5kZ:~# docker version
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Client: Docker Engine - Community
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Version: 20.10.12
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; API version: 1.41
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Go version: go1.16.12
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Git commit: e91ed57
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Built: Mon Dec &lt;span class="m"&gt;13&lt;/span&gt; 11:45:33 &lt;span class="m"&gt;2021&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; OS/Arch: linux/amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Context: default
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Experimental: &lt;span class="nb"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Server: Docker Engine - Community
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Engine:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Version: 20.10.12
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; API version: 1.41 &lt;span class="o"&gt;(&lt;/span&gt;minimum version 1.12&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Go version: go1.16.12
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Git commit: 459d0df
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Built: Mon Dec &lt;span class="m"&gt;13&lt;/span&gt; 11:43:42 &lt;span class="m"&gt;2021&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; OS/Arch: linux/amd64
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Experimental: &lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; containerd:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Version: 1.4.12
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; GitCommit: 7b11cfaabd73bb80907dd23182b9347b4245eb5d
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; runc:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Version: 1.0.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; GitCommit: v1.0.2-0-g52b36a2
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; docker-init:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Version: 0.19.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; GitCommit: de40ad0
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="三配置镜像加速器"&gt;&lt;a href="#%e4%b8%89%e9%85%8d%e7%bd%ae%e9%95%9c%e5%83%8f%e5%8a%a0%e9%80%9f%e5%99%a8" class="header-anchor"&gt;&lt;/a&gt;三、配置镜像加速器
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir -p /etc/docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tee /etc/docker/daemon.json &lt;span class="s"&gt;&amp;lt;&amp;lt;-&amp;#39;EOF&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; &amp;#34;registry-mirrors&amp;#34;: [&amp;#34;https://1on9ula1.mirror.aliyuncs.com&amp;#34;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl daemon-reload
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;systemctl restart docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="四配置权限"&gt;&lt;a href="#%e5%9b%9b%e9%85%8d%e7%bd%ae%e6%9d%83%e9%99%90" class="header-anchor"&gt;&lt;/a&gt;四、配置权限
+&lt;/h2&gt;&lt;p&gt;配置 Docker 的权限，使得用户可以在不使用 &lt;code&gt;sudo&lt;/code&gt; 的情况下运行 Docker 命令。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo usermod -aG docker &lt;span class="nv"&gt;$USER&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# -aG：组合命令，-a 表示 append，用于将用户添加到一个新的组里；-G 表示 group，用于指定组名。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# docker：这是你要将用户添加到的组的名称，在这个情况下是 docker 组。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# $USER：这是一个环境变量，代表当前登录的用户的用户名。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>

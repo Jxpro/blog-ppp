@@ -1,0 +1,2530 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Markdown on Markdown Notes</title><link>https://example.org/tags/markdown/</link><description>Recent content in Markdown on Markdown Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2026 09:22:25 +0000</lastBuildDate><atom:link href="https://example.org/tags/markdown/index.xml" rel="self" type="application/rss+xml"/><item><title>[Typora的Emoji指令](https://www.cnblogs.com/zhaoruiqing/articles/12870209.html)</title><link>https://example.org/p/emoji/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/emoji/</guid><description>&lt;h1 id="typora的emoji指令"&gt;&lt;a href="#typora%e7%9a%84emoji%e6%8c%87%e4%bb%a4" class="header-anchor"&gt;&lt;/a&gt;&lt;a class="link" href="https://www.cnblogs.com/zhaoruiqing/articles/12870209.html" target="_blank" rel="noopener"
+ &gt;Typora的Emoji指令&lt;/a&gt;
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="people"&gt;&lt;a href="#people" class="header-anchor"&gt;&lt;/a&gt;People
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;😄 &lt;code&gt;:smile:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;😆 &lt;code&gt;:laughing:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😊 &lt;code&gt;:blush:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😃 &lt;code&gt;:smiley:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;☺️ &lt;code&gt;:relaxed:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😏 &lt;code&gt;:smirk:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😍 &lt;code&gt;:heart_eyes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😘 &lt;code&gt;:kissing_heart:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😚 &lt;code&gt;:kissing_closed_eyes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😳 &lt;code&gt;:flushed:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😌 &lt;code&gt;:relieved:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😆 &lt;code&gt;:satisfied:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😁 &lt;code&gt;:grin:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😉 &lt;code&gt;:wink:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😜 &lt;code&gt;:stuck_out_tongue_winking_eye:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😝 &lt;code&gt;:stuck_out_tongue_closed_eyes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😀 &lt;code&gt;:grinning:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😗 &lt;code&gt;:kissing:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😙 &lt;code&gt;:kissing_smiling_eyes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😛 &lt;code&gt;:stuck_out_tongue:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😴 &lt;code&gt;:sleeping:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😟 &lt;code&gt;:worried:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😦 &lt;code&gt;:frowning:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😧 &lt;code&gt;:anguished:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😮 &lt;code&gt;:open_mouth:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😬 &lt;code&gt;:grimacing:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😕 &lt;code&gt;:confused:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😯 &lt;code&gt;:hushed:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😑 &lt;code&gt;:expressionless:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😒 &lt;code&gt;:unamused:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😅 &lt;code&gt;:sweat_smile:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😓 &lt;code&gt;:sweat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😥 &lt;code&gt;:disappointed_relieved:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😩 &lt;code&gt;:weary:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😔 &lt;code&gt;:pensive:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😞 &lt;code&gt;:disappointed:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😖 &lt;code&gt;:confounded:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😨 &lt;code&gt;:fearful:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😰 &lt;code&gt;:cold_sweat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😣 &lt;code&gt;:persevere:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😢 &lt;code&gt;:cry:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😭 &lt;code&gt;:sob:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😂 &lt;code&gt;:joy:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😲 &lt;code&gt;:astonished:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😱 &lt;code&gt;:scream:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+					&lt;td&gt;😫 &lt;code&gt;:tired_face:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😠 &lt;code&gt;:angry:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😡 &lt;code&gt;:rage:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😤 &lt;code&gt;:triumph:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😪 &lt;code&gt;:sleepy:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😋 &lt;code&gt;:yum:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😷 &lt;code&gt;:mask:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😎 &lt;code&gt;:sunglasses:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😵 &lt;code&gt;:dizzy_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👿 &lt;code&gt;:imp:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😈 &lt;code&gt;:smiling_imp:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😐 &lt;code&gt;:neutral_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😶 &lt;code&gt;:no_mouth:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😇 &lt;code&gt;:innocent:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👽 &lt;code&gt;:alien:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💛 &lt;code&gt;:yellow_heart:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💙 &lt;code&gt;:blue_heart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💜 &lt;code&gt;:purple_heart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;❤️ &lt;code&gt;:heart:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💚 &lt;code&gt;:green_heart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💔 &lt;code&gt;:broken_heart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💓 &lt;code&gt;:heartbeat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💗 &lt;code&gt;:heartpulse:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💕 &lt;code&gt;:two_hearts:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💞 &lt;code&gt;:revolving_hearts:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💘 &lt;code&gt;:cupid:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💖 &lt;code&gt;:sparkling_heart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✨ &lt;code&gt;:sparkles:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⭐️ &lt;code&gt;:star:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌟 &lt;code&gt;:star2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💫 &lt;code&gt;:dizzy:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💥 &lt;code&gt;:boom:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💥 &lt;code&gt;:collision:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💢 &lt;code&gt;:anger:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;❗️ &lt;code&gt;:exclamation:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;❓ &lt;code&gt;:question:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;❕ &lt;code&gt;:grey_exclamation:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;❔ &lt;code&gt;:grey_question:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💤 &lt;code&gt;:zzz:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💨 &lt;code&gt;:dash:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💦 &lt;code&gt;:sweat_drops:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎶 &lt;code&gt;:notes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎵 &lt;code&gt;:musical_note:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔥 &lt;code&gt;:fire:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💩 &lt;code&gt;:hankey:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💩 &lt;code&gt;:poop:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💩 &lt;code&gt;:shit:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👍 &lt;code&gt;:+1:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👍 &lt;code&gt;:thumbsup:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👎 &lt;code&gt;:-1:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👎 &lt;code&gt;:thumbsdown:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👌 &lt;code&gt;:ok_hand:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👊 &lt;code&gt;:punch:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👊 &lt;code&gt;:facepunch:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✊ &lt;code&gt;:fist:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;✌️ &lt;code&gt;:v:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👋 &lt;code&gt;:wave:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✋ &lt;code&gt;:hand:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;✋ &lt;code&gt;:raised_hand:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👐 &lt;code&gt;:open_hands:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;☝️ &lt;code&gt;:point_up:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👇 &lt;code&gt;:point_down:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👈 &lt;code&gt;:point_left:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👉 &lt;code&gt;:point_right:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🙌 &lt;code&gt;:raised_hands:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙏 &lt;code&gt;:pray:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👆 &lt;code&gt;:point_up_2:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👏 &lt;code&gt;:clap:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💪 &lt;code&gt;:muscle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🤘 &lt;code&gt;:metal:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🖕 &lt;code&gt;:fu:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚶 &lt;code&gt;:walking:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏃 &lt;code&gt;:runner:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏃 &lt;code&gt;:running:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👫 &lt;code&gt;:couple:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👪 &lt;code&gt;:family:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👬 &lt;code&gt;:two_men_holding_hands:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👭 &lt;code&gt;:two_women_holding_hands:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💃 &lt;code&gt;:dancer:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👯 &lt;code&gt;:dancers:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙆 &lt;code&gt;:ok_woman:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙅 &lt;code&gt;:no_good:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💁 &lt;code&gt;:information_desk_person:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙋 &lt;code&gt;:raising_hand:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👰 &lt;code&gt;:bride_with_veil:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🙎 &lt;code&gt;:person_with_pouting_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙍 &lt;code&gt;:person_frowning:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙇 &lt;code&gt;:bow:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💏 &lt;code&gt;:couplekiss:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💑 &lt;code&gt;:couple_with_heart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💆 &lt;code&gt;:massage:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💇 &lt;code&gt;:haircut:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💅 &lt;code&gt;:nail_care:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👦 &lt;code&gt;:boy:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👧 &lt;code&gt;:girl:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👩 &lt;code&gt;:woman:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👨 &lt;code&gt;:man:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👶 &lt;code&gt;:baby:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👵 &lt;code&gt;:older_woman:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👴 &lt;code&gt;:older_man:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👱 &lt;code&gt;:person_with_blond_hair:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👲 &lt;code&gt;:man_with_gua_pi_mao:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👳 &lt;code&gt;:man_with_turban:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👷 &lt;code&gt;:construction_worker:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👮 &lt;code&gt;:cop:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👼 &lt;code&gt;:angel:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👸 &lt;code&gt;:princess:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😺 &lt;code&gt;:smiley_cat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😸 &lt;code&gt;:smile_cat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😻 &lt;code&gt;:heart_eyes_cat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😽 &lt;code&gt;:kissing_cat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😼 &lt;code&gt;:smirk_cat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🙀 &lt;code&gt;:scream_cat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😿 &lt;code&gt;:crying_cat_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;😹 &lt;code&gt;:joy_cat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;😾 &lt;code&gt;:pouting_cat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👹 &lt;code&gt;:japanese_ogre:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👺 &lt;code&gt;:japanese_goblin:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🙈 &lt;code&gt;:see_no_evil:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙉 &lt;code&gt;:hear_no_evil:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🙊 &lt;code&gt;:speak_no_evil:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💂 &lt;code&gt;:guardsman:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💀 &lt;code&gt;:skull:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐾 &lt;code&gt;:feet:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👄 &lt;code&gt;:lips:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💋 &lt;code&gt;:kiss:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💧 &lt;code&gt;:droplet:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👂 &lt;code&gt;:ear:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👀 &lt;code&gt;:eyes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👃 &lt;code&gt;:nose:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👅 &lt;code&gt;:tongue:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💌 &lt;code&gt;:love_letter:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👤 &lt;code&gt;:bust_in_silhouette:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👥 &lt;code&gt;:busts_in_silhouette:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💬 &lt;code&gt;:speech_balloon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💭 &lt;code&gt;:thought_balloon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="nature"&gt;&lt;a href="#nature" class="header-anchor"&gt;&lt;/a&gt;Nature
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;☀️ &lt;code&gt;:sunny:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;☔️ &lt;code&gt;:umbrella:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;☁️ &lt;code&gt;:cloud:&lt;/code&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;❄️ &lt;code&gt;:snowflake:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛄️ &lt;code&gt;:snowman:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⚡️ &lt;code&gt;:zap:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌀 &lt;code&gt;:cyclone:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌁 &lt;code&gt;:foggy:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌊 &lt;code&gt;:ocean:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐱 &lt;code&gt;:cat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐶 &lt;code&gt;:dog:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐭 &lt;code&gt;:mouse:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐹 &lt;code&gt;:hamster:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐰 &lt;code&gt;:rabbit:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐺 &lt;code&gt;:wolf:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐸 &lt;code&gt;:frog:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐯 &lt;code&gt;:tiger:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐨 &lt;code&gt;:koala:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐻 &lt;code&gt;:bear:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐷 &lt;code&gt;:pig:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐽 &lt;code&gt;:pig_nose:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐮 &lt;code&gt;:cow:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐗 &lt;code&gt;:boar:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐵 &lt;code&gt;:monkey_face:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐒 &lt;code&gt;:monkey:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐴 &lt;code&gt;:horse:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐎 &lt;code&gt;:racehorse:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐫 &lt;code&gt;:camel:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐑 &lt;code&gt;:sheep:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐘 &lt;code&gt;:elephant:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐼 &lt;code&gt;:panda_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐍 &lt;code&gt;:snake:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐦 &lt;code&gt;:bird:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐤 &lt;code&gt;:baby_chick:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐥 &lt;code&gt;:hatched_chick:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐣 &lt;code&gt;:hatching_chick:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐔 &lt;code&gt;:chicken:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐧 &lt;code&gt;:penguin:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐢 &lt;code&gt;:turtle:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐛 &lt;code&gt;:bug:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐝 &lt;code&gt;:honeybee:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐜 &lt;code&gt;:ant:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐞 &lt;code&gt;:beetle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐌 &lt;code&gt;:snail:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐙 &lt;code&gt;:octopus:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐠 &lt;code&gt;:tropical_fish:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐟 &lt;code&gt;:fish:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐳 &lt;code&gt;:whale:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐋 &lt;code&gt;:whale2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐬 &lt;code&gt;:dolphin:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐄 &lt;code&gt;:cow2:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐏 &lt;code&gt;:ram:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐀 &lt;code&gt;:rat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐃 &lt;code&gt;:water_buffalo:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐅 &lt;code&gt;:tiger2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐇 &lt;code&gt;:rabbit2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐉 &lt;code&gt;:dragon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐐 &lt;code&gt;:goat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐓 &lt;code&gt;:rooster:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐕 &lt;code&gt;:dog2:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐖 &lt;code&gt;:pig2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐁 &lt;code&gt;:mouse2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐂 &lt;code&gt;:ox:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐲 &lt;code&gt;:dragon_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐡 &lt;code&gt;:blowfish:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐊 &lt;code&gt;:crocodile:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐪 &lt;code&gt;:dromedary_camel:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐆 &lt;code&gt;:leopard:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐈 &lt;code&gt;:cat2:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🐩 &lt;code&gt;:poodle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐾 &lt;code&gt;:paw_prints:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💐 &lt;code&gt;:bouquet:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌸 &lt;code&gt;:cherry_blossom:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌷 &lt;code&gt;:tulip:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍀 &lt;code&gt;:four_leaf_clover:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌹 &lt;code&gt;:rose:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌻 &lt;code&gt;:sunflower:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌺 &lt;code&gt;:hibiscus:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍁 &lt;code&gt;:maple_leaf:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍃 &lt;code&gt;:leaves:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍂 &lt;code&gt;:fallen_leaf:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌿 &lt;code&gt;:herb:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍄 &lt;code&gt;:mushroom:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌵 &lt;code&gt;:cactus:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌴 &lt;code&gt;:palm_tree:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌲 &lt;code&gt;:evergreen_tree:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌳 &lt;code&gt;:deciduous_tree:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌰 &lt;code&gt;:chestnut:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌱 &lt;code&gt;:seedling:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌼 &lt;code&gt;:blossom:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌾 &lt;code&gt;:ear_of_rice:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🐚 &lt;code&gt;:shell:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌐 &lt;code&gt;:globe_with_meridians:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌞 &lt;code&gt;:sun_with_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌝 &lt;code&gt;:full_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌚 &lt;code&gt;:new_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌑 &lt;code&gt;:new_moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌒 &lt;code&gt;:waxing_crescent_moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌓 &lt;code&gt;:first_quarter_moon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌔 &lt;code&gt;:waxing_gibbous_moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌕 &lt;code&gt;:full_moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌖 &lt;code&gt;:waning_gibbous_moon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌗 &lt;code&gt;:last_quarter_moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌘 &lt;code&gt;:waning_crescent_moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌜 &lt;code&gt;:last_quarter_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌛 &lt;code&gt;:first_quarter_moon_with_face:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌔 &lt;code&gt;:moon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌍 &lt;code&gt;:earth_africa:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌎 &lt;code&gt;:earth_americas:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌏 &lt;code&gt;:earth_asia:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌋 &lt;code&gt;:volcano:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌌 &lt;code&gt;:milky_way:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛅️ &lt;code&gt;:partly_sunny:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="objects"&gt;&lt;a href="#objects" class="header-anchor"&gt;&lt;/a&gt;Objects
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;🎍 &lt;code&gt;:bamboo:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;💝 &lt;code&gt;:gift_heart:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;🎎 &lt;code&gt;:dolls:&lt;/code&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎒 &lt;code&gt;:school_satchel:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎓 &lt;code&gt;:mortar_board:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎏 &lt;code&gt;:flags:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎆 &lt;code&gt;:fireworks:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎇 &lt;code&gt;:sparkler:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎐 &lt;code&gt;:wind_chime:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎑 &lt;code&gt;:rice_scene:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎃 &lt;code&gt;:jack_o_lantern:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👻 &lt;code&gt;:ghost:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎅 &lt;code&gt;:santa:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎄 &lt;code&gt;:christmas_tree:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎁 &lt;code&gt;:gift:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔔 &lt;code&gt;:bell:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔕 &lt;code&gt;:no_bell:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎋 &lt;code&gt;:tanabata_tree:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎉 &lt;code&gt;:tada:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎊 &lt;code&gt;:confetti_ball:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎈 &lt;code&gt;:balloon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔮 &lt;code&gt;:crystal_ball:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💿 &lt;code&gt;:cd:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📀 &lt;code&gt;:dvd:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💾 &lt;code&gt;:floppy_disk:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📷 &lt;code&gt;:camera:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📹 &lt;code&gt;:video_camera:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎥 &lt;code&gt;:movie_camera:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💻 &lt;code&gt;:computer:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📺 &lt;code&gt;:tv:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📱 &lt;code&gt;:iphone:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;☎️ &lt;code&gt;:phone:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;☎️ &lt;code&gt;:telephone:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📞 &lt;code&gt;:telephone_receiver:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📟 &lt;code&gt;:pager:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📠 &lt;code&gt;:fax:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💽 &lt;code&gt;:minidisc:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📼 &lt;code&gt;:vhs:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔉 &lt;code&gt;:sound:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔈 &lt;code&gt;:speaker:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔇 &lt;code&gt;:mute:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📢 &lt;code&gt;:loudspeaker:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📣 &lt;code&gt;:mega:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⌛️ &lt;code&gt;:hourglass:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⏳ &lt;code&gt;:hourglass_flowing_sand:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⏰ &lt;code&gt;:alarm_clock:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⌚️ &lt;code&gt;:watch:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📻 &lt;code&gt;:radio:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📡 &lt;code&gt;:satellite:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;➿ &lt;code&gt;:loop:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔍 &lt;code&gt;:mag:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔎 &lt;code&gt;:mag_right:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔓 &lt;code&gt;:unlock:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔒 &lt;code&gt;:lock:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔏 &lt;code&gt;:lock_with_ink_pen:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔐 &lt;code&gt;:closed_lock_with_key:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔑 &lt;code&gt;:key:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💡 &lt;code&gt;:bulb:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔦 &lt;code&gt;:flashlight:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔆 &lt;code&gt;:high_brightness:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔅 &lt;code&gt;:low_brightness:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔌 &lt;code&gt;:electric_plug:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔋 &lt;code&gt;:battery:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📲 &lt;code&gt;:calling:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✉️ &lt;code&gt;:email:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📫 &lt;code&gt;:mailbox:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📮 &lt;code&gt;:postbox:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🛀 &lt;code&gt;:bath:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🛁 &lt;code&gt;:bathtub:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚿 &lt;code&gt;:shower:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚽 &lt;code&gt;:toilet:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔧 &lt;code&gt;:wrench:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔩 &lt;code&gt;:nut_and_bolt:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔨 &lt;code&gt;:hammer:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💺 &lt;code&gt;:seat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💰 &lt;code&gt;:moneybag:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💴 &lt;code&gt;:yen:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💵 &lt;code&gt;:dollar:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💷 &lt;code&gt;:pound:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💶 &lt;code&gt;:euro:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💳 &lt;code&gt;:credit_card:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💸 &lt;code&gt;:money_with_wings:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📧 &lt;code&gt;:e-mail:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📥 &lt;code&gt;:inbox_tray:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📤 &lt;code&gt;:outbox_tray:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✉️ &lt;code&gt;:envelope:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📨 &lt;code&gt;:incoming_envelope:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📯 &lt;code&gt;:postal_horn:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📪 &lt;code&gt;:mailbox_closed:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📬 &lt;code&gt;:mailbox_with_mail:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📭 &lt;code&gt;:mailbox_with_no_mail:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚪 &lt;code&gt;:door:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚬 &lt;code&gt;:smoking:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💣 &lt;code&gt;:bomb:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔫 &lt;code&gt;:gun:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔪 &lt;code&gt;:hocho:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💊 &lt;code&gt;:pill:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💉 &lt;code&gt;:syringe:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📄 &lt;code&gt;:page_facing_up:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📃 &lt;code&gt;:page_with_curl:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📑 &lt;code&gt;:bookmark_tabs:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📊 &lt;code&gt;:bar_chart:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📈 &lt;code&gt;:chart_with_upwards_trend:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📉 &lt;code&gt;:chart_with_downwards_trend:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📜 &lt;code&gt;:scroll:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📋 &lt;code&gt;:clipboard:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📆 &lt;code&gt;:calendar:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📅 &lt;code&gt;:date:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📇 &lt;code&gt;:card_index:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📁 &lt;code&gt;:file_folder:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📂 &lt;code&gt;:open_file_folder:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;✂️ &lt;code&gt;:scissors:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📌 &lt;code&gt;:pushpin:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📎 &lt;code&gt;:paperclip:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;✒️ &lt;code&gt;:black_nib:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✏️ &lt;code&gt;:pencil2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📏 &lt;code&gt;:straight_ruler:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📐 &lt;code&gt;:triangular_ruler:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📕 &lt;code&gt;:closed_book:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📗 &lt;code&gt;:green_book:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📘 &lt;code&gt;:blue_book:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📙 &lt;code&gt;:orange_book:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📓 &lt;code&gt;:notebook:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📔 &lt;code&gt;:notebook_with_decorative_cover:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📒 &lt;code&gt;:ledger:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📚 &lt;code&gt;:books:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔖 &lt;code&gt;:bookmark:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📛 &lt;code&gt;:name_badge:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔬 &lt;code&gt;:microscope:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔭 &lt;code&gt;:telescope:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📰 &lt;code&gt;:newspaper:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏈 &lt;code&gt;:football:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏀 &lt;code&gt;:basketball:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⚽️ &lt;code&gt;:soccer:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⚾️ &lt;code&gt;:baseball:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎾 &lt;code&gt;:tennis:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎱 &lt;code&gt;:8ball:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏉 &lt;code&gt;:rugby_football:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎳 &lt;code&gt;:bowling:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛳️ &lt;code&gt;:golf:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚵 &lt;code&gt;:mountain_bicyclist:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚴 &lt;code&gt;:bicyclist:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏇 &lt;code&gt;:horse_racing:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏂 &lt;code&gt;:snowboarder:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏊 &lt;code&gt;:swimmer:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏄 &lt;code&gt;:surfer:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎿 &lt;code&gt;:ski:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;♠️ &lt;code&gt;:spades:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♥️ &lt;code&gt;:hearts:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♣️ &lt;code&gt;:clubs:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;♦️ &lt;code&gt;:diamonds:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💎 &lt;code&gt;:gem:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💍 &lt;code&gt;:ring:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏆 &lt;code&gt;:trophy:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎼 &lt;code&gt;:musical_score:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎹 &lt;code&gt;:musical_keyboard:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎻 &lt;code&gt;:violin:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👾 &lt;code&gt;:space_invader:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎮 &lt;code&gt;:video_game:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🃏 &lt;code&gt;:black_joker:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎴 &lt;code&gt;:flower_playing_cards:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎲 &lt;code&gt;:game_die:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎯 &lt;code&gt;:dart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🀄️ &lt;code&gt;:mahjong:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎬 &lt;code&gt;:clapper:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📝 &lt;code&gt;:memo:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📝 &lt;code&gt;:pencil:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📖 &lt;code&gt;:book:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎨 &lt;code&gt;:art:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎤 &lt;code&gt;:microphone:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎧 &lt;code&gt;:headphones:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎺 &lt;code&gt;:trumpet:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎷 &lt;code&gt;:saxophone:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎸 &lt;code&gt;:guitar:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👞 &lt;code&gt;:shoe:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👡 &lt;code&gt;:sandal:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👠 &lt;code&gt;:high_heel:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💄 &lt;code&gt;:lipstick:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👢 &lt;code&gt;:boot:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👕 &lt;code&gt;:shirt:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👕 &lt;code&gt;:tshirt:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👔 &lt;code&gt;:necktie:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👚 &lt;code&gt;:womans_clothes:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👗 &lt;code&gt;:dress:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎽 &lt;code&gt;:running_shirt_with_sash:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👖 &lt;code&gt;:jeans:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👘 &lt;code&gt;:kimono:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👙 &lt;code&gt;:bikini:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎀 &lt;code&gt;:ribbon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎩 &lt;code&gt;:tophat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👑 &lt;code&gt;:crown:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👒 &lt;code&gt;:womans_hat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👞 &lt;code&gt;:mans_shoe:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌂 &lt;code&gt;:closed_umbrella:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💼 &lt;code&gt;:briefcase:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👜 &lt;code&gt;:handbag:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👝 &lt;code&gt;:pouch:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;👛 &lt;code&gt;:purse:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;👓 &lt;code&gt;:eyeglasses:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎣 &lt;code&gt;:fishing_pole_and_fish:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;☕️ &lt;code&gt;:coffee:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍵 &lt;code&gt;:tea:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍶 &lt;code&gt;:sake:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍼 &lt;code&gt;:baby_bottle:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍺 &lt;code&gt;:beer:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍻 &lt;code&gt;:beers:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍸 &lt;code&gt;:cocktail:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍹 &lt;code&gt;:tropical_drink:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍷 &lt;code&gt;:wine_glass:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍴 &lt;code&gt;:fork_and_knife:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍕 &lt;code&gt;:pizza:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍔 &lt;code&gt;:hamburger:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍟 &lt;code&gt;:fries:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍗 &lt;code&gt;:poultry_leg:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍖 &lt;code&gt;:meat_on_bone:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍝 &lt;code&gt;:spaghetti:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍛 &lt;code&gt;:curry:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍤 &lt;code&gt;:fried_shrimp:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍱 &lt;code&gt;:bento:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍣 &lt;code&gt;:sushi:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍥 &lt;code&gt;:fish_cake:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍙 &lt;code&gt;:rice_ball:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍘 &lt;code&gt;:rice_cracker:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍚 &lt;code&gt;:rice:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍜 &lt;code&gt;:ramen:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍲 &lt;code&gt;:stew:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍢 &lt;code&gt;:oden:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍡 &lt;code&gt;:dango:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🥚 &lt;code&gt;:egg:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍞 &lt;code&gt;:bread:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍩 &lt;code&gt;:doughnut:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍮 &lt;code&gt;:custard:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍦 &lt;code&gt;:icecream:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍨 &lt;code&gt;:ice_cream:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍧 &lt;code&gt;:shaved_ice:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎂 &lt;code&gt;:birthday:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍰 &lt;code&gt;:cake:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍪 &lt;code&gt;:cookie:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍫 &lt;code&gt;:chocolate_bar:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍬 &lt;code&gt;:candy:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍭 &lt;code&gt;:lollipop:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍯 &lt;code&gt;:honey_pot:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍎 &lt;code&gt;:apple:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍏 &lt;code&gt;:green_apple:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍊 &lt;code&gt;:tangerine:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍋 &lt;code&gt;:lemon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍒 &lt;code&gt;:cherries:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍇 &lt;code&gt;:grapes:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍉 &lt;code&gt;:watermelon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍓 &lt;code&gt;:strawberry:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍑 &lt;code&gt;:peach:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍈 &lt;code&gt;:melon:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍌 &lt;code&gt;:banana:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍐 &lt;code&gt;:pear:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍍 &lt;code&gt;:pineapple:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🍠 &lt;code&gt;:sweet_potato:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍆 &lt;code&gt;:eggplant:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🍅 &lt;code&gt;:tomato:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌽 &lt;code&gt;:corn:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="places"&gt;&lt;a href="#places" class="header-anchor"&gt;&lt;/a&gt;Places
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;🏠 &lt;code&gt;:house:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;🏡 &lt;code&gt;:house_with_garden:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;🏫 &lt;code&gt;:school:&lt;/code&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏢 &lt;code&gt;:office:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏣 &lt;code&gt;:post_office:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏥 &lt;code&gt;:hospital:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏦 &lt;code&gt;:bank:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏪 &lt;code&gt;:convenience_store:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏩 &lt;code&gt;:love_hotel:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏨 &lt;code&gt;:hotel:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💒 &lt;code&gt;:wedding:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛪️ &lt;code&gt;:church:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏬 &lt;code&gt;:department_store:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏤 &lt;code&gt;:european_post_office:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌇 &lt;code&gt;:city_sunrise:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌆 &lt;code&gt;:city_sunset:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏯 &lt;code&gt;:japanese_castle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏰 &lt;code&gt;:european_castle:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⛺️ &lt;code&gt;:tent:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏭 &lt;code&gt;:factory:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🗼 &lt;code&gt;:tokyo_tower:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🗾 &lt;code&gt;:japan:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🗻 &lt;code&gt;:mount_fuji:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌄 &lt;code&gt;:sunrise_over_mountains:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌅 &lt;code&gt;:sunrise:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌠 &lt;code&gt;:stars:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🗽 &lt;code&gt;:statue_of_liberty:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🌉 &lt;code&gt;:bridge_at_night:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎠 &lt;code&gt;:carousel_horse:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🌈 &lt;code&gt;:rainbow:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎡 &lt;code&gt;:ferris_wheel:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛲️ &lt;code&gt;:fountain:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎢 &lt;code&gt;:roller_coaster:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚢 &lt;code&gt;:ship:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚤 &lt;code&gt;:speedboat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛵️ &lt;code&gt;:boat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⛵️ &lt;code&gt;:sailboat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚣 &lt;code&gt;:rowboat:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⚓️ &lt;code&gt;:anchor:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚀 &lt;code&gt;:rocket:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✈️ &lt;code&gt;:airplane:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚁 &lt;code&gt;:helicopter:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚂 &lt;code&gt;:steam_locomotive:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚊 &lt;code&gt;:tram:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚞 &lt;code&gt;:mountain_railway:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚲 &lt;code&gt;:bike:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚡 &lt;code&gt;:aerial_tramway:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚟 &lt;code&gt;:suspension_railway:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚠 &lt;code&gt;:mountain_cableway:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚜 &lt;code&gt;:tractor:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚙 &lt;code&gt;:blue_car:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚘 &lt;code&gt;:oncoming_automobile:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚗 &lt;code&gt;:car:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚗 &lt;code&gt;:red_car:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚕 &lt;code&gt;:taxi:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚖 &lt;code&gt;:oncoming_taxi:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚛 &lt;code&gt;:articulated_lorry:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚌 &lt;code&gt;:bus:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚍 &lt;code&gt;:oncoming_bus:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚨 &lt;code&gt;:rotating_light:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚓 &lt;code&gt;:police_car:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚔 &lt;code&gt;:oncoming_police_car:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚒 &lt;code&gt;:fire_engine:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚑 &lt;code&gt;:ambulance:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚐 &lt;code&gt;:minibus:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚚 &lt;code&gt;:truck:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚋 &lt;code&gt;:train:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚉 &lt;code&gt;:station:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚆 &lt;code&gt;:train2:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚅 &lt;code&gt;:bullettrain_front:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚄 &lt;code&gt;:bullettrain_side:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚈 &lt;code&gt;:light_rail:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚝 &lt;code&gt;:monorail:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚃 &lt;code&gt;:railway_car:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚎 &lt;code&gt;:trolleybus:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🎫 &lt;code&gt;:ticket:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛽️ &lt;code&gt;:fuelpump:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚦 &lt;code&gt;:vertical_traffic_light:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚥 &lt;code&gt;:traffic_light:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⚠️ &lt;code&gt;:warning:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚧 &lt;code&gt;:construction:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔰 &lt;code&gt;:beginner:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏧 &lt;code&gt;:atm:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎰 &lt;code&gt;:slot_machine:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚏 &lt;code&gt;:busstop:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💈 &lt;code&gt;:barber:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♨️ &lt;code&gt;:hotsprings:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🏁 &lt;code&gt;:checkered_flag:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎌 &lt;code&gt;:crossed_flags:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🏮 &lt;code&gt;:izakaya_lantern:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🗿 &lt;code&gt;:moyai:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎪 &lt;code&gt;:circus_tent:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎭 &lt;code&gt;:performing_arts:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📍 &lt;code&gt;:round_pushpin:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚩 &lt;code&gt;:triangular_flag_on_post:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇯🇵 &lt;code&gt;:jp:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🇰🇷 &lt;code&gt;:kr:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇨🇳 &lt;code&gt;:cn:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇺🇸 &lt;code&gt;:us:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🇫🇷 &lt;code&gt;:fr:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇪🇸 &lt;code&gt;:es:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇮🇹 &lt;code&gt;:it:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🇷🇺 &lt;code&gt;:ru:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇬🇧 &lt;code&gt;:gb:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🇬🇧 &lt;code&gt;:uk:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🇩🇪 &lt;code&gt;:de:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="symbols"&gt;&lt;a href="#symbols" class="header-anchor"&gt;&lt;/a&gt;Symbols
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;1️⃣ &lt;code&gt;:one:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;2️⃣ &lt;code&gt;:two:&lt;/code&gt;&lt;/th&gt;
+					&lt;th&gt;3️⃣ &lt;code&gt;:three:&lt;/code&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;4️⃣ &lt;code&gt;:four:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;5️⃣ &lt;code&gt;:five:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;6️⃣ &lt;code&gt;:six:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;7️⃣ &lt;code&gt;:seven:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;8️⃣ &lt;code&gt;:eight:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;9️⃣ &lt;code&gt;:nine:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔟 &lt;code&gt;:keycap_ten:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔢 &lt;code&gt;:1234:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;0️⃣ &lt;code&gt;:zero:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;#️⃣ &lt;code&gt;:hash:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔣 &lt;code&gt;:symbols:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;◀️ &lt;code&gt;:arrow_backward:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⬇️ &lt;code&gt;:arrow_down:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;▶️ &lt;code&gt;:arrow_forward:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⬅️ &lt;code&gt;:arrow_left:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔠 &lt;code&gt;:capital_abcd:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔡 &lt;code&gt;:abcd:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔤 &lt;code&gt;:abc:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;↙️ &lt;code&gt;:arrow_lower_left:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;↘️ &lt;code&gt;:arrow_lower_right:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;➡️ &lt;code&gt;:arrow_right:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⬆️ &lt;code&gt;:arrow_up:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;↖️ &lt;code&gt;:arrow_upper_left:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;↗️ &lt;code&gt;:arrow_upper_right:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⏬ &lt;code&gt;:arrow_double_down:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⏫ &lt;code&gt;:arrow_double_up:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔽 &lt;code&gt;:arrow_down_small:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⤵️ &lt;code&gt;:arrow_heading_down:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⤴️ &lt;code&gt;:arrow_heading_up:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;↩️&lt;code&gt;:leftwards_arrow_with_hook:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;↪️ &lt;code&gt;:arrow_right_hook:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;↔️ &lt;code&gt;:left_right_arrow:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;↕️ &lt;code&gt;:arrow_up_down:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔼 &lt;code&gt;:arrow_up_small:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔃 &lt;code&gt;:arrows_clockwise:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔄 &lt;code&gt;:arrows_counterclockwise:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⏪ &lt;code&gt;:rewind:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⏩ &lt;code&gt;:fast_forward:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;ℹ️ &lt;code&gt;:information_source:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🆗 &lt;code&gt;:ok:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔀 &lt;code&gt;:twisted_rightwards_arrows:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔁 &lt;code&gt;:repeat:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔂 &lt;code&gt;:repeat_one:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🆕 &lt;code&gt;:new:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔝 &lt;code&gt;:top:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🆙 &lt;code&gt;:up:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🆒 &lt;code&gt;:cool:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🆓 &lt;code&gt;:free:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🆖 &lt;code&gt;:ng:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🎦 &lt;code&gt;:cinema:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈁 &lt;code&gt;:koko:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;📶 &lt;code&gt;:signal_strength:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈹 &lt;code&gt;:u5272:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈴 &lt;code&gt;:u5408:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🈺 &lt;code&gt;:u55b6:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈯️ &lt;code&gt;:u6307:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈷️ &lt;code&gt;:u6708:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🈶 &lt;code&gt;:u6709:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈵 &lt;code&gt;:u6e80:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈚️ &lt;code&gt;:u7121:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🈸 &lt;code&gt;:u7533:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈳 &lt;code&gt;:u7a7a:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🈲 &lt;code&gt;:u7981:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🈂️ &lt;code&gt;:sa:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚻 &lt;code&gt;:restroom:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚹 &lt;code&gt;:mens:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚺 &lt;code&gt;:womens:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚼 &lt;code&gt;:baby_symbol:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚭 &lt;code&gt;:no_smoking:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🅿️ &lt;code&gt;:parking:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♿️ &lt;code&gt;:wheelchair:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚇 &lt;code&gt;:metro:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🛄 &lt;code&gt;:baggage_claim:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🉑 &lt;code&gt;:accept:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚾 &lt;code&gt;:wc:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚰 &lt;code&gt;:potable_water:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚮 &lt;code&gt;:put_litter_in_its_place:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;㊙️ &lt;code&gt;:secret:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;㊗️ &lt;code&gt;:congratulations:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Ⓜ️ &lt;code&gt;:m:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🛂 &lt;code&gt;:passport_control:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🛅 &lt;code&gt;:left_luggage:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🛃 &lt;code&gt;:customs:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🉐 &lt;code&gt;:ideograph_advantage:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🆑 &lt;code&gt;:cl:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🆘 &lt;code&gt;:sos:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🆔 &lt;code&gt;:id:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚫 &lt;code&gt;:no_entry_sign:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔞 &lt;code&gt;:underage:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📵 &lt;code&gt;:no_mobile_phones:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚯 &lt;code&gt;:do_not_litter:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚱 &lt;code&gt;:non-potable_water:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚳 &lt;code&gt;:no_bicycles:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🚷 &lt;code&gt;:no_pedestrians:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🚸 &lt;code&gt;:children_crossing:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛔️ &lt;code&gt;:no_entry:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;✳️ &lt;code&gt;:eight_spoked_asterisk:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✴️ &lt;code&gt;:eight_pointed_black_star:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💟 &lt;code&gt;:heart_decoration:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🆚 &lt;code&gt;:vs:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📳 &lt;code&gt;:vibration_mode:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;📴 &lt;code&gt;:mobile_phone_off:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💹 &lt;code&gt;:chart:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💱 &lt;code&gt;:currency_exchange:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♈️ &lt;code&gt;:aries:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;♉️ &lt;code&gt;:taurus:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♊️ &lt;code&gt;:gemini:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♋️ &lt;code&gt;:cancer:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;♌️ &lt;code&gt;:leo:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♍️ &lt;code&gt;:virgo:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♎️ &lt;code&gt;:libra:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;♏️ &lt;code&gt;:scorpius:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♐️ &lt;code&gt;:sagittarius:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♑️ &lt;code&gt;:capricorn:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;♒️ &lt;code&gt;:aquarius:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♓️ &lt;code&gt;:pisces:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⛎ &lt;code&gt;:ophiuchus:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔯 &lt;code&gt;:six_pointed_star:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;❎&lt;code&gt;:negative_squared_cross_mark:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🅰️ &lt;code&gt;:a:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🅱️ &lt;code&gt;:b:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🆎 &lt;code&gt;:ab:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🅾️ &lt;code&gt;:o2:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💠&lt;code&gt;:diamond_shape_with_a_dot_inside:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;♻️ &lt;code&gt;:recycle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔚 &lt;code&gt;:end:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔛 &lt;code&gt;:on:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔜 &lt;code&gt;:soon:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕐 &lt;code&gt;:clock1:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕜 &lt;code&gt;:clock130:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕙 &lt;code&gt;:clock10:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕥 &lt;code&gt;:clock1030:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕚 &lt;code&gt;:clock11:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕦 &lt;code&gt;:clock1130:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕛 &lt;code&gt;:clock12:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕧 &lt;code&gt;:clock1230:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕑 &lt;code&gt;:clock2:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕝 &lt;code&gt;:clock230:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕒 &lt;code&gt;:clock3:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕞 &lt;code&gt;:clock330:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕓 &lt;code&gt;:clock4:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕟 &lt;code&gt;:clock430:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕔 &lt;code&gt;:clock5:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕠 &lt;code&gt;:clock530:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕕 &lt;code&gt;:clock6:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕡 &lt;code&gt;:clock630:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕖 &lt;code&gt;:clock7:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕢 &lt;code&gt;:clock730:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕗 &lt;code&gt;:clock8:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕣 &lt;code&gt;:clock830:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🕘 &lt;code&gt;:clock9:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🕤 &lt;code&gt;:clock930:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💲 &lt;code&gt;:heavy_dollar_sign:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;©️ &lt;code&gt;:copyright:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;®️ &lt;code&gt;:registered:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;™️ &lt;code&gt;:tm:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;❌ &lt;code&gt;:x:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;❗️ &lt;code&gt;:heavy_exclamation_mark:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;‼️ &lt;code&gt;:bangbang:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⁉️ &lt;code&gt;:interrobang:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⭕️ &lt;code&gt;:o:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✖️ &lt;code&gt;:heavy_multiplication_x:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;➕ &lt;code&gt;:heavy_plus_sign:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;➖ &lt;code&gt;:heavy_minus_sign:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;➗ &lt;code&gt;:heavy_division_sign:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;💮 &lt;code&gt;:white_flower:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;💯 &lt;code&gt;:100:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;✔️ &lt;code&gt;:heavy_check_mark:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;☑️ &lt;code&gt;:ballot_box_with_check:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔘 &lt;code&gt;:radio_button:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔗 &lt;code&gt;:link:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;➰ &lt;code&gt;:curly_loop:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;〰️ &lt;code&gt;:wavy_dash:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;〽️ &lt;code&gt;:part_alternation_mark:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔱 &lt;code&gt;:trident:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;:black_square: &lt;code&gt;:black_square:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;:white_square: &lt;code&gt;:white_square:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;✅ &lt;code&gt;:white_check_mark:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔲 &lt;code&gt;:black_square_button:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔳 &lt;code&gt;:white_square_button:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;⚫️ &lt;code&gt;:black_circle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;⚪️ &lt;code&gt;:white_circle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔴 &lt;code&gt;:red_circle:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔵 &lt;code&gt;:large_blue_circle:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔷 &lt;code&gt;:large_blue_diamond:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔶 &lt;code&gt;:large_orange_diamond:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔹 &lt;code&gt;:small_blue_diamond:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔸 &lt;code&gt;:small_orange_diamond:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;🔺 &lt;code&gt;:small_red_triangle:&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;🔻 &lt;code&gt;:small_red_triangle_down:&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</description></item><item><title>snippets</title><link>https://example.org/p/snippets/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/snippets/</guid><description>&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;text-align:center;margin-top:18px;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt; &lt;span class="na"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;color:crimson;font-size:27px&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;所以2.X版本才是最终解 ！！！&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;span&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;第一版：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// path:D:\Program Files\Typora\resources\appsrc\window\frame.js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// (e.addClass(&amp;#34;md-expand&amp;#34;).trigger(&amp;#34;expand&amp;#34;).closest(&amp;#34;[cid]&amp;#34;).addClass(&amp;#34;md-focus&amp;#34;))
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// end in oneline
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])}&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;第二版：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// path:D:\Program Files\Typora\resources\appsrc\window\frame.js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// a.addClass(&amp;#34;md-focus&amp;#34;).trigger(&amp;#34;refocus&amp;#34;),$(document.activeElement)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;hlh2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(...&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// end in oneline
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(...&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;previousElementSibling&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;previousElementSibling&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]}&lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]};&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;previousElementSibling&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;previousElementSibling&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>typora快捷键</title><link>https://example.org/p/typora-key/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/typora-key/</guid><description>&lt;h1 id="typora快捷键"&gt;&lt;a href="#typora%e5%bf%ab%e6%8d%b7%e9%94%ae" class="header-anchor"&gt;&lt;/a&gt;typora快捷键
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="常用快捷键"&gt;&lt;a href="#%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae" class="header-anchor"&gt;&lt;/a&gt;常用快捷键
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: center"&gt;功能&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;快捷键&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;插入代码&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + `&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;插入代码块&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + `&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;打开文件&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + O&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;打开文件夹…&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Alt + O&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;选中当前词&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + D&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;选中当前行或句&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Alt + L&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;选中当前格式文本&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + E&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;删除当前行或句&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + L&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;水平分割线&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + -&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;删除样式&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + \&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="格式相关"&gt;&lt;a href="#%e6%a0%bc%e5%bc%8f%e7%9b%b8%e5%85%b3" class="header-anchor"&gt;&lt;/a&gt;格式相关
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: center"&gt;功能&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;快捷键&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;标题等级&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + 1-6&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;段落&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + 0&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;加粗&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + B&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;斜体&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + I&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;下划线&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + U&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;删除线&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Alt + Shift + 5&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;超链接&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + K&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;表格&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + T&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="列表相关"&gt;&lt;a href="#%e5%88%97%e8%a1%a8%e7%9b%b8%e5%85%b3" class="header-anchor"&gt;&lt;/a&gt;列表相关
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: center"&gt;功能&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;快捷键&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;有序列表&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + [&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;无序列表&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + ]&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;任务列表&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + T&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;增加列表缩减&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + ]&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;减小列表缩减&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + [&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="表格相关"&gt;&lt;a href="#%e8%a1%a8%e6%a0%bc%e7%9b%b8%e5%85%b3" class="header-anchor"&gt;&lt;/a&gt;表格相关
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: center"&gt;功能&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;快捷键&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;新建表格&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + T&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;删除行&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + 退格&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;下方插入行&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Enter&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;上下左右移&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Alt + 方向键&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="显示相关"&gt;&lt;a href="#%e6%98%be%e7%a4%ba%e7%9b%b8%e5%85%b3" class="header-anchor"&gt;&lt;/a&gt;显示相关
+&lt;/h2&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: center"&gt;功能&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;快捷键&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;显示/隐藏侧边栏&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + L&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;大纲模式&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + 1&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;文件树模式&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + Shift + 3&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: center"&gt;源代码模式&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;Ctrl + /&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</description></item><item><title>Typora下配置图床</title><link>https://example.org/p/picgo-gitee/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/picgo-gitee/</guid><description>&lt;h1 id="typora下配置图床"&gt;&lt;a href="#typora%e4%b8%8b%e9%85%8d%e7%bd%ae%e5%9b%be%e5%ba%8a" class="header-anchor"&gt;&lt;/a&gt;Typora下配置图床
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一安装picgo-core"&gt;&lt;a href="#%e4%b8%80%e5%ae%89%e8%a3%85picgo-core" class="header-anchor"&gt;&lt;/a&gt;一、安装PicGo-Core
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;错误&lt;/strong&gt;安装：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 不能如下通过**npm**安装&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 因为npm安装以后没有exe文件，无法通过typora运行PicGo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm install picgo -g
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;正确&lt;/strong&gt;安装：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223421.png" alt="img" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;h2 id="二准备giteegithub仓库"&gt;&lt;a href="#%e4%ba%8c%e5%87%86%e5%a4%87giteegithub%e4%bb%93%e5%ba%93" class="header-anchor"&gt;&lt;/a&gt;二、准备Gitee（github）仓库
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;创建或选择&lt;/strong&gt;一个gitee（github）仓库
+&lt;ul&gt;
+&lt;li&gt;需要保证&lt;strong&gt;仓库公开&lt;/strong&gt;，不然可以上传，但是无法下载显示，因为没公开&lt;/li&gt;
+&lt;li&gt;需要保证有README.md，文件或者不为空仓库，不然无法删除，原因未知（还能删除？忘记当时怎么想了，TODO 验证一下）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;生成私人令牌&lt;code&gt;Token&lt;/code&gt;，权限选择&lt;code&gt;projects&lt;/code&gt;即可（github选择public_repo），其他可不选&lt;/li&gt;
+&lt;/ol&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;！！！ gitee目前好像加了访问限制，使用github或其他图床&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h2 id="三配置picgo"&gt;&lt;a href="#%e4%b8%89%e9%85%8d%e7%bd%aepicgo" class="header-anchor"&gt;&lt;/a&gt;三、配置PicGo
+&lt;/h2&gt;&lt;p&gt;进入Typora安装的picgo.exe目录&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; C:&lt;span class="se"&gt;\U&lt;/span&gt;sers&lt;span class="se"&gt;\u&lt;/span&gt;sername&lt;span class="se"&gt;\A&lt;/span&gt;ppData&lt;span class="se"&gt;\R&lt;/span&gt;oaming&lt;span class="se"&gt;\T&lt;/span&gt;ypora&lt;span class="se"&gt;\p&lt;/span&gt;icgo&lt;span class="se"&gt;\w&lt;/span&gt;in64&lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装相关插件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 用于格式化图片名称，防止重复&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.&lt;span class="se"&gt;\p&lt;/span&gt;icgo install super-prefix
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# PicGo Gitee图床插件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 不用gitee可以不用装了&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.&lt;span class="se"&gt;\p&lt;/span&gt;icgo install gitee-uploader
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通过&lt;code&gt;CLI&lt;/code&gt;配置&lt;code&gt;Gitee&lt;/code&gt;仓库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 设置配置文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 按上下键找到gitee，回车&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./picgo &lt;span class="nb"&gt;set&lt;/span&gt; uploader
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;可选项说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;repo&lt;/strong&gt;：用户名/仓库名，注意不是整个https地址！！！&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;错误&lt;/strong&gt;示范：repo : &lt;a class="link" href="https://gitee.com/username/reponame" target="_blank" rel="noopener"
+ &gt;https://gitee.com/username/reponame&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;正确&lt;/strong&gt;示范：repo : username/reponame&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;token&lt;/strong&gt;：刚才生成的token&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;path&lt;/strong&gt;：路径，图片存储于 reponame/${path} 下&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;custompath&lt;/strong&gt;：用于配置path，customPath为占位符&lt;/p&gt;
+&lt;p&gt;示例：path：blog/${customPath}&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;customPath选择年&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;，则实际的path值为blog/2021&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;customPath选择年季&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref"&gt;2&lt;/a&gt;&lt;/sup&gt;，则实际的path值为blog/2021/summer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;customPath选择年月&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" class="footnote-ref" role="doc-noteref"&gt;3&lt;/a&gt;&lt;/sup&gt;，则实际的path值为blog/2021/01&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;customURL&lt;/strong&gt;: 不用填，保持默认（ 不能乱填 ）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;配置完后使用Gitee仓库&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 使用配置好的文件（配置文件在~/.picgo/config.json）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;./picgo use uploader
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打开 ~/.picgo/config.json，结尾追加以下参数，用于配置图片路径重命名参数&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;&amp;quot;prefixFormat&amp;quot;:&amp;quot;YYYY/MM/DD/&amp;quot;&lt;/code&gt;这条不能加，修改路径会导致图片无法显示&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;picgo-plugin-super-prefix&amp;#34;&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;fileFormat&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;YYYY-MM-DD-HHmmss&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;或者直接打开配置文件，复制粘贴以下配置（没安装gitee-uploader请删除gitee相关部分）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;picBed&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;uploader&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;current&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;transformer&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;path&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;github&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;repo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;username/reponame&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;branch&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;master&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;token&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;token&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;path&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;path&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt; &lt;span class="err"&gt;以&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;结尾，比如&lt;/span&gt; &lt;span class="n"&gt;md&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;customUrl&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;gitee&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;repo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;username/reponame&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;branch&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;master&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;token&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;token&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;path&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;md/$customPath&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;customPath&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;yearMonth&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;customUrl&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;picgoPlugins&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;picgo-plugin-gitee-uploader&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;picgo-plugin-super-prefix&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;picgo-plugin-super-prefix&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;fileFormat&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;YYYY-MM-DD-HHmmss&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ &lt;/blockquote&gt;
+&lt;p&gt;打开Typora，验证图片上传，查看是否成功&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223429.png" alt="img" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;year&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;yearQuarter&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;yearMonth&amp;#160;&lt;a href="#fnref:3" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>给md-focus区域的二级标题加样式</title><link>https://example.org/p/superior-focus/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/superior-focus/</guid><description>&lt;h1 id="给md-focus区域的二级标题加样式"&gt;&lt;a href="#%e7%bb%99md-focus%e5%8c%ba%e5%9f%9f%e7%9a%84%e4%ba%8c%e7%ba%a7%e6%a0%87%e9%a2%98%e5%8a%a0%e6%a0%b7%e5%bc%8f" class="header-anchor"&gt;&lt;/a&gt;给md-focus区域的二级标题加样式
+&lt;/h1&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;给当前&lt;code&gt;md-focus&lt;/code&gt;区域的上个&lt;code&gt;h2&lt;/code&gt;标题也加一个&lt;code&gt;md-focus&lt;/code&gt;类名&lt;/p&gt;
+&lt;p&gt;Typora 版本：version 0.11.17 (beta)&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h2 id="版本一"&gt;&lt;a href="#%e7%89%88%e6%9c%ac%e4%b8%80" class="header-anchor"&gt;&lt;/a&gt;版本一
+&lt;/h2&gt;&lt;p&gt;此版本无法识别&lt;code&gt;codeblock&lt;/code&gt;区域上的&lt;code&gt;h2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;文件位置：&lt;code&gt;D:\Program Files\Typora\resources\appsrc\window\frame.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;搜索&lt;code&gt;(e.addClass(&amp;quot;md-expand&amp;quot;).trigger(&amp;quot;expand&amp;quot;).closest(&amp;quot;[cid]&amp;quot;).addClass(&amp;quot;md-focus&amp;quot;))&lt;/code&gt;代码块的位置&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;addClass(&amp;quot;md-focus&amp;quot;))&lt;/code&gt;后加上如下代码（&lt;strong&gt;注意分号&lt;/strong&gt;）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])}&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;未压缩版本&lt;/strong&gt;代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// path:D:\Program Files\Typora\resources\appsrc\window\frame.js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// (e.addClass(&amp;#34;md-expand&amp;#34;).trigger(&amp;#34;expand&amp;#34;).closest(&amp;#34;[cid]&amp;#34;).addClass(&amp;#34;md-focus&amp;#34;))
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="版本二"&gt;&lt;a href="#%e7%89%88%e6%9c%ac%e4%ba%8c" class="header-anchor"&gt;&lt;/a&gt;版本二
+&lt;/h2&gt;&lt;p&gt;此版本可以识别&lt;code&gt;codeblock&lt;/code&gt;区域上的&lt;code&gt;h2&lt;/code&gt;，暂时未发现其他bug&lt;/p&gt;
+&lt;p&gt;文件位置：&lt;code&gt;D:\Program Files\Typora\resources\appsrc\window\frame.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;搜索&lt;code&gt;refocus(e,t,n,i,r)&lt;/code&gt;代码块的位置&lt;/p&gt;
+&lt;p&gt;在后面添加如下&lt;strong&gt;函数声明&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;hlh2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(...&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])};&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)}}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;再次搜索&lt;code&gt;a.addClass(&amp;quot;md-focus&amp;quot;).trigger(&amp;quot;refocus&amp;quot;),$(document.activeElement)&lt;/code&gt;代码块位置&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;$(document.activeElement)&lt;/code&gt;前加入&lt;strong&gt;函数调用&lt;/strong&gt;&lt;code&gt;hlh2(a),&lt;/code&gt;，结果如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;md-focus&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;trigger&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;refocus&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="nx"&gt;hlh2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;activeElement&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;未压缩版本&lt;/strong&gt;代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// path:D:\Program Files\Typora\resources\appsrc\window\frame.js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// a.addClass(&amp;#34;md-focus&amp;#34;).trigger(&amp;#34;refocus&amp;#34;),$(document.activeElement)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;hlh2&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(...&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parents&lt;/span&gt;&lt;span class="p"&gt;()),&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt;&lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;tagName&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;H2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prevUntil&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;_f&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prev&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;addClass&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;md-focus&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>破解 Typora 验证</title><link>https://example.org/p/typora-crack/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/typora-crack/</guid><description>&lt;h1 id="破解-typora-验证"&gt;&lt;a href="#%e7%a0%b4%e8%a7%a3-typora-%e9%aa%8c%e8%af%81" class="header-anchor"&gt;&lt;/a&gt;破解 Typora 验证
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;p&gt;参考教程：&lt;a class="link" href="https://github.com/Mas0nShi/typoraCracker/blob/master/README_CN.md" target="_blank" rel="noopener"
+ &gt;&lt;strong&gt;Github&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;测试版本：&lt;strong&gt;Typora v 1.0.3&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="一下载工具"&gt;&lt;a href="#%e4%b8%80%e4%b8%8b%e8%bd%bd%e5%b7%a5%e5%85%b7" class="header-anchor"&gt;&lt;/a&gt;一、下载工具
+&lt;/h2&gt;&lt;p&gt;破解工具：&lt;a class="link" href="https://github.com/Mas0nShi/typoraCracker.git" target="_blank" rel="noopener"
+ &gt;typora Cracker&lt;/a&gt; | &lt;a class="link" href="https://github.com/Jxpro/MD-Repo/raw/main/typoraCracker-master.zip" target="_blank" rel="noopener"
+ &gt;备用地址&lt;/a&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; python typora.py --help
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;usage: typora.py &lt;span class="o"&gt;[&lt;/span&gt;-h&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-u&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;-f&lt;span class="o"&gt;]&lt;/span&gt; asarPath dirPath
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;[&lt;/span&gt;extract and decryption / pack and encryption&lt;span class="o"&gt;]&lt;/span&gt; app.asar file from &lt;span class="o"&gt;[&lt;/span&gt;Typora&lt;span class="o"&gt;]&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;positional arguments:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; asarPath app.asar file path/dir &lt;span class="o"&gt;[&lt;/span&gt;input/ouput&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; dirPath as tmp and out directory.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;optional arguments:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -h, --help show this &lt;span class="nb"&gt;help&lt;/span&gt; message and &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -u pack &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; encryption &lt;span class="o"&gt;(&lt;/span&gt;default: extract &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; decryption&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -f enabled prettify/compress &lt;span class="o"&gt;(&lt;/span&gt;default: disabled&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;If you have any questions, please contact &lt;span class="o"&gt;[&lt;/span&gt; MasonShi@88.com &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="二破解"&gt;&lt;a href="#%e4%ba%8c%e7%a0%b4%e8%a7%a3" class="header-anchor"&gt;&lt;/a&gt;二、破解
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;解压并解密&lt;/strong&gt;&lt;code&gt;app.asar&lt;/code&gt;文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ python typora.py &lt;span class="o"&gt;{&lt;/span&gt;installRoot&lt;span class="o"&gt;}&lt;/span&gt;/Typora/resources/app.asar workstation/outfile/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;将&lt;code&gt;workstation/outfile/dec_app/License.js&lt;/code&gt;&lt;strong&gt;替换&lt;/strong&gt;为&lt;code&gt;example/patch/License.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;重新&lt;strong&gt;加密并打包&lt;/strong&gt;文件：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ python typora.py -u workstation/outfile/dec_app workstation/outappasar
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;生成合格的&lt;strong&gt;许可证&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ node example/keygen.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;LMCHMW-4DGF5Z-T4PP4Z-S6343H
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;workstation/outappasar/app.asar&lt;/code&gt;&lt;strong&gt;替换&lt;/strong&gt;&lt;code&gt;{installRoot}/Typora/resources/app.asar&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后启动&lt;code&gt;Typora&lt;/code&gt;输入密钥即可&lt;/p&gt;
+&lt;h2 id="三注意的坑"&gt;&lt;a href="#%e4%b8%89%e6%b3%a8%e6%84%8f%e7%9a%84%e5%9d%91" class="header-anchor"&gt;&lt;/a&gt;三、注意的坑
+&lt;/h2&gt;&lt;h3 id="31-路径最好加引号"&gt;&lt;a href="#31-%e8%b7%af%e5%be%84%e6%9c%80%e5%a5%bd%e5%8a%a0%e5%bc%95%e5%8f%b7" class="header-anchor"&gt;&lt;/a&gt;3.1 路径最好加引号
+&lt;/h3&gt;&lt;p&gt;错误命令：&lt;code&gt;python typora.py C:/Program Files/Typora/resources/app.asar workstation/outfile/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;错误提示：&lt;strong&gt;typora.py: error: unrecognized arguments: workstation/outfile/&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为&lt;code&gt;C:/Program Files/&lt;/code&gt;路径中含有空格，所以需要加上引号：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python typora.py &amp;quot;C:/Program Files/Typora/resources/app.asar&amp;quot; &amp;quot;workstation/outfile/&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="32-需手动创建文件夹"&gt;&lt;a href="#32-%e9%9c%80%e6%89%8b%e5%8a%a8%e5%88%9b%e5%bb%ba%e6%96%87%e4%bb%b6%e5%a4%b9" class="header-anchor"&gt;&lt;/a&gt;3.2 需手动创建文件夹
+&lt;/h3&gt;&lt;p&gt;执行下面命令时：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ python typora.py -u workstation/outfile/dec_app workstation/outappasar
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;报错：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:35:46.711 &lt;span class="p"&gt;|&lt;/span&gt; ERROR &lt;span class="p"&gt;|&lt;/span&gt; __main__:packWenc:103 - plz input Directory &lt;span class="k"&gt;for&lt;/span&gt; app.asar
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Traceback &lt;span class="o"&gt;(&lt;/span&gt;most recent call last&lt;span class="o"&gt;)&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; File &lt;span class="s2"&gt;&amp;#34;typora.py&amp;#34;&lt;/span&gt;, line 151, in &amp;lt;module&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; main&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; File &lt;span class="s2"&gt;&amp;#34;typora.py&amp;#34;&lt;/span&gt;, line 146, in main
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; args.mode&lt;span class="o"&gt;(&lt;/span&gt;args.asarPath, args.dirPath, args.format&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; File &lt;span class="s2"&gt;&amp;#34;typora.py&amp;#34;&lt;/span&gt;, line 104, in packWenc
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; raise NotADirectoryError
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;NotADirectoryError
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;原因：&lt;code&gt;workstation/outappasar&lt;/code&gt;&lt;strong&gt;目录未创建&lt;/strong&gt;，需要指定一个已创建的目录或创建指定目录&lt;/p&gt;
+&lt;h3 id="33-appasar的位置"&gt;&lt;a href="#33-appasar%e7%9a%84%e4%bd%8d%e7%bd%ae" class="header-anchor"&gt;&lt;/a&gt;3.3 app.asar的位置
+&lt;/h3&gt;&lt;p&gt;执行下面命令时：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ python typora.py &lt;span class="o"&gt;{&lt;/span&gt;installRoot&lt;span class="o"&gt;}&lt;/span&gt;/Typora/resources/app.asar workstation/outfile/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;后面的&lt;code&gt;workstation/outfile/&lt;/code&gt;可自行指定。但是&lt;code&gt;app.asar&lt;/code&gt;文件&lt;strong&gt;必须位于&lt;/strong&gt;&lt;code&gt;{installRoot}/Typora/resources/app.asar&lt;/code&gt;下，不然解压后的文件会缺少&lt;code&gt;main.node&lt;/code&gt;文件，导致打包后&lt;code&gt;Typora&lt;/code&gt;启动报错！！！&lt;/p&gt;
+&lt;p&gt;指定安装目录下的app.asar输出如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ python typora.py &lt;span class="s2"&gt;&amp;#34;C:/Program Files/Typora/resources/app.asar&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;workstation/outfile/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.030 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:56 - extract asar file: C:/Program Files/Typora/resources/app.asar
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.093 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:59 - extract ended.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.108 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:61 - &lt;span class="nb"&gt;read&lt;/span&gt; Directory: workstation/outfile/tmp_app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.124 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:66 - &lt;span class="nb"&gt;set&lt;/span&gt; Directory: workstation/outfile&lt;span class="se"&gt;\d&lt;/span&gt;ec_app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.530 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: FilesOp.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.546 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: FilesOp.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.640 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: License.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.655 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: License.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.780 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: main.node
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.795 &lt;span class="p"&gt;|&lt;/span&gt; DEBUG &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:78 - skip file: main.node
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.812 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: main.node
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.936 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: menu.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:22.952 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: menu.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:23.327 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:main:147 - Done!
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;指定当前目录下的app.asar文件输出如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$ python typora.py &lt;span class="s2"&gt;&amp;#34;./app.asar&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;workstation/outfile/local&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:36.323 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:56 - extract asar file: ./app.asar
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Couldn&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;t copy file .&lt;span class="se"&gt;\m&lt;/span&gt;ain.node, no extracted directory
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:36.369 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:59 - extract ended.
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:36.400 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:61 - &lt;span class="nb"&gt;read&lt;/span&gt; Directory: workstation/outfile/local&lt;span class="se"&gt;\t&lt;/span&gt;mp_app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:36.416 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:66 - &lt;span class="nb"&gt;set&lt;/span&gt; Directory: workstation/outfile/local&lt;span class="se"&gt;\d&lt;/span&gt;ec_app
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:36.963 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: FilesOp.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:36.978 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: FilesOp.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:37.088 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: License.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:37.104 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: License.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:37.197 &lt;span class="p"&gt;|&lt;/span&gt; INFO &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:73 - open file: menu.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:37.213 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:extractWdec:81 - decrypt and save file: menu.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2021-12-04 14:37:37.635 &lt;span class="p"&gt;|&lt;/span&gt; SUCCESS &lt;span class="p"&gt;|&lt;/span&gt; __main__:main:147 - Done!
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;在第三行其实已经指明了错误：&lt;strong&gt;Couldn&amp;rsquo;t copy file .\main.node, no extracted directory&lt;/strong&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;</description></item><item><title>一级标题</title><link>https://example.org/p/demo/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/demo/</guid><description>&lt;h1 id="一级标题"&gt;&lt;a href="#%e4%b8%80%e7%ba%a7%e6%a0%87%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;一级标题
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="二级标题"&gt;&lt;a href="#%e4%ba%8c%e7%ba%a7%e6%a0%87%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;二级标题
+&lt;/h2&gt;&lt;h3 id="三级标题"&gt;&lt;a href="#%e4%b8%89%e7%ba%a7%e6%a0%87%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;三级标题
+&lt;/h3&gt;&lt;h4 id="四级标题"&gt;&lt;a href="#%e5%9b%9b%e7%ba%a7%e6%a0%87%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;四级标题
+&lt;/h4&gt;&lt;h5 id="五级标题"&gt;&lt;a href="#%e4%ba%94%e7%ba%a7%e6%a0%87%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;五级标题
+&lt;/h5&gt;&lt;h6 id="六级标题"&gt;&lt;a href="#%e5%85%ad%e7%ba%a7%e6%a0%87%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;六级标题
+&lt;/h6&gt;&lt;p&gt;标题样式来自&lt;a class="link" href="https://github.com/Theigrams/My-Typora-Themes" title="本样式修改自zj主题（这是一个链接引用）"
+ target="_blank" rel="noopener"
+ &gt;zj主题&lt;/a&gt;^&lt;a class="link" href="https://github.com/Theigrams/My-Typora-Themes" title="本样式修改自zj主题（这是一个链接引用）"
+ target="_blank" rel="noopener"
+ &gt;1&lt;/a&gt;^（这是一个参考链接，按住&lt;kbd&gt;ctrl&lt;/kbd&gt;键并点击将自动打开浏览器并跳转至相关链接，其中上标&lt;code&gt;[1]&lt;/code&gt;只是一个额外的标注）&lt;/p&gt;
+&lt;p&gt;注：部分样式需要在偏好设置中开启，如上下标、行内公式、图表等。Markdown写法参考说明文档&lt;sup&gt;&lt;a href="https://support.typora.io/Markdown-Reference" alt="ref"&gt;🚀&lt;/a&gt;&lt;/sup&gt;，试用其他如印象等在线Markdown编辑器&lt;span alt="ref"&gt;[&lt;a class="link" href="https://www.zybuluo.com/mdeditor" target="_blank" rel="noopener"
+ &gt;Ref 1&lt;/a&gt;,&lt;a class="link" href="https://maxiang.io/" target="_blank" rel="noopener"
+ &gt;Ref 2&lt;/a&gt;,&lt;a class="link" href="https://editoe.com/" target="_blank" rel="noopener"
+ &gt;Ref 3&lt;/a&gt;,&lt;a class="link" href="https://b3log.org/vditor" target="_blank" rel="noopener"
+ &gt;Ref 4&lt;/a&gt;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;行内公式：$\lim\limits_{x \to \infty} \exp(-x)=0$，行间公式：
+&lt;/p&gt;
+$$
+E_0 = mc^2 \\
+\quad\text{—— Albert Einstein}
+$$&lt;p&gt;推荐：&lt;a class="link" href="http://draw.mathpix.com/" target="_blank" rel="noopener"
+ &gt;latex手写公式识别&lt;/a&gt;、&lt;a class="link" href="https://www.latexlive.com/" target="_blank" rel="noopener"
+ &gt;latex公式编辑器&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;可以直接用尖括号包裹URL链接或邮箱：&lt;a class="link" href="https://emojixd.com/" target="_blank" rel="noopener"
+ &gt;https://emojixd.com/&lt;/a&gt;&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;提示块标签&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;嵌套提示块&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;无序列表1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;无序列表2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;有序列表1&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;li&gt;有序列表2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;==文本高亮==，&lt;strong&gt;加粗&lt;/strong&gt;，&lt;em&gt;斜体&lt;/em&gt;，==&lt;em&gt;&lt;strong&gt;斜体高亮加粗&lt;/strong&gt;&lt;/em&gt;==，&lt;del&gt;删除线&lt;/del&gt;，&lt;u&gt;下划线&lt;/u&gt;。&lt;code&gt;&amp;lt;font&amp;gt;&lt;/code&gt;标签被我用于一款小标签样式（&lt;a class="link" href="https://www.antmoe.com/posts/3b43914f/" target="_blank" rel="noopener"
+ &gt;小康&lt;/a&gt;）：&lt;font&gt;红色小标签&lt;/font&gt;，可以通过设置&lt;code&gt;background-color&lt;/code&gt;属性控制背景色，如：&lt;font style="background-color:#8bc34a"&gt;绿色小标签&lt;/font&gt;，为了方便，我提供了五种预定义的颜色（包括前面的红色、&lt;span alt="glow"&gt;绿色&lt;/span&gt;）：&lt;font title="blue"&gt;蓝色小标签&lt;/font&gt;、&lt;font title="yellow"&gt;黄色小标签&lt;/font&gt;、&lt;font title="gray"&gt;灰色小标签&lt;/font&gt;。一些强调型格式：&lt;span alt="underline"&gt;下划线&lt;/span&gt;、&lt;span alt="emp"&gt;着重号&lt;/span&gt;、&lt;span alt="wavy"&gt;波浪线&lt;/span&gt;。其他：&lt;span alt="hide"&gt;隐藏文本&lt;/span&gt;，&lt;span alt="hollow"&gt;空心字&lt;/span&gt;，&lt;span alt="blink"&gt;字体闪烁&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span alt="rainbow"&gt;彩虹变换字体特效&lt;/span&gt;（嫖自&lt;a class="link" href="https://www.heson10.com/posts/21347.html" target="_blank" rel="noopener"
+ &gt;黑石大佬&lt;/a&gt;🙇‍♀️），&lt;span alt="modern"&gt;欢迎光临&lt;/span&gt;（嫖自&lt;a class="link" href="https://7bxing.com/friends/" target="_blank" rel="noopener"
+ &gt;QinXS&lt;/a&gt;🙇‍♀️），&lt;span alt="shake"&gt;抖音字效&lt;/span&gt;（嫖自&lt;a class="link" href="https://www.nykee.cn/" target="_blank" rel="noopener"
+ &gt;NyKee&lt;/a&gt;🙇‍♀️）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decorator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;wrapper&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;wrapper&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-diff" data-lang="diff"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ 新增行
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- 删除行
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;其他行
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th style="text-align: left"&gt;表头1&lt;/th&gt;
+					&lt;th style="text-align: center"&gt;表头2&lt;/th&gt;
+					&lt;th style="text-align: right"&gt;表头3&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;muggledy&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;celestezj&lt;/td&gt;
+					&lt;td style="text-align: right"&gt;2021.9.25&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;&lt;/td&gt;
+					&lt;td style="text-align: right"&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;&lt;/td&gt;
+					&lt;td style="text-align: right"&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td style="text-align: left"&gt;&lt;/td&gt;
+					&lt;td style="text-align: center"&gt;&lt;/td&gt;
+					&lt;td style="text-align: right"&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;提供另一种常见表格样式：&lt;/p&gt;
+&lt;div alt="three-table"&gt; &lt;!--alt还可取值为"notitle-table"，一种无表头的小型表格--&gt;
+&lt;table&gt;
+ &lt;tr&gt;
+ &lt;th alt="left"&gt;标题1&lt;/th&gt;
+ &lt;th alt="center"&gt;标题2&lt;/th&gt;
+ &lt;th alt="right"&gt;标题3&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td alt="left"&gt;居左：alt="left"&lt;/td&gt;
+ &lt;td alt="center"&gt;居中：alt="center"&lt;/td&gt;
+ &lt;td alt="right"&gt;居右：alt="right"&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td alt="left"&gt;x&lt;/td&gt;
+ &lt;td alt="center"&gt;y&lt;/td&gt;
+ &lt;td alt="right"&gt;z&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div alt="fig"&gt;表1.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;三线表&lt;/div&gt;
+&lt;p&gt;&lt;a class="link" href="#%e4%ba%8c%e7%ba%a7%e6%a0%87%e9%a2%98" &gt;跳转&lt;/a&gt;至指定标题（锚点），也可以在任意位置通过&lt;code&gt;&amp;lt;a name=&amp;quot;锚点名&amp;quot; alt=&amp;quot;none&amp;quot;&amp;gt; &amp;lt;/a&amp;gt;&lt;/code&gt;（为了方便编辑，typora会显示空标签或&lt;code&gt;style=&amp;quot;display:none&amp;quot;&lt;/code&gt;的标签，但填充一个空格就可以被隐藏，在导出为HTML文件时，由于该款超链接样式有一个padding宽度，所以空链接还是会显示下划线，&lt;code&gt;alt=&amp;quot;none&amp;quot;&lt;/code&gt;用于避免该问题，如果自定义的锚点有文字说明，则不要使用&lt;code&gt;alt=&amp;quot;none&amp;quot;&lt;/code&gt;）设定锚点，示例：&lt;a class="link" href="#star" &gt;求点个赞呗&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="#" alt="null"&gt;无样式链接&lt;/a&gt;，主要用于图片超链接等，如：&lt;a href="#" alt="null"&gt;&lt;img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&amp;logo=github"&gt;&lt;img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&amp;logo=git&amp;logoColor=white"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;上下标：X^2^, H&lt;del&gt;2&lt;/del&gt;o，下标如果是多个单词或字符并以空格分隔，需要对空格进行转义，即在空格前面加&lt;code&gt;\&lt;/code&gt;，譬如&lt;code&gt;X~下标1\ 下标2~&lt;/code&gt;（X&lt;del&gt;下标1\ 下标2&lt;/del&gt;）。要显示*特殊字符等，也是通过反斜杠转义&lt;/p&gt;
+&lt;p&gt;&lt;ruby&gt;Base&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;top&lt;/rt&gt;&lt;rp&gt;) &lt;/rp&gt;&lt;/ruby&gt;、&lt;ruby&gt;佐天泪子&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;xiān qún kuáng mó&lt;/rt&gt;&lt;rp&gt;) &lt;/rp&gt;&lt;/ruby&gt;、&lt;ruby&gt;超電磁砲&lt;rp&gt; (&lt;/rp&gt;&lt;rt&gt;レールガン&lt;/rt&gt;&lt;rp&gt;) &lt;/rp&gt;&lt;/ruby&gt;&lt;/p&gt;
+&lt;img src="./temp/demo.jpg" style="zoom: 67%;" alt="shadow-可惜默认不支持图释" /&gt;
+&lt;p&gt;注：按&lt;code&gt;![shadow-随便写]()&lt;/code&gt;（或&lt;code&gt;&amp;lt;img src=&amp;quot;...&amp;quot; alt=&amp;quot;shadow-随便写&amp;quot;&amp;gt;&lt;/code&gt;）插入图片时会显示阴影，否则没有，类似的，设为&lt;code&gt;alt=&amp;quot;blur-随便写&amp;quot;&lt;/code&gt;时会有模糊效果，设为&lt;code&gt;alt=&amp;quot;gray-随便写&amp;quot;&lt;/code&gt;时图片默认为暗灰色。右键图片可以进行指定比例的缩放，任意比例可以通过&lt;code&gt;style=&amp;quot;zoom:0.x&amp;quot;&lt;/code&gt;属性实现&lt;/p&gt;
+&lt;p&gt;目前会对图片自动编号，但要正确显示图释（&lt;code&gt;alt&lt;/code&gt;属性值），还需额外修改&lt;u&gt;frame.js&lt;/u&gt;源码（在安装路径&lt;span alt="str"&gt;Typora/resources/app/app/window/&lt;/span&gt;下），分别定位到&lt;code&gt;h=&amp;quot;&amp;lt;span md-inline='&amp;quot;+v+&amp;quot;'&amp;quot;+S+&amp;quot; contenteditable='false' class='md-image&amp;quot;+L+&amp;quot;' data-src='&amp;quot;+F+&amp;quot;' &amp;quot;+b+&amp;quot;&amp;gt;&lt;/code&gt;以及&lt;code&gt;h=&amp;quot;&amp;lt;span md-inline='&amp;quot;+v+&amp;quot;'&amp;quot;+S+&amp;quot; contenteditable='false' class='md-image md-img-loaded&amp;quot;+w+&amp;quot;' &amp;quot;+b+&amp;quot;&amp;gt;&lt;/code&gt;处（注意Typora版本不同，相关代码可能有所区别），将两处末尾的&lt;code&gt;&amp;quot;&amp;gt;&lt;/code&gt;都替换为以下字符串即可：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-js" data-lang="js"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34; alt=&amp;#39;&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;k&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;alt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;. &amp;#34;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/^(shadow-|blur-|gray-)?(.*)$/&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;k&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;alt&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;))[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="err"&gt;&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;或者直接在图片下方手动写图释（适用于非img标签）：&lt;code&gt;&amp;lt;div alt=&amp;quot;fig&amp;quot;&amp;gt;图释说明&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;audio controls="controls"&gt;
+ &lt;source src="./temp/The Sound Of Silence.mp3" type="audio/mp3" /&gt;
+&lt;/audio&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;可以将&lt;code&gt;&amp;lt;audio&amp;gt;&lt;/code&gt;音频包裹在&lt;code&gt;&amp;lt;center&amp;gt;&amp;lt;/center&amp;gt;&lt;/code&gt;中居中显示&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;插入网易云的外链播放器（&lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt;，可嵌入油管等平台视频）：&lt;/p&gt;
+&lt;iframe frameborder="no" border="0" marginwidth="0" marginheight="0" src="//music.163.com/outchain/player?type=2&amp;id=1342183925&amp;auto=0"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;video src="./temp/难破船.mp4"&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;details&gt;
+ &lt;summary&gt;折叠标签&lt;/summary&gt;
+ &lt;p&gt;PDF文件预览示例（&lt;code&gt;https://zhixingo.github.io/plays/pdfv/?url=PDF文件链接&lt;/code&gt;）：&lt;/p&gt;
+ &lt;iframe src="https://zhixingo.github.io/plays/pdfv/?url=https://files.catbox.moe/5iz1r9.pdf" height="400" frameborder="0" scrolling="no"&gt;&lt;/iframe&gt;
+&lt;/details&gt;
+&gt; 关于Typora对HTML的支持说明：&lt;https://support.typora.io/HTML/&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.webfx.com/tools/emoji-cheat-sheet/" target="_blank" rel="noopener"
+ &gt;Emoji表情符号&lt;/a&gt;：:smile:（&lt;code&gt;:smile:&lt;/code&gt;），Decimal NCRs或Hexadecimal NCRs^&lt;a class="link" href="https://www.ifreesite.com/unicode/" title="Unicode图标编码在线转换"
+ target="_blank" rel="noopener"
+ &gt;2&lt;/a&gt;^编码也是受支持的，譬如“笑哭”：😂（&lt;code&gt;&amp;amp;#128514;&lt;/code&gt;）或😂（&lt;code&gt;&amp;amp;#x1F602;&lt;/code&gt;）&lt;/p&gt;
+&lt;pre class="mermaid" style="visibility:hidden"&gt;pie
+ title Pie Chart
+ "Dogs" : 386
+ "Cats" : 85
+ "Rats" : 150 &lt;/pre&gt;&lt;p&gt;&lt;a class="link" href="https://mermaid.live/edit" target="_blank" rel="noopener"
+ &gt;在线Mermaid编辑器&lt;/a&gt;、&lt;a class="link" href="https://mubu.com/home" target="_blank" rel="noopener"
+ &gt;幕布脑图&lt;/a&gt;（MD文档以OPML格式导出然后借助幕布转换为思维脑图）&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;更多绘图参考&lt;a class="link" href="https://support.typora.io/Draw-Diagrams-With-Markdown/" title="Typora流程图绘制说明"
+ target="_blank" rel="noopener"
+ &gt;官方文档&lt;/a&gt;（这是另一种参考链接写法）&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;p&gt;以下两种嵌入式绘图虽然更加美观，但是都无法在typora中直接编辑，只能用于查看，不太方便：&lt;/p&gt;
+&lt;iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height="320px" src="./temp/markmap.html" width&gt;&lt;/iframe&gt;
+&lt;p&gt;该脑图由&lt;a class="link" href="https://markmap.js.org/" target="_blank" rel="noopener"
+ &gt;markmap&lt;/a&gt;提供支持，其直接将MD格式代码转换为脑图，可以作为VS Code的插件使用&lt;/p&gt;
+&lt;center&gt;&lt;svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" height="400px" viewBox="-0.5 -0.5 1071 773" content="&amp;lt;mxfile host=&amp;quot;app.diagrams.net&amp;quot; modified=&amp;quot;2021-11-15T07:08:52.373Z&amp;quot; agent=&amp;quot;5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36&amp;quot; etag=&amp;quot;aOnjZZMrixLFimZz001-&amp;quot; version=&amp;quot;15.7.3&amp;quot; type=&amp;quot;google&amp;quot;&amp;gt;&amp;lt;diagram id=&amp;quot;07fea595-8f29-1299-0266-81d95cde20df&amp;quot; name=&amp;quot;Page-1&amp;quot;&amp;gt;7Zpdk5o8FMc/jZfrkDeEy3Xdtjed6cx25rnOIylmisbGuGI/fQMEAZN1sY2uW+qNchKS8P9xPOcERuhhmX+UdL34LBKWjWCQ5CM0G0F4F4NQfxWWvbGEpDKkkieVCTSGJ/6TGWNgrFuesE2noxIiU3zdNc7FasXmqmOjUopdt9s3kXVnXdOUWYanOc1s6388UQtjBWHcNHxiPF2YqSM4qRr+p/PvqRTblZlvJVasalnSehhzjZsFTcSuZUKPI/QghVDVr2X+wLJC1lqx6rwPL7QelizZSvU5YQJRdcozzbbmus3K1L4WYrfgij2t6bw43mnYIzT9xrPsQWRCll0QgPf3U6LtqaQJ15PXbeW1N+YZlxoVFyvdxOhGr3G6UVJ8Z0f9F2qZ6SNQzCSa0fRMEGFM9Oqn9qWaq39mUrG8ZTKX/pGJJVNyr7uYVojjydjclOYmBTjEYxI0HyPHrnUH1PAWLfgAGSM1d116mK2RX/8wBF6igYdMI7RpEIxr02sESDAO2tyQDx5kyDwih3fEvXmAwItHhAMmgAIHAdifwMQLgcnrBFiiI6c5fFWhyj8PytaxFVlat/u+qGYx9Ukt2yoFp+5TyTKq+HM3+rukM3N8EVyvpRVMkP331bhLPdBGbOWcmXPbkbnHcABYwykqU6as4UqqBxF6go68uNqHIJoE787VXKkAQm+ZCsReaDxGJMTwb6ABgy6Nvn+CXmjUgwzTNxyJGYrwGMfNJ+pJg8TjuH2ajywNAS9w3qmruOCQ3jmCH++AQ/YOR5pcRo6eHhF6IeCnjH+nLuAgAPq7AIi8EOhRuv9Lk72nyQiRPsN5TJORvSfwhUqqh2CyXNcxdX0Xlw6iPY+v0q9C+93sjtjszQ4oiOpjM0TBdV2svLwWMh2R2Uv+5sGZEAptQSPocKbIcZdAL65k1/w56C8rzXha/DHNtQgaCZoWF8/nNLs3DUueJMUolsongFwPgCv3JXF43YBu1/y5/Xf21xJwbURem4BdjOdoOAQcEf3qBPwU4O905xFaYTV2bv0i0tl1BwC7cHR35usdxT/Cg4dckZd42uX3ESrSLc7jG8I25Frd5VXAk1cd+vwZHruS/7pfM205IwFriWmHjHZQIb5ktaJFDOLOZiGwJL5Y9ortUtxIeEYGdQsSkreT0K6ljYRnpEC3IGH8dhKerlL3v6XjuVWqh0QQ2YlgEJFrVqPYrkb3t1aN+qg6A3Is9OuvwiDXRhHsbvFPvKQNdkG6v7WC9DIQ3FvJ1xPerkP3t1aHXkb48nnjGwrvKj/DTBk9OvqHP7aibrjblErdF8EyWOdlbKvb9a+0+J5xqhPkpe6iuNJjmHH1mqqhq14Xo1yhRMERdXA6aPugbG09R87HBBFwUMbEA1Uy6KrV8ToTmpzxgp8PAIOuPx0AYNj/QRnwQsAuMXN8YxHlgo9XHAguu7OpD5v3yasHXs37+ujxFw==&amp;lt;/diagram&amp;gt;&amp;lt;/mxfile&amp;gt;" onclick="(function(svg){var src=window.event.target||window.event.srcElement;while (src!=null&amp;amp;&amp;amp;src.nodeName.toLowerCase()!='a'){src=src.parentNode;}if(src==null){if(svg.wnd!=null&amp;amp;&amp;amp;!svg.wnd.closed){svg.wnd.focus();}else{var r=function(evt){if(evt.data=='ready'&amp;amp;&amp;amp;evt.source==svg.wnd){svg.wnd.postMessage(decodeURIComponent(svg.getAttribute('content')),'*');window.removeEventListener('message',r);}};window.addEventListener('message',r);svg.wnd=window.open('https://viewer.diagrams.net/?client=1&amp;amp;page=0&amp;amp;edit=_blank');}}})(this);" style="cursor:pointer;max-width:100%;max-height:773px;"&gt;&lt;defs/&gt;&lt;g&gt;&lt;rect x="100.5" y="610.5" width="120" height="130" fill="#12aab5" stroke="none" pointer-events="all"/&gt;&lt;rect x="300.5" y="690.5" width="120" height="50" fill="#12aab5" stroke="none" pointer-events="all"/&gt;&lt;rect x="500.5" y="640.5" width="120" height="100" fill="#12aab5" stroke="none" pointer-events="all"/&gt;&lt;rect x="700.5" y="570.5" width="120" height="170" fill="#12aab5" stroke="none" pointer-events="all"/&gt;&lt;path d="M 40.5 740.5 L 40.5 270.6" fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" pointer-events="stroke"/&gt;&lt;path d="M 40.5 263.85 L 45 272.85 L 40.5 270.6 L 36 272.85 Z" fill="#000000" stroke="#000000" stroke-width="3" stroke-miterlimit="10" pointer-events="all"/&gt;&lt;rect x="100.5" y="480.5" width="120" height="130" fill="#f08705" stroke="none" pointer-events="all"/&gt;&lt;rect x="100.5" y="350.5" width="120" height="130" fill="#e85642" stroke="none" pointer-events="all"/&gt;&lt;rect x="300.5" y="530.5" width="120" height="160" fill="#f08705" stroke="none" pointer-events="all"/&gt;&lt;rect x="300.5" y="500.5" width="120" height="30" fill="#e85642" stroke="none" pointer-events="all"/&gt;&lt;rect x="500.5" y="480.5" width="120" height="160" fill="#f08705" stroke="none" pointer-events="all"/&gt;&lt;rect x="500.5" y="300.5" width="120" height="180" fill="#e85642" stroke="none" pointer-events="all"/&gt;&lt;path d="M 40.5 740.5 L 950.4 740.5" fill="none" stroke="#000000" stroke-width="3" stroke-miterlimit="10" pointer-events="stroke"/&gt;&lt;path d="M 957.15 740.5 L 948.15 745 L 950.4 740.5 L 948.15 736 Z" fill="#000000" stroke="#000000" stroke-width="3" stroke-miterlimit="10" pointer-events="all"/&gt;&lt;rect x="970.5" y="728.5" width="80" height="20" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 731px; margin-left: 973px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: left;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;Parameter x&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="973" y="749" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px"&gt;Parameter...&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="100.5" y="742.5" width="120" height="30" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 755px; margin-left: 161px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;x1&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="161" y="760" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;x1&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="300.5" y="742.5" width="120" height="30" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 755px; margin-left: 361px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;x2&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="361" y="760" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;x2&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="500.5" y="742.5" width="120" height="30" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 755px; margin-left: 561px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;x3&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="561" y="760" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;x3&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="860.5" y="140.5" width="35" height="30" fill="#12aab5" stroke="none" pointer-events="all"/&gt;&lt;rect x="860.5" y="100.5" width="35" height="30" fill="#f08705" stroke="none" pointer-events="all"/&gt;&lt;rect x="860.5" y="60.5" width="35" height="30" fill="#e85642" stroke="none" pointer-events="all"/&gt;&lt;rect x="900.5" y="65.5" width="80" height="20" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 68px; margin-left: 903px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: left;"&gt;&lt;div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;Type 1&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="903" y="83" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="15px"&gt;Type 1&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="900.5" y="105.5" width="80" height="20" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 108px; margin-left: 903px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: left;"&gt;&lt;div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;Type 2&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="903" y="123" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="15px"&gt;Type 2&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="900.5" y="145.5" width="80" height="20" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 148px; margin-left: 903px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: left;"&gt;&lt;div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;Type 3&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="903" y="163" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="15px"&gt;Type 3&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="0.5" y="231.5" width="80" height="20" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 1px; height: 1px; padding-top: 234px; margin-left: 3px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: left;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;Parameter y&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="3" y="252" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px"&gt;Parameter...&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="8.5" y="610.5" width="30" height="130" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 673px; margin-left: 24px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;y1&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="24" y="678" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;y1&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="8.5" y="480.5" width="30" height="130" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 543px; margin-left: 24px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;y2&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="24" y="548" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;y2&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="8.5" y="350.5" width="30" height="130" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 413px; margin-left: 24px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;y3&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="24" y="418" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;y3&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="40.5" y="0.5" width="810" height="45" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 21px; margin-left: 446px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 30px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; font-weight: bold; white-space: nowrap;"&gt;&lt;font style="font-size: 30px"&gt;Diagram title&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="446" y="30" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="30px" text-anchor="middle" font-weight="bold"&gt;Diagram title&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;rect x="700.5" y="520.5" width="120" height="50" fill="#f08705" stroke="none" pointer-events="all"/&gt;&lt;rect x="700.5" y="410.5" width="120" height="110" fill="#e85642" stroke="none" pointer-events="all"/&gt;&lt;rect x="700.5" y="742.5" width="120" height="30" fill="none" stroke="none" pointer-events="all"/&gt;&lt;g transform="translate(-0.5 -0.5)"&gt;&lt;switch&gt;&lt;foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;"&gt;&lt;div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 755px; margin-left: 761px;"&gt;&lt;div data-drawio-colors="color: rgba(0, 0, 0, 1); " style="box-sizing: border-box; font-size: 0px; text-align: center;"&gt;&lt;div style="display: inline-block; font-size: 18px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: nowrap;"&gt;x4&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/foreignObject&gt;&lt;text x="761" y="760" fill="rgba(0, 0, 0, 1)" font-family="Helvetica" font-size="18px" text-anchor="middle"&gt;x4&lt;/text&gt;&lt;/switch&gt;&lt;/g&gt;&lt;/g&gt;&lt;switch&gt;&lt;g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/&gt;&lt;a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank"&gt;&lt;text text-anchor="middle" font-size="10px" x="50%" y="100%"&gt;Viewer does not support full SVG 1.1&lt;/text&gt;&lt;/a&gt;&lt;/switch&gt;&lt;/svg&gt;&lt;/center&gt;
+&lt;div alt="fig"&gt;图2.&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;柱状图&lt;/div&gt;
+&lt;p&gt;&lt;a class="link" href="https://app.diagrams.net/?src=about#G1XbVy9iD3kEJMiCqG2IceUlNBIzMbcJYS" target="_blank" rel="noopener"
+ &gt;在线编辑地址&lt;/a&gt;，该图表由&lt;a class="link" href="https://www.diagrams.net/" target="_blank" rel="noopener"
+ &gt;drawio&lt;/a&gt;提供支持（提供iframe嵌入代码和svg嵌入代码），还支持UML类图、Network网络拓扑图、Flowcharts流程图、Tables表格等众多图表类型&lt;/p&gt;
+&lt;p&gt;时间轴（Volantis）：&lt;/p&gt;
+&lt;div alt="timeline"&gt;
+ &lt;div alt="timenode"&gt;
+ &lt;div alt="meta"&gt;2019.9 ~ 2022.6 &lt;a href="#"&gt;家里蹲B&lt;/a&gt;&lt;/div&gt;
+ &lt;div alt="body"&gt;
+ 人言落日是天涯，望极天涯不见家。
+ 已恨碧山相阻隔，碧山还被暮云遮。
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div alt="timenode"&gt;
+ &lt;div alt="meta"&gt;2015.9 ~ 2019.6 &lt;a href="#"&gt;家里蹲A&lt;/a&gt;&lt;/div&gt;
+ &lt;div alt="body"&gt;
+ 看花开花落，谈笑风生...
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;任务列表：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 未完成任务1&lt;/li&gt;
+&lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 未完成任务2&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; 已完成任务1&lt;/li&gt;
+&lt;li&gt;&lt;input checked="" disabled="" type="checkbox"&gt; 已完成任务2&lt;/li&gt;
+&lt;/ul&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;本主题（typora-dyzj-theme）的很多样式来自Hexo的&lt;span alt="btn"&gt;&lt;a href="https://butterfly.js.org"&gt;butterfly&lt;/a&gt;&lt;/span&gt;及&lt;span alt="btn"&gt;&lt;a href="https://volantis.js.org/"&gt;Volantis&lt;/a&gt;&lt;/span&gt;主题，再次表达感谢🙇‍♀️&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;a name="star" alt="none"&gt; &lt;/a&gt;都看到这里了，如果您喜欢的话，点个赞:+1:再走吧：&lt;/p&gt;
+&lt;iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px" height="20px" src="https://ghbtns.com/github-btn.html?user=muggledy&amp;repo=typora-dyzj-theme&amp;type=star&amp;count=true" &gt; &lt;/iframe&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;该样式来自&lt;a class="link" href="https://butterfly.js.org" target="_blank" rel="noopener"
+ &gt;Butterfly主题&lt;/a&gt;（这是一个脚注）&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item></channel></rss>

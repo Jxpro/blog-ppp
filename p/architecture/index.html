@@ -1,0 +1,165 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="查看Linux系统架构的命令 查看linux系统是哪种架构：AMD、ARM、x86、x86_64、pcc\n[TOC]\n1、查看内核版本 cat /proc/version uname -a uname -r 1 2 3 4 5 6 7 8 $ cat /proc/version Linux version 4.15.0-161-generic (buildd@lcy01-amd64-012) (gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)) #169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 $ uname -a Linux iZwz91577x7sn2pgjejf5kZ 4.15.0-161-generic #169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux $ uname -r 4.15.0-161-generic 2、查看linux版本信息 lsb_release -a cat /etc/issue 1 2 3 4 5 6 7 8 9 $ lsb_release -a LSB Version:\tcore-9.20170808ubuntu1-noarch:security-9.20170808ubuntu1-noarch Distributor ID:\tUbuntu Description:\tUbuntu 18.04.6 LTS Release:\t18.04 Codename:\tbionic $ cat /etc/issue Ubuntu 18.04.6 LTS \\n \\l 3、查看linux是64位还是32位 getconf LONG_BIT file /bin/ls 1 2 3 4 5 $ getconf LONG_BIT 64 $ file /bin/ls /bin/ls: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=9567f9a28e66f4d7ec4baf31cfbf68d0410f0ae6, stripped 4、直接查看系统的架构 dpkg --print-architecture arch file /lib/systemd/systemd 1 2 3 4 5 6 7 8 $ dpkg --print-architecture amd64 $ arch x86_64 $ file /lib/systemd/systemd /lib/systemd/systemd: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=cb01338bc2dce40f2dec56c8a2c89a7dac28d512, stripped 关于CPU架构是x86、x86_64、amd64的叫法区别\n"><title>查看Linux系统架构的命令</title><link rel=canonical href=https://example.org/p/architecture/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="查看Linux系统架构的命令"><meta property='og:description' content="查看Linux系统架构的命令 查看linux系统是哪种架构：AMD、ARM、x86、x86_64、pcc\n[TOC]\n1、查看内核版本 cat /proc/version uname -a uname -r 1 2 3 4 5 6 7 8 $ cat /proc/version Linux version 4.15.0-161-generic (buildd@lcy01-amd64-012) (gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)) #169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 $ uname -a Linux iZwz91577x7sn2pgjejf5kZ 4.15.0-161-generic #169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux $ uname -r 4.15.0-161-generic 2、查看linux版本信息 lsb_release -a cat /etc/issue 1 2 3 4 5 6 7 8 9 $ lsb_release -a LSB Version:\tcore-9.20170808ubuntu1-noarch:security-9.20170808ubuntu1-noarch Distributor ID:\tUbuntu Description:\tUbuntu 18.04.6 LTS Release:\t18.04 Codename:\tbionic $ cat /etc/issue Ubuntu 18.04.6 LTS \\n \\l 3、查看linux是64位还是32位 getconf LONG_BIT file /bin/ls 1 2 3 4 5 $ getconf LONG_BIT 64 $ file /bin/ls /bin/ls: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=9567f9a28e66f4d7ec4baf31cfbf68d0410f0ae6, stripped 4、直接查看系统的架构 dpkg --print-architecture arch file /lib/systemd/systemd 1 2 3 4 5 6 7 8 $ dpkg --print-architecture amd64 $ arch x86_64 $ file /lib/systemd/systemd /lib/systemd/systemd: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=cb01338bc2dce40f2dec56c8a2c89a7dac28d512, stripped 关于CPU架构是x86、x86_64、amd64的叫法区别\n"><meta property='og:url' content='https://example.org/p/architecture/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='System'><meta property='article:tag' content='Linux'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="查看Linux系统架构的命令"><meta name=twitter:description content="查看Linux系统架构的命令 查看linux系统是哪种架构：AMD、ARM、x86、x86_64、pcc\n[TOC]\n1、查看内核版本 cat /proc/version uname -a uname -r 1 2 3 4 5 6 7 8 $ cat /proc/version Linux version 4.15.0-161-generic (buildd@lcy01-amd64-012) (gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)) #169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 $ uname -a Linux iZwz91577x7sn2pgjejf5kZ 4.15.0-161-generic #169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux $ uname -r 4.15.0-161-generic 2、查看linux版本信息 lsb_release -a cat /etc/issue 1 2 3 4 5 6 7 8 9 $ lsb_release -a LSB Version:\tcore-9.20170808ubuntu1-noarch:security-9.20170808ubuntu1-noarch Distributor ID:\tUbuntu Description:\tUbuntu 18.04.6 LTS Release:\t18.04 Codename:\tbionic $ cat /etc/issue Ubuntu 18.04.6 LTS \\n \\l 3、查看linux是64位还是32位 getconf LONG_BIT file /bin/ls 1 2 3 4 5 $ getconf LONG_BIT 64 $ file /bin/ls /bin/ls: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=9567f9a28e66f4d7ec4baf31cfbf68d0410f0ae6, stripped 4、直接查看系统的架构 dpkg --print-architecture arch file /lib/systemd/systemd 1 2 3 4 5 6 7 8 $ dpkg --print-architecture amd64 $ arch x86_64 $ file /lib/systemd/systemd /lib/systemd/systemd: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/l, for GNU/Linux 3.2.0, BuildID[sha1]=cb01338bc2dce40f2dec56c8a2c89a7dac28d512, stripped 关于CPU架构是x86、x86_64、amd64的叫法区别\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#1查看内核版本>1、查看内核版本</a></li><li><a href=#2查看linux版本信息>2、查看linux版本信息</a></li><li><a href=#3查看linux是64位还是32位>3、查看linux是64位还是32位</a></li><li><a href=#4直接查看系统的架构>4、直接查看系统的架构</a></li><li><a href=#5查看mint系统对应的ubuntu系统>5、查看Mint系统对应的Ubuntu系统</a></li><li><a href=#6查看虚拟化方式>6、查看虚拟化方式</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/system/ style=background-color:#bed5ef;color:#0f253d>System
+</a><a href=/categories/linux/ style=background-color:#bec0ef;color:#0f123d>Linux</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/architecture/>查看Linux系统架构的命令</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#1查看内核版本>1、查看内核版本</a></li><li><a href=#2查看linux版本信息>2、查看linux版本信息</a></li><li><a href=#3查看linux是64位还是32位>3、查看linux是64位还是32位</a></li><li><a href=#4直接查看系统的架构>4、直接查看系统的架构</a></li><li><a href=#5查看mint系统对应的ubuntu系统>5、查看Mint系统对应的Ubuntu系统</a></li><li><a href=#6查看虚拟化方式>6、查看虚拟化方式</a></li></ol></nav></details></aside><section class=article-content><h1 id=查看linux系统架构的命令><a href=#%e6%9f%a5%e7%9c%8blinux%e7%b3%bb%e7%bb%9f%e6%9e%b6%e6%9e%84%e7%9a%84%e5%91%bd%e4%bb%a4 class=header-anchor></a>查看Linux系统架构的命令</h1><p>查看linux系统是<strong>哪种架构</strong>：<code>AMD</code>、<code>ARM</code>、<code>x86</code>、<code>x86_64</code>、<code>pcc</code></p><p>[TOC]</p><h2 id=1查看内核版本><a href=#1%e6%9f%a5%e7%9c%8b%e5%86%85%e6%a0%b8%e7%89%88%e6%9c%ac class=header-anchor></a>1、查看内核版本</h2><ul><li><code>cat /proc/version</code></li><li><code>uname -a</code></li><li><code>uname -r</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ cat /proc/version
+</span></span><span class=line><span class=cl>Linux version 4.15.0-161-generic <span class=o>(</span>buildd@lcy01-amd64-012<span class=o>)</span> <span class=o>(</span>gcc version 7.5.0 <span class=o>(</span>Ubuntu 7.5.0-3ubuntu1~18.04<span class=o>))</span> <span class=c1>#169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ uname -a
+</span></span><span class=line><span class=cl>Linux iZwz91577x7sn2pgjejf5kZ 4.15.0-161-generic <span class=c1>#169-Ubuntu SMP Fri Oct 15 13:41:54 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ uname -r
+</span></span><span class=line><span class=cl>4.15.0-161-generic
+</span></span></code></pre></td></tr></table></div></div><h2 id=2查看linux版本信息><a href=#2%e6%9f%a5%e7%9c%8blinux%e7%89%88%e6%9c%ac%e4%bf%a1%e6%81%af class=header-anchor></a>2、查看linux版本信息</h2><ul><li><code>lsb_release -a</code></li><li><code>cat /etc/issue</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ lsb_release -a
+</span></span><span class=line><span class=cl>LSB Version:	core-9.20170808ubuntu1-noarch:security-9.20170808ubuntu1-noarch
+</span></span><span class=line><span class=cl>Distributor ID:	Ubuntu
+</span></span><span class=line><span class=cl>Description:	Ubuntu 18.04.6 LTS
+</span></span><span class=line><span class=cl>Release:	18.04
+</span></span><span class=line><span class=cl>Codename:	bionic
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ cat /etc/issue
+</span></span><span class=line><span class=cl>Ubuntu 18.04.6 LTS <span class=se>\n</span> <span class=se>\l</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=3查看linux是64位还是32位><a href=#3%e6%9f%a5%e7%9c%8blinux%e6%98%af64%e4%bd%8d%e8%bf%98%e6%98%af32%e4%bd%8d class=header-anchor></a>3、查看linux是64位还是32位</h2><ul><li><code>getconf LONG_BIT</code></li><li><code>file /bin/ls</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ getconf LONG_BIT
+</span></span><span class=line><span class=cl><span class=m>64</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ file /bin/ls
+</span></span><span class=line><span class=cl>/bin/ls: ELF 64-bit LSB shared object, x86-64, version <span class=m>1</span> <span class=o>(</span>SYSV<span class=o>)</span>, dynamically linked, interpreter /lib64/l, <span class=k>for</span> GNU/Linux 3.2.0, BuildID<span class=o>[</span>sha1<span class=o>]=</span>9567f9a28e66f4d7ec4baf31cfbf68d0410f0ae6, stripped
+</span></span></code></pre></td></tr></table></div></div><h2 id=4直接查看系统的架构><a href=#4%e7%9b%b4%e6%8e%a5%e6%9f%a5%e7%9c%8b%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%9e%b6%e6%9e%84 class=header-anchor></a>4、直接查看系统的架构</h2><ul><li><code>dpkg --print-architecture</code></li><li><code>arch</code></li><li><code>file /lib/systemd/systemd</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ dpkg --print-architecture
+</span></span><span class=line><span class=cl>amd64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ arch
+</span></span><span class=line><span class=cl>x86_64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ file /lib/systemd/systemd
+</span></span><span class=line><span class=cl>/lib/systemd/systemd: ELF 64-bit LSB shared object, x86-64, version <span class=m>1</span> <span class=o>(</span>SYSV<span class=o>)</span>, dynamically linked, interpreter /lib64/l, <span class=k>for</span> GNU/Linux 3.2.0, BuildID<span class=o>[</span>sha1<span class=o>]=</span>cb01338bc2dce40f2dec56c8a2c89a7dac28d512, stripped
+</span></span></code></pre></td></tr></table></div></div><p><a class=link href=https://blog.csdn.net/wf19930209/article/details/79536506 target=_blank rel=noopener>关于CPU架构是x86、x86_64、amd64的叫法区别</a></p><h2 id=5查看mint系统对应的ubuntu系统><a href=#5%e6%9f%a5%e7%9c%8bmint%e7%b3%bb%e7%bb%9f%e5%af%b9%e5%ba%94%e7%9a%84ubuntu%e7%b3%bb%e7%bb%9f class=header-anchor></a>5、查看Mint系统对应的Ubuntu系统</h2><p><a class=link href=https://zhuanlan.zhihu.com/p/83166352 target=_blank rel=noopener>参考</a></p><p>使用<code>cat /etc/os-release</code>命令也可以获取到 Ubuntu 代号</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ cat /etc/os-release
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 输出</span>
+</span></span><span class=line><span class=cl><span class=nv>NAME</span><span class=o>=</span><span class=s2>&#34;Ubuntu&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>VERSION</span><span class=o>=</span><span class=s2>&#34;18.04.6 LTS (Bionic Beaver)&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>ID</span><span class=o>=</span>ubuntu
+</span></span><span class=line><span class=cl><span class=nv>ID_LIKE</span><span class=o>=</span>debian
+</span></span><span class=line><span class=cl><span class=nv>PRETTY_NAME</span><span class=o>=</span><span class=s2>&#34;Ubuntu 18.04.6 LTS&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>VERSION_ID</span><span class=o>=</span><span class=s2>&#34;18.04&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>HOME_URL</span><span class=o>=</span><span class=s2>&#34;https://www.ubuntu.com/&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>SUPPORT_URL</span><span class=o>=</span><span class=s2>&#34;https://help.ubuntu.com/&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>BUG_REPORT_URL</span><span class=o>=</span><span class=s2>&#34;https://bugs.launchpad.net/ubuntu/&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>PRIVACY_POLICY_URL</span><span class=o>=</span><span class=s2>&#34;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>VERSION_CODENAME</span><span class=o>=</span>bionic
+</span></span><span class=line><span class=cl><span class=nv>UBUNTU_CODENAME</span><span class=o>=</span>bionic
+</span></span></code></pre></td></tr></table></div></div><p>注意：</p><blockquote><p>x86_64，x64，AMD64基本上是同一个东西</p></blockquote><ul><li><code>x86</code>是<code>intel</code>开发的一种32位指令集</li><li><code>x84_64</code>是CPU迈向64位的时候</li><li>x86_64是一种64位的指令集，x86_64是x86指令的超集，在x86上可以运行的程序，在x86_64上也可以运行，<code>x86_64</code>是AMD发明的，也叫<code>AMD64</code></li></ul><p>现在用的intel/amd的桌面级CPU基本上都是x86_64，与之相对的<code>arm</code>、<code>pcc</code>等都不是<code>x86_64</code></p><h2 id=6查看虚拟化方式><a href=#6%e6%9f%a5%e7%9c%8b%e8%99%9a%e6%8b%9f%e5%8c%96%e6%96%b9%e5%bc%8f class=header-anchor></a>6、查看虚拟化方式</h2><ul><li><code>lscpu</code></li><li><code>systemd-detect-virt</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ lscpu
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Architecture:            x86_64
+</span></span><span class=line><span class=cl>  CPU op-mode<span class=o>(</span>s<span class=o>)</span>:        32-bit, 64-bit
+</span></span><span class=line><span class=cl>  Address sizes:         <span class=m>46</span> bits physical, <span class=m>48</span> bits virtual
+</span></span><span class=line><span class=cl>  Byte Order:            Little Endian
+</span></span><span class=line><span class=cl>CPU<span class=o>(</span>s<span class=o>)</span>:                  <span class=m>2</span>
+</span></span><span class=line><span class=cl>  On-line CPU<span class=o>(</span>s<span class=o>)</span> list:   0,1
+</span></span><span class=line><span class=cl>Vendor ID:               GenuineIntel
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>Virtualization features:
+</span></span><span class=line><span class=cl>  Hypervisor vendor:     KVM
+</span></span><span class=line><span class=cl>  Virtualization type:   full
+</span></span><span class=line><span class=cl>Caches <span class=o>(</span>sum of all<span class=o>)</span>:
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ systemd-detect-virt
+</span></span><span class=line><span class=cl>kvm
+</span></span></code></pre></td></tr></table></div></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/system/>System</a>
+<a href=/tags/linux/>Linux</a></section></footer></article><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

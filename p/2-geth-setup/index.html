@@ -1,0 +1,1483 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Geth部署私链测试网络 [TOC]\n一、克隆仓库 1 2 3 4 5 6 7 8 9 10 $ git clone https://github.com/ethereum/go-ethereum.git ... $ cd go-ethereum $ ls accounts cmd COPYING Dockerfile.alltools ethstats interfaces.go Makefile oss-fuzz.sh rpc trie appveyor.yml common COPYING.LESSER docs event internal metrics p2p SECURITY.md AUTHORS consensus core eth go.mod les miner params signer build console crypto ethclient go.sum light mobile README.md swarm circle.yml contracts Dockerfile ethdb graphql log node rlp tests 二、安装Geth 切换到稳定版本：\n"><title>Geth部署私链测试网络</title><link rel=canonical href=https://example.org/p/2-geth-setup/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="Geth部署私链测试网络"><meta property='og:description' content="Geth部署私链测试网络 [TOC]\n一、克隆仓库 1 2 3 4 5 6 7 8 9 10 $ git clone https://github.com/ethereum/go-ethereum.git ... $ cd go-ethereum $ ls accounts cmd COPYING Dockerfile.alltools ethstats interfaces.go Makefile oss-fuzz.sh rpc trie appveyor.yml common COPYING.LESSER docs event internal metrics p2p SECURITY.md AUTHORS consensus core eth go.mod les miner params signer build console crypto ethclient go.sum light mobile README.md swarm circle.yml contracts Dockerfile ethdb graphql log node rlp tests 二、安装Geth 切换到稳定版本：\n"><meta property='og:url' content='https://example.org/p/2-geth-setup/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Blockchain'><meta property='article:tag' content='Ethereum'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="Geth部署私链测试网络"><meta name=twitter:description content="Geth部署私链测试网络 [TOC]\n一、克隆仓库 1 2 3 4 5 6 7 8 9 10 $ git clone https://github.com/ethereum/go-ethereum.git ... $ cd go-ethereum $ ls accounts cmd COPYING Dockerfile.alltools ethstats interfaces.go Makefile oss-fuzz.sh rpc trie appveyor.yml common COPYING.LESSER docs event internal metrics p2p SECURITY.md AUTHORS consensus core eth go.mod les miner params signer build console crypto ethclient go.sum light mobile README.md swarm circle.yml contracts Dockerfile ethdb graphql log node rlp tests 二、安装Geth 切换到稳定版本：\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一克隆仓库>一、克隆仓库</a></li><li><a href=#二安装geth>二、安装Geth</a><ol><li><a href=#直接下载安装>直接下载安装：</a></li></ol></li><li><a href=#三测试安装>三、测试安装</a></li><li><a href=#四启动客户端>四、启动客户端</a></li><li><a href=#五部署测试私链>五、部署测试私链</a></li><li><a href=#六部署自定义私链>六、部署自定义私链</a></li><li><a href=#七完整安装过程输出>七、完整安装过程输出</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/blockchain/ style=background-color:#d7beef;color:#270f3d>Blockchain
+</a><a href=/categories/ethereum/ style=background-color:#bed1ef;color:#0f223d>Ethereum</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/2-geth-setup/>Geth部署私链测试网络</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 8 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一克隆仓库>一、克隆仓库</a></li><li><a href=#二安装geth>二、安装Geth</a><ol><li><a href=#直接下载安装>直接下载安装：</a></li></ol></li><li><a href=#三测试安装>三、测试安装</a></li><li><a href=#四启动客户端>四、启动客户端</a></li><li><a href=#五部署测试私链>五、部署测试私链</a></li><li><a href=#六部署自定义私链>六、部署自定义私链</a></li><li><a href=#七完整安装过程输出>七、完整安装过程输出</a></li></ol></nav></details></aside><section class=article-content><h1 id=geth部署私链测试网络><a href=#geth%e9%83%a8%e7%bd%b2%e7%a7%81%e9%93%be%e6%b5%8b%e8%af%95%e7%bd%91%e7%bb%9c class=header-anchor></a>Geth部署私链测试网络</h1><p>[TOC]</p><h2 id=一克隆仓库><a href=#%e4%b8%80%e5%85%8b%e9%9a%86%e4%bb%93%e5%ba%93 class=header-anchor></a>一、克隆仓库</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ git clone https://github.com/ethereum/go-ethereum.git
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ <span class=nb>cd</span> go-ethereum
+</span></span><span class=line><span class=cl>$ ls
+</span></span><span class=line><span class=cl>accounts      cmd        COPYING         Dockerfile.alltools  ethstats  interfaces.go  Makefile  oss-fuzz.sh  rpc          trie
+</span></span><span class=line><span class=cl>appveyor.yml  common     COPYING.LESSER  docs                 event     internal       metrics   p2p          SECURITY.md
+</span></span><span class=line><span class=cl>AUTHORS       consensus  core            eth                  go.mod    les            miner     params       signer
+</span></span><span class=line><span class=cl>build         console    crypto          ethclient            go.sum    light          mobile    README.md    swarm
+</span></span><span class=line><span class=cl>circle.yml    contracts  Dockerfile      ethdb                graphql   log            node      rlp          tests
+</span></span></code></pre></td></tr></table></div></div><h2 id=二安装geth><a href=#%e4%ba%8c%e5%ae%89%e8%a3%85geth class=header-anchor></a>二、安装Geth</h2><p>切换到稳定版本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 查找指定版本</span>
+</span></span><span class=line><span class=cl>git tag -l <span class=s2>&#34;v1.9.*&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1>#切换到指定版本</span>
+</span></span><span class=line><span class=cl>git checkout v1.9.25
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 安装完后切回主分支</span>
+</span></span><span class=line><span class=cl>git checkout master
+</span></span></code></pre></td></tr></table></div></div><p>编译安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ make geth
+</span></span><span class=line><span class=cl><span class=c1># 输出过程摘录，完整输出见文末</span>
+</span></span><span class=line><span class=cl>env <span class=nv>GO111MODULE</span><span class=o>=</span>on go run build/ci.go install ./cmd/geth
+</span></span><span class=line><span class=cl>go: downloading gopkg.in/yaml.v2 v2.4.0
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>internal/unsafeheader
+</span></span><span class=line><span class=cl>internal/cpu
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>Done building.
+</span></span><span class=line><span class=cl>Run <span class=s2>&#34;./build/bin/geth&#34;</span> to launch geth.
+</span></span></code></pre></td></tr></table></div></div><p><strong>可能遇到的错误</strong>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ make geth
+</span></span><span class=line><span class=cl>build/env.sh go run build/ci.go install ./cmd/geth
+</span></span><span class=line><span class=cl>: not foundh: 2: build/env.sh:
+</span></span><span class=line><span class=cl>build/env.sh: 3: set: Illegal option -
+</span></span><span class=line><span class=cl>Makefile:15: recipe <span class=k>for</span> target <span class=s1>&#39;geth&#39;</span> failed
+</span></span><span class=line><span class=cl>make:*** <span class=o>[</span>geth<span class=o>]</span> Error <span class=m>2</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>解决办法</strong>：</p><p>在<code>go-ethereum</code>目录下，打开<code>build/env.sh</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>vim build/env.sh
+</span></span></code></pre></td></tr></table></div></div><p>输入如下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>:set <span class=nv>ff</span><span class=o>=</span>unix
+</span></span><span class=line><span class=cl>:wq
+</span></span></code></pre></td></tr></table></div></div><h3 id=直接下载安装><a href=#%e7%9b%b4%e6%8e%a5%e4%b8%8b%e8%bd%bd%e5%ae%89%e8%a3%85 class=header-anchor></a>直接下载安装：</h3><p><a class=link href=https://geth.ethereum.org/downloads/ target=_blank rel=noopener>https://geth.ethereum.org/downloads/</a></p><h2 id=三测试安装><a href=#%e4%b8%89%e6%b5%8b%e8%af%95%e5%ae%89%e8%a3%85 class=header-anchor></a>三、测试安装</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 推荐将 ./build/bin/geth 对应目录加入环境变量</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ geth version
+</span></span><span class=line><span class=cl>Geth
+</span></span><span class=line><span class=cl>Version: 1.10.13-unstable
+</span></span><span class=line><span class=cl>Git Commit: 347c37b362dbcf1cd986a5b0000a9d67667f6bee
+</span></span><span class=line><span class=cl>Git Commit Date: <span class=m>20211123</span>
+</span></span><span class=line><span class=cl>Architecture: amd64
+</span></span><span class=line><span class=cl>Go Version: go1.16.9
+</span></span><span class=line><span class=cl>Operating System: linux
+</span></span><span class=line><span class=cl><span class=nv>GOPATH</span><span class=o>=</span>/root/go
+</span></span><span class=line><span class=cl><span class=nv>GOROOT</span><span class=o>=</span>/usr/local/go
+</span></span></code></pre></td></tr></table></div></div><h2 id=四启动客户端><a href=#%e5%9b%9b%e5%90%af%e5%8a%a8%e5%ae%a2%e6%88%b7%e7%ab%af class=header-anchor></a>四、启动客户端</h2><p>启动客户端，连接<strong>以太坊主网</strong>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>geth --datadir ./data
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 输出摘录</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.121<span class=o>]</span> Starting Geth on Ethereum mainnet...
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.121<span class=o>]</span> Bumping default cache on mainnet         <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>4096</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.125<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>50</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>50</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.125<span class=o>]</span> Smartcard socket not found, disabling    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;stat /run/pcscd/pcscd.comm: no such file or directory&#34;</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:51:27.128<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>4096</span> <span class=nv>updated</span><span class=o>=</span><span class=m>664</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.128<span class=o>]</span> Set global gas cap                       <span class=nv>cap</span><span class=o>=</span>50,000,000
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.128<span class=o>]</span> Allocated trie memory caches             <span class=nv>clean</span><span class=o>=</span>99.00MiB <span class=nv>dirty</span><span class=o>=</span>166.00MiB
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.128<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/data/geth/chaindata <span class=nv>cache</span><span class=o>=</span>332.00MiB <span class=nv>handles</span><span class=o>=</span><span class=m>32767</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.154<span class=o>]</span> Opened ancient database                  <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/data/geth/chaindata/ancient <span class=nv>readonly</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.154<span class=o>]</span> Writing default main-net genesis block
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.423<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>12356</span> <span class=nv>size</span><span class=o>=</span>1.78MiB <span class=nv>time</span><span class=o>=</span>64.108422ms <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.424<span class=o>]</span> Initialised chain configuration          <span class=nv>config</span><span class=o>=</span><span class=s2>&#34;{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000 Petersburg: 7280000 Istanbul: 9069000, Muir Glacier: 9200000, Berlin: 12244000, London: 12965000, Arrow Glacier: 13773000, Engine: ethash}&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.424<span class=o>]</span> Disk storage enabled <span class=k>for</span> ethash caches   <span class=nv>dir</span><span class=o>=</span>/root/go-ethereum/data/geth/ethash <span class=nv>count</span><span class=o>=</span><span class=m>3</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.424<span class=o>]</span> Disk storage enabled <span class=k>for</span> ethash DAGs     <span class=nv>dir</span><span class=o>=</span>/root/.ethash                      <span class=nv>count</span><span class=o>=</span><span class=m>2</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.424<span class=o>]</span> Initialising Ethereum protocol           <span class=nv>network</span><span class=o>=</span><span class=m>1</span> <span class=nv>dbversion</span><span class=o>=</span>&lt;nil&gt;
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.430<span class=o>]</span> Loaded most recent <span class=nb>local</span> header          <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>d4e567..cb8fa3 <span class=nv>td</span><span class=o>=</span>17,179,869,184 <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.430<span class=o>]</span> Loaded most recent <span class=nb>local</span> full block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>d4e567..cb8fa3 <span class=nv>td</span><span class=o>=</span>17,179,869,184 <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.430<span class=o>]</span> Loaded most recent <span class=nb>local</span> fast block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>d4e567..cb8fa3 <span class=nv>td</span><span class=o>=</span>17,179,869,184 <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:51:27.430<span class=o>]</span> Failed to load snapshot, regenerating    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;missing or corrupted snapshot&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.430<span class=o>]</span> Rebuilding state snapshot
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.431<span class=o>]</span> Regenerated <span class=nb>local</span> transaction journal    <span class=nv>transactions</span><span class=o>=</span><span class=m>0</span> <span class=nv>accounts</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.431<span class=o>]</span> Gasprice oracle is ignoring threshold <span class=nb>set</span> <span class=nv>threshold</span><span class=o>=</span><span class=m>2</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:51:27.431<span class=o>]</span> Error reading unclean shutdown markers   <span class=nv>error</span><span class=o>=</span><span class=s2>&#34;leveldb: not found&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.431<span class=o>]</span> Starting peer-to-peer node               <span class=nv>instance</span><span class=o>=</span>Geth/v1.10.13-unstable-347c37b3-20211123/linux-amd64/go1.16.9
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.445<span class=o>]</span> New <span class=nb>local</span> node record                    <span class=nv>seq</span><span class=o>=</span>1,637,671,887,444 <span class=nv>id</span><span class=o>=</span>c0b757529cd58dc4 <span class=nv>ip</span><span class=o>=</span>127.0.0.1 <span class=nv>udp</span><span class=o>=</span><span class=m>30303</span> <span class=nv>tcp</span><span class=o>=</span><span class=m>30303</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.446<span class=o>]</span> IPC endpoint opened                      <span class=nv>url</span><span class=o>=</span>/root/go-ethereum/data/geth.ipc
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.448<span class=o>]</span> Resuming state snapshot generation       <span class=nv>root</span><span class=o>=</span>d7f897..0f0544 <span class=nv>accounts</span><span class=o>=</span><span class=m>0</span> <span class=nv>slots</span><span class=o>=</span><span class=m>0</span> <span class=nv>storage</span><span class=o>=</span>0.00B <span class=nv>elapsed</span><span class=o>=</span>17.302ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.487<span class=o>]</span> Started P2P networking                   <span class=nv>self</span><span class=o>=</span>enode://1ef3dbd125852677e05c315f44aaba0b8ce72a28ce88454b0a140211a0c0fe7409530a2ca03fd8ba2d3125138ef729c687ff828bf51484c561c7da48c280d460@127.0.0.1:30303
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:27.657<span class=o>]</span> Generated state snapshot                 <span class=nv>accounts</span><span class=o>=</span><span class=m>8893</span> <span class=nv>slots</span><span class=o>=</span><span class=m>0</span> <span class=nv>storage</span><span class=o>=</span>409.64KiB <span class=nv>elapsed</span><span class=o>=</span>226.745ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:29.922<span class=o>]</span> New <span class=nb>local</span> node record                    <span class=nv>seq</span><span class=o>=</span>1,637,671,887,445 <span class=nv>id</span><span class=o>=</span>c0b757529cd58dc4 <span class=nv>ip</span><span class=o>=</span>119.23.209.135 <span class=nv>udp</span><span class=o>=</span><span class=m>30303</span> <span class=nv>tcp</span><span class=o>=</span><span class=m>30303</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:38.023<span class=o>]</span> Looking <span class=k>for</span> peers                        <span class=nv>peercount</span><span class=o>=</span><span class=m>0</span> <span class=nv>tried</span><span class=o>=</span><span class=m>13</span> <span class=nv>static</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:43.142<span class=o>]</span> Block synchronisation started
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:51:43.142<span class=o>]</span> Enabling snapshot sync prototype
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:48.528<span class=o>]</span> Looking <span class=k>for</span> peers                        <span class=nv>peercount</span><span class=o>=</span><span class=m>1</span> <span class=nv>tried</span><span class=o>=</span><span class=m>22</span> <span class=nv>static</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:58.977<span class=o>]</span> Looking <span class=k>for</span> peers                        <span class=nv>peercount</span><span class=o>=</span><span class=m>1</span> <span class=nv>tried</span><span class=o>=</span><span class=m>29</span> <span class=nv>static</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:59.111<span class=o>]</span> Imported new block headers               <span class=nv>count</span><span class=o>=</span><span class=m>192</span> <span class=nv>elapsed</span><span class=o>=</span>943.217ms <span class=nv>number</span><span class=o>=</span><span class=m>192</span> <span class=nv>hash</span><span class=o>=</span>723899..123390 <span class=nv>age</span><span class=o>=</span>6y4mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:59.112<span class=o>]</span> Downloader queue stats                   <span class=nv>receiptTasks</span><span class=o>=</span><span class=m>0</span> <span class=nv>blockTasks</span><span class=o>=</span><span class=m>189</span> <span class=nv>itemSize</span><span class=o>=</span>111.09B <span class=nv>throttle</span><span class=o>=</span><span class=m>8192</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:59.112<span class=o>]</span> Wrote genesis to ancients
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:51:59.146<span class=o>]</span> Imported new block receipts              <span class=nv>count</span><span class=o>=</span><span class=m>2</span>   <span class=nv>elapsed</span><span class=o>=</span>33.862ms  <span class=nv>number</span><span class=o>=</span><span class=m>2</span>   <span class=nv>hash</span><span class=o>=</span>b495a1..4698c9 <span class=nv>age</span><span class=o>=</span>6y4mo3w  <span class=nv>size</span><span class=o>=</span>926.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:03.062<span class=o>]</span> State sync in progress                   <span class=nv>synced</span><span class=o>=</span>+Inf% <span class=nv>state</span><span class=o>=</span>46.54KiB <span class=nv>accounts</span><span class=o>=</span>0@0.00B <span class=nv>slots</span><span class=o>=</span>221@46.54KiB <span class=nv>codes</span><span class=o>=</span>0@0.00B <span class=nv>eta</span><span class=o>=</span>-9.530s
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:03.661<span class=o>]</span> Imported new block headers               <span class=nv>count</span><span class=o>=</span><span class=m>192</span> <span class=nv>elapsed</span><span class=o>=</span>22.627ms  <span class=nv>number</span><span class=o>=</span><span class=m>384</span> <span class=nv>hash</span><span class=o>=</span>d3d5d5..c79cf3 <span class=nv>age</span><span class=o>=</span>6y4mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:03.669<span class=o>]</span> Imported new block receipts              <span class=nv>count</span><span class=o>=</span><span class=m>1</span>   <span class=nv>elapsed</span><span class=o>=</span>30.635ms  <span class=nv>number</span><span class=o>=</span><span class=m>3</span>   <span class=nv>hash</span><span class=o>=</span>3d6122..8cf741 <span class=nv>age</span><span class=o>=</span>6y4mo3w  <span class=nv>size</span><span class=o>=</span>632.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:09.022<span class=o>]</span> Looking <span class=k>for</span> peers                        <span class=nv>peercount</span><span class=o>=</span><span class=m>1</span> <span class=nv>tried</span><span class=o>=</span><span class=m>20</span> <span class=nv>static</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>^CINFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.327<span class=o>]</span> Got interrupt, shutting down...
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.327<span class=o>]</span> IPC endpoint closed                      <span class=nv>url</span><span class=o>=</span>/root/go-ethereum/data/geth.ipc
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:52:11.328<span class=o>]</span> Rewinding blockchain                     <span class=nv>target</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.338<span class=o>]</span> Loaded most recent <span class=nb>local</span> header          <span class=nv>number</span><span class=o>=</span><span class=m>0</span>   <span class=nv>hash</span><span class=o>=</span>d4e567..cb8fa3 <span class=nv>td</span><span class=o>=</span>17,179,869,184 <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.338<span class=o>]</span> Loaded most recent <span class=nb>local</span> full block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span>   <span class=nv>hash</span><span class=o>=</span>d4e567..cb8fa3 <span class=nv>td</span><span class=o>=</span>17,179,869,184 <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.338<span class=o>]</span> Loaded most recent <span class=nb>local</span> fast block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span>   <span class=nv>hash</span><span class=o>=</span>d4e567..cb8fa3 <span class=nv>td</span><span class=o>=</span>17,179,869,184 <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.338<span class=o>]</span> Loaded last fast-sync pivot marker       <span class=nv>number</span><span class=o>=</span>13,670,875
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:52:11.338<span class=o>]</span> Rolled back chain segment                <span class=nv>header</span><span class=o>=</span>384-&gt;0 <span class=nv>fast</span><span class=o>=</span>3-&gt;0 <span class=nv>block</span><span class=o>=</span>0-&gt;0 <span class=nv>reason</span><span class=o>=</span><span class=s2>&#34;syncing canceled (requested)&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.339<span class=o>]</span> State sync in progress                   <span class=nv>synced</span><span class=o>=</span>+Inf% <span class=nv>state</span><span class=o>=</span>52.97KiB <span class=nv>accounts</span><span class=o>=</span>0@0.00B <span class=nv>slots</span><span class=o>=</span>221@46.54KiB <span class=nv>codes</span><span class=o>=</span>1@6.42KiB <span class=nv>eta</span><span class=o>=</span>-17.806s
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>20:52:11.339<span class=o>]</span> Synchronisation failed, dropping peer    <span class=nv>peer</span><span class=o>=</span>83f472d81bfee4930e85212f1f1b95e3f81888166c249066c65771116bd79fea <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;retrieved hash chain is invalid: syncing canceled (requested)&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.339<span class=o>]</span> Ethereum protocol stopped
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.340<span class=o>]</span> Transaction pool stopped
+</span></span><span class=line><span class=cl>ERROR<span class=o>[</span>11-23<span class=p>|</span>20:52:11.340<span class=o>]</span> Failed to journal state snapshot         <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;snapshot [0xd7f8974fb5ac78d9ac099b9ad5018bedc2ce0a72dad1827a1709da30580f0544] missing&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.340<span class=o>]</span> Writing clean trie cache to disk         <span class=nv>path</span><span class=o>=</span>/root/go-ethereum/data/geth/triecache <span class=nv>threads</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.362<span class=o>]</span> Persisted the clean trie cache           <span class=nv>path</span><span class=o>=</span>/root/go-ethereum/data/geth/triecache <span class=nv>elapsed</span><span class=o>=</span>22.364ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>20:52:11.362<span class=o>]</span> Blockchain stopped
+</span></span></code></pre></td></tr></table></div></div><h2 id=五部署测试私链><a href=#%e4%ba%94%e9%83%a8%e7%bd%b2%e6%b5%8b%e8%af%95%e7%a7%81%e9%93%be class=header-anchor></a>五、部署测试私链</h2><p>直接部署，启动，并进行交互（<strong>推荐</strong>）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>geth --datadir ./devtest --dev console
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 输出摘录</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.026<span class=o>]</span> Starting Geth in ephemeral dev mode...
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.029<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>50</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>50</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.029<span class=o>]</span> Smartcard socket not found, disabling    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;stat /run/pcscd/pcscd.comm: no such file or directory&#34;</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>08:46:12.032<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>664</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.033<span class=o>]</span> Set global gas cap                       <span class=nv>cap</span><span class=o>=</span>50,000,000
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.298<span class=o>]</span> Using developer account                  <span class=nv>address</span><span class=o>=</span>0x8DD63Ad2EA49Dff3CF423b71381A3c355d653C85
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.298<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/devtest/geth/chaindata <span class=nv>cache</span><span class=o>=</span>332.00MiB <span class=nv>handles</span><span class=o>=</span><span class=m>32767</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.321<span class=o>]</span> Opened ancient database                  <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/devtest/geth/chaindata/ancient <span class=nv>readonly</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.321<span class=o>]</span> Freezer shutting down
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.322<span class=o>]</span> Allocated trie memory caches             <span class=nv>clean</span><span class=o>=</span>99.00MiB <span class=nv>dirty</span><span class=o>=</span>166.00MiB
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.322<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/devtest/geth/chaindata <span class=nv>cache</span><span class=o>=</span>332.00MiB <span class=nv>handles</span><span class=o>=</span><span class=m>32767</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.384<span class=o>]</span> Opened ancient database                  <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/devtest/geth/chaindata/ancient <span class=nv>readonly</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.384<span class=o>]</span> Writing custom genesis block
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.385<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>12</span> <span class=nv>size</span><span class=o>=</span>1.82KiB <span class=nv>time</span><span class=o>=</span><span class=s2>&#34;109.24µs&#34;</span> <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.385<span class=o>]</span> Initialised chain configuration          <span class=nv>config</span><span class=o>=</span><span class=s2>&#34;{ChainID: 1337 Homestead: 0 DAO: &lt;nil&gt; DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: 0, Berlin: 0, London: 0, Arrow Glacier: &lt;nil&gt;, Engine: clique}&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.385<span class=o>]</span> Initialising Ethereum protocol           <span class=nv>network</span><span class=o>=</span><span class=m>1337</span> <span class=nv>dbversion</span><span class=o>=</span>&lt;nil&gt;
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.386<span class=o>]</span> Loaded most recent <span class=nb>local</span> header          <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>a0a7c0..729dfa <span class=nv>td</span><span class=o>=</span><span class=m>1</span> <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.386<span class=o>]</span> Loaded most recent <span class=nb>local</span> full block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>a0a7c0..729dfa <span class=nv>td</span><span class=o>=</span><span class=m>1</span> <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.386<span class=o>]</span> Loaded most recent <span class=nb>local</span> fast block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>a0a7c0..729dfa <span class=nv>td</span><span class=o>=</span><span class=m>1</span> <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>08:46:12.386<span class=o>]</span> Failed to load snapshot, regenerating    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;missing or corrupted snapshot&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.386<span class=o>]</span> Rebuilding state snapshot
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.387<span class=o>]</span> Regenerated <span class=nb>local</span> transaction journal    <span class=nv>transactions</span><span class=o>=</span><span class=m>0</span> <span class=nv>accounts</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.387<span class=o>]</span> Gasprice oracle is ignoring threshold <span class=nb>set</span> <span class=nv>threshold</span><span class=o>=</span><span class=m>2</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>08:46:12.387<span class=o>]</span> Error reading unclean shutdown markers   <span class=nv>error</span><span class=o>=</span><span class=s2>&#34;leveldb: not found&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.387<span class=o>]</span> Starting peer-to-peer node               <span class=nv>instance</span><span class=o>=</span>Geth/v1.10.13-unstable-7322b259-20211124/linux-amd64/go1.16.9
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>08:46:12.387<span class=o>]</span> P2P server will be useless, neither dialing nor listening
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.388<span class=o>]</span> Resuming state snapshot generation       <span class=nv>root</span><span class=o>=</span>d95b8b..c823f6 <span class=nv>accounts</span><span class=o>=</span><span class=m>0</span> <span class=nv>slots</span><span class=o>=</span><span class=m>0</span> <span class=nv>storage</span><span class=o>=</span>0.00B <span class=nv>elapsed</span><span class=o>=</span>1.819ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.389<span class=o>]</span> Generated state snapshot                 <span class=nv>accounts</span><span class=o>=</span><span class=m>10</span> <span class=nv>slots</span><span class=o>=</span><span class=m>0</span> <span class=nv>storage</span><span class=o>=</span>412.00B <span class=nv>elapsed</span><span class=o>=</span>2.257ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.389<span class=o>]</span> Stored checkpoint snapshot to disk       <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>a0a7c0..729dfa
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.401<span class=o>]</span> IPC endpoint opened                      <span class=nv>url</span><span class=o>=</span>/root/go-ethereum/devtest/geth.ipc
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.402<span class=o>]</span> Transaction pool price threshold updated <span class=nv>price</span><span class=o>=</span>1,000,000,000
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.402<span class=o>]</span> Transaction pool price threshold updated <span class=nv>price</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.402<span class=o>]</span> Etherbase automatically configured       <span class=nv>address</span><span class=o>=</span>0x8DD63Ad2EA49Dff3CF423b71381A3c355d653C85
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.404<span class=o>]</span> New <span class=nb>local</span> node record                    <span class=nv>seq</span><span class=o>=</span>1,637,714,772,401 <span class=nv>id</span><span class=o>=</span>dccd53e5f082d349 <span class=nv>ip</span><span class=o>=</span>127.0.0.1 <span class=nv>udp</span><span class=o>=</span><span class=m>0</span> <span class=nv>tcp</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.405<span class=o>]</span> Started P2P networking                   <span class=nv>self</span><span class=o>=</span>enode://7bea999ff64bec0868ae588c5369e476a4e7062771145950e149d46c0bd3850b440ad9398093cd366963c2bd7c142ac9a846af3eca6b393e9380f6da593623cb@127.0.0.1:0
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:12.405<span class=o>]</span> Commit new mining work                   <span class=nv>number</span><span class=o>=</span><span class=m>1</span> <span class=nv>sealhash</span><span class=o>=</span>b73ff4..f40f98 <span class=nv>uncles</span><span class=o>=</span><span class=m>0</span> <span class=nv>txs</span><span class=o>=</span><span class=m>0</span> <span class=nv>gas</span><span class=o>=</span><span class=m>0</span> <span class=nv>fees</span><span class=o>=</span><span class=m>0</span> <span class=nv>elapsed</span><span class=o>=</span><span class=s2>&#34;84.106µs&#34;</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>08:46:12.405<span class=o>]</span> Block sealing failed                     <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;sealing paused while waiting for transactions&#34;</span>
+</span></span><span class=line><span class=cl>Welcome to the Geth JavaScript console!
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>instance: Geth/v1.10.13-unstable-7322b259-20211124/linux-amd64/go1.16.9
+</span></span><span class=line><span class=cl>coinbase: 0x8dd63ad2ea49dff3cf423b71381a3c355d653c85
+</span></span><span class=line><span class=cl>at block: <span class=m>0</span> <span class=o>(</span>Thu Jan <span class=m>01</span> <span class=m>1970</span> 08:00:00 GMT+0800 <span class=o>(</span>CST<span class=o>))</span>
+</span></span><span class=line><span class=cl> datadir: /root/go-ethereum/devtest
+</span></span><span class=line><span class=cl> modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>To exit, press ctrl-d or <span class=nb>type</span> <span class=nb>exit</span>
+</span></span><span class=line><span class=cl>&gt; eth.accounts
+</span></span><span class=line><span class=cl><span class=o>[</span><span class=s2>&#34;0x8dd63ad2ea49dff3cf423b71381a3c355d653c85&#34;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl>&gt; INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.360<span class=o>]</span> IPC endpoint closed                      <span class=nv>url</span><span class=o>=</span>/root/go-ethereum/devtest/geth.ipc
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.360<span class=o>]</span> Ethereum protocol stopped
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.360<span class=o>]</span> Transaction pool stopped
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.360<span class=o>]</span> Writing snapshot state to disk           <span class=nv>root</span><span class=o>=</span>d95b8b..c823f6
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.360<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>0</span>  <span class=nv>size</span><span class=o>=</span>0.00B   <span class=nv>time</span><span class=o>=</span><span class=s2>&#34;5.182µs&#34;</span>  <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.361<span class=o>]</span> Writing clean trie cache to disk         <span class=nv>path</span><span class=o>=</span>/root/go-ethereum/devtest/geth/triecache <span class=nv>threads</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.362<span class=o>]</span> Persisted the clean trie cache           <span class=nv>path</span><span class=o>=</span>/root/go-ethereum/devtest/geth/triecache <span class=nv>elapsed</span><span class=o>=</span><span class=s2>&#34;992.027µs&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>08:46:19.362<span class=o>]</span> Blockchain stopped
+</span></span></code></pre></td></tr></table></div></div><h2 id=六部署自定义私链><a href=#%e5%85%ad%e9%83%a8%e7%bd%b2%e8%87%aa%e5%ae%9a%e4%b9%89%e7%a7%81%e9%93%be class=header-anchor></a>六、部署自定义私链</h2><p>新建<code>testChan</code>目录，用于存放测试数据：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>mkdir testChain
+</span></span><span class=line><span class=cl><span class=nb>cd</span> testChain
+</span></span></code></pre></td></tr></table></div></div><p>创建<code>genesis.json</code>文件，表示网络的创世状态：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;config&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;chainId&#34;</span><span class=p>:</span> <span class=mi>689</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;difficulty&#34;</span><span class=p>:</span> <span class=s2>&#34;2000&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;gasLimit&#34;</span><span class=p>:</span> <span class=s2>&#34;2100000&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;alloc&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;0xb8152CcB7F54deFc9e4AbE55605037c7D6214BE4&#34;</span><span class=p>:</span> <span class=p>{</span> <span class=nt>&#34;balance&#34;</span><span class=p>:</span> <span class=s2>&#34;6897186000000000000000000&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>参数及说明：<a class=link href=https://learnblockchain.cn/books/geth/part1/genesis.html target=_blank rel=noopener>以太坊创世区块</a></p></blockquote><p><strong>初始化</strong>私链：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>geth --datadir . init genesis.json
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 输出摘录</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.421<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>50</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>50</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.421<span class=o>]</span> Smartcard socket not found, disabling    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;stat /run/pcscd/pcscd.comm: no such file or directory&#34;</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-23<span class=p>|</span>23:50:40.423<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>664</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.423<span class=o>]</span> Set global gas cap                       <span class=nv>cap</span><span class=o>=</span>50,000,000
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.423<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/testChain/geth/chaindata <span class=nv>cache</span><span class=o>=</span>16.00MiB <span class=nv>handles</span><span class=o>=</span><span class=m>16</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.437<span class=o>]</span> Writing custom genesis block
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.437<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>size</span><span class=o>=</span>150.00B <span class=nv>time</span><span class=o>=</span><span class=s2>&#34;45.77µs&#34;</span> <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.453<span class=o>]</span> Successfully wrote genesis state         <span class=nv>database</span><span class=o>=</span>chaindata <span class=nv>hash</span><span class=o>=</span>4c5cc4..48a8b9
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.453<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/testChain/geth/lightchaindata <span class=nv>cache</span><span class=o>=</span>16.00MiB <span class=nv>handles</span><span class=o>=</span><span class=m>16</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.463<span class=o>]</span> Writing custom genesis block
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.463<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>size</span><span class=o>=</span>150.00B <span class=nv>time</span><span class=o>=</span><span class=s2>&#34;46.704µs&#34;</span> <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-23<span class=p>|</span>23:50:40.464<span class=o>]</span> Successfully wrote genesis state         <span class=nv>database</span><span class=o>=</span>lightchaindata <span class=nv>hash</span><span class=o>=</span>4c5cc4..48a8b9
+</span></span></code></pre></td></tr></table></div></div><p><strong>启动</strong>私链：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>geth --datadir . --networkid <span class=m>689</span> --http --http.addr 0.0.0.0 --nodiscover --allow-insecure-unlock console 2&gt;output.log
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 输出摘录</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.926<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>50</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>50</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.927<span class=o>]</span> Smartcard socket not found, disabling    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;stat /run/pcscd/pcscd.comm: no such file or directory&#34;</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>00:11:11.929<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>664</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.929<span class=o>]</span> Snap sync requested, enabling --snapshot
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.929<span class=o>]</span> Set global gas cap                       <span class=nv>cap</span><span class=o>=</span>50,000,000
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.929<span class=o>]</span> Allocated trie memory caches             <span class=nv>clean</span><span class=o>=</span>99.00MiB <span class=nv>dirty</span><span class=o>=</span>166.00MiB
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.929<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/testChain/geth/chaindata <span class=nv>cache</span><span class=o>=</span>332.00MiB <span class=nv>handles</span><span class=o>=</span><span class=m>32767</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.960<span class=o>]</span> Opened ancient database                  <span class=nv>database</span><span class=o>=</span>/root/go-ethereum/testChain/geth/chaindata/ancient <span class=nv>readonly</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.961<span class=o>]</span> Initialised chain configuration          <span class=nv>config</span><span class=o>=</span><span class=s2>&#34;{ChainID: 689 Homestead: &lt;nil&gt; DAO: &lt;nil&gt; DAOSupport: false EIP150: &lt;nil&gt; EIP155: &lt;nil&gt; EIP158: &lt;nil&gt; Byzantium: &lt;nil&gt; Constantinople: &lt;nil&gt; Petersburg: &lt;nil&gt; Istanbul: &lt;nil&gt;, Muir Glacier: &lt;nil&gt;, Berlin: &lt;nil&gt;, London: &lt;nil&gt;, Arrow Glacier: &lt;nil&gt;, Engine: unknown}&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.961<span class=o>]</span> Disk storage enabled <span class=k>for</span> ethash caches   <span class=nv>dir</span><span class=o>=</span>/root/go-ethereum/testChain/geth/ethash <span class=nv>count</span><span class=o>=</span><span class=m>3</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.961<span class=o>]</span> Disk storage enabled <span class=k>for</span> ethash DAGs     <span class=nv>dir</span><span class=o>=</span>/root/.ethash                           <span class=nv>count</span><span class=o>=</span><span class=m>2</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.961<span class=o>]</span> Initialising Ethereum protocol           <span class=nv>network</span><span class=o>=</span><span class=m>689</span> <span class=nv>dbversion</span><span class=o>=</span>&lt;nil&gt;
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.963<span class=o>]</span> Loaded most recent <span class=nb>local</span> header          <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>4c5cc4..48a8b9 <span class=nv>td</span><span class=o>=</span><span class=m>2000</span> <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.963<span class=o>]</span> Loaded most recent <span class=nb>local</span> full block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>4c5cc4..48a8b9 <span class=nv>td</span><span class=o>=</span><span class=m>2000</span> <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.963<span class=o>]</span> Loaded most recent <span class=nb>local</span> fast block      <span class=nv>number</span><span class=o>=</span><span class=m>0</span> <span class=nv>hash</span><span class=o>=</span>4c5cc4..48a8b9 <span class=nv>td</span><span class=o>=</span><span class=m>2000</span> <span class=nv>age</span><span class=o>=</span>52y7mo3w
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>00:11:11.963<span class=o>]</span> Failed to load snapshot, regenerating    <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;missing or corrupted snapshot&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.963<span class=o>]</span> Rebuilding state snapshot
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.964<span class=o>]</span> Regenerated <span class=nb>local</span> transaction journal    <span class=nv>transactions</span><span class=o>=</span><span class=m>0</span> <span class=nv>accounts</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.964<span class=o>]</span> Gasprice oracle is ignoring threshold <span class=nb>set</span> <span class=nv>threshold</span><span class=o>=</span><span class=m>2</span>
+</span></span><span class=line><span class=cl>WARN <span class=o>[</span>11-24<span class=p>|</span>00:11:11.964<span class=o>]</span> Error reading unclean shutdown markers   <span class=nv>error</span><span class=o>=</span><span class=s2>&#34;leveldb: not found&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.965<span class=o>]</span> Starting peer-to-peer node               <span class=nv>instance</span><span class=o>=</span>Geth/v1.10.13-unstable-347c37b3-20211123/linux-amd64/go1.16.9
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.966<span class=o>]</span> Resuming state snapshot generation       <span class=nv>root</span><span class=o>=</span>c0494c..19152e <span class=nv>accounts</span><span class=o>=</span><span class=m>0</span> <span class=nv>slots</span><span class=o>=</span><span class=m>0</span> <span class=nv>storage</span><span class=o>=</span>0.00B <span class=nv>elapsed</span><span class=o>=</span>2.650ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.966<span class=o>]</span> Generated state snapshot                 <span class=nv>accounts</span><span class=o>=</span><span class=m>1</span> <span class=nv>slots</span><span class=o>=</span><span class=m>0</span> <span class=nv>storage</span><span class=o>=</span>49.00B <span class=nv>elapsed</span><span class=o>=</span>3.122ms
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.978<span class=o>]</span> New <span class=nb>local</span> node record                    <span class=nv>seq</span><span class=o>=</span>1,637,683,871,977 <span class=nv>id</span><span class=o>=</span>7818561120f976ae <span class=nv>ip</span><span class=o>=</span>127.0.0.1 <span class=nv>udp</span><span class=o>=</span><span class=m>30303</span> <span class=nv>tcp</span><span class=o>=</span><span class=m>30303</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.980<span class=o>]</span> IPC endpoint opened                      <span class=nv>url</span><span class=o>=</span>/root/go-ethereum/testChain/geth.ipc
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:11.981<span class=o>]</span> Started P2P networking                   <span class=nv>self</span><span class=o>=</span>enode://d425f111d8d46021152573c649b265693f053b2975d1dc657e7a049fa8675609afcf431a539edea24ac271db168351061f2a0465c2f6ed2de67d768195bd4a3f@127.0.0.1:30303
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:13.105<span class=o>]</span> New <span class=nb>local</span> node record                    <span class=nv>seq</span><span class=o>=</span>1,637,683,871,978 <span class=nv>id</span><span class=o>=</span>7818561120f976ae <span class=nv>ip</span><span class=o>=</span>119.23.209.135 <span class=nv>udp</span><span class=o>=</span><span class=m>30303</span> <span class=nv>tcp</span><span class=o>=</span><span class=m>30303</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:58.255<span class=o>]</span> Looking <span class=k>for</span> peers                        <span class=nv>peercount</span><span class=o>=</span><span class=m>0</span> <span class=nv>tried</span><span class=o>=</span><span class=m>48</span> <span class=nv>static</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>ERROR<span class=o>[</span>11-24<span class=p>|</span>00:11:58.436<span class=o>]</span> Snapshot extension registration failed   <span class=nv>peer</span><span class=o>=</span>a6c868a1 <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;peer connected on snap without compatible eth support&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:58.489<span class=o>]</span> Looking <span class=k>for</span> peers                        <span class=nv>peercount</span><span class=o>=</span><span class=m>0</span> <span class=nv>tried</span><span class=o>=</span><span class=m>42</span> <span class=nv>static</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>^CINFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.563<span class=o>]</span> Got interrupt, shutting down...
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.563<span class=o>]</span> IPC endpoint closed                      <span class=nv>url</span><span class=o>=</span>/root/go-ethereum/testChain/geth.ipc
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.563<span class=o>]</span> Ethereum protocol stopped
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.563<span class=o>]</span> Transaction pool stopped
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.563<span class=o>]</span> Writing snapshot state to disk           <span class=nv>root</span><span class=o>=</span>c0494c..19152e
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.563<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>size</span><span class=o>=</span>0.00B <span class=nv>time</span><span class=o>=</span><span class=s2>&#34;5.661µs&#34;</span> <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.564<span class=o>]</span> Writing clean trie cache to disk         <span class=nv>path</span><span class=o>=</span>/root/go-ethereum/testChain/geth/triecache <span class=nv>threads</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.564<span class=o>]</span> Persisted the clean trie cache           <span class=nv>path</span><span class=o>=</span>/root/go-ethereum/testChain/geth/triecache <span class=nv>elapsed</span><span class=o>=</span><span class=s2>&#34;567.262µs&#34;</span>
+</span></span><span class=line><span class=cl>INFO <span class=o>[</span>11-24<span class=p>|</span>00:11:59.564<span class=o>]</span> Blockchain stopped
+</span></span></code></pre></td></tr></table></div></div><p>存在的<strong>错误</strong>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>ERROR<span class=o>[</span>11-24<span class=p>|</span>08:39:58.084<span class=o>]</span> Snapshot extension registration failed   <span class=nv>peer</span><span class=o>=</span>a6c868a1 <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;peer connected on snap without compatible eth support&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>解决方法<strong>未知</strong></p><h2 id=七完整安装过程输出><a href=#%e4%b8%83%e5%ae%8c%e6%95%b4%e5%ae%89%e8%a3%85%e8%bf%87%e7%a8%8b%e8%be%93%e5%87%ba class=header-anchor></a>七、完整安装过程输出</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span><span class=lnt>272
+</span><span class=lnt>273
+</span><span class=lnt>274
+</span><span class=lnt>275
+</span><span class=lnt>276
+</span><span class=lnt>277
+</span><span class=lnt>278
+</span><span class=lnt>279
+</span><span class=lnt>280
+</span><span class=lnt>281
+</span><span class=lnt>282
+</span><span class=lnt>283
+</span><span class=lnt>284
+</span><span class=lnt>285
+</span><span class=lnt>286
+</span><span class=lnt>287
+</span><span class=lnt>288
+</span><span class=lnt>289
+</span><span class=lnt>290
+</span><span class=lnt>291
+</span><span class=lnt>292
+</span><span class=lnt>293
+</span><span class=lnt>294
+</span><span class=lnt>295
+</span><span class=lnt>296
+</span><span class=lnt>297
+</span><span class=lnt>298
+</span><span class=lnt>299
+</span><span class=lnt>300
+</span><span class=lnt>301
+</span><span class=lnt>302
+</span><span class=lnt>303
+</span><span class=lnt>304
+</span><span class=lnt>305
+</span><span class=lnt>306
+</span><span class=lnt>307
+</span><span class=lnt>308
+</span><span class=lnt>309
+</span><span class=lnt>310
+</span><span class=lnt>311
+</span><span class=lnt>312
+</span><span class=lnt>313
+</span><span class=lnt>314
+</span><span class=lnt>315
+</span><span class=lnt>316
+</span><span class=lnt>317
+</span><span class=lnt>318
+</span><span class=lnt>319
+</span><span class=lnt>320
+</span><span class=lnt>321
+</span><span class=lnt>322
+</span><span class=lnt>323
+</span><span class=lnt>324
+</span><span class=lnt>325
+</span><span class=lnt>326
+</span><span class=lnt>327
+</span><span class=lnt>328
+</span><span class=lnt>329
+</span><span class=lnt>330
+</span><span class=lnt>331
+</span><span class=lnt>332
+</span><span class=lnt>333
+</span><span class=lnt>334
+</span><span class=lnt>335
+</span><span class=lnt>336
+</span><span class=lnt>337
+</span><span class=lnt>338
+</span><span class=lnt>339
+</span><span class=lnt>340
+</span><span class=lnt>341
+</span><span class=lnt>342
+</span><span class=lnt>343
+</span><span class=lnt>344
+</span><span class=lnt>345
+</span><span class=lnt>346
+</span><span class=lnt>347
+</span><span class=lnt>348
+</span><span class=lnt>349
+</span><span class=lnt>350
+</span><span class=lnt>351
+</span><span class=lnt>352
+</span><span class=lnt>353
+</span><span class=lnt>354
+</span><span class=lnt>355
+</span><span class=lnt>356
+</span><span class=lnt>357
+</span><span class=lnt>358
+</span><span class=lnt>359
+</span><span class=lnt>360
+</span><span class=lnt>361
+</span><span class=lnt>362
+</span><span class=lnt>363
+</span><span class=lnt>364
+</span><span class=lnt>365
+</span><span class=lnt>366
+</span><span class=lnt>367
+</span><span class=lnt>368
+</span><span class=lnt>369
+</span><span class=lnt>370
+</span><span class=lnt>371
+</span><span class=lnt>372
+</span><span class=lnt>373
+</span><span class=lnt>374
+</span><span class=lnt>375
+</span><span class=lnt>376
+</span><span class=lnt>377
+</span><span class=lnt>378
+</span><span class=lnt>379
+</span><span class=lnt>380
+</span><span class=lnt>381
+</span><span class=lnt>382
+</span><span class=lnt>383
+</span><span class=lnt>384
+</span><span class=lnt>385
+</span><span class=lnt>386
+</span><span class=lnt>387
+</span><span class=lnt>388
+</span><span class=lnt>389
+</span><span class=lnt>390
+</span><span class=lnt>391
+</span><span class=lnt>392
+</span><span class=lnt>393
+</span><span class=lnt>394
+</span><span class=lnt>395
+</span><span class=lnt>396
+</span><span class=lnt>397
+</span><span class=lnt>398
+</span><span class=lnt>399
+</span><span class=lnt>400
+</span><span class=lnt>401
+</span><span class=lnt>402
+</span><span class=lnt>403
+</span><span class=lnt>404
+</span><span class=lnt>405
+</span><span class=lnt>406
+</span><span class=lnt>407
+</span><span class=lnt>408
+</span><span class=lnt>409
+</span><span class=lnt>410
+</span><span class=lnt>411
+</span><span class=lnt>412
+</span><span class=lnt>413
+</span><span class=lnt>414
+</span><span class=lnt>415
+</span><span class=lnt>416
+</span><span class=lnt>417
+</span><span class=lnt>418
+</span><span class=lnt>419
+</span><span class=lnt>420
+</span><span class=lnt>421
+</span><span class=lnt>422
+</span><span class=lnt>423
+</span><span class=lnt>424
+</span><span class=lnt>425
+</span><span class=lnt>426
+</span><span class=lnt>427
+</span><span class=lnt>428
+</span><span class=lnt>429
+</span><span class=lnt>430
+</span><span class=lnt>431
+</span><span class=lnt>432
+</span><span class=lnt>433
+</span><span class=lnt>434
+</span><span class=lnt>435
+</span><span class=lnt>436
+</span><span class=lnt>437
+</span><span class=lnt>438
+</span><span class=lnt>439
+</span><span class=lnt>440
+</span><span class=lnt>441
+</span><span class=lnt>442
+</span><span class=lnt>443
+</span><span class=lnt>444
+</span><span class=lnt>445
+</span><span class=lnt>446
+</span><span class=lnt>447
+</span><span class=lnt>448
+</span><span class=lnt>449
+</span><span class=lnt>450
+</span><span class=lnt>451
+</span><span class=lnt>452
+</span><span class=lnt>453
+</span><span class=lnt>454
+</span><span class=lnt>455
+</span><span class=lnt>456
+</span><span class=lnt>457
+</span><span class=lnt>458
+</span><span class=lnt>459
+</span><span class=lnt>460
+</span><span class=lnt>461
+</span><span class=lnt>462
+</span><span class=lnt>463
+</span><span class=lnt>464
+</span><span class=lnt>465
+</span><span class=lnt>466
+</span><span class=lnt>467
+</span><span class=lnt>468
+</span><span class=lnt>469
+</span><span class=lnt>470
+</span><span class=lnt>471
+</span><span class=lnt>472
+</span><span class=lnt>473
+</span><span class=lnt>474
+</span><span class=lnt>475
+</span><span class=lnt>476
+</span><span class=lnt>477
+</span><span class=lnt>478
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>env <span class=nv>GO111MODULE</span><span class=o>=</span>on go run build/ci.go install ./cmd/geth
+</span></span><span class=line><span class=cl>go: downloading github.com/cespare/cp v0.1.0
+</span></span><span class=line><span class=cl>go: downloading github.com/Azure/azure-storage-blob-go v0.7.0
+</span></span><span class=line><span class=cl>go: downloading golang.org/x/crypto v0.0.0-20210322153248-0c34fe9e7dc2
+</span></span><span class=line><span class=cl>go: downloading github.com/Azure/azure-pipeline-go v0.2.2
+</span></span><span class=line><span class=cl>go: downloading github.com/mattn/go-ieproxy v0.0.0-20190702010315-6dee0af9227d
+</span></span><span class=line><span class=cl>&gt;&gt;&gt; /usr/local/go/bin/go build -ldflags -X main.gitCommit<span class=o>=</span>347c37b362dbcf1cd986a5b0000a9d67667f6bee -X main.gitDate<span class=o>=</span><span class=m>20211123</span> -extldflags -Wl,-z,stack-size<span class=o>=</span>0x800000 -trimpath -v -o /root/go-ethereum/build/bin/geth ./cmd/geth
+</span></span><span class=line><span class=cl>go: downloading github.com/jedisct1/go-minisign v0.0.0-20190909160543-45766022959e
+</span></span><span class=line><span class=cl>go: downloading github.com/naoina/toml v0.1.2-0.20170918210437-9fafd6967416
+</span></span><span class=line><span class=cl>go: downloading gopkg.in/urfave/cli.v1 v1.20.0
+</span></span><span class=line><span class=cl>go: downloading github.com/deckarep/golang-set v0.0.0-20180603214616-504e848d77ea
+</span></span><span class=line><span class=cl>go: downloading github.com/google/uuid v1.1.5
+</span></span><span class=line><span class=cl>go: downloading github.com/rjeczalik/notify v0.9.1
+</span></span><span class=line><span class=cl>go: downloading github.com/gballet/go-libpcsclite v0.0.0-20190607065134-2772fd86a8ff
+</span></span><span class=line><span class=cl>go: downloading github.com/status-im/keycard-go v0.0.0-20190316090335-8537d3370df4
+</span></span><span class=line><span class=cl>go: downloading github.com/golang/protobuf v1.4.3
+</span></span><span class=line><span class=cl>go: downloading github.com/karalabe/usb v0.0.0-20211005121534-4c5740d64559
+</span></span><span class=line><span class=cl>go: downloading github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible
+</span></span><span class=line><span class=cl>go: downloading golang.org/x/sys v0.0.0-20210816183151-1e6c022a8912
+</span></span><span class=line><span class=cl>go: downloading github.com/edsrzf/mmap-go v1.0.0
+</span></span><span class=line><span class=cl>go: downloading github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d
+</span></span><span class=line><span class=cl>go: downloading github.com/holiman/uint256 v1.2.0
+</span></span><span class=line><span class=cl>go: downloading github.com/dop251/goja v0.0.0-20211011172007-d99e4b8cbf48
+</span></span><span class=line><span class=cl>go: downloading github.com/mattn/go-colorable v0.1.8
+</span></span><span class=line><span class=cl>go: downloading github.com/peterh/liner v1.1.1-0.20190123174540-a2c9a5303de7
+</span></span><span class=line><span class=cl>go: downloading github.com/golang/snappy v0.0.4
+</span></span><span class=line><span class=cl>go: downloading github.com/olekukonko/tablewriter v0.0.5
+</span></span><span class=line><span class=cl>go: downloading github.com/prometheus/tsdb v0.7.1
+</span></span><span class=line><span class=cl>go: downloading github.com/VictoriaMetrics/fastcache v1.6.0
+</span></span><span class=line><span class=cl>go: downloading github.com/holiman/bloomfilter/v2 v2.0.3
+</span></span><span class=line><span class=cl>go: downloading gopkg.in/olebedev/go-duktape.v3 v3.0.0-20200619000410-60c24ae608a6
+</span></span><span class=line><span class=cl>go: downloading github.com/fjl/memsize v0.0.0-20190710130421-bcb5799ab5e5
+</span></span><span class=line><span class=cl>go: downloading github.com/hashicorp/go-bexpr v0.1.10
+</span></span><span class=line><span class=cl>go: downloading github.com/mattn/go-isatty v0.0.12
+</span></span><span class=line><span class=cl>go: downloading github.com/tyler-smith/go-bip39 v1.0.1-0.20181017060643-dbb3b84ba2ef
+</span></span><span class=line><span class=cl>go: downloading github.com/go-stack/stack v1.8.0
+</span></span><span class=line><span class=cl>go: downloading github.com/rs/cors v1.7.0
+</span></span><span class=line><span class=cl>go: downloading github.com/gorilla/websocket v1.4.2
+</span></span><span class=line><span class=cl>go: downloading github.com/naoina/go-stringutil v0.1.0
+</span></span><span class=line><span class=cl>go: downloading google.golang.org/protobuf v1.23.0
+</span></span><span class=line><span class=cl>go: downloading github.com/graph-gophers/graphql-go v0.0.0-20201113091052-beb923fada29
+</span></span><span class=line><span class=cl>go: downloading github.com/influxdata/influxdb-client-go/v2 v2.4.0
+</span></span><span class=line><span class=cl>go: downloading github.com/influxdata/influxdb v1.8.3
+</span></span><span class=line><span class=cl>go: downloading github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+</span></span><span class=line><span class=cl>go: downloading github.com/huin/goupnp v1.0.2
+</span></span><span class=line><span class=cl>go: downloading github.com/jackpal/go-nat-pmp v1.0.2-0.20160603034137-1fa385a6f458
+</span></span><span class=line><span class=cl>go: downloading github.com/dlclark/regexp2 v1.4.1-0.20201116162257-a2a8dda75c91
+</span></span><span class=line><span class=cl>go: downloading github.com/fatih/color v1.7.0
+</span></span><span class=line><span class=cl>go: downloading github.com/mattn/go-runewidth v0.0.9
+</span></span><span class=line><span class=cl>go: downloading github.com/pkg/errors v0.9.1
+</span></span><span class=line><span class=cl>go: downloading github.com/cespare/xxhash v1.1.0
+</span></span><span class=line><span class=cl>go: downloading github.com/cespare/xxhash/v2 v2.1.1
+</span></span><span class=line><span class=cl>go: downloading golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+</span></span><span class=line><span class=cl>go: downloading golang.org/x/time v0.0.0-20210220033141-f8bda1e9f3ba
+</span></span><span class=line><span class=cl>go: downloading github.com/mitchellh/pointerstructure v1.2.0
+</span></span><span class=line><span class=cl>go: downloading github.com/tklauser/go-sysconf v0.3.5
+</span></span><span class=line><span class=cl>go: downloading github.com/go-sourcemap/sourcemap v2.1.3+incompatible
+</span></span><span class=line><span class=cl>go: downloading github.com/mitchellh/mapstructure v1.4.1
+</span></span><span class=line><span class=cl>go: downloading github.com/tklauser/numcpus v0.2.2
+</span></span><span class=line><span class=cl>go: downloading github.com/opentracing/opentracing-go v1.1.0
+</span></span><span class=line><span class=cl>go: downloading github.com/influxdata/line-protocol v0.0.0-20210311194329-9aa0e372d097
+</span></span><span class=line><span class=cl>go: downloading github.com/deepmap/oapi-codegen v1.8.2
+</span></span><span class=line><span class=cl>go: downloading gopkg.in/yaml.v2 v2.4.0
+</span></span><span class=line><span class=cl>internal/unsafeheader
+</span></span><span class=line><span class=cl>internal/cpu
+</span></span><span class=line><span class=cl>internal/bytealg
+</span></span><span class=line><span class=cl>runtime/internal/atomic
+</span></span><span class=line><span class=cl>runtime/internal/sys
+</span></span><span class=line><span class=cl>runtime/internal/math
+</span></span><span class=line><span class=cl>runtime
+</span></span><span class=line><span class=cl>internal/reflectlite
+</span></span><span class=line><span class=cl>errors
+</span></span><span class=line><span class=cl>internal/race
+</span></span><span class=line><span class=cl>sync/atomic
+</span></span><span class=line><span class=cl>sync
+</span></span><span class=line><span class=cl>io
+</span></span><span class=line><span class=cl>unicode
+</span></span><span class=line><span class=cl>unicode/utf8
+</span></span><span class=line><span class=cl>bytes
+</span></span><span class=line><span class=cl>strings
+</span></span><span class=line><span class=cl>bufio
+</span></span><span class=line><span class=cl>encoding
+</span></span><span class=line><span class=cl>math/bits
+</span></span><span class=line><span class=cl>math
+</span></span><span class=line><span class=cl>strconv
+</span></span><span class=line><span class=cl>reflect
+</span></span><span class=line><span class=cl>encoding/binary
+</span></span><span class=line><span class=cl>encoding/base64
+</span></span><span class=line><span class=cl>sort
+</span></span><span class=line><span class=cl>internal/fmtsort
+</span></span><span class=line><span class=cl>internal/oserror
+</span></span><span class=line><span class=cl>syscall
+</span></span><span class=line><span class=cl>internal/syscall/unix
+</span></span><span class=line><span class=cl><span class=nb>time</span>
+</span></span><span class=line><span class=cl>internal/poll
+</span></span><span class=line><span class=cl>internal/syscall/execenv
+</span></span><span class=line><span class=cl>internal/testlog
+</span></span><span class=line><span class=cl>path
+</span></span><span class=line><span class=cl>io/fs
+</span></span><span class=line><span class=cl>os
+</span></span><span class=line><span class=cl>fmt
+</span></span><span class=line><span class=cl>unicode/utf16
+</span></span><span class=line><span class=cl>encoding/json
+</span></span><span class=line><span class=cl>context
+</span></span><span class=line><span class=cl>database/sql/driver
+</span></span><span class=line><span class=cl>encoding/hex
+</span></span><span class=line><span class=cl>math/rand
+</span></span><span class=line><span class=cl>math/big
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common/hexutil
+</span></span><span class=line><span class=cl><span class=nb>hash</span>
+</span></span><span class=line><span class=cl>crypto
+</span></span><span class=line><span class=cl>golang.org/x/crypto/sha3
+</span></span><span class=line><span class=cl>path/filepath
+</span></span><span class=line><span class=cl>io/ioutil
+</span></span><span class=line><span class=cl>regexp/syntax
+</span></span><span class=line><span class=cl>regexp
+</span></span><span class=line><span class=cl>runtime/debug
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common
+</span></span><span class=line><span class=cl>container/heap
+</span></span><span class=line><span class=cl>crypto/internal/subtle
+</span></span><span class=line><span class=cl>crypto/subtle
+</span></span><span class=line><span class=cl>crypto/cipher
+</span></span><span class=line><span class=cl>crypto/aes
+</span></span><span class=line><span class=cl>crypto/elliptic
+</span></span><span class=line><span class=cl>crypto/internal/randutil
+</span></span><span class=line><span class=cl>crypto/sha512
+</span></span><span class=line><span class=cl>encoding/asn1
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/cryptobyte/asn1
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/cryptobyte
+</span></span><span class=line><span class=cl>crypto/ecdsa
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common/math
+</span></span><span class=line><span class=cl>crypto/rand
+</span></span><span class=line><span class=cl>runtime/cgo
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto/secp256k1
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/rlp
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/params
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/types
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common/mclock
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/event
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts
+</span></span><span class=line><span class=cl>github.com/go-stack/stack
+</span></span><span class=line><span class=cl>log
+</span></span><span class=line><span class=cl>vendor/golang.org/x/net/dns/dnsmessage
+</span></span><span class=line><span class=cl>internal/nettrace
+</span></span><span class=line><span class=cl>internal/singleflight
+</span></span><span class=line><span class=cl>net
+</span></span><span class=line><span class=cl>log/syslog
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/log
+</span></span><span class=line><span class=cl>container/list
+</span></span><span class=line><span class=cl>github.com/deckarep/golang-set
+</span></span><span class=line><span class=cl>net/url
+</span></span><span class=line><span class=cl>os/exec
+</span></span><span class=line><span class=cl>github.com/shirou/gopsutil/internal/common
+</span></span><span class=line><span class=cl>github.com/tklauser/numcpus
+</span></span><span class=line><span class=cl>golang.org/x/sys/internal/unsafeheader
+</span></span><span class=line><span class=cl>golang.org/x/sys/unix
+</span></span><span class=line><span class=cl>github.com/tklauser/go-sysconf
+</span></span><span class=line><span class=cl>github.com/shirou/gopsutil/cpu
+</span></span><span class=line><span class=cl>compress/flate
+</span></span><span class=line><span class=cl>hash/crc32
+</span></span><span class=line><span class=cl>compress/gzip
+</span></span><span class=line><span class=cl>text/tabwriter
+</span></span><span class=line><span class=cl>runtime/pprof
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/metrics
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/netutil
+</span></span><span class=line><span class=cl>crypto/sha1
+</span></span><span class=line><span class=cl>crypto/des
+</span></span><span class=line><span class=cl>crypto/ed25519/internal/edwards25519
+</span></span><span class=line><span class=cl>crypto/ed25519
+</span></span><span class=line><span class=cl>crypto/hmac
+</span></span><span class=line><span class=cl>crypto/md5
+</span></span><span class=line><span class=cl>crypto/rc4
+</span></span><span class=line><span class=cl>crypto/rsa
+</span></span><span class=line><span class=cl>crypto/sha256
+</span></span><span class=line><span class=cl>crypto/dsa
+</span></span><span class=line><span class=cl>crypto/x509/pkix
+</span></span><span class=line><span class=cl>encoding/pem
+</span></span><span class=line><span class=cl>crypto/x509
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/internal/subtle
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/chacha20
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/poly1305
+</span></span><span class=line><span class=cl>vendor/golang.org/x/sys/cpu
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/chacha20poly1305
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/curve25519
+</span></span><span class=line><span class=cl>vendor/golang.org/x/crypto/hkdf
+</span></span><span class=line><span class=cl>crypto/tls
+</span></span><span class=line><span class=cl>vendor/golang.org/x/text/transform
+</span></span><span class=line><span class=cl>vendor/golang.org/x/text/unicode/bidi
+</span></span><span class=line><span class=cl>vendor/golang.org/x/text/secure/bidirule
+</span></span><span class=line><span class=cl>vendor/golang.org/x/text/unicode/norm
+</span></span><span class=line><span class=cl>vendor/golang.org/x/net/idna
+</span></span><span class=line><span class=cl>net/textproto
+</span></span><span class=line><span class=cl>vendor/golang.org/x/net/http/httpguts
+</span></span><span class=line><span class=cl>vendor/golang.org/x/net/http/httpproxy
+</span></span><span class=line><span class=cl>vendor/golang.org/x/net/http2/hpack
+</span></span><span class=line><span class=cl>mime
+</span></span><span class=line><span class=cl>mime/quotedprintable
+</span></span><span class=line><span class=cl>mime/multipart
+</span></span><span class=line><span class=cl>net/http/httptrace
+</span></span><span class=line><span class=cl>net/http/internal
+</span></span><span class=line><span class=cl>net/http
+</span></span><span class=line><span class=cl>github.com/gorilla/websocket
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/rpc
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/signer/core/apitypes
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/external
+</span></span><span class=line><span class=cl>github.com/google/uuid
+</span></span><span class=line><span class=cl>github.com/rjeczalik/notify
+</span></span><span class=line><span class=cl>golang.org/x/crypto/pbkdf2
+</span></span><span class=line><span class=cl>golang.org/x/crypto/scrypt
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/keystore
+</span></span><span class=line><span class=cl>github.com/gballet/go-libpcsclite
+</span></span><span class=line><span class=cl>github.com/status-im/keycard-go/derivationpath
+</span></span><span class=line><span class=cl>golang.org/x/text/transform
+</span></span><span class=line><span class=cl>golang.org/x/text/unicode/norm
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/scwallet
+</span></span><span class=line><span class=cl>hash/fnv
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/detrand
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/errors
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/encoding/protowire
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/pragma
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/reflect/protoreflect
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/reflect/protoregistry
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/encoding/messageset
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/flags
+</span></span><span class=line><span class=cl>go/token
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/strs
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/encoding/text
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/fieldnum
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/mapsort
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/set
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/fieldsort
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/runtime/protoiface
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/proto
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/encoding/prototext
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/descfmt
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/descopts
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/encoding/defval
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/filedesc
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/encoding/tag
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/genname
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/impl
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/filetype
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/internal/version
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/runtime/protoimpl
+</span></span><span class=line><span class=cl>github.com/golang/protobuf/proto
+</span></span><span class=line><span class=cl>google.golang.org/protobuf/types/descriptorpb
+</span></span><span class=line><span class=cl>github.com/golang/protobuf/protoc-gen-go/descriptor
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/usbwallet/trezor
+</span></span><span class=line><span class=cl>github.com/karalabe/usb
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/usbwallet
+</span></span><span class=line><span class=cl>flag
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common/fdlimit
+</span></span><span class=line><span class=cl>github.com/cespare/xxhash/v2
+</span></span><span class=line><span class=cl>github.com/golang/snappy
+</span></span><span class=line><span class=cl>github.com/VictoriaMetrics/fastcache
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common/prque
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/ethdb
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/util
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/cache
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/comparer
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/storage
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/errors
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/filter
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/iterator
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/journal
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/memdb
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/opt
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb/table
+</span></span><span class=line><span class=cl>github.com/syndtr/goleveldb/leveldb
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/ethdb/leveldb
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/ethdb/memorydb
+</span></span><span class=line><span class=cl>encoding/csv
+</span></span><span class=line><span class=cl>github.com/mattn/go-runewidth
+</span></span><span class=line><span class=cl>github.com/olekukonko/tablewriter
+</span></span><span class=line><span class=cl>github.com/pkg/errors
+</span></span><span class=line><span class=cl>github.com/prometheus/tsdb/fileutil
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/rawdb
+</span></span><span class=line><span class=cl>encoding/gob
+</span></span><span class=line><span class=cl>github.com/holiman/bloomfilter/v2
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/trie
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/state/snapshot
+</span></span><span class=line><span class=cl>github.com/hashicorp/golang-lru/simplelru
+</span></span><span class=line><span class=cl>github.com/hashicorp/golang-lru
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/state
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/consensus
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/consensus/misc
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/consensus/clique
+</span></span><span class=line><span class=cl>github.com/edsrzf/mmap-go
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/common/bitutil
+</span></span><span class=line><span class=cl>github.com/holiman/uint256
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/consensus/ethash
+</span></span><span class=line><span class=cl>container/ring
+</span></span><span class=line><span class=cl>os/signal
+</span></span><span class=line><span class=cl>github.com/peterh/liner
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/console/prompt
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/bloombits
+</span></span><span class=line><span class=cl>golang.org/x/sys/cpu
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto/blake2b
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto/bls12381
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto/bn256/cloudflare
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto/bn256
+</span></span><span class=line><span class=cl>golang.org/x/crypto/ripemd160
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/vm
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/syncx
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/forkid
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/core/state/pruner
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/enr
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/enode
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/discover/v4wire
+</span></span><span class=line><span class=cl>golang.org/x/crypto/hkdf
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/discover/v5wire
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/discover
+</span></span><span class=line><span class=cl>encoding/xml
+</span></span><span class=line><span class=cl>golang.org/x/sync/errgroup
+</span></span><span class=line><span class=cl>github.com/huin/goupnp/httpu
+</span></span><span class=line><span class=cl>github.com/huin/goupnp/scpd
+</span></span><span class=line><span class=cl>github.com/huin/goupnp/soap
+</span></span><span class=line><span class=cl>github.com/huin/goupnp/ssdp
+</span></span><span class=line><span class=cl>github.com/huin/goupnp
+</span></span><span class=line><span class=cl>github.com/huin/goupnp/dcps/internetgateway1
+</span></span><span class=line><span class=cl>github.com/huin/goupnp/dcps/internetgateway2
+</span></span><span class=line><span class=cl>github.com/jackpal/go-nat-pmp
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/nat
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/crypto/ecies
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/rlpx
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/tracker
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/protocols/eth
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/light
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/msgrate
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/protocols/snap
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/downloader
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/gasprice
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/miner
+</span></span><span class=line><span class=cl>expvar
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/metrics/prometheus
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/metrics/exp
+</span></span><span class=line><span class=cl>github.com/fjl/memsize
+</span></span><span class=line><span class=cl>html
+</span></span><span class=line><span class=cl>text/template/parse
+</span></span><span class=line><span class=cl>text/template
+</span></span><span class=line><span class=cl>html/template
+</span></span><span class=line><span class=cl>github.com/fjl/memsize/memsizeui
+</span></span><span class=line><span class=cl>github.com/mitchellh/mapstructure
+</span></span><span class=line><span class=cl>github.com/mitchellh/pointerstructure
+</span></span><span class=line><span class=cl>github.com/hashicorp/go-bexpr/grammar
+</span></span><span class=line><span class=cl>github.com/hashicorp/go-bexpr
+</span></span><span class=line><span class=cl>github.com/mattn/go-isatty
+</span></span><span class=line><span class=cl>github.com/mattn/go-colorable
+</span></span><span class=line><span class=cl>gopkg.in/urfave/cli.v1
+</span></span><span class=line><span class=cl>internal/profile
+</span></span><span class=line><span class=cl>runtime/trace
+</span></span><span class=line><span class=cl>net/http/pprof
+</span></span><span class=line><span class=cl>os/user
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/debug
+</span></span><span class=line><span class=cl>github.com/rs/cors
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/node
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/ethconfig
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/fetcher
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/filters
+</span></span><span class=line><span class=cl>github.com/davecgh/go-spew/spew
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/abi
+</span></span><span class=line><span class=cl>github.com/tyler-smith/go-bip39/wordlists
+</span></span><span class=line><span class=cl>github.com/tyler-smith/go-bip39
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/ethapi
+</span></span><span class=line><span class=cl>encoding/base32
+</span></span><span class=line><span class=cl>golang.org/x/sync/singleflight
+</span></span><span class=line><span class=cl>golang.org/x/time/rate
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/dnsdisc
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/tracers
+</span></span><span class=line><span class=cl>go/scanner
+</span></span><span class=line><span class=cl>go/ast
+</span></span><span class=line><span class=cl>go/parser
+</span></span><span class=line><span class=cl>go/printer
+</span></span><span class=line><span class=cl>go/format
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/abi/bind
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/accounts/abi/bind/backends
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/contracts/checkpointoracle/contract
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/ethclient
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/contracts/checkpointoracle
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/checkpointoracle
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/downloader
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/fetcher
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/flowcontrol
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/utils
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/vflux
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/p2p/nodestate
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/vflux/client
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les/vflux/server
+</span></span><span class=line><span class=cl>internal/sysinfo
+</span></span><span class=line><span class=cl>testing
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/les
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/ethstats
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/errors
+</span></span><span class=line><span class=cl>text/scanner
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/common
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/schema
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/exec/packer
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/introspection
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/exec/resolvable
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/query
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/exec/selected
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/log
+</span></span><span class=line><span class=cl>github.com/opentracing/opentracing-go/log
+</span></span><span class=line><span class=cl>github.com/opentracing/opentracing-go
+</span></span><span class=line><span class=cl>github.com/opentracing/opentracing-go/ext
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/trace
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/exec
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go/internal/validation
+</span></span><span class=line><span class=cl>github.com/graph-gophers/graphql-go
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/graphql
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/flags
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/internal/http
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/log
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/internal/log
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/api/http
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/api/query
+</span></span><span class=line><span class=cl>github.com/influxdata/line-protocol
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/api/write
+</span></span><span class=line><span class=cl>github.com/deepmap/oapi-codegen/pkg/types
+</span></span><span class=line><span class=cl>github.com/deepmap/oapi-codegen/pkg/runtime
+</span></span><span class=line><span class=cl>gopkg.in/yaml.v2
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/domain
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/internal/gzip
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/internal/write
+</span></span><span class=line><span class=cl>net/http/cookiejar
+</span></span><span class=line><span class=cl>golang.org/x/net/publicsuffix
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2/api
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb-client-go/v2
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb/pkg/escape
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb/models
+</span></span><span class=line><span class=cl>github.com/influxdata/influxdb/client
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/metrics/influxdb
+</span></span><span class=line><span class=cl>github.com/shirou/gopsutil/mem
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/cmd/utils
+</span></span><span class=line><span class=cl>github.com/dlclark/regexp2/syntax
+</span></span><span class=line><span class=cl>github.com/dlclark/regexp2
+</span></span><span class=line><span class=cl>github.com/go-sourcemap/sourcemap/internal/base64vlq
+</span></span><span class=line><span class=cl>github.com/go-sourcemap/sourcemap
+</span></span><span class=line><span class=cl>github.com/dop251/goja/file
+</span></span><span class=line><span class=cl>github.com/dop251/goja/token
+</span></span><span class=line><span class=cl>github.com/dop251/goja/unistring
+</span></span><span class=line><span class=cl>github.com/dop251/goja/ast
+</span></span><span class=line><span class=cl>github.com/dop251/goja/ftoa/internal/fast
+</span></span><span class=line><span class=cl>github.com/dop251/goja/ftoa
+</span></span><span class=line><span class=cl>github.com/dop251/goja/parser
+</span></span><span class=line><span class=cl>golang.org/x/text/internal/tag
+</span></span><span class=line><span class=cl>golang.org/x/text/internal/language
+</span></span><span class=line><span class=cl>golang.org/x/text/internal/language/compact
+</span></span><span class=line><span class=cl>golang.org/x/text/language
+</span></span><span class=line><span class=cl>golang.org/x/text/internal
+</span></span><span class=line><span class=cl>golang.org/x/text/cases
+</span></span><span class=line><span class=cl>golang.org/x/text/internal/colltab
+</span></span><span class=line><span class=cl>golang.org/x/text/collate
+</span></span><span class=line><span class=cl>hash/maphash
+</span></span><span class=line><span class=cl>github.com/dop251/goja
+</span></span><span class=line><span class=cl>github.com/fatih/color
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/jsre
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/jsre/deps
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/internal/web3ext
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/console
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/catalyst
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/tracers/js/internal/tracers
+</span></span><span class=line><span class=cl>gopkg.in/olebedev/go-duktape.v3
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/tracers/js
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/eth/tracers/native
+</span></span><span class=line><span class=cl>golang.org/x/crypto/ed25519
+</span></span><span class=line><span class=cl>github.com/jedisct1/go-minisign
+</span></span><span class=line><span class=cl>github.com/naoina/go-stringutil
+</span></span><span class=line><span class=cl>github.com/naoina/toml/ast
+</span></span><span class=line><span class=cl>github.com/naoina/toml
+</span></span><span class=line><span class=cl>github.com/ethereum/go-ethereum/cmd/geth
+</span></span><span class=line><span class=cl>Done building.
+</span></span><span class=line><span class=cl>Run <span class=s2>&#34;./build/bin/geth&#34;</span> to launch geth.
+</span></span></code></pre></td></tr></table></div></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/blockchain/>Blockchain</a>
+<a href=/tags/ethereum/>Ethereum</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/1-introduction/><div class=article-details><h2 class=article-title>以太坊简介</h2></div></a></article><article><a href=/p/script/><div class=article-details><h2 class=article-title>比特币脚本及交易分析 - 智能合约雏形</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

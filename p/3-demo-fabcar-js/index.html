@@ -1,0 +1,613 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Fabric案例 - fabcar [TOC]\n这个教程演示了Javascript版本的 FabCar 智能合约和应用程序，但是 fabric-samples 仓库也包含 Go、Java 和 TypeScript 版本的样例。想尝试 Go、Java 或者 TypeScript 版本，只需改变 ./startFabric.sh 的 javascript 参数为 go、 java 或者 typescript即可\n"><title>Fabric案例 - fabcar</title><link rel=canonical href=https://example.org/p/3-demo-fabcar-js/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="Fabric案例 - fabcar"><meta property='og:description' content="Fabric案例 - fabcar [TOC]\n这个教程演示了Javascript版本的 FabCar 智能合约和应用程序，但是 fabric-samples 仓库也包含 Go、Java 和 TypeScript 版本的样例。想尝试 Go、Java 或者 TypeScript 版本，只需改变 ./startFabric.sh 的 javascript 参数为 go、 java 或者 typescript即可\n"><meta property='og:url' content='https://example.org/p/3-demo-fabcar-js/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Blockchain'><meta property='article:tag' content='Fabric'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="Fabric案例 - fabcar"><meta name=twitter:description content="Fabric案例 - fabcar [TOC]\n这个教程演示了Javascript版本的 FabCar 智能合约和应用程序，但是 fabric-samples 仓库也包含 Go、Java 和 TypeScript 版本的样例。想尝试 Go、Java 或者 TypeScript 版本，只需改变 ./startFabric.sh 的 javascript 参数为 go、 java 或者 typescript即可\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一准备工作>一、准备工作</a></li><li><a href=#二设置网络>二、设置网络</a></li><li><a href=#三安装依赖>三、安装依赖</a></li><li><a href=#四登记管理员用户>四、登记管理员用户</a></li><li><a href=#五注册和登记应用程序用户>五、注册和登记应用程序用户</a></li><li><a href=#六查询账本>六、查询账本</a></li><li><a href=#七查询指定内容>七、查询指定内容</a></li><li><a href=#八更新账本-添加数据>八、更新账本-添加数据</a></li><li><a href=#九更新账本-修改数据>九、更新账本-修改数据</a></li><li><a href=#十清除数据>十、清除数据</a></li><li><a href=#十一参考文章>十一、参考文章</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/blockchain/ style=background-color:#d7beef;color:#270f3d>Blockchain
+</a><a href=/categories/fabric/ style=background-color:#c1efbe;color:#123d0f>Fabric</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/3-demo-fabcar-js/>Fabric案例 - fabcar</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 9 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一准备工作>一、准备工作</a></li><li><a href=#二设置网络>二、设置网络</a></li><li><a href=#三安装依赖>三、安装依赖</a></li><li><a href=#四登记管理员用户>四、登记管理员用户</a></li><li><a href=#五注册和登记应用程序用户>五、注册和登记应用程序用户</a></li><li><a href=#六查询账本>六、查询账本</a></li><li><a href=#七查询指定内容>七、查询指定内容</a></li><li><a href=#八更新账本-添加数据>八、更新账本-添加数据</a></li><li><a href=#九更新账本-修改数据>九、更新账本-修改数据</a></li><li><a href=#十清除数据>十、清除数据</a></li><li><a href=#十一参考文章>十一、参考文章</a></li></ol></nav></details></aside><section class=article-content><h1 id=fabric案例---fabcar><a href=#fabric%e6%a1%88%e4%be%8b---fabcar class=header-anchor></a>Fabric案例 - fabcar</h1><p>[TOC]</p><p>这个教程演示了<strong>Javascript版本</strong>的 <code>FabCar</code> 智能合约和应用程序，但是 <code>fabric-samples</code> 仓库也包含 <strong>Go、Java 和 TypeScript 版本</strong>的样例。想尝试 Go、Java 或者 TypeScript 版本，只需改变 <code>./startFabric.sh</code> 的 <code>javascript</code> 参数为 <code>go</code>、 <code>java</code> 或者 <code>typescript</code>即可</p><h2 id=一准备工作><a href=#%e4%b8%80%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c class=header-anchor></a>一、准备工作</h2><p>Linux下需要安装 <a class=link href=https://www.python.org/download/releases/2.7/ target=_blank rel=noopener>Python v2.7</a>，<a class=link href=https://www.gnu.org/software/make/ target=_blank rel=noopener>make</a>，和C/C++编译器工具链，如 <a class=link href=https://gcc.gnu.org/ target=_blank rel=noopener>GCC</a></p><p>可以执行如下命令安装其他工具:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>apt install build-essential
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看Python版本</span>
+</span></span><span class=line><span class=cl>$ python2 -V
+</span></span><span class=line><span class=cl>Python 2.7.17
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ python3 -V
+</span></span><span class=line><span class=cl>Python 3.6.7
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ python -V
+</span></span><span class=line><span class=cl>Python 2.7.17
+</span></span></code></pre></td></tr></table></div></div><p>安装nodejs（JavaScript编写版本）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 下载</span>
+</span></span><span class=line><span class=cl>wget https://npm.taobao.org/mirrors/node/latest-gallium/node-v16.13.0-linux-x64.tar.xz
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 解压，这里不用-z参数，因为不是.gz 文件</span>
+</span></span><span class=line><span class=cl>tar -C /usr/local -xf node-v16.13.0-linux-x64.tar.xz
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /usr/local/
+</span></span><span class=line><span class=cl>mv node-v16.13.0-linux-x64/ node
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#加入环境变量</span>
+</span></span><span class=line><span class=cl>vim ~/.profile
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span><span class=nv>$PATH</span>:/usr/local/node/bin
+</span></span><span class=line><span class=cl><span class=nb>source</span> ~/.profile
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看安装结果</span>
+</span></span><span class=line><span class=cl>$ node -v
+</span></span><span class=line><span class=cl>v16.13.0
+</span></span><span class=line><span class=cl>$ npm -v
+</span></span><span class=line><span class=cl>8.1.0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置npm镜像源</span>
+</span></span><span class=line><span class=cl>npm config <span class=nb>set</span> registry https://registry.npmmirror.com
+</span></span></code></pre></td></tr></table></div></div><h2 id=二设置网络><a href=#%e4%ba%8c%e8%ae%be%e7%bd%ae%e7%bd%91%e7%bb%9c class=header-anchor></a>二、设置网络</h2><p>此命令将部署<strong>两个peer节点和一个排序节点</strong>以部署Fabric测试网络。 我们将<strong>使用证书颁发机构启动测试网络</strong>，而不是使用cryptogen工具。 我们将使用这些CA的其中一个来创建证书以及一些key， 这些加密资料将在之后的步骤中被我们的应用程序使用。</p><p><code>startFabric.sh</code> 脚本还将部署和初始化在 <code>mychannel</code> 通道上的 FabCar智能合约的JavaScript版本，然后调用智能合约来把初始数据存储在帐本上。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> <span class=nv>$GOPATH</span>/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>./startFabric.sh javascript
+</span></span><span class=line><span class=cl><span class=c1># startFabric.sh 部分源码</span>
+</span></span><span class=line><span class=cl><span class=nb>pushd</span> ../test-network
+</span></span><span class=line><span class=cl>./network.sh down
+</span></span><span class=line><span class=cl>./network.sh up createChannel -ca -s couchdb
+</span></span><span class=line><span class=cl>./network.sh deployCC -ccn fabcar -ccv <span class=m>1</span> -cci initLedger -ccl <span class=si>${</span><span class=nv>CC_SRC_LANGUAGE</span><span class=si>}</span> -ccp <span class=si>${</span><span class=nv>CC_SRC_PATH</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 过程摘录</span>
+</span></span><span class=line><span class=cl><span class=c1># 停止网络</span>
+</span></span><span class=line><span class=cl>Stopping network
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>Creating channel <span class=s1>&#39;mychannel&#39;</span>.
+</span></span><span class=line><span class=cl>If network is not up, starting nodes with CLI timeout of <span class=s1>&#39;5&#39;</span> tries and CLI delay of <span class=s1>&#39;3&#39;</span> seconds and using database <span class=s1>&#39;couchdb with crypto from &#39;</span>Certificate Authorities<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1># 启动网络
+</span></span></span><span class=line><span class=cl><span class=s1>Bringing up network
+</span></span></span><span class=line><span class=cl><span class=s1>LOCAL_VERSION=2.3.3
+</span></span></span><span class=line><span class=cl><span class=s1>DOCKER_IMAGE_VERSION=2.3.3
+</span></span></span><span class=line><span class=cl><span class=s1>CA_LOCAL_VERSION=1.5.2
+</span></span></span><span class=line><span class=cl><span class=s1>CA_DOCKER_IMAGE_VERSION=1.5.2
+</span></span></span><span class=line><span class=cl><span class=s1>Generating certificates using Fabric CA
+</span></span></span><span class=line><span class=cl><span class=s1>Creating network &#34;fabric_test&#34; with the default driver
+</span></span></span><span class=line><span class=cl><span class=s1>Creating ca_org2    ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating ca_orderer ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating ca_org1    ... done
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>Creating Org1 Identities
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>Creating Org2 Identities
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>Creating Orderer Org Identities
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>Generating CCP files for Org1 and Org2
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Creating couchdb1               ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating couchdb0               ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating orderer.example.com    ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating peer0.org2.example.com ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating peer0.org1.example.com ... done
+</span></span></span><span class=line><span class=cl><span class=s1>Creating cli                    ... done
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1># 建立通道
+</span></span></span><span class=line><span class=cl><span class=s1>Generating channel genesis block &#39;</span>mychannel.block<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Creating channel mychannel
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Channel &#39;</span>mychannel<span class=s1>&#39; created
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Anchor peer set for org &#39;</span>Org1MSP<span class=s1>&#39; on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Anchor peer set for org &#39;</span>Org2MSP<span class=s1>&#39; on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Channel &#39;</span>mychannel<span class=s1>&#39; joined
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1># 部署链码
+</span></span></span><span class=line><span class=cl><span class=s1>deploying chaincode on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>executing with the following
+</span></span></span><span class=line><span class=cl><span class=s1>- CHANNEL_NAME: mychannel
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_NAME: fabcar
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_SRC_PATH: ../chaincode/fabcar/javascript/
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_SRC_LANGUAGE: javascript
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_VERSION: 1
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_SEQUENCE: 1
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_END_POLICY: NA
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_COLL_CONFIG: NA
+</span></span></span><span class=line><span class=cl><span class=s1>- CC_INIT_FCN: initLedger
+</span></span></span><span class=line><span class=cl><span class=s1>- DELAY: 3
+</span></span></span><span class=line><span class=cl><span class=s1>- MAX_RETRY: 5
+</span></span></span><span class=line><span class=cl><span class=s1>- VERBOSE: false
+</span></span></span><span class=line><span class=cl><span class=s1>+ peer lifecycle chaincode package fabcar.tar.gz --path ../chaincode/fabcar/javascript/ --lang node --label fabcar_1
+</span></span></span><span class=line><span class=cl><span class=s1>+ res=0
+</span></span></span><span class=line><span class=cl><span class=s1>Chaincode is packaged
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Chaincode is installed on peer0.org1
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Chaincode is installed on peer0.org2
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Query installed successful on peer0.org1 on channel
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Chaincode definition approved on peer0.org1 on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Chaincode definition approved on peer0.org2 on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Chaincode definition committed on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Query chaincode definition successful on peer0.org1 on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Query chaincode definition successful on peer0.org2 on channel &#39;</span>mychannel<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>...
+</span></span></span><span class=line><span class=cl><span class=s1>Invoke transaction successful on peer0.org1 peer0.org2 on channel &#39;</span>mychannel<span class=err>&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 说明</span>
+</span></span><span class=line><span class=cl>Total setup execution <span class=nb>time</span> : <span class=m>344</span> secs ...
+</span></span><span class=line><span class=cl>Next, use the FabCar applications to interact with the deployed FabCar contract.
+</span></span><span class=line><span class=cl>The FabCar applications are available in multiple programming languages.
+</span></span><span class=line><span class=cl>Follow the instructions <span class=k>for</span> the programming language of your choice:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>JavaScript:
+</span></span><span class=line><span class=cl>  Start by changing into the <span class=s2>&#34;javascript&#34;</span> directory:
+</span></span><span class=line><span class=cl>    <span class=nb>cd</span> javascript
+</span></span><span class=line><span class=cl>  Next, install all required packages:
+</span></span><span class=line><span class=cl>    npm install
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  Then run the following applications to enroll the admin user, and register a new user
+</span></span><span class=line><span class=cl>  called appUser which will be used by the other applications to interact with the deployed
+</span></span><span class=line><span class=cl>  FabCar contract:
+</span></span><span class=line><span class=cl>    node enrollAdmin
+</span></span><span class=line><span class=cl>    node registerUser
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  You can run the invoke application as follows. By default, the invoke application will
+</span></span><span class=line><span class=cl>  create a new car, but you can update the application to submit other transactions:
+</span></span><span class=line><span class=cl>    node invoke
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  You can run the query application as follows. By default, the query application will
+</span></span><span class=line><span class=cl>  <span class=k>return</span> all cars, but you can update the application to evaluate other transactions:
+</span></span><span class=line><span class=cl>    node query
+</span></span></code></pre></td></tr></table></div></div><h2 id=三安装依赖><a href=#%e4%b8%89%e5%ae%89%e8%a3%85%e4%be%9d%e8%b5%96 class=header-anchor></a>三、安装依赖</h2><p>这个指令将安装应用程序的主要依赖，这些依赖定义在 <code>package.json</code> 中。其中最重要的是 <code>fabric-network</code> 类；它使得应用程序可以使用身份、钱包和连接到通道的网关，以及提交交易和等待通知。本教程也将使用 <code>fabric-ca-client</code> 类来注册用户以及他们的授权证书，生成一个 <code>fabric-network</code> 在后边会用到的合法身份。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> javascript
+</span></span><span class=line><span class=cl>npm install
+</span></span></code></pre></td></tr></table></div></div><h2 id=四登记管理员用户><a href=#%e5%9b%9b%e7%99%bb%e8%ae%b0%e7%ae%a1%e7%90%86%e5%91%98%e7%94%a8%e6%88%b7 class=header-anchor></a>四、登记管理员用户</h2><blockquote><p>下边的部分执行和证书授权服务器通讯，在运行下边的程序时，可以打开一个新终端，并运行 <code>docker logs -f ca_org1</code> 来查看 CA 的日志流，会很有帮助。</p></blockquote><p>当我们创建网络的时候，一个管理员用户（ <code>admin</code>）被证书授权服务器（<code>CA</code>）创建成了 <strong>注册员</strong> 。我们第一步要使用 <code>enroll.js</code> 程序为 <code>admin</code> 生成私钥、公钥和 x.509 证书。这个程序使用一个 <strong>证书签名请求</strong> （<code>CSR</code>）——现在本地生成公钥和私钥，然后把公钥发送到 CA ，CA 会发布会一个让应用程序使用的证书。这三个证书会保存在钱包中，以便于我们<strong>以管理员的身份使用 CA</strong>。</p><p>我们登记一个 <code>admin</code> 用户，这个命令将 CA 管理员的证书保存在 <code>wallet</code> 目录。 您可以在 <code>wallet/admin.id</code> 文件中找到管理员的证书和私钥：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node enrollAdmin.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 终端输出</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Successfully enrolled admin user <span class=s2>&#34;admin&#34;</span> and imported it into the wallet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># docker logs -f ca_org1 输出</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Received request <span class=k>for</span> /api/v1/enroll
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> ca.Config: <span class=p>&amp;</span><span class=o>{</span>......<span class=o>}</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Getting identity admin
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Login user admin with max enrollments of -1 and state of <span class=m>1</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> DB: identity admin successfully logged in
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Getting identity admin
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Requested expiry <span class=s1>&#39;0001-01-01 00:00:00 +0000 UTC&#39;</span> is before the CA certificate expiry <span class=s1>&#39;2021-11-06 05:54:00 +0000 UTC&#39;</span>. Will use CA cert expiry
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Processing sign request: <span class=nv>id</span><span class=o>=</span>admin, <span class=nv>CommonName</span><span class=o>=</span>admin, <span class=nv>Subject</span><span class=o>=</span>&lt;nil&gt;
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Request is not <span class=k>for</span> a CA signing certificate
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Checking CSR fields to make sure that they <span class=k>do</span> not exceed maximum character limits
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Finished processing sign request
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Getting identity admin
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>INFO<span class=o>]</span> signed certificate with serial number <span class=m>336076363807987864110041852220743842877365008258</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Insert Certificate
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Saved serial number as hex 3ade2f73c0c2404a1dce6e2e70aea765297bb782
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> saved certificate with serial number <span class=m>336076363807987864110041852220743842877365008258</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>DEBUG<span class=o>]</span> Successfully incremented state <span class=k>for</span> identity admin to <span class=m>2</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:08:03 <span class=o>[</span>INFO<span class=o>]</span> 172.27.0.1:33124 POST /api/v1/enroll <span class=m>201</span> <span class=m>0</span> <span class=s2>&#34;OK&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=五注册和登记应用程序用户><a href=#%e4%ba%94%e6%b3%a8%e5%86%8c%e5%92%8c%e7%99%bb%e8%ae%b0%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e7%94%a8%e6%88%b7 class=header-anchor></a>五、注册和登记应用程序用户</h2><p>既然我们的 <code>admin</code> 是用来与CA一起工作的。 我们也已经在钱包中有了管理员的凭据， 那么我们可以创建一个<strong>新的应用程序用户</strong>，它将被用于与区块链交互。 运行以下命令注册和记录一个名为 <code>appUser</code> 的新用户。</p><p>与admin注册类似，该程序使用<code>CSR</code>注册 <code>appUser</code> 并将其凭证与 <code>admin</code> 凭证一起存储在钱包中。 现在，我们有了两个独立用户的身份—— <code>admin</code> 和 <code>appUser</code> ——它们可以被我们的应用程序使用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node registerUser.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 终端输出</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Successfully registered and enrolled admin user <span class=s2>&#34;appUser&#34;</span> and imported it into the wallet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># docker logs -f ca_org1 输出</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Received request <span class=k>for</span> /api/v1/register
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Caller is using a x509 certificate
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Certicate Dates: <span class=nv>NotAfter</span> <span class=o>=</span> 2022-11-06 06:08:00 +0000 UTC <span class=nv>NotBefore</span> <span class=o>=</span> 2021-11-06 05:54:00 +0000 UTC
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Checking <span class=k>for</span> revocation/expiration of certificate owned by <span class=s1>&#39;admin&#39;</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Get certificate by serial <span class=o>(</span>3ade2f73c0c2404a1dce6e2e70aea765297bb782<span class=o>)</span> and aki <span class=o>(</span>19a0bea446fbc47d4aa79ea118e98f2682c987bf<span class=o>)</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Getting identity admin
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Successful token authentication of <span class=s1>&#39;admin&#39;</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Received registration request from admin: <span class=o>{</span> Name:appUser Type:client Secret:**** MaxEnrollments:1 Affiliation:org1.department1 Attributes:<span class=o>[]</span> CAName:  <span class=o>}</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> canRegister - Check to see <span class=k>if</span> user <span class=s1>&#39;admin&#39;</span> can register
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Checking to see <span class=k>if</span> <span class=nb>caller</span> <span class=s1>&#39;admin&#39;</span> can act on <span class=nb>type</span> <span class=s1>&#39;client&#39;</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Checking to see <span class=k>if</span> <span class=nb>caller</span> <span class=s1>&#39;admin&#39;</span> is a registrar
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Validating affiliation: org1.department1
+</span></span><span class=line><span class=cl>2021/11/06 06:10:45 <span class=o>[</span>DEBUG<span class=o>]</span> Checking to see <span class=k>if</span> affiliation <span class=s1>&#39;org1.department1&#39;</span> contains caller<span class=s1>&#39;s affiliation &#39;&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] Caller has root affiliation
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] DB: Get affiliation org1.department1
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] Registering user id: appUser
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] Max enrollment value verification - User specified max enrollment: 1, CA max enrollment: -1
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] DB: Getting identity appUser
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] DB: Add identity appUser
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] Successfully added identity appUser to the database
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [INFO] 172.27.0.1:33160 POST /api/v1/register 201 0 &#34;OK&#34;
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] Received request for /api/v1/enroll
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] ca.Config: &amp;{......}
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] DB: Getting identity appUser
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:45 [DEBUG] DB: Login user appUser with max enrollments of 1 and state of 0
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:46 [DEBUG] DB: identity appUser successfully logged in
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:46 [DEBUG] DB: Getting identity appUser
+</span></span></span><span class=line><span class=cl><span class=s1>2021/11/06 06:10:46 [DEBUG] Requested expiry &#39;</span>0001-01-01 00:00:00 +0000 UTC<span class=s1>&#39; is before the CA certificate expiry &#39;</span>2021-11-06 05:54:00 +0000 UTC<span class=err>&#39;</span>. Will use CA cert expiry
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Processing sign request: <span class=nv>id</span><span class=o>=</span>appUser, <span class=nv>CommonName</span><span class=o>=</span>appUser, <span class=nv>Subject</span><span class=o>=</span>&lt;nil&gt;
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Request is not <span class=k>for</span> a CA signing certificate
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Checking CSR fields to make sure that they <span class=k>do</span> not exceed maximum character limits
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Finished processing sign request
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Getting identity appUser
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Attribute extension being added to certificate is: <span class=p>&amp;</span><span class=o>{</span>ID:<span class=o>[</span><span class=m>1</span> <span class=m>2</span> <span class=m>3</span> <span class=m>4</span> <span class=m>5</span> <span class=m>6</span> <span class=m>7</span> <span class=m>8</span> 1<span class=o>]</span> Critical:false Value:7b226174747273223a7b2268662e416666696c696174696f6e223a226f7267312e6465706172746d656e7431222c2268662e456e726f6c6c6d656e744944223a2261707055736572222c2268662e54797065223a22636c69656e74227d7d<span class=o>}</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Adding attribute extension to CSR: <span class=p>&amp;</span><span class=o>{</span>ID:<span class=o>[</span><span class=m>1</span> <span class=m>2</span> <span class=m>3</span> <span class=m>4</span> <span class=m>5</span> <span class=m>6</span> <span class=m>7</span> <span class=m>8</span> 1<span class=o>]</span> Critical:false Value:7b226174747273223a7b2268662e416666696c696174696f6e223a226f7267312e6465706172746d656e7431222c2268662e456e726f6c6c6d656e744944223a2261707055736572222c2268662e54797065223a22636c69656e74227d7d<span class=o>}</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>INFO<span class=o>]</span> signed certificate with serial number <span class=m>408002549846028683500546520131538177228654950487</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> DB: Insert Certificate
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Saved serial number as hex 4777779329a93ea1385ba46423a3a368ab5ab857
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> saved certificate with serial number <span class=m>408002549846028683500546520131538177228654950487</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>DEBUG<span class=o>]</span> Successfully incremented state <span class=k>for</span> identity appUser to <span class=m>1</span>
+</span></span><span class=line><span class=cl>2021/11/06 06:10:46 <span class=o>[</span>INFO<span class=o>]</span> 172.27.0.1:33164 POST /api/v1/enroll <span class=m>201</span> <span class=m>0</span> <span class=s2>&#34;OK&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=六查询账本><a href=#%e5%85%ad%e6%9f%a5%e8%af%a2%e8%b4%a6%e6%9c%ac class=header-anchor></a>六、查询账本</h2><p>区块链网络中的每个节点都拥有一个<a class=link href=https://hyperledger-fabric.readthedocs.io/zh_CN/release-2.2/ledger/ledger.html target=_blank rel=noopener>账本</a>的副本，应用程序可以通过执行智能合约查询账本上最新的数据来实现来<strong>查询账本</strong>，并将查询结果返回给应用程序。</p><p>这里是一个查询工作如何进行的简单说明：</p><blockquote><p>最常用的查询是查寻账本中询当前的值，也就是 <a class=link href=https://hyperledger-fabric.readthedocs.io/zh_CN/release-2.2/ledger/ledger.html#world-state target=_blank rel=noopener>世界状态</a> 。世界状态是一个键值对的集合，应用程序可以根据一个键或者多个键来查询数据。而且，当键值对是以 JSON 值模式组织的时候，世界状态可以通过配置使用数据库（如 CouchDB ）来支持富查询。这对于查询所有资产来匹配特定的键的值是很有用的，比如查询一个人的所有汽车。</p></blockquote><p>首先，我们来运行我们的 <code>query.js</code> 程序来返回账本上所有汽车的侦听。这个程序使用我们的第二个身份<code>user1</code>来操作账本。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node query.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 结果</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Transaction has been evaluated, result is: <span class=o>[{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR0&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;blue&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Toyota&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Prius&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Tomoko&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR1&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;red&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Ford&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Mustang&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Brad&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR2&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;green&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Hyundai&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Tucson&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Jin Soo&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR3&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;yellow&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Volkswagen&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Passat&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Max&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR4&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;black&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Tesla&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;S&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Adriana&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR5&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;purple&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Peugeot&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;205&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Michel&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR6&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;white&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Chery&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;S22L&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Aarav&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR7&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;violet&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Fiat&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Punto&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Pari&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR8&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;indigo&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Tata&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Nano&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Valeria&#34;</span><span class=o>}}</span>,<span class=o>{</span><span class=s2>&#34;Key&#34;</span>:<span class=s2>&#34;CAR9&#34;</span>,<span class=s2>&#34;Record&#34;</span>:<span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;brown&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Holden&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Barina&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Shotaro&#34;</span><span class=o>}}]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># docker logs -f ca_org1 输出无变化</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=七查询指定内容><a href=#%e4%b8%83%e6%9f%a5%e8%af%a2%e6%8c%87%e5%ae%9a%e5%86%85%e5%ae%b9 class=header-anchor></a>七、查询指定内容</h2><p>分析源码``fabric-samples/chaincode/fabcar/javascript/lib/fabcar.js`</p><p>分析源码<code>fabric-samples/fabcar/javascript/query.js</code>，找到<code>queryCar</code>函数</p><p>修改<code>fabric-samples/fabcar/javascript/query.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>vim</span> <span class=nx>query</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>evaluateTransaction</span><span class=p>(</span><span class=s1>&#39;queryAllCars&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 修改为
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>evaluateTransaction</span><span class=p>(</span><span class=s1>&#39;queryCar&#39;</span><span class=p>,</span> <span class=s1>&#39;CAR4&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>重新运行<code>query.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node query.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 结果</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Transaction has been evaluated, result is: <span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;black&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Tesla&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;S&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Adriana&#34;</span><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=八更新账本-添加数据><a href=#%e5%85%ab%e6%9b%b4%e6%96%b0%e8%b4%a6%e6%9c%ac-%e6%b7%bb%e5%8a%a0%e6%95%b0%e6%8d%ae class=header-anchor></a>八、更新账本-添加数据</h2><p>从一个应用程序的角度来说，更新一个账本很简单。应用程序向区块链网络提交一个交易，当交易被验证和提交后，应用程序会收到一个交易成功的提醒。但是在底层，区块链网络中各组件中不同的 <strong>共识</strong> 程序协同工作，来保证账本的每一个更新提案都是合法的，而且有一个大家一致认可的顺序。</p><p>下图中，我们可以看到完成这项工作的主要组件。同时，多个节点中每一个节点都拥有一份账本的副本，并可选的拥有一份智能合约的副本，网络中也有一个排序服务。排序服务保证网络中交易的<strong>一致性</strong>；它也将连接到网络中不同的应用程序的交易以定义好的顺序生成区块。</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/06-162955.png alt=_images/write_first_app.diagram.2.png loading=lazy></p><p>我们对账本的的第一个更新是<strong>创建一辆新车</strong>。我们有一个单独的程序叫做 <code>invoke.js</code> ，用来更新账本，关键代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>submitTransaction</span><span class=p>(</span><span class=s1>&#39;createCar&#39;</span><span class=p>,</span> <span class=s1>&#39;CAR12&#39;</span><span class=p>,</span> <span class=s1>&#39;Honda&#39;</span><span class=p>,</span> <span class=s1>&#39;Accord&#39;</span><span class=p>,</span> <span class=s1>&#39;Black&#39;</span><span class=p>,</span> <span class=s1>&#39;Tom&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><ul><li>注意 <code>inovke</code> 程序是怎样使用 <code>submitTransaction</code> API 和区块链网络交互的，而不是 <code>evaluateTransaction</code> 。</li><li><code>submitTransaction</code> 比 <code>evaluateTransaction</code> 更加复杂。除了跟一个单独的 peer 进行互动外，SDK 会将 <code>submitTransaction</code> 提案发送给在区块链网络中的每个需要的组织的 peer。其中的每个 peer 将会使用这个提案来执行被请求的智能合约，以此来产生一个建议的回复，它会为这个回复签名并将其返回给 SDK。SDK 搜集所有签过名的交易反馈到一个单独的交易中，这个交易会被发送给排序节点。排序节点从每个应用程序那里搜集并将交易排序，然后打包进一个交易的区块中。接下来它会将这些区块分发给网络中的每个 peer，在那里每笔交易会被验证并提交。最后，SDK 会被通知，这允许它能够将控制返回给应用程序。</li><li><code>submitTransaction</code> 也包含一个监听者，它会检查来确保交易被验证并提交到账本中。应用程序应该使用一个提交监听者，或者使用像 <code>submitTransaction</code> 这样的 API 来给你做这件事情。如果不做这个，你的交易就可能没有被成功地排序、验证以及提交到账本。</li><li>应用程序中的这些工作由 <code>submitTransaction</code> 完成，应用程序、智能合约、节点和排序服务一起工作来保证网络中账本一致性的程序被称为<strong>共识</strong></li></ul></blockquote><p>运行<code>invoke.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node invoke.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 结果</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Transaction has been submitted
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># docker logs -f ca_org1 输出无变化</span>
+</span></span></code></pre></td></tr></table></div></div><p>修改<code>query.js</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>vim</span> <span class=nx>query</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>evaluateTransaction</span><span class=p>(</span><span class=s1>&#39;queryCar&#39;</span><span class=p>,</span> <span class=s1>&#39;CAR4&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 修改为
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>evaluateTransaction</span><span class=p>(</span><span class=s1>&#39;queryCar&#39;</span><span class=p>,</span> <span class=s1>&#39;CAR12&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>重新运行<code>query.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node query.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 结果</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Transaction has been evaluated, result is: <span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;Black&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Honda&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Accord&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Tom&#34;</span><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=九更新账本-修改数据><a href=#%e4%b9%9d%e6%9b%b4%e6%96%b0%e8%b4%a6%e6%9c%ac-%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae class=header-anchor></a>九、更新账本-修改数据</h2><p>分析源码``fabric-samples/chaincode/fabcar/javascript/lib/fabcar.js`</p><p>分析源码<code>fabric-samples/fabcar/javascript/invoke.js</code></p><p>修改<code>fabric-samples/fabcar/javascript/invoke.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>vim</span> <span class=nx>invoke</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>submitTransaction</span><span class=p>(</span><span class=s1>&#39;createCar&#39;</span><span class=p>,</span> <span class=s1>&#39;CAR12&#39;</span><span class=p>,</span> <span class=s1>&#39;Honda&#39;</span><span class=p>,</span> <span class=s1>&#39;Accord&#39;</span><span class=p>,</span> <span class=s1>&#39;Black&#39;</span><span class=p>,</span> <span class=s1>&#39;Tom&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 修改为
+</span></span></span><span class=line><span class=cl><span class=kr>await</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>submitTransaction</span><span class=p>(</span><span class=s1>&#39;changeCarOwner&#39;</span><span class=p>,</span> <span class=s1>&#39;CAR12&#39;</span><span class=p>,</span> <span class=s1>&#39;Dave&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>重新运行<code>invoke.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node invoke.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 结果</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Transaction has been submitted
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># docker logs -f ca_org1 输出无变化</span>
+</span></span></code></pre></td></tr></table></div></div><p>重新运行<code>query.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node query.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 结果</span>
+</span></span><span class=line><span class=cl>Wallet path: /root/go/src/github.com/hyperledger/fabric/scripts/fabric-samples/fabcar/javascript/wallet
+</span></span><span class=line><span class=cl>Transaction has been evaluated, result is: <span class=o>{</span><span class=s2>&#34;color&#34;</span>:<span class=s2>&#34;Black&#34;</span>,<span class=s2>&#34;docType&#34;</span>:<span class=s2>&#34;car&#34;</span>,<span class=s2>&#34;make&#34;</span>:<span class=s2>&#34;Honda&#34;</span>,<span class=s2>&#34;model&#34;</span>:<span class=s2>&#34;Accord&#34;</span>,<span class=s2>&#34;owner&#34;</span>:<span class=s2>&#34;Dave&#34;</span><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=十清除数据><a href=#%e5%8d%81%e6%b8%85%e9%99%a4%e6%95%b0%e6%8d%ae class=header-anchor></a>十、清除数据</h2><p>可以使用 <code>networkDown.sh</code> 脚本<strong>关闭测试网络</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>./networkDown.sh
+</span></span></code></pre></td></tr></table></div></div><p>该命令将关闭我们创建的网络的CA、peer节点和排序节点。 它还将删除保存在 <code>wallet</code> 目录中的 <code>admin</code> 和 <code>appUser</code> 加密资料。 请注意，<strong>帐本上的所有数据都将丢失</strong>。 如果您想再次学习本教程，您将会以初始状态的形式启动网络。</p><h2 id=十一参考文章><a href=#%e5%8d%81%e4%b8%80%e5%8f%82%e8%80%83%e6%96%87%e7%ab%a0 class=header-anchor></a>十一、参考文章</h2><ul><li><a class=link href=https://hyperledger-fabric.readthedocs.io/zh_CN/release-2.2/write_first_app.html target=_blank rel=noopener>编写你的第一个应用</a></li></ul></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/blockchain/>Blockchain</a>
+<a href=/tags/fabric/>Fabric</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/2-demo-test-network/><div class=article-details><h2 class=article-title>Fabric案例 - test-network</h2></div></a></article><article><a href=/p/1-env-setup-2-3/><div class=article-details><h2 class=article-title>HyperLedger Fabric 开发环境搭建</h2></div></a></article><article><a href=/p/5-evm/><div class=article-details><h2 class=article-title>以太坊虚拟机（EVM）</h2></div></a></article><article><a href=/p/4-transaction/><div class=article-details><h2 class=article-title>以太坊交易</h2></div></a></article><article><a href=/p/3-account/><div class=article-details><h2 class=article-title>以太坊账户</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

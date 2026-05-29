@@ -1,0 +1,146 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="在自己的Vercel服务器部署GitHub Stats [TOC]\n一、Fork 项目仓库 首先fork项目github-readme-stats到自己的GitHub下，然后修改/vercel.json文件才能部署成功，不然会提示部署错误，需要付费升级Pro计划\n"><title>在自己的Vercel服务器部署GitHub Stats</title><link rel=canonical href=https://example.org/p/readme-stats/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="在自己的Vercel服务器部署GitHub Stats"><meta property='og:description' content="在自己的Vercel服务器部署GitHub Stats [TOC]\n一、Fork 项目仓库 首先fork项目github-readme-stats到自己的GitHub下，然后修改/vercel.json文件才能部署成功，不然会提示部署错误，需要付费升级Pro计划\n"><meta property='og:url' content='https://example.org/p/readme-stats/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Tool'><meta property='article:tag' content='Git'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="在自己的Vercel服务器部署GitHub Stats"><meta name=twitter:description content="在自己的Vercel服务器部署GitHub Stats [TOC]\n一、Fork 项目仓库 首先fork项目github-readme-stats到自己的GitHub下，然后修改/vercel.json文件才能部署成功，不然会提示部署错误，需要付费升级Pro计划\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一fork-项目仓库>一、Fork 项目仓库</a></li><li><a href=#二注册vercel账号>二、注册Vercel账号</a></li><li><a href=#三导入项目>三、导入项目</a></li><li><a href=#四部署项目>四、部署项目</a></li><li><a href=#五调用api>五、调用API</a></li><li><a href=#六自定义装x小技巧>六、自定义装X小技巧</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tool/ style=background-color:#d7beef;color:#270f3d>Tool
+</a><a href=/categories/git/ style=background-color:#bedcef;color:#0f2c3d>Git</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/readme-stats/>在自己的Vercel服务器部署GitHub Stats</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一fork-项目仓库>一、Fork 项目仓库</a></li><li><a href=#二注册vercel账号>二、注册Vercel账号</a></li><li><a href=#三导入项目>三、导入项目</a></li><li><a href=#四部署项目>四、部署项目</a></li><li><a href=#五调用api>五、调用API</a></li><li><a href=#六自定义装x小技巧>六、自定义装X小技巧</a></li></ol></nav></details></aside><section class=article-content><h1 id=在自己的vercel服务器部署github-stats><a href=#%e5%9c%a8%e8%87%aa%e5%b7%b1%e7%9a%84vercel%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%83%a8%e7%bd%b2github-stats class=header-anchor></a>在自己的Vercel服务器部署GitHub Stats</h1><p>[TOC]</p><h2 id=一fork-项目仓库><a href=#%e4%b8%80fork-%e9%a1%b9%e7%9b%ae%e4%bb%93%e5%ba%93 class=header-anchor></a>一、Fork 项目仓库</h2><p>首先<code>fork</code>项目<a class=link href=https://github.com/anuraghazra/github-readme-stats target=_blank rel=noopener>github-readme-stats</a>到自己的GitHub下，然后修改<code>/vercel.json</code>文件才能部署成功，不然会提示部署错误，需要付费升级Pro计划</p><blockquote><ul><li>修改<code>maxDuration</code>为1~10，推荐修改为10</li><li><code>destination</code>用于设置<code>Vercel</code>域名重定向的url</li></ul></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;functions&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;api/*.js&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;memory&#34;</span><span class=p>:</span> <span class=mi>128</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;maxDuration&#34;</span><span class=p>:</span> <span class=mi>30</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;redirects&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;source&#34;</span><span class=p>:</span> <span class=s2>&#34;/&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;destination&#34;</span><span class=p>:</span> <span class=s2>&#34;https://github.com/anuraghazra/github-readme-stats&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=二注册vercel账号><a href=#%e4%ba%8c%e6%b3%a8%e5%86%8cvercel%e8%b4%a6%e5%8f%b7 class=header-anchor></a>二、注册Vercel账号</h2><p>进入<a class=link href=https://vercel.com/ target=_blank rel=noopener>Vercel官网</a>，使用GitHub进行注册</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-210003.png alt=image-20211110210002084 loading=lazy></p><h2 id=三导入项目><a href=#%e4%b8%89%e5%af%bc%e5%85%a5%e9%a1%b9%e7%9b%ae class=header-anchor></a>三、导入项目</h2><p>找到<code>Import Git Repository</code>准备导入仓库</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-211432.png alt=image-20211110211010068 loading=lazy></p><p>点击<code>Add GitHub Org or Account</code>，选择<code>Install</code>授权访问仓库</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-211444.png alt=image-20211110211211926 loading=lazy></p><p>点击<code>Import</code>导入项目</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-211349.png alt=image-20211110211348767 loading=lazy></p><h2 id=四部署项目><a href=#%e5%9b%9b%e9%83%a8%e7%bd%b2%e9%a1%b9%e7%9b%ae class=header-anchor></a>四、部署项目</h2><p>在GitHub里<a class=link href=https://github.com/settings/tokens target=_blank rel=noopener>生成</a>的<code>token</code>令牌，生成令牌时<code>Select scopes</code>可全部留空</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-212441.png alt=image-20211110212440495 loading=lazy></p><p>回到<code>Vercel</code>部署项目，选择不创建团队，点击跳过</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-211648.png alt=image-20211110211647546 loading=lazy></p><p>项目名称可自定义，其他内容保持不变</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-212252.png alt=image-20211110212251577 loading=lazy></p><p>添加名为<code>PAT_1</code>的环境变量，<code>Value</code>为刚才生成的<code>Token</code></p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-212539.png alt=image-20211110212537611 loading=lazy></p><p>点击<code>deploy</code>，等待约一分钟即可完成</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/10-213354.png alt=image-20211110213352494 loading=lazy></p><h2 id=五调用api><a href=#%e4%ba%94%e8%b0%83%e7%94%a8api class=header-anchor></a>五、调用API</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>[<span class=nt>![Jxpro&#39;s GitHub stats</span>](<span class=na>https://{domain}/api?username=jxpro&amp;show_icons=true&amp;theme=blueberry&amp;include_all_commits=true</span>)](https://github.com/Jxpro/github-readme-stats)
+</span></span></code></pre></td></tr></table></div></div><ul><li>详细参数说明见 <a class=link href=https://github.com/Jxpro/github-readme-stats/blob/master/docs/readme_cn.md target=_blank rel=noopener>readme.md</a></li></ul><h2 id=六自定义装x小技巧><a href=#%e5%85%ad%e8%87%aa%e5%ae%9a%e4%b9%89%e8%a3%85x%e5%b0%8f%e6%8a%80%e5%b7%a7 class=header-anchor></a>六、自定义装X小技巧</h2><ul><li>修改<code>/src/calculateRank.js</code>下<code>Line 89</code>代码：<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=k>return</span> <span class=p>{</span> <span class=nx>level</span><span class=p>,</span> <span class=nx>score</span><span class=o>:</span> <span class=nx>normalizedScore</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=c1>// 修改此处可改变stats-card显示的评级(level)和空余部分(score)
+</span></span></span><span class=line><span class=cl><span class=k>return</span> <span class=p>{</span> <span class=nx>level</span><span class=o>:</span><span class=s2>&#34;S++&#34;</span><span class=p>,</span> <span class=nx>score</span><span class=o>:</span> <span class=mf>4.6</span> <span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div></li><li>修改<code>/src/cards/stats-card.js</code>下<code>totalIssues</code>，<code>totalPRs</code><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl> <span class=kr>const</span> <span class=nx>STATS</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>stars</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>icon</span><span class=o>:</span> <span class=nx>icons</span><span class=p>.</span><span class=nx>star</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>label</span><span class=o>:</span> <span class=nx>i18n</span><span class=p>.</span><span class=nx>t</span><span class=p>(</span><span class=s2>&#34;statcard.totalstars&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>      <span class=nx>value</span><span class=o>:</span> <span class=nx>totalStars</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;stars&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>commits</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>icon</span><span class=o>:</span> <span class=nx>icons</span><span class=p>.</span><span class=nx>commits</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>label</span><span class=o>:</span> <span class=sb>`</span><span class=si>${</span><span class=nx>i18n</span><span class=p>.</span><span class=nx>t</span><span class=p>(</span><span class=s2>&#34;statcard.commits&#34;</span><span class=p>)</span><span class=si>}${</span>
+</span></span><span class=line><span class=cl>        <span class=nx>include_all_commits</span> <span class=o>?</span> <span class=s2>&#34;&#34;</span> <span class=o>:</span> <span class=sb>` (</span><span class=si>${</span><span class=k>new</span> <span class=nb>Date</span><span class=p>().</span><span class=nx>getFullYear</span><span class=p>()</span><span class=si>}</span><span class=sb>)`</span>
+</span></span><span class=line><span class=cl>      <span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>value</span><span class=o>:</span> <span class=nx>totalCommits</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;commits&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>prs</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>icon</span><span class=o>:</span> <span class=nx>icons</span><span class=p>.</span><span class=nx>prs</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>label</span><span class=o>:</span> <span class=nx>i18n</span><span class=p>.</span><span class=nx>t</span><span class=p>(</span><span class=s2>&#34;statcard.prs&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl><span class=c1>//    value: totalPRs,
+</span></span></span><span class=line><span class=cl>      <span class=nx>value</span><span class=o>:</span> <span class=mi>3</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;prs&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>issues</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=p>...</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>contribs</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=p>...</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div></li><li>修改<code>/src/common/utils.js</code>下<code>cache_second</code>代码：<div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>CONSTANTS</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>THIRTY_MINUTES</span><span class=o>:</span> <span class=mi>1800</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>TWO_HOURS</span><span class=o>:</span> <span class=mi>3600</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>FOUR_HOURS</span><span class=o>:</span> <span class=mi>3600</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>ONE_DAY</span><span class=o>:</span> <span class=mi>86400</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div>可用于快速展示修改后的效果，但是修改满意后建议改回原来较大的数值
+不然每次访问都需要重新查询，构造图片，会影响效果</li></ul></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/tool/>Tool</a>
+<a href=/tags/git/>Git</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/proxy/><div class=article-details><h2 class=article-title>Git设置代理</h2></div></a></article><article><a href=/p/gitbook/><div class=article-details><h2 class=article-title>GitBook从入门到放弃再到成功</h2></div></a></article><article><a href=/p/edit-commit/><div class=article-details><h2 class=article-title>修改历史commit信息</h2></div></a></article><article><a href=/p/delete-history/><div class=article-details><h2 class=article-title>从历史记录中删除文件</h2></div></a></article><article><a href=/p/command/><div class=article-details><h2 class=article-title>Git的基本使用</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

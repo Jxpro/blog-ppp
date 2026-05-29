@@ -1,0 +1,435 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="使用VSCode+Docker搭建LaTex环境，可配copilot [TOC]\n前置要求：\nWindows下安装好 WSL2 ，Windows10/11一键安装命令：wsl --install；或者有云服务器（推荐），使用ssh进行连接。 WSL2或云服务器中安装好Docker，阿里云一键安装命令：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun 一、VSCode插件 WSL （连接WSL）或者Remote - SSH（连接服务器） Dev Containers （连接Docker容器） 二、配置Docker权限 创建docker组，一般安装时已创建：\n"><title>使用VSCode+Docker搭建LaTex环境，可配copilot</title><link rel=canonical href=https://example.org/p/vscode-docker/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="使用VSCode+Docker搭建LaTex环境，可配copilot"><meta property='og:description' content="使用VSCode+Docker搭建LaTex环境，可配copilot [TOC]\n前置要求：\nWindows下安装好 WSL2 ，Windows10/11一键安装命令：wsl --install；或者有云服务器（推荐），使用ssh进行连接。 WSL2或云服务器中安装好Docker，阿里云一键安装命令：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun 一、VSCode插件 WSL （连接WSL）或者Remote - SSH（连接服务器） Dev Containers （连接Docker容器） 二、配置Docker权限 创建docker组，一般安装时已创建：\n"><meta property='og:url' content='https://example.org/p/vscode-docker/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Tool'><meta property='article:tag' content='LaTex'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="使用VSCode+Docker搭建LaTex环境，可配copilot"><meta name=twitter:description content="使用VSCode+Docker搭建LaTex环境，可配copilot [TOC]\n前置要求：\nWindows下安装好 WSL2 ，Windows10/11一键安装命令：wsl --install；或者有云服务器（推荐），使用ssh进行连接。 WSL2或云服务器中安装好Docker，阿里云一键安装命令：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun 一、VSCode插件 WSL （连接WSL）或者Remote - SSH（连接服务器） Dev Containers （连接Docker容器） 二、配置Docker权限 创建docker组，一般安装时已创建：\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一vscode插件>一、VSCode插件</a></li><li><a href=#二配置docker权限>二、配置Docker权限</a></li><li><a href=#三构建docker镜像>三、构建Docker镜像</a><ol><li><a href=#31-直接使用texlive官方完整镜像推荐>3.1 直接使用texlive官方完整镜像（推荐）</a></li><li><a href=#32-使用模板构建镜像体积更小但没xelatex>3.2 使用模板构建镜像（体积更小但没xelatex）</a></li></ol></li><li><a href=#四配置git仓库>四、配置git仓库</a></li><li><a href=#五vscode打开目录>五、VSCode打开目录</a></li><li><a href=#六结尾>六、结尾</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tool/ style=background-color:#d7beef;color:#270f3d>Tool
+</a><a href=/categories/latex/ style=background-color:#efc7be;color:#3d180f>LaTex</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/vscode-docker/>使用VSCode+Docker搭建LaTex环境，可配copilot</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 4 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一vscode插件>一、VSCode插件</a></li><li><a href=#二配置docker权限>二、配置Docker权限</a></li><li><a href=#三构建docker镜像>三、构建Docker镜像</a><ol><li><a href=#31-直接使用texlive官方完整镜像推荐>3.1 直接使用texlive官方完整镜像（推荐）</a></li><li><a href=#32-使用模板构建镜像体积更小但没xelatex>3.2 使用模板构建镜像（体积更小但没xelatex）</a></li></ol></li><li><a href=#四配置git仓库>四、配置git仓库</a></li><li><a href=#五vscode打开目录>五、VSCode打开目录</a></li><li><a href=#六结尾>六、结尾</a></li></ol></nav></details></aside><section class=article-content><h1 id=使用vscodedocker搭建latex环境可配copilot><a href=#%e4%bd%bf%e7%94%a8vscodedocker%e6%90%ad%e5%bb%balatex%e7%8e%af%e5%a2%83%e5%8f%af%e9%85%8dcopilot class=header-anchor></a>使用VSCode+Docker搭建LaTex环境，可配copilot</h1><p>[TOC]</p><p>前置要求：</p><ol><li>Windows下安装好 WSL2 ，Windows10/11一键安装命令：<code>wsl --install</code>；或者有云服务器（推荐），使用ssh进行连接。</li><li>WSL2或云服务器中安装好Docker，阿里云一键安装命令：<code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code></li></ol><h2 id=一vscode插件><a href=#%e4%b8%80vscode%e6%8f%92%e4%bb%b6 class=header-anchor></a>一、VSCode插件</h2><ol><li><a class=link href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target=_blank rel=noopener>WSL</a> （连接WSL）或者<a class=link href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh" target=_blank rel=noopener>Remote - SSH</a>（连接服务器）</li><li><a class=link href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers" target=_blank rel=noopener>Dev Containers</a> （连接Docker容器）</li></ol><h2 id=二配置docker权限><a href=#%e4%ba%8c%e9%85%8d%e7%bd%aedocker%e6%9d%83%e9%99%90 class=header-anchor></a>二、配置Docker权限</h2><p>创建docker组，一般安装时已创建：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo groupadd docker
+</span></span></code></pre></td></tr></table></div></div><p>将当前用户加入docker组：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo usermod -aG docker $USER
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>这个命令的各个部分具体意义：
+</span></span><span class=line><span class=cl>sudo：这个命令用于以超级用户（root）的权限执行后面的命令。
+</span></span><span class=line><span class=cl>usermod：这是一个用于修改用户账户设置的命令。
+</span></span><span class=line><span class=cl>-aG：这个选项是 usermod 命令的两个参数的组合。-a 表示 append（追加），用于将用户添加到一个新的组里；-G 表示 group，用于指定组名。
+</span></span><span class=line><span class=cl>docker：这是你要将用户添加到的组的名称，在这个情况下是 docker 组。
+</span></span><span class=line><span class=cl>$USER：这是一个环境变量，代表当前登录的用户的用户名。
+</span></span></code></pre></td></tr></table></div></div><p>这样用户就可以在不使用 <code>sudo</code> 的情况下运行 Docker 命令了，不然VSCode无法使用Docker</p><h2 id=三构建docker镜像><a href=#%e4%b8%89%e6%9e%84%e5%bb%badocker%e9%95%9c%e5%83%8f class=header-anchor></a>三、构建Docker镜像</h2><h3 id=31-直接使用texlive官方完整镜像推荐><a href=#31-%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8texlive%e5%ae%98%e6%96%b9%e5%ae%8c%e6%95%b4%e9%95%9c%e5%83%8f%e6%8e%a8%e8%8d%90 class=header-anchor></a>3.1 直接使用texlive官方完整镜像（推荐）</h3><p>拉取镜像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>docker pull texlive/texlive
+</span></span></code></pre></td></tr></table></div></div><h3 id=32-使用模板构建镜像体积更小但没xelatex><a href=#32-%e4%bd%bf%e7%94%a8%e6%a8%a1%e6%9d%bf%e6%9e%84%e5%bb%ba%e9%95%9c%e5%83%8f%e4%bd%93%e7%a7%af%e6%9b%b4%e5%b0%8f%e4%bd%86%e6%b2%a1xelatex class=header-anchor></a>3.2 使用模板构建镜像（体积更小但没xelatex）</h3><p>下载模板</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>curl -o Dockerfile https://raw.githubusercontent.com/James-Yu/LaTeX-Workshop/master/samples/docker/.devcontainer/Dockerfile
+</span></span></code></pre></td></tr></table></div></div><p>构建镜像</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>docker build -t jamesyu/texlive .
+</span></span></code></pre></td></tr></table></div></div><p>镜像构建时间较长，请耐心等待。。。</p><blockquote><p>这个镜像下好像没有<code>xelatex</code>引擎/编译器！！！</p></blockquote><h2 id=四配置git仓库><a href=#%e5%9b%9b%e9%85%8d%e7%bd%aegit%e4%bb%93%e5%ba%93 class=header-anchor></a>四、配置git仓库</h2><p>初始化</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git init
+</span></span></code></pre></td></tr></table></div></div><p>配置<code>gitignore</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/main/TeX.gitignore
+</span></span></code></pre></td></tr></table></div></div><p>配置容器环境</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mkdir .devcontainer &amp;&amp; touch .devcontainer/devcontainer.json
+</span></span></code></pre></td></tr></table></div></div><p>加入以下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>    &#34;name&#34;: &#34;TeX Live base&#34;,
+</span></span><span class=line><span class=cl>    &#34;image&#34;: &#34;texlive/texlive&#34;, //或者 jamesyu/texlive
+</span></span><span class=line><span class=cl>    &#34;customizations&#34;: {
+</span></span><span class=line><span class=cl>        &#34;vscode&#34;: {
+</span></span><span class=line><span class=cl>            &#34;extensions&#34;: [
+</span></span><span class=line><span class=cl>                &#34;GitHub.copilot&#34;,
+</span></span><span class=line><span class=cl>                &#34;GitHub.copilot-chat&#34;,
+</span></span><span class=line><span class=cl>                &#34;donjayamanne.githistory&#34;,
+</span></span><span class=line><span class=cl>                &#34;james-yu.latex-workshop&#34;
+</span></span><span class=line><span class=cl>            ]
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><h2 id=五vscode打开目录><a href=#%e4%ba%94vscode%e6%89%93%e5%bc%80%e7%9b%ae%e5%bd%95 class=header-anchor></a>五、VSCode打开目录</h2><p>使用VSCode打开目录，右下角会弹出提示，在容器中重新打开即可：</p><blockquote><p>若没有弹出，按下ctrl+shift+p，输入Remote-Containers: Reopen in Container即可</p></blockquote><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2024/01-09-220347.png alt=image-20240109220346497 loading=lazy></p><h2 id=六结尾><a href=#%e5%85%ad%e7%bb%93%e5%b0%be class=header-anchor></a>六、结尾</h2><ol><li><p>在容器内的VSCode安装（<a class=link href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" target=_blank rel=noopener>copilot</a>），<a class=link href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop" target=_blank rel=noopener>LaTeX Workshop</a>（可能会自动安装）</p></li><li><p>中文编译相关问题：</p><ul><li>将<code>Windows</code>字体复制至<code>docker</code>容器内，防止某些情况下报错：<code>Package fontspec: The font "SimSum/SimHei" cannot be found.</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 复制字体文件
+</span></span><span class=line><span class=cl>docker cp C:\Windows\Fonts &lt;container-name&gt;:/usr/share/fonts/
+</span></span><span class=line><span class=cl># 更新字体缓存
+</span></span><span class=line><span class=cl>fc-cache -fv
+</span></span></code></pre></td></tr></table></div></div><ul><li><code>amsmath</code>与<code>anyfontsize</code>搭配使用，防止警告：<code>LaTeX Font: Size substitutions with differences (Font) up to 0.41063pt have occurred.</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>\usepackage{anyfontsize}
+</span></span><span class=line><span class=cl>\usepackage{amsmath}
+</span></span></code></pre></td></tr></table></div></div><ul><li>防止<code>ctex-fontset-fandol.def</code>中的警告：<code>Package fontspec: Font "FandolSong-Regular" does not contain requested (fontspec) Script "CJK".</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>方法1：
+</span></span><span class=line><span class=cl>在\documentclass{ctexart}中加入选项：
+</span></span><span class=line><span class=cl>\documentclass[fontset=windows]{ctexart}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>方法2：
+</span></span><span class=line><span class=cl>在\documentclass{ctexart}之前，加上：
+</span></span><span class=line><span class=cl>\PassOptionsToPackage{quiet}{xeCJK}
+</span></span></code></pre></td></tr></table></div></div></li><li><p>setting.json中配置（copilot），LaTeX Workshop</p></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//------------------------------copilot 配置----------------------------------
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;github.copilot.advanced&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;debug.overrideChatEngine&#34;</span><span class=p>:</span> <span class=s2>&#34;gpt-4&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//------------------------------LaTeX 配置----------------------------------
+</span></span></span><span class=line><span class=cl>    <span class=c1>// 设置是否自动编译
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.latex.autoBuild.run&#34;</span><span class=p>:</span> <span class=s2>&#34;onSave&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//右键菜单
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.showContextMenu&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//从使用的包中自动补全命令和环境
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.intellisense.package.enabled&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//编译出错时设置是否弹出气泡设置
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.message.error.show&#34;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.message.warning.show&#34;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//设置为onFaild 在构建失败后清除辅助文件
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.latex.autoClean.run&#34;</span><span class=p>:</span> <span class=s2>&#34;onFailed&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 使用上次的recipe编译组合
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.latex.recipe.default&#34;</span><span class=p>:</span> <span class=s2>&#34;lastUsed&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 用于反向同步的内部查看器的键绑定。ctrl/cmd +点击(默认)或双击
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.view.pdf.internal.synctex.keybinding&#34;</span><span class=p>:</span> <span class=s2>&#34;ctrl-click&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 编译工具和命令
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.latex.tools&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// pdflatex 能更好的处理英文，适合 IEEE 模板，而且好像编译速度更快，但是无法处理中文
+</span></span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;pdflatexmk&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;latexmk&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-synctex=1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-interaction=nonstopmode&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-file-line-error&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-pdf&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-outdir=%OUTDIR%&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;%DOC%&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// xelatex 能处理中文，但 IEEE 模板中会出现警告：Some font shapes were not available, defaults substituted.
+</span></span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;xelatexmk&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;latexmk&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-synctex=1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-interaction=nonstopmode&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-file-line-error&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-xelatex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-outdir=%OUTDIR%&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;%DOC%&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;lualatexmk&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;latexmk&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-synctex=1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-interaction=nonstopmode&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-file-line-error&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-lualatex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-outdir=%OUTDIR%&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;%DOC%&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;pdflatex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;pdflatex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-synctex=1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-interaction=nonstopmode&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;-file-line-error&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;%DOC%&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;bibtex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;bibtex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;%DOCFILE%&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// {
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     &#34;name&#34;: &#34;tectonic&#34;,
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     &#34;command&#34;: &#34;tectonic&#34;,
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     &#34;args&#34;: [
+</span></span></span><span class=line><span class=cl>        <span class=c1>//         &#34;--synctex&#34;,
+</span></span></span><span class=line><span class=cl>        <span class=c1>//         &#34;--keep-logs&#34;,
+</span></span></span><span class=line><span class=cl>        <span class=c1>//         &#34;%DOC%.tex&#34;
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     ],
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     &#34;env&#34;: {}
+</span></span></span><span class=line><span class=cl>        <span class=c1>// },
+</span></span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 配置编译链
+</span></span></span><span class=line><span class=cl>    <span class=nt>&#34;latex-workshop.latex.recipes&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 这里 recipes 的顺序会决定菜单栏里的顺序，且每次启动 vscode 时，默认recipe都是第一个
+</span></span></span><span class=line><span class=cl>        <span class=c1>// 需要根据上面tools里提到的特点选择，比如 IEEE 就用 pdfLaTeX，而中文就用 XeLaTeX
+</span></span></span><span class=line><span class=cl>        <span class=c1>// 正确地设置默认的编译链可以避免每次启动 vscode 时都要手动选择一次编译链
+</span></span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;latexmk (pdflatex)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;tools&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;pdflatexmk&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;latexmk (xelatex)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;tools&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;xelatexmk&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;latexmk (lualatex)&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;tools&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;lualatexmk&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;pdflatex -&gt; bibtex -&gt; pdflatex * 2&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;tools&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;pdflatex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;bibtex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;pdflatex&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;pdflatex&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// {
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     &#34;name&#34;: &#34;tectonic&#34;,
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     &#34;tools&#34;: [
+</span></span></span><span class=line><span class=cl>        <span class=c1>//         &#34;tectonic&#34;
+</span></span></span><span class=line><span class=cl>        <span class=c1>//     ]
+</span></span></span><span class=line><span class=cl>        <span class=c1>// },
+</span></span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//文件清理。此属性必须是字符串数组
+</span></span></span><span class=line><span class=cl>    <span class=c1>// &#34;latex-workshop.latex.clean.fileTypes&#34;: [
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.aux&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.bbl&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.blg&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.idx&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.ind&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.lof&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.lot&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.out&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.toc&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.acn&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.acr&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.alg&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.glg&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.glo&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.gls&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.ist&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.fls&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.log&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.snm&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.nav&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.vrb&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.fdb_latexmk&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.synctex(busy)&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>//     &#34;*.synctex.gz(busy)&#34;,
+</span></span></span><span class=line><span class=cl>    <span class=c1>// ],
+</span></span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/tool/>Tool</a>
+<a href=/tags/latex/>LaTex</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/package/><div class=article-details><h2 class=article-title>Latex常用宏包</h2></div></a></article><article><a href=/p/ubuntu-init-fast/><div class=article-details><h2 class=article-title>Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )</h2></div></a></article><article><a href=/p/init-cluster/><div class=article-details><h2 class=article-title>Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )</h2></div></a></article><article><a href=/p/submodule/><div class=article-details><h2 class=article-title>Git 子模块</h2></div></a></article><article><a href=/p/recover/><div class=article-details><h2 class=article-title>找回误删文件</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

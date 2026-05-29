@@ -1,0 +1,357 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Stable Baselines3 渲染问题 [TOC]\n问题描述 OpenAI Gym环境在创建时，通过指定参数render_mode='human'，然后在每次动作时render函数渲染画面，能够可视化训练或评估过程，示例代码如下\n"><title>Stable Baselines3 渲染问题</title><link rel=canonical href=https://example.org/p/sb3-render/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="Stable Baselines3 渲染问题"><meta property='og:description' content="Stable Baselines3 渲染问题 [TOC]\n问题描述 OpenAI Gym环境在创建时，通过指定参数render_mode='human'，然后在每次动作时render函数渲染画面，能够可视化训练或评估过程，示例代码如下\n"><meta property='og:url' content='https://example.org/p/sb3-render/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Program'><meta property='article:tag' content='Python'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="Stable Baselines3 渲染问题"><meta name=twitter:description content="Stable Baselines3 渲染问题 [TOC]\n问题描述 OpenAI Gym环境在创建时，通过指定参数render_mode='human'，然后在每次动作时render函数渲染画面，能够可视化训练或评估过程，示例代码如下\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#问题描述>问题描述</a></li><li><a href=#解决办法>解决办法</a></li><li><a href=#源码分析>源码分析</a><ol><li><a href=#make_vec_env>make_vec_env</a></li><li><a href=#render>render</a></li></ol></li><li><a href=#官方文档>官方文档</a></li><li><a href=#总结>总结</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/program/ style=background-color:#efbecf;color:#3d0f1f>Program
+</a><a href=/categories/python/ style=background-color:#efd7be;color:#3d270f>Python</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/sb3-render/>Stable Baselines3 渲染问题</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 7 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#问题描述>问题描述</a></li><li><a href=#解决办法>解决办法</a></li><li><a href=#源码分析>源码分析</a><ol><li><a href=#make_vec_env>make_vec_env</a></li><li><a href=#render>render</a></li></ol></li><li><a href=#官方文档>官方文档</a></li><li><a href=#总结>总结</a></li></ol></nav></details></aside><section class=article-content><h1 id=stable-baselines3-渲染问题><a href=#stable-baselines3-%e6%b8%b2%e6%9f%93%e9%97%ae%e9%a2%98 class=header-anchor></a>Stable Baselines3 渲染问题</h1><p>[TOC]</p><h2 id=问题描述><a href=#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0 class=header-anchor></a>问题描述</h2><p><code>OpenAI Gym</code>环境在创建时，通过指定参数<code>render_mode='human'</code>，然后在每次动作时<code>render</code>函数渲染画面，能够可视化训练或评估过程，示例代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>gym</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>env</span> <span class=o>=</span> <span class=n>gym</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=s1>&#39;CartPole-v1&#39;</span><span class=p>,</span> <span class=n>render_mode</span><span class=o>=</span><span class=s1>&#39;human&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>env</span><span class=o>.</span><span class=n>reset</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 每次渲染一帧动画</span>
+</span></span><span class=line><span class=cl>    <span class=n>env</span><span class=o>.</span><span class=n>render</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>action</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>action_space</span><span class=o>.</span><span class=n>sample</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>env</span><span class=o>.</span><span class=n>step</span><span class=p>(</span><span class=n>action</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>env</span><span class=o>.</span><span class=n>close</span><span class=p>()</span> 
+</span></span></code></pre></td></tr></table></div></div><p><code>Stable Baselines3</code>中使用<code>make_vec_env</code>函数创建向量化环境，可以加速样本采集过程，但是存在的问题是，在创建环境时没有<code>render_mode</code>参数，导致调用<code>render</code>函数无法打开动画窗口，示例代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>stable_baselines3</span> <span class=kn>import</span> <span class=n>PPO</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>stable_baselines3.common.env_util</span> <span class=kn>import</span> <span class=n>make_vec_env</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>stable_baselines3.common.evaluation</span> <span class=kn>import</span> <span class=n>evaluate_policy</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>env_name</span> <span class=o>=</span> <span class=s2>&#34;CartPole-v1&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>env</span> <span class=o>=</span> <span class=n>make_vec_env</span><span class=p>(</span><span class=n>env_name</span><span class=p>,</span> <span class=n>n_envs</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>PPO</span><span class=p>(</span><span class=s2>&#34;MlpPolicy&#34;</span><span class=p>,</span> <span class=n>env</span><span class=p>,</span> <span class=n>verbose</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span> <span class=n>device</span><span class=o>=</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>model</span><span class=o>.</span><span class=n>learn</span><span class=p>(</span><span class=n>total_timesteps</span><span class=o>=</span><span class=mi>10000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>obs</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>reset</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 没有动画窗口打开</span>
+</span></span><span class=line><span class=cl>    <span class=n>env</span><span class=o>.</span><span class=n>render</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>action</span><span class=p>,</span> <span class=n>_states</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>predict</span><span class=p>(</span><span class=n>obs</span><span class=p>,</span> <span class=n>deterministic</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>obs</span><span class=p>,</span> <span class=n>rewards</span><span class=p>,</span> <span class=n>dones</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>step</span><span class=p>(</span><span class=n>action</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>env</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=解决办法><a href=#%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95 class=header-anchor></a>解决办法</h2><blockquote><p>注意，该方法只适合在<code>Stable Baselines3</code>中的向量化环境中使用</p><p>如果在<code>OpenAI Gym</code>环境中调用<code>env.render('human')</code>会报错：</p><p>TypeError: CartPoleEnv.render() takes 1 positional argument but 2 were given</p></blockquote><p>通过查阅<a class=link href=https://stackoverflow.com/questions/77532840/render-doesnt-work-for-gym-environment target=_blank rel=noopener>stackoverflow</a>上的回答，找到一个方法：</p><p><code>Stable Baselines3</code>在创建向量化环境时虽然没有<code>render_mode</code>参数，但是可以在调用<code>env.render()</code>时指定参数<code>mode='human'</code>，达到同样的效果，示例代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>stable_baselines3</span> <span class=kn>import</span> <span class=n>PPO</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>stable_baselines3.common.env_util</span> <span class=kn>import</span> <span class=n>make_vec_env</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>stable_baselines3.common.evaluation</span> <span class=kn>import</span> <span class=n>evaluate_policy</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>env_name</span> <span class=o>=</span> <span class=s2>&#34;CartPole-v1&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>env</span> <span class=o>=</span> <span class=n>make_vec_env</span><span class=p>(</span><span class=n>env_name</span><span class=p>,</span> <span class=n>n_envs</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>model</span> <span class=o>=</span> <span class=n>PPO</span><span class=p>(</span><span class=s2>&#34;MlpPolicy&#34;</span><span class=p>,</span> <span class=n>env</span><span class=p>,</span> <span class=n>verbose</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span> <span class=n>device</span><span class=o>=</span><span class=n>device</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>model</span><span class=o>.</span><span class=n>learn</span><span class=p>(</span><span class=n>total_timesteps</span><span class=o>=</span><span class=mi>10000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>obs</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>reset</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>1000</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 唯一改动了下面一行，可以显示动画</span>
+</span></span><span class=line><span class=cl>    <span class=n>env</span><span class=o>.</span><span class=n>render</span><span class=p>(</span><span class=n>mode</span><span class=o>=</span><span class=s1>&#39;human&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>action</span><span class=p>,</span> <span class=n>_states</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>predict</span><span class=p>(</span><span class=n>obs</span><span class=p>,</span> <span class=n>deterministic</span><span class=o>=</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>obs</span><span class=p>,</span> <span class=n>rewards</span><span class=p>,</span> <span class=n>dones</span><span class=p>,</span> <span class=n>info</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>step</span><span class=p>(</span><span class=n>action</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>env</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=源码分析><a href=#%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90 class=header-anchor></a>源码分析</h2><h3 id=make_vec_env><a href=#make_vec_env class=header-anchor></a>make_vec_env</h3><p>首先查看<code>make_vec_env</code>函数的代码（位于<code>stable_baselines3\common\env_util.py</code>）</p><blockquote><p>下面代码摘要省略了部分注释和次要部分</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>make_vec_env</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>env_id</span><span class=p>:</span> <span class=n>Union</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>Callable</span><span class=p>[</span><span class=o>...</span><span class=p>,</span> <span class=n>gym</span><span class=o>.</span><span class=n>Env</span><span class=p>]],</span>
+</span></span><span class=line><span class=cl>    <span class=n>n_envs</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>seed</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=nb>int</span><span class=p>]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>start_index</span><span class=p>:</span> <span class=nb>int</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>monitor_dir</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=nb>str</span><span class=p>]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>wrapper_class</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=n>Callable</span><span class=p>[[</span><span class=n>gym</span><span class=o>.</span><span class=n>Env</span><span class=p>],</span> <span class=n>gym</span><span class=o>.</span><span class=n>Env</span><span class=p>]]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>env_kwargs</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=n>Dict</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>Any</span><span class=p>]]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>vec_env_cls</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=n>Type</span><span class=p>[</span><span class=n>Union</span><span class=p>[</span><span class=n>DummyVecEnv</span><span class=p>,</span> <span class=n>SubprocVecEnv</span><span class=p>]]]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>vec_env_kwargs</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=n>Dict</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>Any</span><span class=p>]]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>monitor_kwargs</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=n>Dict</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>Any</span><span class=p>]]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>wrapper_kwargs</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=n>Dict</span><span class=p>[</span><span class=nb>str</span><span class=p>,</span> <span class=n>Any</span><span class=p>]]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>VecEnv</span><span class=p>:</span>    
+</span></span><span class=line><span class=cl>	<span class=c1># ......(省略注释)</span>
+</span></span><span class=line><span class=cl>    <span class=n>env_kwargs</span> <span class=o>=</span> <span class=n>env_kwargs</span> <span class=ow>or</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=n>vec_env_kwargs</span> <span class=o>=</span> <span class=n>vec_env_kwargs</span> <span class=ow>or</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=n>monitor_kwargs</span> <span class=o>=</span> <span class=n>monitor_kwargs</span> <span class=ow>or</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=n>wrapper_kwargs</span> <span class=o>=</span> <span class=n>wrapper_kwargs</span> <span class=ow>or</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=k>assert</span> <span class=n>vec_env_kwargs</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span>  <span class=c1># for mypy</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>make_env</span><span class=p>(</span><span class=n>rank</span><span class=p>:</span> <span class=nb>int</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Callable</span><span class=p>[[],</span> <span class=n>gym</span><span class=o>.</span><span class=n>Env</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>_init</span><span class=p>()</span> <span class=o>-&gt;</span> <span class=n>gym</span><span class=o>.</span><span class=n>Env</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># For type checker:</span>
+</span></span><span class=line><span class=cl>            <span class=k>assert</span> <span class=n>monitor_kwargs</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>            <span class=k>assert</span> <span class=n>wrapper_kwargs</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>            <span class=k>assert</span> <span class=n>env_kwargs</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=nb>isinstance</span><span class=p>(</span><span class=n>env_id</span><span class=p>,</span> <span class=nb>str</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=c1># if the render mode was not specified, we set it to `rgb_array` as default.</span>
+</span></span><span class=line><span class=cl>                <span class=n>kwargs</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&#34;render_mode&#34;</span><span class=p>:</span> <span class=s2>&#34;rgb_array&#34;</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>                <span class=n>kwargs</span><span class=o>.</span><span class=n>update</span><span class=p>(</span><span class=n>env_kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>env</span> <span class=o>=</span> <span class=n>gym</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>env_id</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>  <span class=c1># type: ignore[arg-type]</span>
+</span></span><span class=line><span class=cl>                <span class=k>except</span> <span class=ne>TypeError</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>env</span> <span class=o>=</span> <span class=n>gym</span><span class=o>.</span><span class=n>make</span><span class=p>(</span><span class=n>env_id</span><span class=p>,</span> <span class=o>**</span><span class=n>env_kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>env</span> <span class=o>=</span> <span class=n>env_id</span><span class=p>(</span><span class=o>**</span><span class=n>env_kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=c1># Patch to support gym 0.21/0.26 and gymnasium</span>
+</span></span><span class=line><span class=cl>                <span class=n>env</span> <span class=o>=</span> <span class=n>_patch_env</span><span class=p>(</span><span class=n>env</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                
+</span></span><span class=line><span class=cl>			<span class=c1># ......(省略部分代码)</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>_init</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># No custom VecEnv is passed</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>vec_env_cls</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># Default: use a DummyVecEnv</span>
+</span></span><span class=line><span class=cl>        <span class=n>vec_env_cls</span> <span class=o>=</span> <span class=n>DummyVecEnv</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>vec_env</span> <span class=o>=</span> <span class=n>vec_env_cls</span><span class=p>([</span><span class=n>make_env</span><span class=p>(</span><span class=n>i</span> <span class=o>+</span> <span class=n>start_index</span><span class=p>)</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n_envs</span><span class=p>)],</span> <span class=o>**</span><span class=n>vec_env_kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># Prepare the seeds for the first reset</span>
+</span></span><span class=line><span class=cl>    <span class=n>vec_env</span><span class=o>.</span><span class=n>seed</span><span class=p>(</span><span class=n>seed</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>vec_env</span>
+</span></span></code></pre></td></tr></table></div></div><ol><li>我们可以在<code>33</code>行看到原生<code>gym</code>环境的创建过程<code>env = gym.make(env_id, **kwargs)</code>，在此之前，<code>31</code>行更新了环境参数<code>kwargs.update(env_kwargs)</code>，同时<code>30</code>行指定了默认的<code>render_mode</code>为<code>rgb_array</code>。</li><li>可以发现，<code>env_kwargs</code>是一个字典变量，包含了<code>K-V</code>形式的环境参数，因此，虽然我们无法在<code>make_vec_env</code>中指定<code>render_mode</code>参数，但是可以构建一个环境参数字典<code>env_kwargs = {"render_mode": "human"}</code>，然后在创建向量化环境时指定<code>make_vec_env(env_name, n_envs=1, env_kwargs=env_kwargs)</code>。</li></ol><p>但是这个方法并<strong>不推荐</strong>，因为打开窗口渲染动画会<strong>严重降低训练速度</strong>！！！</p><h3 id=render><a href=#render class=header-anchor></a>render</h3><p>接下来查看<code>render </code>函数的代码（位于<code>stable_baselines3\common\vec_env\base_vec_env.py</code>）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>render</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>mode</span><span class=p>:</span> <span class=n>Optional</span><span class=p>[</span><span class=nb>str</span><span class=p>]</span> <span class=o>=</span> <span class=kc>None</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=n>Optional</span><span class=p>[</span><span class=n>np</span><span class=o>.</span><span class=n>ndarray</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;&#34;&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>    Gym environment rendering
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2>    :param mode: the rendering type
+</span></span></span><span class=line><span class=cl><span class=s2>    &#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>mode</span> <span class=o>==</span> <span class=s2>&#34;human&#34;</span> <span class=ow>and</span> <span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span> <span class=o>!=</span> <span class=n>mode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># Special case, if the render_mode=&#34;rgb_array&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=c1># we can still display that image using opencv</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span> <span class=o>!=</span> <span class=s2>&#34;rgb_array&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>warnings</span><span class=o>.</span><span class=n>warn</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>                <span class=sa>f</span><span class=s2>&#34;You tried to render a VecEnv with mode=&#39;</span><span class=si>{</span><span class=n>mode</span><span class=si>}</span><span class=s2>&#39; &#34;</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;but the render mode defined when initializing the environment must be &#34;</span>
+</span></span><span class=line><span class=cl>                <span class=sa>f</span><span class=s2>&#34;&#39;human&#39; or &#39;rgb_array&#39;, not &#39;</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span><span class=si>}</span><span class=s2>&#39;.&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>mode</span> <span class=ow>and</span> <span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span> <span class=o>!=</span> <span class=n>mode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>warnings</span><span class=o>.</span><span class=n>warn</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=sa>f</span><span class=s2>&#34;&#34;&#34;Starting from gymnasium v0.26, render modes are determined during the initialization of the environment.
+</span></span></span><span class=line><span class=cl><span class=s2>            We allow to pass a mode argument to maintain a backwards compatible VecEnv API, but the mode (</span><span class=si>{</span><span class=n>mode</span><span class=si>}</span><span class=s2>)
+</span></span></span><span class=line><span class=cl><span class=s2>            has to be the same as the environment render mode (</span><span class=si>{</span><span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span><span class=si>}</span><span class=s2>) which is not the case.&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>mode</span> <span class=o>=</span> <span class=n>mode</span> <span class=ow>or</span> <span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>mode</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>warnings</span><span class=o>.</span><span class=n>warn</span><span class=p>(</span><span class=s2>&#34;You tried to call render() but no `render_mode` was passed to the env constructor.&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># mode == self.render_mode == &#34;human&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># In that case, we try to call `self.env.render()` but it might</span>
+</span></span><span class=line><span class=cl>    <span class=c1># crash for subprocesses</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=bp>self</span><span class=o>.</span><span class=n>render_mode</span> <span class=o>==</span> <span class=s2>&#34;human&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>env_method</span><span class=p>(</span><span class=s2>&#34;render&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>mode</span> <span class=o>==</span> <span class=s2>&#34;rgb_array&#34;</span> <span class=ow>or</span> <span class=n>mode</span> <span class=o>==</span> <span class=s2>&#34;human&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># call the render method of the environments</span>
+</span></span><span class=line><span class=cl>        <span class=n>images</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>get_images</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># Create a big image by tiling images from subprocesses</span>
+</span></span><span class=line><span class=cl>        <span class=n>bigimg</span> <span class=o>=</span> <span class=n>tile_images</span><span class=p>(</span><span class=n>images</span><span class=p>)</span>  <span class=c1># type: ignore[arg-type]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>mode</span> <span class=o>==</span> <span class=s2>&#34;human&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># Display it using OpenCV</span>
+</span></span><span class=line><span class=cl>            <span class=kn>import</span> <span class=nn>cv2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>cv2</span><span class=o>.</span><span class=n>imshow</span><span class=p>(</span><span class=s2>&#34;vecenv&#34;</span><span class=p>,</span> <span class=n>bigimg</span><span class=p>[:,</span> <span class=p>:,</span> <span class=p>::</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>            <span class=n>cv2</span><span class=o>.</span><span class=n>waitKey</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>bigimg</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># Other render modes:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># In that case, we try to call `self.env.render()` but it might</span>
+</span></span><span class=line><span class=cl>        <span class=c1># crash for subprocesses</span>
+</span></span><span class=line><span class=cl>        <span class=c1># and we don&#39;t return the values</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>env_method</span><span class=p>(</span><span class=s2>&#34;render&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=kc>None</span>
+</span></span></code></pre></td></tr></table></div></div><ol><li>通过对<code>make_vec_env</code>函数的分析可以知道，如果我们不指定环境参数<code>env_kwargs </code>，则创建的<code>OpenAI Gym</code>环境的<code>render_mode</code>值为<code>rgb_array</code>。</li><li>因此，如果我们不指定参数，直接调用<code>env.render()</code>，则<code>mode</code>会在<code>33</code>行时被赋值为<code>self.render_mode</code>，即默认的<code>rgb_array</code>，随后进入<code>40</code>行的<code>if</code>结构，然后进入<code>52</code>行的<code>else</code>部分，直接返回<code>bigimg</code>。</li><li>如果我们在渲染时加上<code>mode</code>参数，使用<code>env.render(mode='human')</code>，则<code>mode</code>会在<code>33</code>行保持<code>human</code>这个值，随后进入<code>40</code>行的<code>if</code>结构，然后进入<code>46</code>行的<code>if</code>部分，由<code>Stable Baselines3</code>手动执行渲染。</li><li>另外需要注意，虽然<code>make_vec_env</code>创建的向量化环境<code>vec_env</code>也有<code>render_mode</code>字段，但却不会与<code>OpenAI Gym</code>环境的<code>render_mode</code>字段保持同步，因此即使环境创建后设置<code>vec_env.render_mode='human'</code>，也只会导致代码进入<code>36</code>行的<code>if</code>结构（无论<code>mode</code>为何值，因此也会使<code>env.render(mode='human')</code>方法失效），然后调用<code>OpenAI Gym</code>环境的<code>render</code>方法，而其对应的<code>render_mode</code>值依旧为<code>rgb_array</code>，不会打开窗口渲染动画。</li></ol><h2 id=官方文档><a href=#%e5%ae%98%e6%96%b9%e6%96%87%e6%a1%a3 class=header-anchor></a>官方文档</h2><blockquote><ul><li>to overcome the current Gymnasium limitation (only one render mode allowed per env instance, see <a class=link href=https://github.com/Farama-Foundation/Gymnasium/issues/100 target=_blank rel=noopener>issue #100</a>), we recommend using <code>render_mode="rgb_array"</code> since we can both have the image as a numpy array and display it with OpenCV. if no mode is passed or <code>mode="rgb_array"</code> is passed when calling <code>vec_env.render</code> then we use the default mode, otherwise, we use the OpenCV display. Note that if <code>render_mode != "rgb_array"</code>, you can only call <code>vec_env.render()</code> (without argument or with <code>mode=env.render_mode</code>).</li><li>methods and attributes of the underlying Gym envs can be accessed, called and set using <code>vec_env.get_attr("attribute_name")</code>, <code>vec_env.env_method("method_name", args1, args2, kwargs1=kwargs1)</code> and <code>vec_env.set_attr("attribute_name", new_value)</code>.</li></ul></blockquote><ul><li>为了克服当前<code>OpenAI Gym</code>的限制（每个环境实例只允许一种渲染模式，参见<a class=link href=https://github.com/Farama-Foundation/Gymnasium/issues/100 target=_blank rel=noopener>问题#100</a>），我们建议使用<code>render_mode="rgb_array"</code>，因为我们既可以将图像作为<code>numpy</code>数组，又可以用<code>OpenCV</code>显示它。如果在调用<code>vec_env.render</code>时没有传递模式或传递了<code>mode="rgb_array"</code>，那么我们使用默认模式，否则，我们使用<code>OpenCV</code>显示。请注意，如果<code>render_mode != "rgb_array"</code>，你只能调用<code>vec_env.render()</code>（不带参数或者带<code>mode=env.render_mode</code>）。</li><li>可以通过<code>vec_env.get_attr("attribute_name")</code>、<code>vec_env.env_method("method_name", args1, args2, kwargs1=kwargs1)</code>和<code>vec_env.set_attr("attribute_name", new_value)</code>来访问、调用和设置底层<code>OpenAI Gym</code>环境的方法和属性。</li></ul><h2 id=总结><a href=#%e6%80%bb%e7%bb%93 class=header-anchor></a>总结</h2><p>本文讨论了如何解决<code>Stable Baselines3</code>在使用向量化环境时，无法通过<code>render_mode='human'</code>参数来直接渲染动画窗口的问题。通常情况下，在使用<code>OpenAI Gym</code>环境进行强化学习训练或评估时，通过指定<code>render_mode='human'</code>参数，并在每次执行动作后调用<code>render</code>函数，可以可视化地展现出环境的状态变化。但在<code>Stable Baselines3</code>的<code>make_vec_env</code>函数创建的向量化环境中，由于缺少<code>render_mode</code>参数，直接调用<code>render</code>函数并不能打开动画窗口。</p><p>源码分析揭示了<code>make_vec_env</code>函数默认将<code>render_mode</code>设置为<code>rgb_array</code>，但通过传递一个包含<code>render_mode: 'human'</code>的<code>env_kwargs</code>字典给<code>make_vec_env</code>，可以在创建环境时指定渲染模式，尽管这能解决渲染问题，但是使用时并不推荐，因为开启动画窗口渲染会显著降低训练的速度。</p><p>解决方法是，虽然在<code>make_vec_env</code>函数创建环境时并不直接支持设置<code>render_mode</code>，但可以通过向<code>env.render</code>函数传递<code>mode='human'</code>参数来达到相似的效果，注意这是<code>Stable Baselines3</code>的自定义实现，而不是直接调用<code>OpenAI Gym</code>的方法。</p></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/program/>Program</a>
+<a href=/tags/python/>Python</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/pytorch-dim/><div class=article-details><h2 class=article-title>对pytorch中维度的理解</h2></div></a></article><article><a href=/p/pyinstaller/><div class=article-details><h2 class=article-title>Python程序打包成.exe</h2></div></a></article><article><a href=/p/pretty-errors/><div class=article-details><h2 class=article-title>pretty_errors 自定义错误信息</h2></div></a></article><article><a href=/p/pip/><div class=article-details><h2 class=article-title>pip 使用相关</h2></div></a></article><article><a href=/p/phantomjs-sub/><div class=article-details><h2 class=article-title>PhantomJS替代方案</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

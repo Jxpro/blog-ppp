@@ -1,0 +1,183 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Golang开发环境搭建 [TOC]\n一、安装 Go 语言开发包 国外：https://golang.org/dl/ 国内(推荐)： https://golang.google.cn/dl/\n二、测试安装 1 2 3 4 5 6 7 8 9 10 11 $ go version go version go1.17.3 windows/amd64 # 查看环境配置 $ go env set GO111MODULE= set GOARCH=amd64 ... # 配置文件目录 GOENV=C:\\Users\\xin\\AppData\\Roaming\\go\\env ... 三、修改相关配置 1 2 3 4 5 6 7 8 9 10 11 12 # 设置GOPROXY，将Go Module下载请求重定向到GOPROXY指向的缓存库 go env -w GO111MODULE=on (auto) go env -w GOPROXY=https://goproxy.cn,direct # Go 1.13设置了默认的GOSUMDB=sum.golang.org # 是用来验证包的有效性。这个网址由于墙的原因可能无法访问，所以可以使用下面命令来关闭： go env -w GOSUMDB=off # 修改GOPATH默认路径，报错直接修改环境变量 # warning: go env -w GOPATH=... # does not override conflicting OS environment variable go env -w GOPATH=D:\\TASK\\Program\\Go 四、GOPATH目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 GOROOT --src <<--- Go 语言自带的源代码 --pkg <<--- 编译的中间文件放在此文件夹 --bin <<--- 编译的目标文件放在此文件夹 GOPATH --src <<--- 项目源代码放置在此文件夹。 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!! --HelloWorld <<--- 我们项目源代码所在的文件夹。 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!! --vendor <<--- 第三方开源代码文件夹 --github.com --... --pkg <<--- 编译的中间文件放在此文件夹，Go编译器自动生成此文件夹 --bin <<--- 编译的目标文件放在此文件夹，Go编译器自动生成此文件夹 五、 第一个Golang程序 文件位置：D:\\TASK\\Program\\Go\\src\\helloworld\\app.go\n"><title>Golang开发环境搭建</title><link rel=canonical href=https://example.org/p/1-setup/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="Golang开发环境搭建"><meta property='og:description' content="Golang开发环境搭建 [TOC]\n一、安装 Go 语言开发包 国外：https://golang.org/dl/ 国内(推荐)： https://golang.google.cn/dl/\n二、测试安装 1 2 3 4 5 6 7 8 9 10 11 $ go version go version go1.17.3 windows/amd64 # 查看环境配置 $ go env set GO111MODULE= set GOARCH=amd64 ... # 配置文件目录 GOENV=C:\\Users\\xin\\AppData\\Roaming\\go\\env ... 三、修改相关配置 1 2 3 4 5 6 7 8 9 10 11 12 # 设置GOPROXY，将Go Module下载请求重定向到GOPROXY指向的缓存库 go env -w GO111MODULE=on (auto) go env -w GOPROXY=https://goproxy.cn,direct # Go 1.13设置了默认的GOSUMDB=sum.golang.org # 是用来验证包的有效性。这个网址由于墙的原因可能无法访问，所以可以使用下面命令来关闭： go env -w GOSUMDB=off # 修改GOPATH默认路径，报错直接修改环境变量 # warning: go env -w GOPATH=... # does not override conflicting OS environment variable go env -w GOPATH=D:\\TASK\\Program\\Go 四、GOPATH目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 GOROOT --src <<--- Go 语言自带的源代码 --pkg <<--- 编译的中间文件放在此文件夹 --bin <<--- 编译的目标文件放在此文件夹 GOPATH --src <<--- 项目源代码放置在此文件夹。 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!! --HelloWorld <<--- 我们项目源代码所在的文件夹。 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!! --vendor <<--- 第三方开源代码文件夹 --github.com --... --pkg <<--- 编译的中间文件放在此文件夹，Go编译器自动生成此文件夹 --bin <<--- 编译的目标文件放在此文件夹，Go编译器自动生成此文件夹 五、 第一个Golang程序 文件位置：D:\\TASK\\Program\\Go\\src\\helloworld\\app.go\n"><meta property='og:url' content='https://example.org/p/1-setup/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Program'><meta property='article:tag' content='Golang'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="Golang开发环境搭建"><meta name=twitter:description content="Golang开发环境搭建 [TOC]\n一、安装 Go 语言开发包 国外：https://golang.org/dl/ 国内(推荐)： https://golang.google.cn/dl/\n二、测试安装 1 2 3 4 5 6 7 8 9 10 11 $ go version go version go1.17.3 windows/amd64 # 查看环境配置 $ go env set GO111MODULE= set GOARCH=amd64 ... # 配置文件目录 GOENV=C:\\Users\\xin\\AppData\\Roaming\\go\\env ... 三、修改相关配置 1 2 3 4 5 6 7 8 9 10 11 12 # 设置GOPROXY，将Go Module下载请求重定向到GOPROXY指向的缓存库 go env -w GO111MODULE=on (auto) go env -w GOPROXY=https://goproxy.cn,direct # Go 1.13设置了默认的GOSUMDB=sum.golang.org # 是用来验证包的有效性。这个网址由于墙的原因可能无法访问，所以可以使用下面命令来关闭： go env -w GOSUMDB=off # 修改GOPATH默认路径，报错直接修改环境变量 # warning: go env -w GOPATH=... # does not override conflicting OS environment variable go env -w GOPATH=D:\\TASK\\Program\\Go 四、GOPATH目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 GOROOT --src <<--- Go 语言自带的源代码 --pkg <<--- 编译的中间文件放在此文件夹 --bin <<--- 编译的目标文件放在此文件夹 GOPATH --src <<--- 项目源代码放置在此文件夹。 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!! --HelloWorld <<--- 我们项目源代码所在的文件夹。 !!!警告：一个常犯的错误是把 GOPATH 指向此处!!! --vendor <<--- 第三方开源代码文件夹 --github.com --... --pkg <<--- 编译的中间文件放在此文件夹，Go编译器自动生成此文件夹 --bin <<--- 编译的目标文件放在此文件夹，Go编译器自动生成此文件夹 五、 第一个Golang程序 文件位置：D:\\TASK\\Program\\Go\\src\\helloworld\\app.go\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一安装>一、安装</a></li><li><a href=#二测试安装>二、测试安装</a></li><li><a href=#三修改相关配置>三、修改相关配置</a></li><li><a href=#四gopath目录结构>四、GOPATH目录结构</a></li><li><a href=#五-第一个golang程序>五、 第一个Golang程序</a></li><li><a href=#六参考文章>六、参考文章</a></li><li><a href=#七问题一>七、问题一</a></li><li><a href=#八问题二>八、问题二</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/program/ style=background-color:#efbecf;color:#3d0f1f>Program
+</a><a href=/categories/golang/ style=background-color:#dcefbe;color:#2c3d0f>Golang</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/1-setup/>Golang开发环境搭建</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一安装>一、安装</a></li><li><a href=#二测试安装>二、测试安装</a></li><li><a href=#三修改相关配置>三、修改相关配置</a></li><li><a href=#四gopath目录结构>四、GOPATH目录结构</a></li><li><a href=#五-第一个golang程序>五、 第一个Golang程序</a></li><li><a href=#六参考文章>六、参考文章</a></li><li><a href=#七问题一>七、问题一</a></li><li><a href=#八问题二>八、问题二</a></li></ol></nav></details></aside><section class=article-content><h1 id=golang开发环境搭建><a href=#golang%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba class=header-anchor></a>Golang开发环境搭建</h1><p>[TOC]</p><h2 id=一安装><a href=#%e4%b8%80%e5%ae%89%e8%a3%85 class=header-anchor></a>一、安装</h2><p>Go 语言开发包
+国外：<a class=link href=https://golang.org/dl/ target=_blank rel=noopener>https://golang.org/dl/</a>
+国内(推荐)： <a class=link href=https://golang.google.cn/dl/ target=_blank rel=noopener>https://golang.google.cn/dl/</a></p><h2 id=二测试安装><a href=#%e4%ba%8c%e6%b5%8b%e8%af%95%e5%ae%89%e8%a3%85 class=header-anchor></a>二、测试安装</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ go version
+</span></span><span class=line><span class=cl>go version go1.17.3 windows/amd64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看环境配置</span>
+</span></span><span class=line><span class=cl>$ go env
+</span></span><span class=line><span class=cl><span class=nb>set</span> <span class=nv>GO111MODULE</span><span class=o>=</span>
+</span></span><span class=line><span class=cl><span class=nb>set</span> <span class=nv>GOARCH</span><span class=o>=</span>amd64
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl><span class=c1># 配置文件目录</span>
+</span></span><span class=line><span class=cl><span class=nv>GOENV</span><span class=o>=</span>C:<span class=se>\U</span>sers<span class=se>\x</span>in<span class=se>\A</span>ppData<span class=se>\R</span>oaming<span class=se>\g</span>o<span class=se>\e</span>nv
+</span></span><span class=line><span class=cl>...
+</span></span></code></pre></td></tr></table></div></div><h2 id=三修改相关配置><a href=#%e4%b8%89%e4%bf%ae%e6%94%b9%e7%9b%b8%e5%85%b3%e9%85%8d%e7%bd%ae class=header-anchor></a>三、修改相关配置</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 设置GOPROXY，将Go Module下载请求重定向到GOPROXY指向的缓存库</span>
+</span></span><span class=line><span class=cl>go env -w <span class=nv>GO111MODULE</span><span class=o>=</span>on <span class=o>(</span>auto<span class=o>)</span>
+</span></span><span class=line><span class=cl>go env -w <span class=nv>GOPROXY</span><span class=o>=</span>https://goproxy.cn,direct
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Go 1.13设置了默认的GOSUMDB=sum.golang.org</span>
+</span></span><span class=line><span class=cl><span class=c1># 是用来验证包的有效性。这个网址由于墙的原因可能无法访问，所以可以使用下面命令来关闭：</span>
+</span></span><span class=line><span class=cl>go env -w <span class=nv>GOSUMDB</span><span class=o>=</span>off
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改GOPATH默认路径，报错直接修改环境变量</span>
+</span></span><span class=line><span class=cl><span class=c1># warning: go env -w GOPATH=...</span>
+</span></span><span class=line><span class=cl><span class=c1># does not override conflicting OS environment variable</span>
+</span></span><span class=line><span class=cl>go env -w <span class=nv>GOPATH</span><span class=o>=</span>D:<span class=se>\T</span>ASK<span class=se>\P</span>rogram<span class=se>\G</span>o
+</span></span></code></pre></td></tr></table></div></div><h2 id=四gopath目录结构><a href=#%e5%9b%9bgopath%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84 class=header-anchor></a>四、GOPATH目录结构</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>GOROOT
+</span></span><span class=line><span class=cl>	--src                 &lt;&lt;--- Go 语言自带的源代码
+</span></span><span class=line><span class=cl>	--pkg                 &lt;&lt;--- 编译的中间文件放在此文件夹
+</span></span><span class=line><span class=cl>	--bin                 &lt;&lt;--- 编译的目标文件放在此文件夹
+</span></span><span class=line><span class=cl>GOPATH
+</span></span><span class=line><span class=cl>	--src                 &lt;&lt;--- 项目源代码放置在此文件夹。
+</span></span><span class=line><span class=cl>	                            !!!警告：一个常犯的错误是把 GOPATH 指向此处!!!
+</span></span><span class=line><span class=cl>		--HelloWorld      &lt;&lt;--- 我们项目源代码所在的文件夹。
+</span></span><span class=line><span class=cl>		                        !!!警告：一个常犯的错误是把 GOPATH 指向此处!!!
+</span></span><span class=line><span class=cl>		--vendor          &lt;&lt;--- 第三方开源代码文件夹
+</span></span><span class=line><span class=cl>			--github.com
+</span></span><span class=line><span class=cl>				--...
+</span></span><span class=line><span class=cl>	--pkg                 &lt;&lt;--- 编译的中间文件放在此文件夹，Go编译器自动生成此文件夹
+</span></span><span class=line><span class=cl>	--bin                 &lt;&lt;--- 编译的目标文件放在此文件夹，Go编译器自动生成此文件夹
+</span></span></code></pre></td></tr></table></div></div><h2 id=五-第一个golang程序><a href=#%e4%ba%94-%e7%ac%ac%e4%b8%80%e4%b8%aagolang%e7%a8%8b%e5%ba%8f class=header-anchor></a>五、 第一个Golang程序</h2><p>文件位置：D:\TASK\Program\Go\src\helloworld\app.go</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nx>main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=s>&#34;fmt&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>func</span><span class=w> </span><span class=nf>main</span><span class=p>()</span><span class=w> </span><span class=p>{</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;hello world&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>编译运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>$ go run .<span class=se>\a</span>pp.go
+</span></span><span class=line><span class=cl>hello world
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ go build .<span class=se>\a</span>pp.go
+</span></span><span class=line><span class=cl>$ .<span class=se>\a</span>pp.exe
+</span></span><span class=line><span class=cl>hello world
+</span></span></code></pre></td></tr></table></div></div><h2 id=六参考文章><a href=#%e5%85%ad%e5%8f%82%e8%80%83%e6%96%87%e7%ab%a0 class=header-anchor></a>六、参考文章</h2><ul><li><a class=link href=https://zhuanlan.zhihu.com/p/299095514 target=_blank rel=noopener>Golang开发环境搭建</a></li><li><a class=link href=https://www.cnblogs.com/leokale-zz/p/14651078.html target=_blank rel=noopener>Golang环境搭建</a></li><li><a class=link href=https://blog.csdn.net/quicmous/article/details/80360126 target=_blank rel=noopener>Go 语言 GOPATH 设置</a></li></ul><h2 id=七问题一><a href=#%e4%b8%83%e9%97%ae%e9%a2%98%e4%b8%80 class=header-anchor></a>七、问题一</h2><ol><li><p>报错详情</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>go.mod file not found in current directory or any parent directory<span class=p>;</span> see <span class=s1>&#39;go help modules&#39;</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><p>原因分析</p><p>go环境设置存在问题</p><p>具体搜索<code>go modules</code></p></li><li><p>解决办法</p><ul><li>( 过了很长一段时间&mldr; )重新安装&mldr;</li><li>以下方法本人尝试后无效:</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>go env -w <span class=nv>GO111MODULE</span><span class=o>=</span>auto
+</span></span></code></pre></td></tr></table></div></div></li><li><p>参考文章：<a class=link href=https://blog.csdn.net/weixin_40179091/article/details/117163598 target=_blank rel=noopener>CSDN</a></p></li></ol><h2 id=八问题二><a href=#%e5%85%ab%e9%97%ae%e9%a2%98%e4%ba%8c class=header-anchor></a>八、问题二</h2><ol><li><p>报错详情</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>Error running <span class=s1>&#39;go build awesomeProject (1)&#39;</span>: Cannot run program <span class=s2>&#34;C:\Users\erbin\AppData\Local\Temp\___go_build_awesomeProject__1_.exe&#34;</span> <span class=o>(</span>in directory <span class=s2>&#34;G:\Language Proctice\Goworks\src\awesomeProject&#34;</span><span class=o>)</span>: CreateProcess <span class=nv>error</span><span class=o>=</span>216, 该版本的 %1 与你运行的 Windows 版本不兼容。请查看计算机的系统信息，然后联系软件发布者。
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// 此时的代码为</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nx>awesomeProject</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=s>&#34;fmt&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>func</span><span class=w> </span><span class=nf>main</span><span class=p>(){</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Hello World!&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></li><li><p>原因分析</p><p>在go中，应用程序的入口包要为<code>main</code>，而编译源码没有<code>main包</code>时，将无法编译输出可执行的文件，也就会导致这里的错误</p></li><li><p>解决办法</p><p>将main函数所在的包名改为main，改之后如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=c1>// 代码成功运行</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>package</span><span class=w> </span><span class=nx>main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kn>import</span><span class=w> </span><span class=s>&#34;fmt&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=kd>func</span><span class=w> </span><span class=nf>main</span><span class=p>(){</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Hello World!&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=p>}</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></li></ol></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/program/>Program</a>
+<a href=/tags/golang/>Golang</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/x86-book-note/><div class=article-details><h2 class=article-title>《汇编语言：基于x86处理器（原书第7版）》笔记</h2></div></a></article><article><a href=/p/as-setup/><div class=article-details><h2 class=article-title>Android Studio相关</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

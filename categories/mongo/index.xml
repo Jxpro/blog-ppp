@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mongo on Markdown Notes</title><link>https://example.org/categories/mongo/</link><description>Recent content in Mongo on Markdown Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2026 09:22:25 +0000</lastBuildDate><atom:link href="https://example.org/categories/mongo/index.xml" rel="self" type="application/rss+xml"/><item><title>安装MongoDB</title><link>https://example.org/p/setup/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/setup/</guid><description>&lt;h1 id="安装mongodb"&gt;&lt;a href="#%e5%ae%89%e8%a3%85mongodb" class="header-anchor"&gt;&lt;/a&gt;安装MongoDB
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id="一使用docker安装"&gt;&lt;a href="#%e4%b8%80%e4%bd%bf%e7%94%a8docker%e5%ae%89%e8%a3%85" class="header-anchor"&gt;&lt;/a&gt;一、使用Docker安装
+&lt;/h2&gt;&lt;h3 id="11-创建容器"&gt;&lt;a href="#11-%e5%88%9b%e5%bb%ba%e5%ae%b9%e5%99%a8" class="header-anchor"&gt;&lt;/a&gt;1.1 创建容器
+&lt;/h3&gt;&lt;p&gt;执行下列命令创建&lt;code&gt;MongoDB&lt;/code&gt;容器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -d --restart&lt;span class="o"&gt;=&lt;/span&gt;always -p 27017:27017 --name mymongo -v /data/mongo:/data/db mongo --auth
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;-d&lt;/code&gt; 表示后台启动&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;--restart&lt;/code&gt; 表示&lt;code&gt;docker&lt;/code&gt;启动时自启动相关容器&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-p&lt;/code&gt; 映射端口，格式为&lt;strong&gt;主机端口:容器端口&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;--name&lt;/code&gt; 指定容器名称&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-v&lt;/code&gt; 挂载目录，格式为&lt;strong&gt;主机目录:容器目录&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;--auth&lt;/code&gt; 开启&lt;code&gt;MongoDB&lt;/code&gt;的&lt;strong&gt;授权模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;网上其他文章说先不开启此选项，等设置管理员后，再重启并设置此选项对docker来说过于麻烦&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+&lt;h3 id="12-添加管理员"&gt;&lt;a href="#12-%e6%b7%bb%e5%8a%a0%e7%ae%a1%e7%90%86%e5%91%98" class="header-anchor"&gt;&lt;/a&gt;1.2 添加管理员
+&lt;/h3&gt;&lt;p&gt;首先进入容器&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker &lt;span class="nb"&gt;exec&lt;/span&gt; -it mymongo /bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;根据阿里云帮助文档，&lt;del&gt;在未开启认证的环境下&lt;/del&gt;，先输入&lt;code&gt;mongo&lt;/code&gt;，进入命令模式，然后切换到&lt;code&gt;admin&lt;/code&gt;数据库，并创建管理员账号，管理员账号将在&lt;code&gt;system.users&lt;/code&gt;中。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# mongo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;MongoDB shell version v5.0.5
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;connecting to: mongodb://127.0.0.1:27017/?compressors&lt;span class="o"&gt;=&lt;/span&gt;disabled&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nv"&gt;gssapiServiceName&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mongodb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; use admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;switched to db admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; db.createUser&lt;span class="o"&gt;({&lt;/span&gt;user:&lt;span class="s2"&gt;&amp;#34;root&amp;#34;&lt;/span&gt;,pwd:&lt;span class="s2"&gt;&amp;#34;root&amp;#34;&lt;/span&gt;,roles:&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;root&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;]})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Successfully added user: &lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;user&amp;#34;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;#34;root&amp;#34;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;#34;roles&amp;#34;&lt;/span&gt; : &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;root&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bye
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;del&gt;关闭&lt;code&gt;MongoDB&lt;/code&gt;服务：&lt;code&gt;db.runCommand(&amp;quot;shutdown&amp;quot;)&lt;/code&gt;然后重启：&lt;code&gt;mongod --auth&lt;/code&gt;。&lt;/del&gt;&lt;/p&gt;</description></item></channel></rss>

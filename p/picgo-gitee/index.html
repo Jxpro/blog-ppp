@@ -1,0 +1,131 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="Typora下配置图床 [TOC]\n一、安装PicGo-Core 错误安装：\n1 2 3 # 不能如下通过**npm**安装 # 因为npm安装以后没有exe文件，无法通过typora运行PicGo npm install picgo -g 正确安装：\n"><title>Typora下配置图床</title><link rel=canonical href=https://example.org/p/picgo-gitee/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.e62e09c60ba428a627e03568fa3df938f6a8224f815b5846f00816c17d4a0be4.css><meta property='og:title' content="Typora下配置图床"><meta property='og:description' content="Typora下配置图床 [TOC]\n一、安装PicGo-Core 错误安装：\n1 2 3 # 不能如下通过**npm**安装 # 因为npm安装以后没有exe文件，无法通过typora运行PicGo npm install picgo -g 正确安装：\n"><meta property='og:url' content='https://example.org/p/picgo-gitee/'><meta property='og:site_name' content='Markdown Notes'><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Tool'><meta property='article:tag' content='Markdown'><meta property='article:published_time' content='2026-05-28T09:22:25+00:00'><meta property='article:modified_time' content='2026-05-28T09:22:25+00:00'><meta name=twitter:title content="Typora下配置图床"><meta name=twitter:description content="Typora下配置图床 [TOC]\n一、安装PicGo-Core 错误安装：\n1 2 3 # 不能如下通过**npm**安装 # 因为npm安装以后没有exe文件，无法通过typora运行PicGo npm install picgo -g 正确安装：\n"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><div class=site-meta><h1 class=site-name><a href=/>Markdown Notes</a></h1><h2 class=site-description>Markdown notes migrated to Hugo.</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>首页</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/categories/><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg>
+<span>分类</span></a></li><li><a href=/tags/><svg class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg>
+<span>标签</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#一安装picgo-core>一、安装PicGo-Core</a></li><li><a href=#二准备giteegithub仓库>二、准备Gitee（github）仓库</a></li><li><a href=#三配置picgo>三、配置PicGo</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/tool/ style=background-color:#d7beef;color:#270f3d>Tool
+</a><a href=/categories/markdown/ style=background-color:#efbed5;color:#3d0f25>Markdown</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/picgo-gitee/>Typora下配置图床</a></h2></div><footer class=article-meta><div class=inline-meta><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2026-05-28T09:22:25Z>2026年5月28日星期四</time>
+<svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#一安装picgo-core>一、安装PicGo-Core</a></li><li><a href=#二准备giteegithub仓库>二、准备Gitee（github）仓库</a></li><li><a href=#三配置picgo>三、配置PicGo</a></li></ol></nav></details></aside><section class=article-content><h1 id=typora下配置图床><a href=#typora%e4%b8%8b%e9%85%8d%e7%bd%ae%e5%9b%be%e5%ba%8a class=header-anchor></a>Typora下配置图床</h1><p>[TOC]</p><h2 id=一安装picgo-core><a href=#%e4%b8%80%e5%ae%89%e8%a3%85picgo-core class=header-anchor></a>一、安装PicGo-Core</h2><p><strong>错误</strong>安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 不能如下通过**npm**安装</span>
+</span></span><span class=line><span class=cl><span class=c1># 因为npm安装以后没有exe文件，无法通过typora运行PicGo</span>
+</span></span><span class=line><span class=cl>npm install picgo -g
+</span></span></code></pre></td></tr></table></div></div><p><strong>正确</strong>安装：</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223421.png alt=img loading=lazy></p><h2 id=二准备giteegithub仓库><a href=#%e4%ba%8c%e5%87%86%e5%a4%87giteegithub%e4%bb%93%e5%ba%93 class=header-anchor></a>二、准备Gitee（github）仓库</h2><ol><li><strong>创建或选择</strong>一个gitee（github）仓库<ul><li>需要保证<strong>仓库公开</strong>，不然可以上传，但是无法下载显示，因为没公开</li><li>需要保证有README.md，文件或者不为空仓库，不然无法删除，原因未知（还能删除？忘记当时怎么想了，TODO 验证一下）</li></ul></li><li>生成私人令牌<code>Token</code>，权限选择<code>projects</code>即可（github选择public_repo），其他可不选</li></ol><blockquote><p>！！！ gitee目前好像加了访问限制，使用github或其他图床</p></blockquote><h2 id=三配置picgo><a href=#%e4%b8%89%e9%85%8d%e7%bd%aepicgo class=header-anchor></a>三、配置PicGo</h2><p>进入Typora安装的picgo.exe目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> C:<span class=se>\U</span>sers<span class=se>\u</span>sername<span class=se>\A</span>ppData<span class=se>\R</span>oaming<span class=se>\T</span>ypora<span class=se>\p</span>icgo<span class=se>\w</span>in64<span class=se>\
+</span></span></span></code></pre></td></tr></table></div></div><p>安装相关插件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 用于格式化图片名称，防止重复</span>
+</span></span><span class=line><span class=cl>.<span class=se>\p</span>icgo install super-prefix
+</span></span><span class=line><span class=cl><span class=c1># PicGo Gitee图床插件</span>
+</span></span><span class=line><span class=cl><span class=c1># 不用gitee可以不用装了</span>
+</span></span><span class=line><span class=cl>.<span class=se>\p</span>icgo install gitee-uploader
+</span></span></code></pre></td></tr></table></div></div><p>通过<code>CLI</code>配置<code>Gitee</code>仓库</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 设置配置文件</span>
+</span></span><span class=line><span class=cl><span class=c1># 按上下键找到gitee，回车</span>
+</span></span><span class=line><span class=cl>./picgo <span class=nb>set</span> uploader
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>可选项说明：</p><ul><li><p><strong>repo</strong>：用户名/仓库名，注意不是整个https地址！！！</p><ul><li><p><strong>错误</strong>示范：repo : <a class=link href=https://gitee.com/username/reponame target=_blank rel=noopener>https://gitee.com/username/reponame</a></p></li><li><p><strong>正确</strong>示范：repo : username/reponame</p></li></ul></li><li><p><strong>token</strong>：刚才生成的token</p></li><li><p><strong>path</strong>：路径，图片存储于 reponame/${path} 下</p></li><li><p><strong>custompath</strong>：用于配置path，customPath为占位符</p><p>示例：path：blog/${customPath}</p><ul><li><p>customPath选择年<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，则实际的path值为blog/2021</p></li><li><p>customPath选择年季<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>，则实际的path值为blog/2021/summer</p></li><li><p>customPath选择年月<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>，则实际的path值为blog/2021/01</p></li></ul></li><li><p><strong>customURL</strong>: 不用填，保持默认（ 不能乱填 ）</p></li></ul></blockquote><p>配置完后使用Gitee仓库</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 使用配置好的文件（配置文件在~/.picgo/config.json）</span>
+</span></span><span class=line><span class=cl>./picgo use uploader
+</span></span></code></pre></td></tr></table></div></div><p>打开 ~/.picgo/config.json，结尾追加以下参数，用于配置图片路径重命名参数</p><blockquote><p><code>"prefixFormat":"YYYY/MM/DD/"</code>这条不能加，修改路径会导致图片无法显示</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=s2>&#34;picgo-plugin-super-prefix&#34;</span><span class=err>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;fileFormat&#34;</span><span class=p>:</span> <span class=s2>&#34;YYYY-MM-DD-HHmmss&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>或者直接打开配置文件，复制粘贴以下配置（没安装gitee-uploader请删除gitee相关部分）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;picBed&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;uploader&#34;</span><span class=p>:</span> <span class=s2>&#34;github&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;current&#34;</span><span class=p>:</span> <span class=s2>&#34;github&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;transformer&#34;</span><span class=p>:</span> <span class=s2>&#34;path&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;github&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;repo&#34;</span><span class=p>:</span> <span class=s2>&#34;username/reponame&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;branch&#34;</span><span class=p>:</span> <span class=s2>&#34;master&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;token&#34;</span><span class=p>:</span> <span class=s2>&#34;token&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;path&#34;</span><span class=p>,</span> <span class=o>//</span> <span class=err>以</span> <span class=s1>&#39;/&#39;</span> <span class=err>结尾，比如</span> <span class=n>md</span><span class=o>/</span><span class=n>new</span><span class=o>/</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;customUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;gitee&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;repo&#34;</span><span class=p>:</span> <span class=s2>&#34;username/reponame&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;branch&#34;</span><span class=p>:</span> <span class=s2>&#34;master&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;token&#34;</span><span class=p>:</span> <span class=s2>&#34;token&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;path&#34;</span><span class=p>:</span> <span class=s2>&#34;md/$customPath&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;customPath&#34;</span><span class=p>:</span> <span class=s2>&#34;yearMonth&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;customUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;picgoPlugins&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;picgo-plugin-gitee-uploader&#34;</span><span class=p>:</span> <span class=bp>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;picgo-plugin-super-prefix&#34;</span><span class=p>:</span> <span class=bp>true</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;picgo-plugin-super-prefix&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;fileFormat&#34;</span><span class=p>:</span> <span class=s2>&#34;YYYY-MM-DD-HHmmss&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>打开Typora，验证图片上传，查看是否成功</p><p><img src=https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223429.png alt=img loading=lazy></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p>year&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p>yearQuarter&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p>yearMonth&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></section><footer class="article-meta article-footer"><section class=article-tags><a href=/tags/tool/>Tool</a>
+<a href=/tags/markdown/>Markdown</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/p/emoji/><div class=article-details><h2 class=article-title>[Typora的Emoji指令](https://www.cnblogs.com/zhaoruiqing/articles/12870209.html)</h2></div></a></article><article><a href=/p/demo/><div class=article-details><h2 class=article-title>一级标题</h2></div></a></article><article><a href=/p/zotero-bib/><div class=article-details><h2 class=article-title>Zotero配置Bib文献引用</h2></div></a></article><article><a href=/p/vscode-docker/><div class=article-details><h2 class=article-title>使用VSCode+Docker搭建LaTex环境，可配copilot</h2></div></a></article><article><a href=/p/package/><div class=article-details><h2 class=article-title>Latex常用宏包</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2026 Markdown Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.3>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js defer></script></body></html>

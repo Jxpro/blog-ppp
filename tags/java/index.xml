@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Markdown Notes</title><link>https://example.org/tags/java/</link><description>Recent content in Java on Markdown Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 28 May 2026 09:22:25 +0000</lastBuildDate><atom:link href="https://example.org/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Swagger 无法访问</title><link>https://example.org/p/swagger2/</link><pubDate>Thu, 28 May 2026 09:22:25 +0000</pubDate><guid>https://example.org/p/swagger2/</guid><description>&lt;h1 id="swagger-无法访问"&gt;&lt;a href="#swagger-%e6%97%a0%e6%b3%95%e8%ae%bf%e9%97%ae" class="header-anchor"&gt;&lt;/a&gt;Swagger 无法访问
+&lt;/h1&gt;&lt;h2 id="问题描述"&gt;&lt;a href="#%e9%97%ae%e9%a2%98%e6%8f%8f%e8%bf%b0" class="header-anchor"&gt;&lt;/a&gt;问题描述
+&lt;/h2&gt;&lt;p&gt;出现问题的&lt;strong&gt;项目地址&lt;/strong&gt;：&lt;a class="link" href="https://github.com/microapp-store/linjiashop" target="_blank" rel="noopener"
+ &gt;邻家小铺&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原&lt;code&gt;swagger&lt;/code&gt;版本：&lt;code&gt;2.2.2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-04-14-112938.png" alt="image-20220414112937151" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;升级&lt;code&gt;swagger&lt;/code&gt;版本到&lt;code&gt;2.9.2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-04-14-113030.png" alt="image-20220414113029493" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;出现问题：Unable to infer base url. This is common when using dynamic servlet registration or &lt;strong&gt;when the API is behind an API Gateway&lt;/strong&gt;. The base url is the root of where all the swagger resources are served. For e.g. if the api is available at &lt;a class="link" href="http://example.org/api/v2/api-docs" target="_blank" rel="noopener"
+ &gt;http://example.org/api/v2/api-docs&lt;/a&gt; then the base url is &lt;a class="link" href="http://example.org/api/" target="_blank" rel="noopener"
+ &gt;http://example.org/api/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-04-14-113341.png" alt="image-20220414113340228" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;h2 id="求助网友"&gt;&lt;a href="#%e6%b1%82%e5%8a%a9%e7%bd%91%e5%8f%8b" class="header-anchor"&gt;&lt;/a&gt;求助网友
+&lt;/h2&gt;&lt;p&gt;首先百度：&lt;strong&gt;swagger Unable to infer base url&lt;/strong&gt;，找到一些文章，但对我没有作用，下面放着仅供参考：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.freesion.com/article/26061412866/" target="_blank" rel="noopener"
+ &gt;https://www.freesion.com/article/26061412866/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.jianshu.com/p/0c92ec5bb257" target="_blank" rel="noopener"
+ &gt;https://www.jianshu.com/p/0c92ec5bb257&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/qq_41345773/article/details/105693212" target="_blank" rel="noopener"
+ &gt;https://blog.csdn.net/qq_41345773/article/details/105693212&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;然后百度：&lt;strong&gt;swagger 2.9.2 无法访问&lt;/strong&gt;，找到下面两篇文章，让有所启发：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/weixin_58276266/article/details/122544534" target="_blank" rel="noopener"
+ &gt;https://blog.csdn.net/weixin_58276266/article/details/122544534&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.cnblogs.com/ahclub/p/15805083.html" target="_blank" rel="noopener"
+ &gt;https://www.cnblogs.com/ahclub/p/15805083.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;最后回顾之前搜到的回答，发现关键问题所在，继续百度：&lt;strong&gt;swagger 2.9.2 被拦截&lt;/strong&gt;，找到问题所在：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.cnblogs.com/boboxing/p/15432281.html" target="_blank" rel="noopener"
+ &gt;https://www.cnblogs.com/boboxing/p/15432281.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.freesion.com/article/2388755310/" target="_blank" rel="noopener"
+ &gt;https://www.freesion.com/article/2388755310/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/yang13676084606/article/details/110391214" target="_blank" rel="noopener"
+ &gt;https://blog.csdn.net/yang13676084606/article/details/110391214&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="分析问题"&gt;&lt;a href="#%e5%88%86%e6%9e%90%e9%97%ae%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;分析问题
+&lt;/h2&gt;&lt;p&gt;经过观察上述的这些回答，其实最关键的问题就是&lt;code&gt;swagger-ui&lt;/code&gt;所需的&lt;strong&gt;静态资源被拦截&lt;/strong&gt;了，只是网友们被拦截的方式不太一样，而这个项目的&lt;code&gt;swagger-ui&lt;/code&gt;就是被&lt;code&gt;shiro&lt;/code&gt;拦截了。&lt;/p&gt;
+&lt;p&gt;观察&lt;code&gt;2.2.2&lt;/code&gt;版本的&lt;code&gt;swagger&lt;/code&gt;请求的&lt;code&gt;ui&lt;/code&gt;，路径具体如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-04-14-115002.png" alt="image-20220414114959966" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;再观察&lt;code&gt;2.9.2&lt;/code&gt;版本的&lt;code&gt;swagger&lt;/code&gt;请求的&lt;code&gt;ui&lt;/code&gt;，发现&lt;strong&gt;路径发生了变化&lt;/strong&gt;，具体如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-04-14-115145.png" alt="image-20220414115143661" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;最后查看其&lt;code&gt;shiro&lt;/code&gt;配置，发现&lt;code&gt;swagger-resource/**&lt;/code&gt;果然&lt;strong&gt;不在拦截白名单内&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/new/2022-04-14-115258.png" alt="image-20220414115256938" loading="lazy"&gt;
+&lt;/p&gt;
+&lt;p&gt;同时可以看到&lt;code&gt;2.9.2&lt;/code&gt;版本的错误响应码为&lt;code&gt;401&lt;/code&gt;，表示&lt;strong&gt;权限不足&lt;/strong&gt;，进一步说明资源被被拦截了。&lt;/p&gt;
+&lt;h2 id="解决问题"&gt;&lt;a href="#%e8%a7%a3%e5%86%b3%e9%97%ae%e9%a2%98" class="header-anchor"&gt;&lt;/a&gt;解决问题
+&lt;/h2&gt;&lt;p&gt;经过上述分析可知，&lt;code&gt;swagger&lt;/code&gt;升级以后，其请求的资源路径也发生了变化，&lt;strong&gt;我们需要修改相关过滤器的配置&lt;/strong&gt;，将&lt;code&gt;swagger-ui&lt;/code&gt;所需的资源过滤，这里是使用的是&lt;code&gt;shiro&lt;/code&gt;，在原基础上添加如下配置即可：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;filterRuleMap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;/swagger/**&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;anon&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;filterRuleMap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;/swagger-resources/**&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;anon&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;filterRuleMap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;/v2/**&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;anon&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;filterRuleMap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;/configuration/**&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#34;anon&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;filterRuleMap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="na"&gt;put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;/doc.html&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;anon&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
