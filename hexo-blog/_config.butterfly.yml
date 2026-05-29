@@ -1,0 +1,101 @@
+# Hexo Butterfly theme overrides.
+# The full default theme config is provided by hexo-theme-butterfly in node_modules.
+
+nav:
+  logo:
+  display_title: true
+  display_post_title: true
+  fixed: false
+
+menu:
+  Home: / || fas fa-home
+  Archives: /archives/ || fas fa-archive
+  Categories: /categories/ || fas fa-folder-open
+  Tags: /tags/ || fas fa-tags
+
+code_blocks:
+  theme: light
+  macStyle: true
+  copy: true
+  language: true
+  shrink: false
+  fullpage: false
+
+avatar:
+  img: /img/butterfly-icon.png
+  effect: false
+
+disable_top_img: false
+default_top_img:
+index_img:
+archive_img:
+tag_img:
+category_img:
+footer_img: false
+
+cover:
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  default_cover:
+
+post_meta:
+  page:
+    date_type: created
+    date_format: date
+    categories: true
+    tags: false
+    label: true
+  post:
+    position: left
+    date_type: both
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+
+index_site_info_top:
+  enable: true
+
+subtitle:
+  enable: false
+
+aside:
+  enable: true
+  hide: false
+  button: true
+  mobile: true
+  position: right
+  card_author:
+    enable: true
+    description: Markdown notes migrated to Hexo.
+    button:
+      enable: false
+  card_announcement:
+    enable: false
+  card_recent_post:
+    enable: true
+    limit: 5
+    sort: date
+    sort_order:
+  card_categories:
+    enable: true
+    limit: 8
+  card_tags:
+    enable: true
+    limit: 30
+    color: false
+
+local_search:
+  enable: false
+
+beautify:
+  enable: true
+  field: post
+  title-prefix-icon: '\f0c1'
+  title-prefix-icon-color: '#f47466'
+
+darkmode:
+  enable: true
+  button: true
+  autoChangeMode: false

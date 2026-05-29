@@ -1,0 +1,16 @@
+hexo-blog/.npm-cache/
+hexo-blog/public/
+hugo-blog/.hugo_build.lock
+hugo-blog/public/
+astro-blog/.astro/
+astro-blog/dist/
+astro-blog/legacy-astropaper/
+hugo-blog/themes/ananke/
+.git-nested-backups/
+release-dists/
+md-notes/.picgo/
+md-notes/**/*.zip
+
+**/node_modules/
+.DS_Store
+*.log

@@ -1,0 +1,3 @@
+{{- $alt := .PlainText | safeHTML -}}
+{{- $title := .Title | markdownify -}}
+<img src="{{ .Destination | safeURL }}" alt="{{ $alt }}"{{ with $title }} title="{{ . }}"{{ end }} loading="lazy">

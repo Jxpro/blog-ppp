@@ -1,0 +1,30 @@
+---
+title: "PEP 8: do not use bare 'exept'"
+published: 2022-10-07
+draft: false
+description: "Migrated from md-notes/Program/Python/bare_exception.md"
+category: "Program"
+tags:
+  - "Program"
+  - "Python"
+author: xin
+sourceLink: "md-notes/Program/Python/bare_exception.md"
+comment: false
+---
+## 错误描述
+
+![image-20211112222512429](https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/12-222513.png)
+
+## 原因一：[Flake8 Rules](https://www.flake8rules.com/)
+
+>   Do not use bare except, specify exception instead (E722)
+
+解决方法：`Inspection`的`option`里添加`E722`项
+
+![image-20211112222613037](https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/12-222614.png)
+
+## 原因二：Unclear exception clauses
+
+解决方法：取消勾选`Unclear exception clauses`
+
+![image-20211112222736678](https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/12-222738.png)

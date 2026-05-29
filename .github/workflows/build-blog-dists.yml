@@ -1,0 +1,105 @@
+name: Build blog dists
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: blog-dists-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Hexo, Hugo, and Astro
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            hexo-blog/package-lock.json
+            astro-blog/package-lock.json
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+
+      - name: Build Hexo
+        working-directory: hexo-blog
+        run: |
+          npm ci
+          npm run clean
+          npm run build
+
+      - name: Prepare Hugo Stack theme
+        working-directory: hugo-blog
+        run: |
+          if [ ! -d "themes/hugo-theme-stack/layouts" ]; then
+            rm -rf themes/hugo-theme-stack
+            git clone --depth 1 https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
+          fi
+
+      - name: Build Hugo
+        working-directory: hugo-blog
+        run: hugo --minify --destination public
+
+      - name: Build Astro
+        working-directory: astro-blog
+        env:
+          ASTRO_TELEMETRY_DISABLED: "1"
+        run: |
+          npm ci --legacy-peer-deps
+          npm run build
+
+      - name: Collect dists
+        run: |
+          mkdir -p release-dists/hexo release-dists/hugo release-dists/astro
+          cp -a hexo-blog/public/. release-dists/hexo/
+          cp -a hugo-blog/public/. release-dists/hugo/
+          cp -a astro-blog/dist/. release-dists/astro/
+
+      - name: Upload Hexo dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: hexo-dist
+          path: hexo-blog/public
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload Hugo dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: hugo-dist
+          path: hugo-blog/public
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload Astro dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: astro-dist
+          path: astro-blog/dist
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload combined dists
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-blog-dists
+          path: release-dists
+          if-no-files-found: error
+          retention-days: 30

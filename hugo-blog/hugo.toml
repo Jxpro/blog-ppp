@@ -1,0 +1,124 @@
+baseURL = 'https://example.org/'
+locale = 'zh-cn'
+defaultContentLanguage = 'zh'
+hasCJKLanguage = true
+title = 'Markdown Notes'
+theme = 'hugo-theme-stack'
+
+[params]
+  description = 'Markdown notes migrated to Hugo.'
+  mainSections = ['posts']
+  rssFullContent = true
+  favicon = ''
+
+  [params.footer]
+    since = 2026
+    customText = ''
+
+  [params.sidebar]
+    emoji = '📝'
+    subtitle = 'Markdown notes migrated to Hugo.'
+    avatar = ''
+
+  [params.article]
+    headingAnchor = true
+    math = false
+    toc = true
+    readingTime = true
+
+    [params.article.list]
+      showTags = true
+
+    [params.article.license]
+      enabled = false
+
+  [params.widgets]
+    homepage = [
+      { type = 'search' },
+      { type = 'archives', params = { limit = 5 } },
+      { type = 'categories', params = { limit = 10 } },
+      { type = 'tag-cloud', params = { limit = 20 } },
+    ]
+    page = [
+      { type = 'toc' },
+    ]
+
+  [params.comments]
+    enabled = false
+
+  [params.colorScheme]
+    toggle = true
+    default = 'auto'
+
+  [params.imageProcessing]
+    autoOrient = false
+    [params.imageProcessing.content]
+      enabled = false
+    [params.imageProcessing.thumbnail]
+      enabled = false
+
+[pagination]
+  pagerSize = 10
+
+[permalinks]
+  posts = '/p/:slug/'
+  page = '/:slug/'
+
+[[menu.main]]
+  identifier = 'home'
+  name = '首页'
+  url = '/'
+  weight = 10
+  [menu.main.params]
+    icon = 'home'
+
+[[menu.main]]
+  identifier = 'archives'
+  name = '归档'
+  url = '/archives/'
+  weight = 20
+  [menu.main.params]
+    icon = 'archives'
+
+[[menu.main]]
+  identifier = 'categories'
+  name = '分类'
+  url = '/categories/'
+  weight = 30
+  [menu.main.params]
+    icon = 'categories'
+
+[[menu.main]]
+  identifier = 'tags'
+  name = '标签'
+  url = '/tags/'
+  weight = 40
+  [menu.main.params]
+    icon = 'tag'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = true
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    tabWidth = 4
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
