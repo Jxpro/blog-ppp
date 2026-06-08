@@ -1,4 +1,6 @@
 baseURL = 'https://example.org/'
+contentDir = 'src'
+publishDir = 'dist'
 locale = 'zh-cn'
 defaultContentLanguage = 'zh'
 hasCJKLanguage = true

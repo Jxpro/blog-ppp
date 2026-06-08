@@ -1,20 +1,20 @@
-title: Notes Blog
-subtitle: ''
-description: Markdown notes migrated to Hexo.
-keywords:
-author: xin
-language: en
+title: Joker Xin's Blog
+subtitle: '系统、编程与工具笔记'
+description: Joker Xin 的系统、编程、工具、区块链笔记。
+keywords: Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain
+author: Joker Xin
+language: zh-CN
 timezone: Asia/Shanghai
 
-url: http://example.com
+url: https://jokerxin.github.io
 permalink: :year/:month/:day/:slug/
 permalink_defaults:
 pretty_urls:
   trailing_index: true
   trailing_html: true
 
-source_dir: source
-public_dir: public
+source_dir: src
+public_dir: dist
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -33,7 +33,7 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: false
 relative_link: false
-future: true
+future: false
 syntax_highlighter: highlight.js
 highlight:
   line_number: true

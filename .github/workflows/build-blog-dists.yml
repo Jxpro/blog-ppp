@@ -18,81 +18,80 @@ concurrency:
 
 jobs:
   build:
-    name: Build Hexo, Hugo, and Astro
+    name: Build and deploy ${{ matrix.name }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Hexo
+            project: hexo-blog
+            runtime: node
+            deploy_branch: dist-hexo
+            install: npm ci
+            build: |
+              npm run clean
+              npm run build
+          - name: Hugo
+            project: hugo-blog
+            runtime: hugo
+            deploy_branch: dist-hugo
+            install: ""
+            build: hugo --minify
+          - name: Astro
+            project: astro-blog
+            runtime: node
+            deploy_branch: dist-astro
+            install: npm ci --legacy-peer-deps
+            build: npm run build
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
       - name: Setup Node.js
+        if: matrix.runtime == 'node'
         uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: |
-            hexo-blog/package-lock.json
-            astro-blog/package-lock.json
+          cache-dependency-path: ${{ matrix.project }}/package-lock.json
 
       - name: Setup Hugo
+        if: matrix.runtime == 'hugo'
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: latest
           extended: true
 
-      - name: Build Hexo
-        working-directory: hexo-blog
-        run: |
-          npm ci
-          npm run clean
-          npm run build
+      - name: Install Node.js dependencies
+        if: matrix.runtime == 'node'
+        working-directory: ${{ matrix.project }}
+        run: ${{ matrix.install }}
 
       - name: Prepare Hugo Stack theme
-        working-directory: hugo-blog
+        if: matrix.runtime == 'hugo'
+        working-directory: ${{ matrix.project }}
         run: |
           if [ ! -d "themes/hugo-theme-stack/layouts" ]; then
             rm -rf themes/hugo-theme-stack
             git clone --depth 1 https://github.com/CaiJimmy/hugo-theme-stack.git themes/hugo-theme-stack
           fi
 
-      - name: Build Hugo
-        working-directory: hugo-blog
-        run: hugo --minify --destination public
-
-      - name: Build Astro
-        working-directory: astro-blog
+      - name: Build ${{ matrix.name }}
+        working-directory: ${{ matrix.project }}
         env:
           ASTRO_TELEMETRY_DISABLED: "1"
-        run: |
-          npm ci --legacy-peer-deps
-          npm run build
+        run: ${{ matrix.build }}
 
-      - name: Add .nojekyll files
-        run: |
-          touch hexo-blog/public/.nojekyll
-          touch hugo-blog/public/.nojekyll
-          touch astro-blog/dist/.nojekyll
+      - name: Add .nojekyll file
+        working-directory: ${{ matrix.project }}
+        run: touch dist/.nojekyll
 
-      - name: Deploy Hexo dist
+      - name: Deploy ${{ matrix.name }} dist
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: dist-hexo
-          folder: hexo-blog/public
-          clean: true
-          single-commit: true
-
-      - name: Deploy Hugo dist
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: dist-hugo
-          folder: hugo-blog/public
-          clean: true
-          single-commit: true
-
-      - name: Deploy Astro dist
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: dist-astro
-          folder: astro-blog/dist
+          branch: ${{ matrix.deploy_branch }}
+          folder: ${{ matrix.project }}/dist
           clean: true
           single-commit: true

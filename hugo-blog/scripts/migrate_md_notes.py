@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Migrate Markdown notes from ../md-notes into Hugo content/posts."""
+"""Migrate Markdown notes from ../md-notes into Hugo src/posts."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from pathlib import Path
 
 SITE_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = SITE_ROOT.parent / "md-notes"
-DEST_ROOT = SITE_ROOT / "content" / "posts"
+DEST_ROOT = SITE_ROOT / "src" / "posts"
 
 
 def slugify(value: str) -> str:

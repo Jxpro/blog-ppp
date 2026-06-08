@@ -1,7 +1,7 @@
 hexo-blog/.npm-cache/
-hexo-blog/public/
+hexo-blog/dist/
 hugo-blog/.hugo_build.lock
-hugo-blog/public/
+hugo-blog/dist/
 astro-blog/.astro/
 astro-blog/dist/
 astro-blog/legacy-astropaper/

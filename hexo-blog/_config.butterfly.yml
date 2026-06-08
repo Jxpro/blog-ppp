@@ -8,10 +8,10 @@ nav:
   fixed: false
 
 menu:
-  Home: / || fas fa-home
-  Archives: /archives/ || fas fa-archive
-  Categories: /categories/ || fas fa-folder-open
-  Tags: /tags/ || fas fa-tags
+  首页: / || fas fa-home
+  归档: /archives/ || fas fa-archive
+  分类: /categories/ || fas fa-folder-open
+  标签: /tags/ || fas fa-tags
 
 code_blocks:
   theme: light
@@ -22,22 +22,22 @@ code_blocks:
   fullpage: false
 
 avatar:
-  img: /img/butterfly-icon.png
+  img:
   effect: false
 
-disable_top_img: false
-default_top_img:
-index_img:
-archive_img:
-tag_img:
-category_img:
+disable_top_img: true
+default_top_img: false
+index_img: false
+archive_img: false
+tag_img: false
+category_img: false
 footer_img: false
 
 cover:
-  index_enable: true
-  aside_enable: true
-  archives_enable: true
-  default_cover:
+  index_enable: false
+  aside_enable: false
+  archives_enable: false
+  default_cover: false
 
 post_meta:
   page:
@@ -51,7 +51,7 @@ post_meta:
     date_type: both
     date_format: date
     categories: true
-    tags: true
+    tags: false
     label: true
 
 index_site_info_top:
@@ -68,7 +68,7 @@ aside:
   position: right
   card_author:
     enable: true
-    description: Markdown notes migrated to Hexo.
+    description: 系统、编程、工具与区块链笔记。
     button:
       enable: false
   card_announcement:
@@ -82,7 +82,7 @@ aside:
     enable: true
     limit: 8
   card_tags:
-    enable: true
+    enable: false
     limit: 30
     color: false
 

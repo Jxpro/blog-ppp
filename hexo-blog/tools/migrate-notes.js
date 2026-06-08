@@ -3,7 +3,7 @@ const path = require('path');
 
 const blogRoot = path.resolve(__dirname, '..');
 const notesRoot = path.resolve(blogRoot, '..', 'md-notes');
-const postsRoot = path.join(blogRoot, 'source', '_posts');
+const postsRoot = path.join(blogRoot, 'src', '_posts');
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {

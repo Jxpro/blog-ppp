@@ -45,6 +45,8 @@ if (process.env.NODE_ENV === "development") {
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site_url,
+	srcDir: "./src",
+	outDir: "./dist",
 	
 	base: "/",
 	trailingSlash: "always",
