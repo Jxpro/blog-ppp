@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Joker Xin's Blog - 系统、编程与工具笔记</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joker Xin&#39;s Blog">
+<meta property="og:url" content="https://jokerxin.github.io/page/9/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/page/9/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Joker Xin\'s Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">Joker Xin's Blog</h1></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/markdown/typora-key/" title="typora快捷键">typora快捷键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Markdown/">Markdown</a></span></div><div class="content">typora快捷键常用快捷键   功能 快捷键    插入代码 Ctrl + Shift +  &#96;   插入代码块 Ctrl + &#96;   打开文件 Ctrl + O   打开文件夹… Ctrl + Alt + O   选中当前词 Ctrl + D   选中当前行或句 Alt + L   选中当前格式文本 Ctrl + E   删除当前行或句 Ctrl + L   水平分割线 Ctrl + -   删除样式 Ctrl +  \   格式相关   功能 快捷键    标题等级 Ctrl + 1-6   段落 Ctrl + 0   加粗 Ctrl + B   斜体 Ctrl + I   下划线 Ctrl + U   删除线 Alt + Shift + 5   超链接 Ctrl + K   表格 Ctrl + T   列表相关   功能 快捷键    有序列表 Ctrl + Shift + [   无序列表 Ctrl + Shift + ]   任务列表 Ctrl + Shift + T   增加列表缩减 Ctrl + ]   减小列表缩减 Ctrl + [   表格相关...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/minio/client/" title="MinIO Client">MinIO Client</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/MinIO/">MinIO</a></span></div><div class="content">MinIO ClientMinIO客户端mc命令行工具提供了一个现代化的选择，用以替代UNIX命令如ls、cat、cp、mirror和diff，同时支持文件系统和兼容Amazon S3的云存储服务。 命令文档：https://min.io/docs/minio/linux/reference/minio-mc.html?ref=docs 一、二进制文件创建文件夹 1mkdir ~/minio  下载二进制文件 1curl https://dl.min.io/client/mc/release/linux-amd64/mc -o ~/minio/mc  给予执行权限 1chmod +x ~/minio/mc  加入环境变量 1export PATH=$PATH:~/minio  在Web控制台生成秘钥，然后测试，相关文件保存在~/.mc 12345678910111213141516mc alias set minio http://127.0.0.1:9000 ACCESS_KEY SECRET_KEYmc admin info minio➜  mc admin info min...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/minio/s3v4/" title="S3V4 签名校验">S3V4 签名校验</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/MinIO/">MinIO</a></span></div><div class="content">S3V4 签名校验在同时使用了nginx反代和cloudflare代理的情况下通过api/sdk访问minio-server报错 1The request signature we calculated does not match the signature you provided. Check your key and signing method.  于是开始查找原因，一开始还以为是cloudflare代理的锅，其实是因为nginx会修改host字段，而该字段会参与s3v4签名值的计算。 minio-client查看报文运行下面命令然后向服务端发送请求，即可查看详细的数据报文 1mc admin trace -a -v minio  对比报文找错误原因直接使用ip:port，可以得到正确响应： 1234567891011121314151617181920212223242526172.171.214.134:9000 [REQUEST s3.ListBuckets] [2024-02-02T00:22:49.155] [Client IP: 172.171.214.13...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/minio/setup/" title="MinIO服务端配置">MinIO服务端配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/MinIO/">MinIO</a></span></div><div class="content">MinIO服务端配置MinIO是一款高性能对象存储软件，采用GNU Affero通用公共许可证第3.0版发布，兼容亚马逊S3云存储服务，主要用于存储非结构化数据（如照片、视频、日志文件等）。下面是 Single-Node Single-Drive (SNSD) 方式的配置，即单节点且仅部署在一块硬盘上。 一、Docker安装官方文档：https://min.io/docs/minio/container/index.html，官方教程忘记指定启动目录了。 官方有三个镜像，感觉比较混乱：bitnami&#x2F;minio、quay.io&#x2F;minio&#x2F;minio、minio&#x2F;minio。 bitnami/minio镜像的启动方式和quay.io/minio/minio及minio/minio不太一样，quay.io/minio/minio及minio/minio是同一个镜像。官方教程使用的是后者，本人目前使用的是前者。 1.1 创建映射目录123456mkdir -p ~/minio/data# 如果报错，则需要授予权限，其中1001:1001是许多B...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/mongo/setup/" title="安装MongoDB">安装MongoDB</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Mongo/">Mongo</a></span></div><div class="content">安装MongoDB一、使用Docker安装1.1 创建容器执行下列命令创建MongoDB容器： 1docker run -d --restart=always -p 27017:27017 --name mymongo -v /data/mongo:/data/db mongo --auth     -d 表示后台启动   --restart 表示docker启动时自启动相关容器   -p 映射端口，格式为主机端口:容器端口   --name 指定容器名称   -v 挂载目录，格式为主机目录:容器目录   --auth 开启MongoDB的授权模式   网上其他文章说先不开启此选项，等设置管理员后，再重启并设置此选项对docker来说过于麻烦  1.2 添加管理员首先进入容器 1docker exec -it mymongo /bin/bash  根据阿里云帮助文档，在未开启认证的环境下，先输入mongo，进入命令模式，然后切换到admin数据库，并创建管理员账号，管理员账号将在system.users中。 12345678910# mongoMongoDB shell vers...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/mysql/migrate/" title="迁移 MySQL 数据库">迁移 MySQL 数据库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/MySQL/">MySQL</a></span></div><div class="content">迁移 MySQL 数据库在现代软件开发和维护过程中，数据库迁移是一项常见且关键的任务，尤其是在升级硬件、改善性能或是扩展业务时，经常需要将数据从一个 MySQL 迁移到另一个 MySQL 上，下面将详细介绍如何实现数据库的迁移。 一、备份源数据库首先，我们需要从源数据库服务器上备份需要迁移的数据库。这里推荐使用 mysqldump 命令，这是 MySQL 自带的一个非常强大的数据库导出工具。使用该命令可以将数据库的所有数据导出到一个 SQL 文件中，这个文件后续可以用来恢复到任何 MySQL 服务器上。 假设你的数据库名称为 source_db，MySQL的用户名为 root，密码为 password， 1mysqldump -u root -p source_db &gt; source_db_backup.sql  正确输入密码后，mysqldump 会将 source_db 数据库的所有内容导出到 source_db_backup.sql 文件中。 二、创建目标数据库在目标 MySQL 服务器上，我们需要创建一个新的数据库，用来接收从源数据库中导出的数据。 假设新数据库命名...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/mysql/setup/" title="安装MySQL">安装MySQL</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/MySQL/">MySQL</a></span></div><div class="content">安装MySQL一、使用Docker安装1.1 创建容器执行下列命令创建MySQL容器： 1docker run -d --restart=always -p 3306:3306 --name mysql -v /data/mysql/data:/var/lib/mysql -v /data/mysql/log:/var/log/mysql -v /data/mysql/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 mysql     -d 表示后台启动   --restart 表示docker启动时自启动相关容器   -p 映射端口，格式为主机端口:容器端口   --name 指定容器名称   -v 挂载目录，格式为主机目录:容器目录   -e 设置环境变量，用于设置mysql密码  1.2 错误和警告123456782022-06-18T17:51:09.385595Z 9 [Warning] [MY-010055] [Server] IP address &#x27;111.28.249.223&#x27; coul...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/ns3/gym-integrate/" title="NS-3 集成 Gym">NS-3 集成 Gym</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/NS3/">NS3</a></span></div><div class="content">NS-3 集成 Gym一、介绍   OpenAI Gym is a toolkit for reinforcement learning (RL) widely used in research. The network simulator ns–3 is the de-facto standard for academic and industry studies in the areas of networking protocols and communication technologies. ns3-gym is a framework that integrates both OpenAI Gym and ns-3 in order to encourage usage of RL in networking research.  OpenAI Gym 是广泛应用于研究的强化学习工具包。网络模拟器 ns-3 是网络协议和通信技术领域学术和工业研究的事实标准。ns3-gym 是一个集成了 OpenAI Gym 和 ns-3 的框架，旨在鼓励在网络研究中使用 RL。 注意...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/openclaw/tailscale/" title="OpenClaw + Tailscale Serve 配置">OpenClaw + Tailscale Serve 配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/OpenClaw/">OpenClaw</a></span></div><div class="content">OpenClaw + Tailscale Serve 配置一、架构概览12浏览器 → https://vm-0-17-opencloudos.tailefbf76.ts.net (Tailscale Serve, HTTPS)       → http://127.0.0.1:18789 (OpenClaw Gateway, HTTP)  Tailscale Serve 充当 HTTPS 反向代理，将外部请求转发到本地 OpenClaw 服务。仅 Tailnet 内部可访问。 二、环境信息   组件 版本    OS OpenCloudOS 9, Linux 6.6.117（CentOS 9 Derivative）   Tailscale v1.94.1   OpenClaw v2026.2.9   Node.js v22.22.0   三、Tailscale Serve3.1 DNF 代理配置（可选）1echo &quot;proxy=http://10.0.4.13:6840&quot; | sudo tee -a /etc/dnf/dnf.conf  3.2 Tailsca...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/ns3/setup/" title="安装 NS-3">安装 NS-3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/NS3/">NS3</a></span></div><div class="content">安装 NS-3一、介绍   ns-3 is a discrete-event network simulator for Internet systems, targeted primarily for research and educational use. ns-3 is free, open-source software, licensed under the GNU GPLv2 license, and maintained by a worldwide community.  ns-3 是一款用于互联网系统的离散事件网络模拟器，主要针对研究和教育用途。ns-3 是一款免费的开源软件，采用 GNU GPLv2 许可，由全球社区共同维护。 二、版本要求推荐系统版本：Ubuntu 20.04 LTS（推荐），或者 Ubuntu 22.04 LTS NS-3 版本：仅适用于 3.29 版本，3.36 后的版本变化较大 三、安装依赖设置代理 1export all_proxy=http://172.20.160.1:7890  更新源 1sudo apt update  系统...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/8/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/10/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/"><span class="card-category-list-name">Blockchain</span><span class="card-category-list-count">13</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Ethereum/"><span class="card-category-list-name">Ethereum</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Fabric/"><span class="card-category-list-name">Fabric</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/"><span class="card-category-list-name">Program</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Assembly/"><span class="card-category-list-name">Assembly</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Golang/"><span class="card-category-list-name">Golang</span><span class="card-category-list-count">3</span></a></li></ul></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">91</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">91</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-08T11:49:37.343Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

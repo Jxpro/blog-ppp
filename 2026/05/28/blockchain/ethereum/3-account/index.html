@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>以太坊账户 | Joker Xin's Blog</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="以太坊账户一、从UTXO谈起 比特币在基于UTXO的结构中存储有关用户余额的数据：系统的整个状态就是一组UTXO的集合，每个UTXO都有一个所有者和一个面值（就像不同的硬币），而交易会花费若干个输入的UTXO，并根据规则创建若干个新的UTXO： 每个引用的输入必须有效且尚未花费；对于一个交易，必须包含有与每个输入的所有者匹配的签名；总输入必须大于等于总输出值 所以，系统中用户的余额（balance">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以太坊账户">
+<meta property="og:url" content="https://jokerxin.github.io/2026/05/28/blockchain/ethereum/3-account/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="以太坊账户一、从UTXO谈起 比特币在基于UTXO的结构中存储有关用户余额的数据：系统的整个状态就是一组UTXO的集合，每个UTXO都有一个所有者和一个面值（就像不同的硬币），而交易会花费若干个输入的UTXO，并根据规则创建若干个新的UTXO： 每个引用的输入必须有效且尚未花费；对于一个交易，必须包含有与每个输入的所有者匹配的签名；总输入必须大于等于总输出值 所以，系统中用户的余额（balance">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/2021-11-27-101255.png">
+<meta property="article:published_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:modified_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/2021-11-27-101255.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "以太坊账户",
+  "url": "https://jokerxin.github.io/2026/05/28/blockchain/ethereum/3-account/",
+  "image": "",
+  "datePublished": "2026-05-28T01:22:25.000Z",
+  "dateModified": "2026-05-28T01:22:25.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Joker Xin",
+      "url": "https://jokerxin.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/2026/05/28/blockchain/ethereum/3-account/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '以太坊账户',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">以太坊账户</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">以太坊账户</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-28T01:22:25.000Z" title="更新于 2026-05-28 09:22:25">2026-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Blockchain/Ethereum/">Ethereum</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="以太坊账户"><a href="#以太坊账户" class="headerlink" title="以太坊账户"></a>以太坊账户</h1><h2 id="一、从UTXO谈起"><a href="#一、从UTXO谈起" class="headerlink" title="一、从UTXO谈起"></a>一、从UTXO谈起</h2><ul>
+<li>比特币在基于<code>UTXO</code>的结构中存储有关用户余额的数据：系统的整个状态就是一组UTXO的集合，每个UTXO都有一个所有者和一个面值（就像不同的硬币），而交易会<strong>花费若干个输入的UTXO，并根据规则创建若干个新的UTXO</strong>：</li>
+<li>每个引用的输入<strong>必须有效且尚未花费</strong>；对于一个交易，必须包含有与每个输入的所有者匹配的签名；总输入必须大于等于总输出值</li>
+<li>所以，系统中用户的余额（balance）是用户具有私钥的 UTXO 的总值</li>
+</ul>
+<h2 id="二、以太坊的做法"><a href="#二、以太坊的做法" class="headerlink" title="二、以太坊的做法"></a>二、以太坊的做法</h2><ul>
+<li>以太坊的“状态”，就是系统中所有帐户的列表</li>
+<li>每个账户都包括了一个<strong>余额</strong>（balance），和以太坊特殊定义的<strong>数据</strong>（代码和内部存储）</li>
+<li>如果发送帐户有足够的余额来支付，则交易有效；在这种情况下发送帐户先扣款，而收款帐户将记入这笔收入</li>
+<li>如果接收帐户有相关代码，则代码会自动运行，并且它的内部存储也可能被更改，或者代码还可能向其他帐户发送额外的消息，这就会导致进一步的借贷资金关系</li>
+</ul>
+<h2 id="三、UTXO的优点"><a href="#三、UTXO的优点" class="headerlink" title="三、UTXO的优点"></a>三、UTXO的优点</h2><ul>
+<li>更高程度的<strong>隐私性</strong>：如果用户为他们收到的每笔交易使用新地址，那么通常很难将帐户相互链接。这很大程度上适用于货币，但不太适用于任意dapps，因为dapps通常涉及跟踪和用户绑定的复杂状态，可能不存在像货币那样简单的用户状态划分方案。</li>
+<li>潜在的<strong>可扩展性</strong>：UTXO在理论上更符合可扩展性要求。因为我们只需要依赖拥有 UTXO 的那些人去维护基于Merkle树的所有权证明就够了，即使包括所有者在内的每个人都决定忘记该数据，那么也只有所有者受到对应UTXO的损失，不影响接下来的交易。而在帐户模式中，如果每个人都丢失了与帐户相对应的Merkle树的部分，那将会使得和该帐户有关的消息完全无法处理，包括发币给它。</li>
+</ul>
+<h2 id="四、以太坊账户模式优点"><a href="#四、以太坊账户模式优点" class="headerlink" title="四、以太坊账户模式优点"></a>四、以太坊账户模式优点</h2><ul>
+<li>可以<strong>节省大量空间</strong>：不将 UTXOs 分开存储，而是合为一个账户；每个交易只需要一个输入、一个签名并产生一个输出。</li>
+<li>更好的<strong>可替代性</strong>：货币本质上都是同质化、可替代的；UTXO的设计使得货币从来源分成了“可花费”和“不可花费”两类，这在实际应用中很难有对应的模型。</li>
+<li>更加<strong>简单</strong>：更容易编码和理解，特别是设计复杂脚本的时候。UTXO 在脚本逻辑复杂时更令人费解。</li>
+<li>便于维护<strong>持久轻节点</strong>：只要沿着特定方向扫描状态树，轻节点可以很容易地随时访问账户相关的所有数据。而UTXO的每个交易都会使得状态引用发生改变，这对轻节点来说长时间运行Dapp会有很大压力。</li>
+</ul>
+<h2 id="五、比特币和以太坊的对比"><a href="#五、比特币和以太坊的对比" class="headerlink" title="五、比特币和以太坊的对比"></a>五、比特币和以太坊的对比</h2><p><img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/11/2021-11-27-101255.png" alt="image-20211127101253571"></p>
+<h2 id="六、以太坊账户类型"><a href="#六、以太坊账户类型" class="headerlink" title="六、以太坊账户类型"></a>六、以太坊账户类型</h2><h3 id="6-1-EOA（外部账户-用户账户-普通账户）"><a href="#6-1-EOA（外部账户-用户账户-普通账户）" class="headerlink" title="6.1 EOA（外部账户&#x2F;用户账户&#x2F;普通账户）"></a>6.1 EOA（外部账户&#x2F;用户账户&#x2F;普通账户）</h3><ul>
+<li>有对应的以太币余额</li>
+<li>可发送交易（转币或触发合约代码）</li>
+<li>由用户私钥控制</li>
+<li>没有关联代码</li>
+</ul>
+<h3 id="6-2-合约账户"><a href="#6-2-合约账户" class="headerlink" title="6.2 合约账户"></a>6.2 合约账户</h3><ul>
+<li>有对应的以太币余额</li>
+<li>合约账户本身无法主动创建交易，即不能自行向网络广播交易，必须由 EOA 或其他合约调用</li>
+<li>在执行过程中，合约可以再调用其他合约或转移资产，这属于内部消息调用</li>
+<li>没有私钥，行为由合约代码逻辑，及可能的权限设计来决定</li>
+<li>与 EOA 不同，合约账户在链上部署了一段智能合约代码，执行逻辑由代码定义</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io">Joker Xin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io/2026/05/28/blockchain/ethereum/3-account/">https://jokerxin.github.io/2026/05/28/blockchain/ethereum/3-account/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jokerxin.github.io" target="_blank">Joker Xin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/null" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/05/28/blockchain/ethereum/4-transaction/" title="以太坊交易"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">以太坊交易</div></div><div class="info-2"><div class="info-item-1">以太坊交易一、交易的本质 交易是由外部拥有的账户发起的签名消息，由以太坊网络传输，并被序列化后记录在以太坊区块链上。 交易是唯一可以触发状态更改或导致合约在EVM中执行的事物。 以太坊是一个全局单例状态机，交易是唯一可以改变其状态的东西。 合约不是自己运行的，以太坊也不会“在后台”运行。以太坊上的一切变化都始于交易。  二、交易数据结构交易是包含以下数据的序列化二进制消息：  nonce：由发起人EOA发出的序列号，用于防止交易消息重播。 gas price：交易发起人愿意支付的gas单价（wei）。 start gas（gas limit）：交易发起人愿意支付的最大gas量。 to：目的以太坊地址。 value：要发送到目的地的以太数量。 data：可变长度二进制数据负载（payload）。 v,r,s：发起人EOA的ECDSA签名的三个组成部分。  交易消息的结构使用递归长度前缀（RLP）编码方案进行序列化，该方案专为在以太坊中准确和字节完美的数据序列化而创建 三、交易中的nonce 黄皮书定义： 一个标量值，等于从这个地址发送的交易数，或者对于关联code的帐户来说，是这个...</div></div></div></a><a class="pagination-related" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">以太坊简介</div></div><div class="info-2"><div class="info-item-1">以太坊简介一、以太坊特点 以太坊是“世界计算机”，这代表它是一个开源的、全球分布的计算基础设施 执行称为智能合约（smart contract）的程序 使用区块链来同步和存储系统状态以及名为以太币（ether）的加密货币，以计量和约束执行资源成本 本质是一个基于交易的状态机（transaction-based state machine） 以太坊平台使开发人员能够构建具有内置经济功能的强大去中心化应用程序（DApp）；在持续自我正常运行的同时，它还减少或消除了审查，第三方界面和交易对手风险  二、以太坊的组成部分 P2P网络以太坊在以太坊主网络上运行，该网络可在TCP端口30303上寻址，并运行一个名为ÐΞVp2p的协议。 交易（Transaction）以太坊交易是网络消息，其中包括发送者（sender），接收者（receiver），值（value） 和数据的有效载荷（payload）。 以太坊虚拟机（EVM）以太坊状态转换由以太坊虚拟机（EVM）处理，这是一个执行字节码（机器语言指令）的 基于堆栈的虚拟机。 数据库（Blockchain）以太坊的区块链作为数据库（通常是 Goo...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7"><span class="toc-number">1.</span> <span class="toc-text">以太坊账户</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%8EUTXO%E8%B0%88%E8%B5%B7"><span class="toc-number">1.1.</span> <span class="toc-text">一、从UTXO谈起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">二、以太坊的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81UTXO%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">三、UTXO的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%82%B9"><span class="toc-number">1.4.</span> <span class="toc-text">四、以太坊账户模式优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%AF%94%E7%89%B9%E5%B8%81%E5%92%8C%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.5.</span> <span class="toc-text">五、比特币和以太坊的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">六、以太坊账户类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-EOA%EF%BC%88%E5%A4%96%E9%83%A8%E8%B4%A6%E6%88%B7-%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7-%E6%99%AE%E9%80%9A%E8%B4%A6%E6%88%B7%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 EOA（外部账户&#x2F;用户账户&#x2F;普通账户）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%90%88%E7%BA%A6%E8%B4%A6%E6%88%B7"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 合约账户</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

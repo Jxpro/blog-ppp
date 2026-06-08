@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Joker Xin's Blog - 系统、编程与工具笔记</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joker Xin&#39;s Blog">
+<meta property="og:url" content="https://jokerxin.github.io/page/3/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Joker Xin\'s Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">Joker Xin's Blog</h1></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/golang/2-module/" title="Golang依赖管理">Golang依赖管理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Golang/">Golang</a></span></div><div class="content">Golang依赖管理一、为什么需要依赖管理最早的时候，Go所依赖的所有的第三方库都放在GOPATH这个目录下面。这就导致了同一个库只能保存一个版本的代码。如果不同的项目依赖同一个第三方的库的不同版本，应该怎么解决？ 二、godepGo语言从v1.5开始开始引入vendor模式，如果项目目录下有vendor目录，那么go工具链会优先使用vendor内的包进行编译、测试等 godep是一个通过vender模式实现的Go语言的第三方依赖管理工具，类似的还有由社区维护准官方包管理工具dep 2.1 安装执行以下命令安装godep工具 1go get github.com/tools/godep  2.2 基本命令安装好godep之后，在终端输入godep查看支持的所有命令 12345678godep save     将依赖项输出并复制到Godeps.json文件中godep go       使用保存的依赖项运行go工具godep get      下载并安装具有指定依赖项的包godep path     打印依赖的GOPATH路径godep restore  在GOPATH中拉取依赖...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/javascript/nodejs-update/" title="Nodejs升级方法">Nodejs升级方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/JavaScript/">JavaScript</a></span></div><div class="content">Nodejs升级方法方法一： 用n模块升级nodejs（Linux）注意：此方法仅适用于Linux，Windows请使用其他方法 安装 12# 全局安装npm install -g n  查看本地安装的所有版本，有可选参数available，显示所有可下载的版本 12# 查看版本nvm list available  切换版本 12345678# 升级到最新稳定版n stable# 升级到最新版n latest# 切换使用版本n 7.10.0  删除指定版本 1n rm 7.10.0  用指定的版本执行脚本 1n use 7.10.0 app.js  方法二：用NVM来升级nodejs安装：Linux | Windows 下载对应版本nodejs 12345678910$ nvm use 16Now using node v16.9.1 (npm v7.21.1)$ nvm use 14Now using node v14.18.1 (npm v6.14.15)$ nvm install 14.7.0# &quot;node&quot; is an alias for the l...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/javascript/nodejs-py/" title="在node中执行python脚本">在node中执行python脚本</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/JavaScript/">JavaScript</a></span></div><div class="content">在node中执行python脚本Node.js多进程基础Node.js 是以单线程的模式运行的，但它使用的是事件驱动来处理并发。这样有助于我们在多核 cpu 的系统上创建多个子进程，从而提高性能。 Node提供了 child_process 模块来创建子进程，方法有：  child_process.exec使用子进程执行命令，缓存子进程的输出，并将子进程的输出以回调函数的形式返回 child_process.spawn使用指定的命令行参数创建进程 child_process.fork是spawn()的特殊形式，用于在子进程中运行模块，与spawn方法不同的是，fork会在父进程与子进程之间建立一个通信管道用于进程之间的通信  每个子进程总是带有三个流对象：child.stdin, child.stdout 和child.stderr，他们可能会共享父进程的 stdio 流，或者也可以是独立的被导流的流对象。 1、exec() 方法child_process.exec(command[, options], callback) 1234# support.py# -*- codin...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/anaconda-install/" title="Ubuntu安装Anaconda">Ubuntu安装Anaconda</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">Ubuntu安装Anaconda一、下载安装脚本1wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/Anaconda3-2021.11-Linux-x86_64.sh  二、执行安装脚本1sh Anaconda3-2021.11-Linux-x86_64.sh  安装完后重启terminal即可使用conda命令 三、修改（清华）镜像源修改conda镜像源，vim ~/.condarc打开配置文件加入以下内容： 123456789101112131415channels:  - defaultsshow_channel_urls: truedefault_channels:  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msy...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/bare-exception/" title="PEP 8: do not use bare 'exept'">PEP 8: do not use bare 'exept'</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">PEP 8: do not use bare ‘exept’错误描述 原因一：Flake8 Rules   Do not use bare except, specify exception instead (E722)  解决方法：Inspection的option里添加E722项  原因二：Unclear exception clauses解决方法：取消勾选Unclear exception clauses  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/pip/" title="pip 使用相关">pip 使用相关</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">pip 使用相关一、pip换源常用镜像源如下： 12345http://mirrors.aliyun.com/pypi/simple/ https://pypi.mirrors.ustc.edu.cn/simple/ http://pypi.douban.com/simple/ https://pypi.tuna.tsinghua.edu.cn/simple/ http://pypi.mirrors.ustc.edu.cn/simple/  命令行配置12345# 临时使用pip install pkg -i https://pypi.tuna.tsinghua.edu.cn/simple# 设为默认pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple  收到配置文件 linux下，修改 ~/.pip/pip.conf，没有则新建一个  windows下，在C:\Users\xx\pip下新建文件pip.ini   配置文件内容： 1234[global]index-url=http://...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/conda/" title="Conda使用相关">Conda使用相关</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">Conda使用相关环境变量可选配置，或者在安装执行执行conda init也可 123D:\Anaconda3\ScriptsD:\Miniconda3\condabinD:\Anaconda3\Library\bin  环境管理查看环境管理的全部命令帮助 1conda env -h   创建环境 1conda create -n env_name  输入y确认创建。 创建制定python版本的环境 123conda create -n env_name python=2.7conda create -n env_name python=3conda create -n env_name python=3.5  创建包含某些包的环境 1conda create --name env_name numpy scipy1  创建指定python版本下包含某些包的环境 1conda create --name your_env_name python=3.5 numpy scipy1  列举环境 12conda info --envsconda env list  进入环境 1cond...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/phantomjs-sub/" title="PhantomJS替代方案">PhantomJS替代方案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">PhantomJS替代方案一、介绍在selenium@3.14.1中使用PhantomJS时候，出现提示： UserWarning: Selenium support for PhantomJS has been deprecated, please use headless versions of Chrome or Firefox instead 意思是说：新版本的Selenium不再支持PhantomJS了，请使用Chrome或Firefox的headless版本替代。 查询谷歌，发现首先是PhantomJS开发者内部矛盾，并且Firefox和Chrome的headless模式带来的打压，最终宣布PhantomJS终止开发 二、Headless Chrome 的使用Headless模式在Windows中是Chrome 59中的新特征，要使用Chrome需要安装chromedriver。 1234567from selenium import webdriverfrom selenium.webdriver.chrome.options import Optionschrom...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/pretty-errors/" title="pretty_errors 自定义错误信息">pretty_errors 自定义错误信息</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">pretty_errors 自定义错误信息这是一个用于美化python异常输出的模块，效果如下：  一、安装1pip install pretty_errors  二、使用单文件使用只需在文件头部引入模块即可： 1import pretty_errors  如果要避免重复引入，可在终端输入如下命令： 1python -m pretty_errors  同时，这种方式不仅方便，而且语法错误（SyntaxError）的格式也同样能被美化，如果是在程序中import pretty_errors时，这一点是无法实现的。 三、配置选项pretty_errors支持高度自定义，以下为部分已知配置选项：    字段 默认值 作用    arrow_head_character ^ 指向具体语法错误位置的符号   arrow_tail_character - 语法错误发生的语句下面铺垫的符号   display_arrow True 使用如上语法错误指向的符号   display_link False 展示出错模块（文件）的绝对路径   display_locals False 显示出现在栈顶代...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/program/python/pyinstaller/" title="Python程序打包成.exe">Python程序打包成.exe</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/">Program</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Program/Python/">Python</a></span></div><div class="content">Python程序打包成.exe   为了让脚本在他人机器上顺利执行，你首先要帮他安装python解释器，如果你import了一些库比如pandas，那这个也需要安装，甚至相关的依赖也需要安装。这个时间成本显然是很大的，这部分工作也很枯燥，甚至会影响工作积极性，因此花一点时间，学会如何将python脚本打包为.exe文件，无需再安装各种开发环境和依赖库，是一件一劳永逸的事情。   现在，主流的工具有Pyinstaller、cz_Freeze、py2exe，本文只介绍Pyinstaller的使用。  一、安装pyinstaller1234pip install pyinstaller$ pyinstaller --version4.6  二、pyinstaller打包机制我们写的python脚本是不能脱离python解释器单独运行的，所以在打包的时候，至少会将python解释器和脚本一起打包，同样，为了打包的exe能正常运行，会把我们所有安装的第三方包一并打包到exe。 即使我们的项目只使用的一个requests包，但是可能我们还安装了其他n个包，但是他不管，因为包和包只有依赖关系的...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/"><span class="card-category-list-name">Blockchain</span><span class="card-category-list-count">13</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Ethereum/"><span class="card-category-list-name">Ethereum</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Fabric/"><span class="card-category-list-name">Fabric</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/"><span class="card-category-list-name">Program</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Assembly/"><span class="card-category-list-name">Assembly</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Golang/"><span class="card-category-list-name">Golang</span><span class="card-category-list-count">3</span></a></li></ul></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">91</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">91</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-08T11:49:37.343Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

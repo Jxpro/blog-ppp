@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux服务器从零配置 | Joker Xin's Blog</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux服务器从零配置新服务器到手可以先跑个分 1bash &lt;(wget -qO- bash.spiritlhl.net&#x2F;ecs)  有些服务器默认没有开启bbr，使用这个脚本开启 1bash &lt;(curl -L -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;teddysun&#x2F;across&#x2F;master&#x2F;bbr.sh)  一、添加用户添加用户组 1sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux服务器从零配置">
+<meta property="og:url" content="https://jokerxin.github.io/2026/05/28/system/linux/initial-config/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Linux服务器从零配置新服务器到手可以先跑个分 1bash &lt;(wget -qO- bash.spiritlhl.net&#x2F;ecs)  有些服务器默认没有开启bbr，使用这个脚本开启 1bash &lt;(curl -L -s https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;teddysun&#x2F;across&#x2F;master&#x2F;bbr.sh)  一、添加用户添加用户组 1sudo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:modified_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux服务器从零配置",
+  "url": "https://jokerxin.github.io/2026/05/28/system/linux/initial-config/",
+  "image": "",
+  "datePublished": "2026-05-28T01:22:25.000Z",
+  "dateModified": "2026-05-28T01:22:25.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Joker Xin",
+      "url": "https://jokerxin.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/2026/05/28/system/linux/initial-config/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux服务器从零配置',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux服务器从零配置</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Linux服务器从零配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-28T01:22:25.000Z" title="更新于 2026-05-28 09:22:25">2026-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/System/">System</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/System/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="Linux服务器从零配置"><a href="#Linux服务器从零配置" class="headerlink" title="Linux服务器从零配置"></a>Linux服务器从零配置</h1><p>新服务器到手可以先跑个分</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(wget -qO- bash.spiritlhl.net/ecs)</span><br></pre></td></tr></table></figure>
+
+<p>有些服务器默认没有开启bbr，使用这个脚本开启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -L -s https://raw.githubusercontent.com/teddysun/across/master/bbr.sh)</span><br></pre></td></tr></table></figure>
+
+<h2 id="一、添加用户"><a href="#一、添加用户" class="headerlink" title="一、添加用户"></a>一、添加用户</h2><p>添加用户组</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo addgroup common</span><br></pre></td></tr></table></figure>
+
+<p>添加用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser --ingroup common user</span><br></pre></td></tr></table></figure>
+
+<p>赋予<code>root</code>权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用 nano 编辑文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">直接编辑，完成后按下 Ctrl+O 保存文件，直接 Enter 保存更改到当前文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存文件后，按下 Ctrl+X 退出</span></span><br><span class="line">sudo visudo</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">visudo 实际编辑了 /etc/sudoers 文件，可以直接使用 vi/vim 编辑</span></span><br><span class="line">sudo vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+
+<p>找到下面一行，进行复制</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root  <span class="attr">ALL</span>=(ALL)    ALL</span><br></pre></td></tr></table></figure>
+
+<p>粘贴到下一行，并将 <code>root</code> 修改为 <code>$user</code> 对应的用户名</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user  <span class="attr">ALL</span>=(ALL)    NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、修改主机名"><a href="#二、修改主机名" class="headerlink" title="二、修改主机名"></a>二、修改主机名</h2><p>查看当前主机信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl</span><br><span class="line"></span><br><span class="line"> Static hostname: hk-server</span><br><span class="line">       Icon name: computer-vm</span><br><span class="line">         Chassis: vm</span><br><span class="line">      Machine ID: ...</span><br><span class="line">         Boot ID: ...</span><br><span class="line">  Virtualization: kvm</span><br><span class="line">Operating System: Ubuntu 22.04.3 LTS</span><br><span class="line">          Kernel: Linux 5.15.0-83-generic</span><br><span class="line">    Architecture: x86-64</span><br><span class="line"> Hardware Vendor: QEMU</span><br><span class="line">  Hardware Model: Standard PC _i440FX + PIIX, 1996_</span><br></pre></td></tr></table></figure>
+
+<p>设置新的主机名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname new-hostname</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>hosts</code>文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>找到下面一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1   old-hostname</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>old-hostname</code> 替换为新的主机名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1   new-hostname</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、SSH配置"><a href="#三、SSH配置" class="headerlink" title="三、SSH配置"></a>三、SSH配置</h2><p>打开配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<p>找到下面一行，取消注释，修改为其他端口</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Port 22</span></span><br></pre></td></tr></table></figure>
+
+<p>继续向下查看，到文件结尾，确认下面两行未注释，用于密码和公钥登录</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PasswordAuthentication yes</span><br><span class="line">PubkeyAuthentication yes <span class="comment"># 或者 PubkeyAcceptedKeyTypes=+ssh-rsa</span></span><br></pre></td></tr></table></figure>
+
+<p>重启<code>ssh</code>服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart ssh</span><br></pre></td></tr></table></figure>
+
+<p>也可以直接重启服务器，可以使修改的主机名生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo shutdown -r now</span><br></pre></td></tr></table></figure>
+
+<p>使用新用户重新登录，使用<code>ssh</code>生成公私钥对</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一直回车，保持默认即可</span></span><br><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>添加本机公钥至服务器，然后<code>:wq</code>保存</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Clash"><a href="#四、Clash" class="headerlink" title="四、Clash"></a>四、Clash</h2><p><code>GitHub</code>已删库，<code>archive</code>地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.clash.la/releases/</span><br></pre></td></tr></table></figure>
+
+<p>下载<code>clash</code>内核</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://down.clash.la/Clash/Core/Releases/clash-linux-amd64-v1.18.0.gz</span><br><span class="line"></span><br><span class="line">gunzip clash-linux-amd64-v1.18.0.gz</span><br><span class="line">mv clash-linux-amd64-v1.18.0 clash</span><br><span class="line">chmod u+x clash</span><br></pre></td></tr></table></figure>
+
+<p>下载<code>Country.mmdb</code>分流文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/Dreamacro/maxmind-geoip/releases</span><br></pre></td></tr></table></figure>
+
+<p>下载<code>clash</code>节点配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -o config.yaml &#x27;longURL&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-L 处理重定向</span></span><br><span class="line">curl -L -o config.yaml &#x27;shortURL&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>配置<code>systemd</code>服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/clash</span><br><span class="line">sudo cp clash /usr/local/bin</span><br><span class="line">sudo cp config.yaml /etc/clash/</span><br><span class="line">sudo cp Country.mmdb /etc/clash/</span><br></pre></td></tr></table></figure>
+
+<p>创建配置文件 <code>sudo vim /etc/systemd/system/clash.service</code></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Clash daemon, A rule-based proxy in Go.</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=simple</span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/clash -d /etc/clash</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>开机自启<code>clash</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable clash</span><br></pre></td></tr></table></figure>
+
+<p>启动<code>clash</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start clash</span><br></pre></td></tr></table></figure>
+
+<p>查看<code>clash</code>日志</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status clash</span><br></pre></td></tr></table></figure>
+
+<p>设置系统代理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+
+<p>取消系统代理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unset http_proxy https_proxy all_proxy</span><br></pre></td></tr></table></figure>
+
+<p>有些服务器默认没有开启bbr，使用这个脚本开启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/teddysun/across/master/bbr.sh | sudo bash 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、Application"><a href="#五、Application" class="headerlink" title="五、Application"></a>五、Application</h2><p>常用软件包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y lrzsz git zsh nginx socat autojump fzf net-tools exa fd-find wget build-essential unzip</span><br></pre></td></tr></table></figure>
+
+<p>安装<code>ohmyzsh</code>和<code>starship</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br><span class="line">curl -sS https://starship.rs/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>安装<code>omz</code>插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/zsh-users/zsh-autosuggestions $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-autosuggestions</span><br><span class="line">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/zsh-syntax-highlighting</span><br><span class="line">git clone https://github.com/zsh-users/zsh-completions $&#123;ZSH_CUSTOM:-$&#123;ZSH:-~/.oh-my-zsh&#125;/custom&#125;/plugins/zsh-completions</span><br><span class="line">git clone https://github.com/wfxr/forgit.git $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/forgit</span><br><span class="line">git clone https://github.com/Aloxaf/fzf-tab $&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins/fzf-tab</span><br></pre></td></tr></table></figure>
+
+<p>使用防火墙<code>ufw</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y ufw</span><br><span class="line">sudo ufw enable</span><br><span class="line">sudo ufw allow 22</span><br><span class="line">sudo ufw allow 80</span><br><span class="line">sudo ufw allow 443</span><br><span class="line"></span><br><span class="line">sudo systemctl enable ufw</span><br><span class="line">sudo timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<p>开发工具<code>nvm</code>和<code>conda</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line">nvm install 18</span><br><span class="line"></span><br><span class="line">mkdir -p ~/miniconda3</span><br><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh</span><br><span class="line">bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3</span><br><span class="line">rm -rf ~/miniconda3/miniconda.sh</span><br><span class="line"></span><br><span class="line">~/miniconda3/bin/conda init zsh</span><br><span class="line">~/miniconda3/bin/conda config --set changeps1 False</span><br></pre></td></tr></table></figure>
+
+<p>下载<code>ohmyzsh</code>和<code>starship</code>配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.config</span><br><span class="line">curl https://gist.githubusercontent.com/Jxpro/0a5729ac38d4b17a99142c4d71f27d8a/raw/33ef48191f7e245aa3d3b053569b9c8c49207a3c/starship.toml -o ~/.config/starship.toml</span><br><span class="line"></span><br><span class="line">mv ~/.zshrc ~/.zshrc.back</span><br><span class="line">curl https://gist.githubusercontent.com/Jxpro/8923b5120fb325b31109ba57868cb306/raw/ee1d8e3d2feab07c49bf0e992daab11e028cc468/.zshrc -o ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>服务器探针<code>NodeStatus</code></p>
+<ul>
+<li>服务端：<a target="_blank" rel="noopener" href="https://github.com/cokemine/nodestatus">https://github.com/cokemine/nodestatus</a></li>
+<li>客户端：<a target="_blank" rel="noopener" href="https://github.com/cokemine/nodestatus-client-go">https://github.com/cokemine/nodestatus-client-go</a></li>
+</ul>
+<h2 id="六、Docker"><a href="#六、Docker" class="headerlink" title="六、Docker"></a>六、Docker</h2><p>官方一键安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | sh</span><br></pre></td></tr></table></figure>
+
+<p>阿里镜像一键安装（失效，镜像全倒）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br></pre></td></tr></table></figure>
+
+<p>阿里镜像手动安装（Ubuntu 14.04&#x2F;16.04（22.04 warning 但可用），随时可能失效且较慢）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># step 1: 安装必要的一些系统工具</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"># step 2: 安装GPG证书</span><br><span class="line">curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"># Step 3: 写入软件源信息</span><br><span class="line">sudo add-apt-repository &quot;deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;</span><br><span class="line"># Step 4: 更新并安装Docker-CE</span><br><span class="line">sudo apt-get -y update</span><br><span class="line">sudo apt-get -y install docker-ce</span><br><span class="line"></span><br><span class="line"># 安装指定版本的Docker-CE:</span><br><span class="line"># Step 1: 查找Docker-CE的版本:</span><br><span class="line"># apt-cache madison docker-ce</span><br><span class="line">#   docker-ce | 17.03.1~ce-0~ubuntu-xenial | https://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages</span><br><span class="line">#   docker-ce | 17.03.0~ce-0~ubuntu-xenial | https://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages</span><br><span class="line"># Step 2: 安装指定版本的Docker-CE: (VERSION例如上面的17.03.1~ce-0~ubuntu-xenial)</span><br><span class="line"># sudo apt-get -y install docker-ce=[VERSION]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>官方详细安装（由于<code>GFW</code>加强，<code>download.docker.com</code>也需要使用镜像）</p>
+<p>文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">https://docs.docker.com/engine/install/ubuntu/</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add Docker<span class="string">&#x27;s official GPG key:</span></span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y ca-certificates curl</span><br><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">sudo curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line">sudo chmod a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Add the repository to Apt sources:</span></span></span><br><span class="line">echo   &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/ \</span><br><span class="line"><span class="meta prompt_">  $</span><span class="language-bash"><span class="string">(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;) stable&quot; |   sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span></span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Install using the apt repository</span></span></span><br><span class="line">sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Configure the registry mirrors</span></span></span><br><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://mirrors.docker.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io">Joker Xin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io/2026/05/28/system/linux/initial-config/">https://jokerxin.github.io/2026/05/28/system/linux/initial-config/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jokerxin.github.io" target="_blank">Joker Xin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/null" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/05/28/system/linux/profile-bashrc/" title=".bashrc与.profile等的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">.bashrc与.profile等的区别</div></div><div class="info-2"><div class="info-item-1">.bashrc与.profile等的区别一、本机测试 系统版本：Ubuntu 18.04.6 LTS (GNU&#x2F;Linux 4.15.0-48-generic x86_64)   root用户登录时12345678Welcome to Alibaba Cloud Elastic Compute Service !Last login: Fri Oct 29 17:34:21 2021 from 223.104.98.53exec /etc/profileexec /etc/bash.bashrcexec ~/.bashrcexec ~/.profileroot@iZwz91577x7sn2pgjejf5kZ:~# **普通用户[^1]**登录时：12345Welcome to Alibaba Cloud Elastic Compute Service !Last login: Fri Oct 29 17:28:52 2021 from 223.104.98.53exec /etc/profile$  二、资料查询 交互式 shell ( login shell ) 和非...</div></div></div></a><a class="pagination-related" href="/2026/05/28/system/linux/nginx-module/" title="nginx 配置模块化设计"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">nginx 配置模块化设计</div></div><div class="info-2"><div class="info-item-1">nginx 配置模块化设计一、概述配置时使用模块化的设计就像给你的 Nginx 装上乐高积木：想拆就拆，想合就合，清爽又安全。 二、设计目录结构 123456789101112/etc/nginx/├── nginx.conf             # 主配置，引入全局设置├── conf.d/                # 放通用模块，如 gzip、日志格式│   └── gzip.conf├── stream.d/│   └── stream.conf├── sites-available/       # 放所有站点配置源文件│   └── example.com.conf├── sites-enabled/         # 通过软链启用站点│   └── example.com.conf → ../sites-available/example.com.conf└── upstream/              # 放负载均衡后端定义    └── api.upstream.conf  在nginx.conf中使用 include 挂载模块 123456789...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BB%8E%E9%9B%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">Linux服务器从零配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.</span> <span class="toc-text">一、添加用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-number">1.2.</span> <span class="toc-text">二、修改主机名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81SSH%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">三、SSH配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Clash"><span class="toc-number">1.4.</span> <span class="toc-text">四、Clash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Application"><span class="toc-number">1.5.</span> <span class="toc-text">五、Application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81Docker"><span class="toc-number">1.6.</span> <span class="toc-text">六、Docker</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

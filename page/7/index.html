@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Joker Xin's Blog - 系统、编程与工具笔记</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joker Xin&#39;s Blog">
+<meta property="og:url" content="https://jokerxin.github.io/page/7/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/page/7/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Joker Xin\'s Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">Joker Xin's Blog</h1></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/command/" title="Git的基本使用">Git的基本使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">Git的基本使用一、常用命令   命令 作用    git status 查看文件树状态   git clone &lt; url &gt; 克隆仓库   git add &lt; file &gt; … 暂存工作区文件   git commit -m “xxx” 以”xxx”消息提交修改   git push -f origin main 强制推送到远程仓库   git restore &lt; file &gt; … 撤销工作区修改   git restore –staged &lt; file &gt; … 撤销暂存区修改   git branch [-a] [-v] 显示分支列表 [-a显示远程分支] [-v显示最后一次提交信息]   git checkout [-b] branch [创建并] 切换到 branch 分支   git switch [-c] branch [创建并] 切换到 branch 分支（用于替代checkout）   git remote [-v] 显示远程仓库列表 [-v显示 url ]   git remote show origin 显示远...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/frp/server/" title="FRP 服务端配置">FRP 服务端配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/FRP/">FRP</a></span></div><div class="content">FRP 服务端配置一、介绍frp 是一个专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议，且支持 P2P 通信。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。 二、安装前往 release 获取最新版本 12345678wget https://github.com/fatedier/frp/releases/download/v0.62.1/frp_0.62.1_linux_amd64.tar.gztar -xvf frp_0.62.1_linux_amd64.tar.gzchmod u+x frp_0.62.1_linux_amd64/frpssudo mkdir -p /opt/frp/sudo mkdir -p /var/log/frpsudo mv frp_0.62.1_linux_amd64/frps /opt/frpsudo mv frp_0.62.1_linux_amd64/frps.toml /opt/frp  三、配置编辑配置文件 /opt/frp/frps.toml 1234567891...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/delete-history/" title="从历史记录中删除文件">从历史记录中删除文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">从历史记录中删除文件当我们不小心通过git add .加入了一个很大的资源文件或者不宜公开的文件，并commit产生了历史记录，还push到了远程仓库，这个时候我们想要删除他们，可以借助下面两个命令。 一、引言 git rm git rm file_path删除暂存区和分支上的文件，同时工作区也不需要，即删除所有。 git rm --cached file_path删除暂存区或分支上的文件，但工作区需要使用，只是不希望被版本控制，适用于已经被git add，但是又需要撤销的情况。  二、关键 git filter-branch如果想要通过脚本的方式改写大量提交的话，例如全局修改你的邮箱地址或从每一个提交中移除一个文件，就可以使用 filter-branch，它能改写历史中大量的提交，除非你的项目还没有公开并且其他人没有基于要改写的工作的提交做的工作，否则你不应当使用它，但是有时它非常的有用。 1234567git filter-branch [--setup &lt;command&gt;] [--subdirectory-filter &lt;directory&gt;]	[-...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/edit-commit/" title="修改历史commit信息">修改历史commit信息</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">修改历史commit信息一、修改最新的 log如果只修改最新一条提交信息的log内容，直接使用命令 git commit --amend  就可以完成修改啦，可以直接参考 git 文档，也就是下面的重写历史功能，比较简单。 二、修改历史的 log如果要修改历史的版本信息(非最新一条)，这里用到的方法就是 git命令的重写历史功能：  执行git命令 12345# 回溯到近三次的信息git rebase -i HEAD~3# 回溯到根信息git rebase -i --root  找到要修改要的log，将其pick 修改为edit, 然后 :wq 退出  然后修改对应的提交消息，修改完成后 :wq  退出  执行 git commit --amend重新提交  然后执行 git rebase --continue ，完成此次log的rebase  这样本地修改就完成了，可用 git log 查看一下，且发现commit的时间没有变化  最后 push 到远程仓库，加上 -f 强制推送 1git push -f origin main  但是在GitHub上查看会发现commit的时...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/gitbook/" title="GitBook从入门到放弃再到成功">GitBook从入门到放弃再到成功</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">GitBook从入门到放弃再到成功一、GitBook是什么？在认识GitBook之前，我已经在使用Git了，毋容置疑，Git是目前世界上最先进的分布式版本控制系统。我认为Git不仅是程序员管理代码的工具，它的分布式协作方式同样适用于很多场合。 乍一看GitBook的名字，你可能会认为它是关于Git的一本书。而当你有所了解之后，你也许会认为它是一个使用Git构建电子书的工具。其实不然，GitBook与Git的关系，就像Java和JavaScript那样，没有一点关系！ 实际上，GitBook是一个基于Node.js的命令行工具，支持Markdown和AsciiDoc两种语法格式，可以输出 HTML、PDF、eBook 等格式的电子书。 二、安装NodejsGitBook是一个基于Node.js的命令行工具，故首先需要下载安装 Node.js 注意nodejs版本不能太高，不然可以安装CLI，但安装不了GitBook，这是个大坑！！！ 本人在Windows11下成功的版本为v12.22.1 补充：Windows10下，v16.13.0也成功，等待时间很长很长 三、安装 GitBook...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/proxy/" title="Git设置代理">Git设置代理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">Git设置代理1234567891011# 为 git 设置全局代理git config --global https.proxy http://127.0.0.1:7890git config --global https.proxy https://127.0.0.1:7890# 取消设置代理git config --global --unset http.proxygit config --global --unset https.proxy# 查看设置代理git config --global --get http.proxygit config --global --get https.proxy </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/recover/" title="找回误删文件">找回误删文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">找回误删文件一、恢复曾今提交过的记录可以直接根据git reflog返回的结果，用git reset --hard commit_id回退到对应这个版本。    但是我们如果只是想把此提交给找回来，恢复他，那还是不要用reset的方式，可以用git cherry-pick commitid单独取一个commit到当前分支或者用merge来做合并。  二、恢复忘提交或clean的记录如果你的代码文件没有commit过，就被手贱或者clean删除掉了或者也是被reset --hard的时候搞没了。这就不仅仅是用一个git reflog命令就可以简单找回来的，但只要你以前有做过add的操作把他放到过暂存区，我们就可以把他找回来。什么？你连add都没有操作过那就只能开始准备新一轮的面试了！！！ 核心命令：git fsck --lost-found,他会通过一些神奇的方式把历史操作过的文件以某种算法算出来加到.git/lost-found文件夹里，输出的记录就像下面这个样子：     我们可以看到这里有blob、commit、tree类型的数据，还有tag等类型的。他们是什么含义呢？   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/latex/package/" title="Latex常用宏包">Latex常用宏包</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/LaTex/">LaTex</a></span></div><div class="content">Latex常用宏包数学公式相关12345\usepackage&#123;amsmath&#125;  % 提供了额外的数学公式选项\usepackage&#123;amsfonts&#125; % 提供了额外的数学字体，比如 \mathbb\usepackage&#123;amssymb&#125;  % 提供了更多的数学符号\usepackage&#123;anyfontsize&#125; % 某些字体在特定大小下不可用，可能会引发警告信息，这个可以抑制警告  BibTex编译相关1\usepackage&#123;hyperref&#125; % 解决报错Undefined control sequence.(\url)，并提供链接跳转功能  </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/kubernetes/ubuntu-init-fast/" title="Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )">Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Kubernetes/">Kubernetes</a></span></div><div class="content">Ubuntu 搭建 k8s 集群 ( 内网，快速纯命令版 )一、软件版本   名称 版本    System Ubuntu 22.04 LTS (GNU&#x2F;Linux 5.15.0-107-generic)   Kubernetes 1.30   Docker 27.0.1   二、系统设置   因为默认满足要求或已前置，以下省略了：  SELinux （Ubuntu 没有） 主机名设置（hostnamectl 设置） 防火墙详细设置（ufw 设置） 虚拟内存（free -m 查看） 时钟同步（timedatectl 设置） 网络配置（sysctl 查看） IPVS（可选）   2.1 DNS修改 hosts 文件，将IP地址和主机名填进去 123456sudo tee -a /etc/hosts &lt;&lt;-&#x27;EOF&#x27;# k8s cluster172.29.140.34 master172.29.140.35 node1172.29.140.36 node2EOF  2.2 内核模块1234567sudo tee /etc/modules-lo...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/tool/git/submodule/" title="Git 子模块">Git 子模块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tool/Git/">Git</a></span></div><div class="content">Git 子模块一、问题有种情况我们经常会遇到：某个工作中的项目需要包含并使用另一个项目。 也许是第三方库，或者你独立开发的，用于多个父项目的库。 现在问题来了：你想要把它们当做两个独立的项目，同时又想在一个项目中使用另一个。 二、解决方案子模块（git submodule）允许你将一个 Git 仓库作为另一个 Git 仓库的子目录。 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。 三、现有仓库中加入子模块 以下命令可在现有仓库中添加子模块 1git submodule add https://github.com/username/repo  命令执行后，仓库根目录下增加了一个文件和一个目录：.gitmodules和repo文件夹  .gitmodules文件内容如下： 123[submodule &quot;repo&quot;]    path = repo    url = https://github.com/username/repo  四、克隆包含子模块的仓库 方法一：克隆项目，并且初始化子模块，更新子模块代码 1234567# 1.克隆项目，子模块目...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/"><span class="card-category-list-name">Blockchain</span><span class="card-category-list-count">13</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Ethereum/"><span class="card-category-list-name">Ethereum</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Fabric/"><span class="card-category-list-name">Fabric</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/"><span class="card-category-list-name">Program</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Assembly/"><span class="card-category-list-name">Assembly</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Golang/"><span class="card-category-list-name">Golang</span><span class="card-category-list-count">3</span></a></li></ul></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">91</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">91</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-08T11:49:37.343Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

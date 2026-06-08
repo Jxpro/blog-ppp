@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 ) | Joker Xin's Blog</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )一、软件版本   名称 版本    System Ubuntu 22.04 LTS (GNU&#x2F;Linux 5.15.0-107-generic)   Kubernetes 1.30   Docker 27.0.1   二、系统设置2.1 SELinuxSELinux 是系统安全方面的，其的安全策略可能会干扰容器的正常运行。 Ubu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )">
+<meta property="og:url" content="https://jokerxin.github.io/2026/05/28/tool/kubernetes/init-cluster/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )一、软件版本   名称 版本    System Ubuntu 22.04 LTS (GNU&#x2F;Linux 5.15.0-107-generic)   Kubernetes 1.30   Docker 27.0.1   二、系统设置2.1 SELinuxSELinux 是系统安全方面的，其的安全策略可能会干扰容器的正常运行。 Ubu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:modified_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )",
+  "url": "https://jokerxin.github.io/2026/05/28/tool/kubernetes/init-cluster/",
+  "image": "",
+  "datePublished": "2026-05-28T01:22:25.000Z",
+  "dateModified": "2026-05-28T01:22:25.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Joker Xin",
+      "url": "https://jokerxin.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/2026/05/28/tool/kubernetes/init-cluster/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-28T01:22:25.000Z" title="更新于 2026-05-28 09:22:25">2026-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tool/Kubernetes/">Kubernetes</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="Ubuntu-搭建-k8s-集群-公网，详细讲解版"><a href="#Ubuntu-搭建-k8s-集群-公网，详细讲解版" class="headerlink" title="Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )"></a>Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )</h1><h2 id="一、软件版本"><a href="#一、软件版本" class="headerlink" title="一、软件版本"></a>一、软件版本</h2><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">System</td>
+<td align="center">Ubuntu 22.04 LTS (GNU&#x2F;Linux 5.15.0-107-generic)</td>
+</tr>
+<tr>
+<td align="center">Kubernetes</td>
+<td align="center">1.30</td>
+</tr>
+<tr>
+<td align="center">Docker</td>
+<td align="center">27.0.1</td>
+</tr>
+</tbody></table>
+<h2 id="二、系统设置"><a href="#二、系统设置" class="headerlink" title="二、系统设置"></a>二、系统设置</h2><h3 id="2-1-SELinux"><a href="#2-1-SELinux" class="headerlink" title="2.1 SELinux"></a>2.1 SELinux</h3><p><code>SELinux</code> 是系统安全方面的，其的安全策略可能会干扰容器的正常运行。</p>
+<p><code>Ubuntu</code> 没有这个东西可以不管，<code>CentOS</code> 执行下面命令关闭 <code>SELinux</code> 避免一些权限问题，然后重启系统</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0</span><br><span class="line">sudo sed -i &#x27;s/^SELINUX=enforcing/SELINUX=disabled/&#x27; /etc/selinux/config</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-DNS"><a href="#2-2-DNS" class="headerlink" title="2.2 DNS"></a>2.2 DNS</h3><p>设置主机名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl set-hostname k8s-node1</span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>hosts</code> 文件，将IP地址和主机名填进去</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo tee -a /etc/hosts &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">k8s cluster</span></span><br><span class="line">192.168.1.10 k8s-master</span><br><span class="line">192.168.1.20 k8s-node1</span><br><span class="line">192.168.1.30 k8s-node2</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-内核模块"><a href="#2-3-内核模块" class="headerlink" title="2.3 内核模块"></a>2.3 内核模块</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/modules-load.d/k8s.conf &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">overlay</span><br><span class="line">br_netfilter</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo modprobe overlay</span><br><span class="line">sudo modprobe br_netfilter</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-防火墙"><a href="#2-4-防火墙" class="headerlink" title="2.4 防火墙"></a>2.4 防火墙</h3><p>云服务需要在安全组中操作防火墙</p>
+<h4 id="2-4-1-直接关闭防火墙"><a href="#2-4-1-直接关闭防火墙" class="headerlink" title="2.4.1 直接关闭防火墙"></a>2.4.1 直接关闭防火墙</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw disable</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-2-或者开启相关端口"><a href="#2-4-2-或者开启相关端口" class="headerlink" title="2.4.2 或者开启相关端口"></a>2.4.2 或者开启相关端口</h4><p>官方文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/networking/ports-and-protocols/">https://kubernetes.io/docs/reference/networking/ports-and-protocols/</a></p>
+<ul>
+<li><p>Control plane</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Direction</th>
+<th>Port Range</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>6443</td>
+<td>Kubernetes API server</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>2379-2380</td>
+<td>etcd server client API</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>10250</td>
+<td>Kubelet API</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>10259</td>
+<td>kube-scheduler</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>10257</td>
+<td>kube-controller-manager</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Worker node(s)</p>
+<table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Direction</th>
+<th>Port Range</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>10250</td>
+<td>Kubelet API</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>Inbound</td>
+<td>10256</td>
+<td>kube-proxy</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>所有节点（不确定）</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>端口范围</th>
+<th>作用</th>
+<th>使用者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UDP</td>
+<td>8472</td>
+<td>vxlan Overlay 网络通信</td>
+<td>Overlay 网络</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>179</td>
+<td>calico networking</td>
+<td>BGP</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>4789</td>
+<td>calico networking</td>
+<td>BGP</td>
+</tr>
+<tr>
+<td>TCP</td>
+<td>5473</td>
+<td>calico networking</td>
+<td>BGP</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="2-5-虚拟内存（默认可用，检查一下）"><a href="#2-5-虚拟内存（默认可用，检查一下）" class="headerlink" title="2.5 虚拟内存（默认可用，检查一下）"></a>2.5 虚拟内存（默认可用，检查一下）</h3><p>官方要求关闭 <code>swap</code>，开启这个可能会导致 <code>Kubernetes</code> 的内存或性能问题，详细参考文章：<a target="_blank" rel="noopener" href="https://nolebase.ayaka.io/%E7%AC%94%E8%AE%B0/%F0%9F%A7%B1%20%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/%F0%9F%9A%A2%20Kubernetes/%E5%9B%A0%E6%89%93%E5%BC%80%E4%BA%86%20swap%20%E5%AF%BC%E8%87%B4%E7%9A%84%20Kubernetes%20%E9%87%8D%E5%90%AF%E5%90%8E%E6%97%A0%E6%B3%95%E8%87%AA%E6%84%88%E9%97%AE%E9%A2%98.html">因打开了 swap 导致的 Kubernetes 重启后无法自愈问题</a></p>
+<h4 id="2-5-1-检测"><a href="#2-5-1-检测" class="headerlink" title="2.5.1 检测"></a>2.5.1 检测</h4><p>使用 <code>free -m</code> 命令来查看 <code>Swap </code> 是否禁用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">free -m</span><br><span class="line">               total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:            1963         287         599           2        1076        1515</span><br><span class="line">Swap:              0           0           0</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-2-关闭"><a href="#2-5-2-关闭" class="headerlink" title="2.5.2 关闭"></a>2.5.2 关闭</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo swapoff -a</span><br><span class="line">sudo sed -i &#x27;/ swap / s/^\(.*\)$/#\1/g&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-时钟同步（默认可用，检查一下）"><a href="#2-6-时钟同步（默认可用，检查一下）" class="headerlink" title="2.6 时钟同步（默认可用，检查一下）"></a>2.6 时钟同步（默认可用，检查一下）</h3><h4 id="2-6-1-检测"><a href="#2-6-1-检测" class="headerlink" title="2.6.1 检测"></a>2.6.1 检测</h4><p>使用 <code>timedatectl status</code> 查看，国内服务器时区一般已配置好 <code>Asia/Shanghai</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">timedatectl status</span><br><span class="line">               Local time: Wed 2024-06-26 21:24:25 CST</span><br><span class="line">           Universal time: Wed 2024-06-26 13:24:25 UTC</span><br><span class="line">                 RTC time: Wed 2024-06-26 13:24:25</span><br><span class="line">                Time zone: Asia/Shanghai (CST, +0800)</span><br><span class="line">System clock synchronized: yes</span><br><span class="line">              NTP service: active</span><br><span class="line">          RTC in local TZ: no</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-2-设置"><a href="#2-6-2-设置" class="headerlink" title="2.6.2 设置"></a>2.6.2 设置</h4><p>集群通信需要同一时间来同步行为，国内设置为上海</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<p>重启时间同步服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart systemd-timesyncd.service</span><br></pre></td></tr></table></figure>
+
+<p>查看时间</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl status</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-7-网络配置（默认可用，检查一下）"><a href="#2-7-网络配置（默认可用，检查一下）" class="headerlink" title="2.7 网络配置（默认可用，检查一下）"></a>2.7 网络配置（默认可用，检查一下）</h3><h4 id="2-7-1-检测"><a href="#2-7-1-检测" class="headerlink" title="2.7.1 检测"></a>2.7.1 检测</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward</span><br></pre></td></tr></table></figure>
+
+<p>像下面这样输出表示全部开启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.ipv4.ip_forward = 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-7-2-开启"><a href="#2-7-2-开启" class="headerlink" title="2.7.2 开启"></a>2.7.2 开启</h4><p>若未开启，则运行下面命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/sysctl.d/k8s.conf &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">net.bridge.bridge-nf-call-iptables  = 1</span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1</span><br><span class="line">net.ipv4.ip_forward                 = 1</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo sysctl --system</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-8-IPVS-可选"><a href="#2-8-IPVS-可选" class="headerlink" title="2.8 IPVS (可选)"></a>2.8 IPVS (可选)</h3><p>安装 <code>ipset</code> 和 <code>ipvsadm</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update &amp;&amp; <span class="built_in">sudo</span> apt install -y ipset ipvsadm</span><br></pre></td></tr></table></figure>
+
+<p>加载内核模块</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/modules-load.d/ipvs.conf &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">ip_vs</span><br><span class="line">ip_vs_rr</span><br><span class="line">ip_vs_wrr</span><br><span class="line">ip_vs_sh</span><br><span class="line">nf_conntrack</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、软件安装"><a href="#三、软件安装" class="headerlink" title="三、软件安装"></a>三、软件安装</h2><blockquote>
+<p>  <code>Docker Engine</code> 没有实现 <a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/architecture/cri/">CRI</a>， 而这是容器运行时在 <code>Kubernetes </code>中工作所需要的。 <code>v1.24</code> 之前的版本直接集成了 <code>Docker Engine</code> 的一个组件，名为 <code>dockershim</code>，但现在不再是 <code>Kubernetes</code> 的一部分。为此，必须安装一个额外的服务 <a target="_blank" rel="noopener" href="https://github.com/Mirantis/cri-dockerd">cri-dockerd</a>。</p>
+<p>  另外也可以使用 <a target="_blank" rel="noopener" href="https://github.com/containerd/containerd">containerd</a> 运行时环境，该组件随 <code>Docker</code> 一起安装，但是需要额外的配置文件。</p>
+</blockquote>
+<h3 id="3-1-Docker"><a href="#3-1-Docker" class="headerlink" title="3.1 Docker"></a>3.1 Docker</h3><p><code>Docker </code> 官方一键安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com | sh</span><br></pre></td></tr></table></figure>
+
+<p>官方详细安装（由于 <code>GFW</code> 加强，<code>download.docker.com</code> 也需要使用镜像）</p>
+<p>文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">https://docs.docker.com/engine/install/ubuntu/</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Add Docker<span class="string">&#x27;s official GPG key:</span></span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y ca-certificates curl</span><br><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line">sudo curl -fsSL https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line">sudo chmod a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Add the repository to Apt sources:</span></span></span><br><span class="line">echo   &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.cloud.tencent.com/docker-ce/linux/ubuntu/ \</span><br><span class="line"><span class="meta prompt_">  $</span><span class="language-bash"><span class="string">(. /etc/os-release &amp;&amp; echo &quot;$VERSION_CODENAME&quot;) stable&quot; |   sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null</span></span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Install using the apt repository</span></span></span><br><span class="line">sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Configure the registry mirrors</span></span></span><br><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://mirrors.docker.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-Containerd"><a href="#3-2-Containerd" class="headerlink" title="3.2 Containerd"></a>3.2 Containerd</h3><p>所有命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo containerd config default | sudo tee /etc/containerd/config.toml &gt; /dev/null</span><br><span class="line">sudo sed -i &#x27;/registry.k8s.io\/pause/s|3.8|3.9|&#x27; /etc/containerd/config.toml</span><br><span class="line">sudo sed -i &#x27;s/SystemdCgroup\ =\ false/SystemdCgroup\ =\ true/g&#x27; /etc/containerd/config.toml</span><br><span class="line">sudo sed -i &#x27;s/config_path\ =\ &quot;&quot;/config_path\ =\ &quot;\/etc\/containerd\/certs.d&quot;/g&#x27; /etc/containerd/config.toml</span><br><span class="line">sudo systemctl restart containerd</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/containerd/certs.d/docker.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/docker.io/hosts.toml &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://docker.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.docker.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/containerd/certs.d/registry-1.docker.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/registry-1.docker.io/hosts.toml &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://registry-1.docker.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.docker.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/containerd/certs.d/registry.k8s.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/registry.k8s.io/hosts.toml &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://registry.k8s.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.k8s.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/containerd/certs.d/quay.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/quay.io/hosts.toml &lt;&lt; &#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://quay.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.quay.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>详细步骤解释：</p>
+<p>生成默认配置文件然后进行修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo containerd config default | sudo tee /etc/containerd/config.toml</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或者</span></span><br><span class="line">sudo containerd config default | sudo tee /etc/containerd/config.toml &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>pause</code> 镜像，防止 <code>kubeadm</code> 的警告</p>
+<blockquote>
+<p>  detected that the sandbox image “registry.k8s.io&#x2F;pause:3.9” of the container runtime is inconsistent with that used by kubeadm.It is recommended to use “registry.aliyuncs.com&#x2F;google_containers&#x2F;pause:3.9” as the CRI sandbox image.</p>
+</blockquote>
+<p>保持版本不变，仅将 <code>registry.k8s.io</code> 修改为 <code>registry.aliyuncs.com/google_containers</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i &#x27;/sandbox_image/s|registry.k8s.io/pause|registry.aliyuncs.com/google_containers/pause|&#x27; /etc/containerd/config.toml</span><br></pre></td></tr></table></figure>
+
+<p>或者指定版本，将 <code>registry.k8s.io/pause:*</code> 修改为 <code>registry.aliyuncs.com/google_containers/pause:3.9</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i &#x27;s/sandbox_image\ =.*/sandbox_image\ =\ &quot;registry.aliyuncs.com\/google_containers\/pause:3.9&quot;/g&#x27; /etc/containerd/config.toml</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>SystemdCgroup = false</code> 修改为 <code>SystemdCgroup = true</code></p>
+<blockquote>
+<p>  根据文档<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/">Container runtimes </a>中的内容，对于使用 <code>systemd</code> 作为 <code>init system</code> 的 <code>Linux</code> 发行版，使用 <code>systemd </code>作为容器的 <code>cgroup driver</code> 可以确保服务器节点在资源紧张的情况更加稳定，因此这里配置各个节点上 <code>containerd</code> 的 <code>cgroup driver</code> 为 <code>systemd</code>。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i &#x27;s/SystemdCgroup\ =\ false/SystemdCgroup\ =\ true/g&#x27; /etc/containerd/config.toml</span><br></pre></td></tr></table></figure>
+
+<p>配置容器镜像加速器，使用 <code>config_path</code> 的方式</p>
+<blockquote>
+<p>  DEPRECATION: The <code>mirrors</code> property of <code>[plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry]</code> is deprecated since containerd v1.5 and will be removed in containerd v2.0. Use <code>config_path</code> instead.</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sed -i &#x27;s/config_path\ =\ &quot;&quot;/config_path\ =\ &quot;\/etc\/containerd\/certs.d&quot;/g&#x27; /etc/containerd/config.toml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/containerd/certs.d/docker.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/docker.io/hosts.toml &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://docker.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.docker.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/containerd/certs.d/registry-1.docker.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/registry-1.docker.io/hosts.toml &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://registry-1.docker.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.docker.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/containerd/certs.d/registry.k8s.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/registry.k8s.io/hosts.toml &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://registry.k8s.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.k8s.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo mkdir -p /etc/containerd/certs.d/quay.io</span><br><span class="line">sudo tee /etc/containerd/certs.d/quay.io/hosts.toml &lt;&lt; &#x27;EOF&#x27;</span><br><span class="line">server = &quot;https://quay.io&quot;</span><br><span class="line"></span><br><span class="line">[host.&quot;https://mirrors.quay.com&quot;]</span><br><span class="line">  capabilities = [&quot;pull&quot;, &quot;resolve&quot;]</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>重启 <code>containerd</code> 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart containerd</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-Kubernetes"><a href="#3-3-Kubernetes" class="headerlink" title="3.3 Kubernetes"></a>3.3 Kubernetes</h3><p>使用阿里云镜像安装 <code>kubelet</code>、<code>kubeadm</code>、<code>kubectl</code>，并使用 <code>apt-mark</code> 保持版本，设置 <code>kubelet</code> 开机自启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install -y apt-transport-https</span><br><span class="line"></span><br><span class="line">curl -fsSL https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg</span><br><span class="line"></span><br><span class="line">echo &quot;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.30/deb/ /&quot; | sudo tee /etc/apt/sources.list.d/kubernetes.list</span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y kubelet kubeadm kubectl</span><br><span class="line">sudo apt-mark hold kubelet kubeadm kubectl</span><br></pre></td></tr></table></figure>
+
+<p>加入自动补全到 <code>.zshrc</code> 或者 <code>.bashrc</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tee -a .zshrc &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line"># k8s completion</span><br><span class="line">source &lt;(kubectl completion zsh)</span><br><span class="line">source &lt;(kubeadm completion zsh)</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">tee -a .bashrc &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line"># k8s completion</span><br><span class="line">source &lt;(kubectl completion bash)</span><br><span class="line">source &lt;(kubeadm completion bash)</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、配置-Master"><a href="#四、配置-Master" class="headerlink" title="四、配置 Master"></a>四、配置 Master</h2><h3 id="4-1-拉取镜像"><a href="#4-1-拉取镜像" class="headerlink" title="4.1 拉取镜像"></a>4.1 拉取镜像</h3><p>初始化前先拉取所需要的镜像，方便查找初始化的 <code>warning</code> 或 <code>error</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm config images pull --kubernetes-version=$(kubeadm version -o short)</span><br></pre></td></tr></table></figure>
+
+<p>在不同厂商的云服务器之间，我们需要使用公网访问 <code>k8s </code>集群中的每个节点，但是网卡上绑定的是内网 <code>IP</code>，会导致 <code>kubeadm init </code> 指定 <code>--apiserver-advertise-address</code> 为公网 <code>IP</code> 时，<code>etcd</code> 无法启动，初始化失败。</p>
+<h3 id="4-2-初始化"><a href="#4-2-初始化" class="headerlink" title="4.2 初始化"></a>4.2 初始化</h3><p>所以我们可以手动将公网 <code>IP</code> 绑定到一个虚拟网卡上，这样才能成功初始化 <code>Master</code> 节点，该配置在重启后会失效，但是用于初始化没问题。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link add veth0 type dummy</span><br><span class="line">sudo ip addr add 47.102.xx.xx/24 dev veth0</span><br><span class="line">sudo ip link set dev veth0 up</span><br></pre></td></tr></table></figure>
+
+<p>添加网卡后进行初始化</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm init \</span><br><span class="line">      --apiserver-advertise-address=47.102.xx.xx \</span><br><span class="line">      --pod-network-cidr=192.168.0.0/16 \</span><br><span class="line">      --service-cidr=10.96.0.0/16 \</span><br><span class="line">      --kubernetes-version=$(kubeadm version -o short)</span><br></pre></td></tr></table></figure>
+
+<p>选项含义：</p>
+<ul>
+<li><code>apiserver-advertise-address</code>（必需）：指定 <code>API</code> 服务器向集群外部通告的 <code>IP</code> 地址，在集群节点加入时被用来联系 <code>API </code>服务器</li>
+<li><code>pod-network-cidr</code>（必需）：指定 <code>Pod</code> 网络的 <code>CIDR</code> 范围，表示分配给 <code>Pod</code> 的 <code>IP</code> 地址范围。这个 <code>CIDR</code> 范围用于配置 <code>Pod</code> 网络插件，例如 <code>Calico</code> 或 <code>Flannel</code></li>
+<li><code>service-cidr</code>（必需）：指定 <code>Service </code>虚拟 <code>IP</code> 地址的 <code>CIDR </code> 范围，这个范围内的 <code>IP </code> 地址用于 <code>Kubernetes</code> 内部的服务发现和负载均衡</li>
+<li><code>cri-socket</code>（使用<code>Docker &amp; CRI</code>必需）：指定容器运行时接口（ <code>CRI</code> ）套接字文件路径</li>
+<li><code>image-repository</code>：指定使用阿里云的镜像仓库来拉取 <code>Kubernetes </code>相关的 <code>Docker </code>镜像</li>
+<li><code>kubernetes-version</code>：推荐明确指定 <code>Kubernetes </code> 版本，以避免使用非预期的版本</li>
+</ul>
+<h3 id="4-3-重置"><a href="#4-3-重置" class="headerlink" title="4.3 重置"></a>4.3 重置</h3><p>重新初始化 <code>master</code> 可以使用 <code>kubeadm reset</code> 命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm reset</span><br><span class="line">sudo docker system prune --all</span><br><span class="line"></span><br><span class="line">rm -rf $HOME/.kube</span><br><span class="line">sudo rm -rf /etc/cni/net.d</span><br><span class="line">sudo rm -rf /etc/kubernetes</span><br><span class="line">sudo rm -rf /var/lib/etcd</span><br><span class="line">sudo rm -rf /var/lib/kubelet</span><br><span class="line">sudo rm -rf /var/lib/dockershim</span><br><span class="line">sudo rm -rf /var/run/kubernetes</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br><span class="line">sudo systemctl restart kubelet</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、添加-Worker"><a href="#五、添加-Worker" class="headerlink" title="五、添加 Worker"></a>五、添加 Worker</h2><h3 id="5-1-获取-token"><a href="#5-1-获取-token" class="headerlink" title="5.1 获取 token"></a>5.1 获取 token</h3><p><code>Master</code> 初始化成功出现如下提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Your Kubernetes control-plane has initialized successfully!</span><br><span class="line"></span><br><span class="line">To start using your cluster, you need to run the following as a regular user:</span><br><span class="line"></span><br><span class="line">  mkdir -p $HOME/.kube</span><br><span class="line">  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">  sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br><span class="line"></span><br><span class="line">Alternatively, if you are the root user, you can run:</span><br><span class="line"></span><br><span class="line">  export KUBECONFIG=/etc/kubernetes/admin.conf</span><br><span class="line"></span><br><span class="line">You should now deploy a pod network to the cluster.</span><br><span class="line">Run &quot;kubectl apply -f [podnetwork].yaml&quot; with one of the options listed at:</span><br><span class="line">  https://kubernetes.io/docs/concepts/cluster-administration/addons/</span><br><span class="line"></span><br><span class="line">Then you can join any number of worker nodes by running the following on each as root:</span><br><span class="line"></span><br><span class="line">sudo kubeadm join ip:port --token xxxxxx \</span><br><span class="line">        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>最后一个命令就是加入 <code>Worker</code> 节点的命令，并带有 <code>token</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm join ip:port --token xxxxxx \</span><br><span class="line">        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>如果你未保存token，也可以重新生成，并不是影响已经加入过节点的信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm token create --print-join-command</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-加入集群"><a href="#5-2-加入集群" class="headerlink" title="5.2 加入集群"></a>5.2 加入集群</h3><p>我们同样手动将公网 <code>IP</code> 绑定到一个虚拟网卡上， <code>Worker</code> 节点才能以公网 <code>IP</code>加入集群，该配置在重启后失效，但是用于加入集群没问题。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link add veth0 type dummy</span><br><span class="line">sudo ip addr add 150.158.xx.xx/24 dev veth0</span><br><span class="line">sudo ip link set dev veth0 up</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>Worker</code> 节点上运行命令便加入了集群</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm join ip:port --token xxxxxx \</span><br><span class="line">        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>kubectl get nodes</code>，发现节点均为 <code>NotReady</code> 状态，所以我们还需要配置网络插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME         STATUS     ROLES           AGE     VERSION</span><br><span class="line">k8s-master   NotReady   control-plane   4m14s   v1.30.2</span><br><span class="line">k8s-node1    NotReady   &lt;none&gt;          25s     v1.30.2</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、网络插件-Calico-failed"><a href="#六、网络插件-Calico-failed" class="headerlink" title="六、网络插件 Calico (failed)"></a>六、网络插件 Calico (failed)</h2><p>在 <code>Master</code> 节点中执行命令进行配置</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart">https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart</a></p>
+<h3 id="6-1-创建-tigera-operator"><a href="#6-1-创建-tigera-operator" class="headerlink" title="6.1 创建 tigera-operator"></a>6.1 创建 tigera-operator</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.staticdn.net/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml</span><br><span class="line">kubectl create -f tigera-operator.yaml</span><br></pre></td></tr></table></figure>
+
+<p>查看容器状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">kubectl get ns</span><br><span class="line">NAME              STATUS   AGE</span><br><span class="line">default           Active   2m29s</span><br><span class="line">kube-node-lease   Active   2m29s</span><br><span class="line">kube-public       Active   2m29s</span><br><span class="line">kube-system       Active   2m29s</span><br><span class="line">tigera-operator   Active   33s</span><br><span class="line"></span><br><span class="line">kubectl get pods -A</span><br><span class="line">NAMESPACE         NAME                                 READY   STATUS    RESTARTS      AGE</span><br><span class="line">kube-system       coredns-7b5944fdcf-ncxml             0/1     Pending   0             2m41s</span><br><span class="line">kube-system       coredns-7b5944fdcf-q55kx             0/1     Pending   0             2m41s</span><br><span class="line">kube-system       etcd-k8s-master                      1/1     Running   0             2m57s</span><br><span class="line">kube-system       kube-apiserver-k8s-master            1/1     Running   0             2m57s</span><br><span class="line">kube-system       kube-controller-manager-k8s-master   1/1     Running   0             2m57s</span><br><span class="line">kube-system       kube-proxy-4pmwz                     1/1     Running   0             2m41s</span><br><span class="line">kube-system       kube-proxy-cdgqd                     1/1     Running   2 (69s ago)   2m39s</span><br><span class="line">kube-system       kube-scheduler-k8s-master            1/1     Running   0             2m57s</span><br><span class="line">tigera-operator   tigera-operator-76ff79f7fd-vsjl7     1/1     Running   0             50s</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-启动-calico"><a href="#6-2-启动-calico" class="headerlink" title="6.2 启动 calico"></a>6.2 启动 calico</h3><p>下载或打开配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.staticdn.net/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml</span><br><span class="line"></span><br><span class="line">vim custom-resources.yaml</span><br></pre></td></tr></table></figure>
+
+<p>打开下载的配置文件 <code>custom-resources.yaml</code>，修改 <code>cidr</code>为 <code>kubeadm init</code> 时指定的 <code> --pod-network-cidr</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This section includes base Calico installation configuration.</span></span><br><span class="line"><span class="comment"># For more information, see: https://docs.tigera.io/calico/latest/reference/installation/api#operator.tigera.io/v1.Installation</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">operator.tigera.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Installation</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="comment"># Configures Calico networking.</span></span><br><span class="line">  <span class="attr">calicoNetwork:</span></span><br><span class="line">    <span class="attr">ipPools:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">default-ipv4-ippool</span></span><br><span class="line">      <span class="attr">blockSize:</span> <span class="number">26</span></span><br><span class="line">      <span class="attr">cidr:</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span><span class="string">/16</span></span><br><span class="line">      <span class="attr">encapsulation:</span> <span class="string">VXLANCrossSubnet</span></span><br><span class="line">      <span class="attr">natOutgoing:</span> <span class="string">Enabled</span></span><br><span class="line">      <span class="attr">nodeSelector:</span> <span class="string">all()</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="comment"># This section configures the Calico API server.</span></span><br><span class="line"><span class="comment"># For more information, see: https://docs.tigera.io/calico/latest/reference/installation/api#operator.tigera.io/v1.APIServer</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">operator.tigera.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">APIServer</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建容器，等待几分钟，直到所有容器 <code>Ready</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f custom-resources.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-遇到的问题"><a href="#6-3-遇到的问题" class="headerlink" title="6.3 遇到的问题"></a>6.3 遇到的问题</h3><p>发现两个 <code>calico-node</code> 一直无法启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -A</span><br><span class="line">NAMESPACE         NAME                                       READY   STATUS    ...</span><br><span class="line">calico-system     calico-kube-controllers-7b8cc9bb64-pqcwz   1/1     Running   ...</span><br><span class="line">calico-system     calico-node-j4jnb                          0/1     Running   ...</span><br><span class="line">calico-system     calico-node-pr72b                          0/1     Running   ...</span><br><span class="line">calico-system     calico-typha-7fc6bcfd8b-xnzbv              1/1     Running   ...</span><br><span class="line">calico-system     csi-node-driver-l8scr                      2/2     Running   ...</span><br><span class="line">calico-system     csi-node-driver-ztpp9                      2/2     Running   ...</span><br><span class="line">kube-system       coredns-7b5944fdcf-cg2hd                   1/1     Running   ...</span><br><span class="line">kube-system       coredns-7b5944fdcf-rdkdx                   1/1     Running   ...</span><br><span class="line">kube-system       etcd-k8s-master                            1/1     Running   ...</span><br><span class="line">kube-system       kube-apiserver-k8s-master                  1/1     Running   ...</span><br><span class="line">kube-system       kube-controller-manager-k8s-master         1/1     Running   ...</span><br><span class="line">kube-system       kube-proxy-7lcr8                           1/1     Running   ...</span><br><span class="line">kube-system       kube-proxy-vb6cc                           1/1     Running   ...</span><br><span class="line">kube-system       kube-scheduler-k8s-master                  1/1     Running   ...</span><br><span class="line">tigera-operator   tigera-operator-76ff79f7fd-6jfmk           1/1     Running   ...</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>describe</code> 查看容器状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pod calico-node-j4jnb -n calico-system</span><br></pre></td></tr></table></figure>
+
+<p>发现无法建立 <code>BGP</code> 连接，具体原因是因为其使用的是内网 <code>IP</code>（10.0.4.11），导致无法与公网连接</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Warning  Unhealthy  22s  kubelet  (combined from similar events): Readiness probe failed: 2024-06-27 08:09:58.227 [INFO][656] confd/health.go 202: Number of node(s) with BGP peering established = 0</span><br><span class="line">calico/node is not ready: BIRD is not ready: BGP not established with 10.0.4.11</span><br></pre></td></tr></table></figure>
+
+<p>但是查看发现其上报了公网 <code>IP</code>（150.158.xx.xx）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes -o wide</span><br><span class="line">NAME         STATUS   ROLES           AGE   VERSION   INTERNAL-IP     ...</span><br><span class="line">k8s-master   Ready    control-plane   22m   v1.30.2   47.102.xx.xx    ...</span><br><span class="line">k8s-node1    Ready    &lt;none&gt;          22m   v1.30.2   150.158.xx.xx   ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-该问题没有解决"><a href="#6-4-该问题没有解决" class="headerlink" title="6.4 该问题没有解决"></a>6.4 该问题没有解决</h3><p>查阅资料初步得出的结论是，<code>calico</code> 会自动使用第一个网卡上的第一个 <code>IP</code> 地址；</p>
+<p>测试以后发现，即使我们像初始化 <code>Master</code> 一样，使用 <code>sudo ip add ...</code> 添加了公网 <code>IP</code>；</p>
+<p>它也在内网 <code>IP</code> 之后，不会被 <code>calico </code> 检测到，导致无法建立 <code>BGP</code> 连接，<del>暂时未找到解决办法。</del></p>
+<p>目前找到了检测公网 <code>IP</code>的方法，但是仍然无法建立 <code>BGP</code> 连接。</p>
+<h3 id="6-5-找到指定IP的方法"><a href="#6-5-找到指定IP的方法" class="headerlink" title="6.5 找到指定IP的方法"></a>6.5 找到指定IP的方法</h3><p>在下载的配置文件中添加字段 <code>nodeAddressAutodetectionV4.interface</code>，使用匹配挂载到公网 <code>IP</code> 的虚拟网卡</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This section includes base Calico installation configuration.</span></span><br><span class="line"><span class="comment"># For more information, see: https://docs.tigera.io/calico/latest/reference/installation/api#operator.tigera.io/v1.Installation</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">operator.tigera.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Installation</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="comment"># Configures Calico networking.</span></span><br><span class="line">  <span class="attr">calicoNetwork:</span></span><br><span class="line">    <span class="attr">nodeAddressAutodetectionV4:</span></span><br><span class="line">      <span class="attr">interface:</span> <span class="string">veth.*</span></span><br><span class="line">    <span class="attr">ipPools:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">default-ipv4-ippool</span></span><br><span class="line">      <span class="attr">blockSize:</span> <span class="number">26</span></span><br><span class="line">      <span class="attr">cidr:</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.0</span><span class="string">/16</span></span><br><span class="line">      <span class="attr">encapsulation:</span> <span class="string">VXLANCrossSubnet</span></span><br><span class="line">      <span class="attr">natOutgoing:</span> <span class="string">Enabled</span></span><br><span class="line">      <span class="attr">nodeSelector:</span> <span class="string">all()</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="comment"># This section configures the Calico API server.</span></span><br><span class="line"><span class="comment"># For more information, see: https://docs.tigera.io/calico/latest/reference/installation/api#operator.tigera.io/v1.APIServer</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">operator.tigera.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">APIServer</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-6-该问题还没有解决"><a href="#6-6-该问题还没有解决" class="headerlink" title="6.6 该问题还没有解决"></a>6.6 该问题还没有解决</h3><p>测试以后发现，不知道为什么，即使通过 <code>nodeAddressAutodetectionV4</code> 成功检测到了公网 <code>IP</code>；</p>
+<p>但是 <code>calico </code>仍然无法建立 <code>BGP</code> 连接，暂时也未找到解决办法。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Warning  Unhealthy  2m25s (x2 over 2m26s)  kubelet            Readiness probe failed: calico/node is not ready: BIRD is not ready: Error querying BIRD: unable to connect to BIRDv4 socket: dial unix /var/run/calico/bird.ctl: connect: connection refused</span><br><span class="line">Warning  Unhealthy  119s                   kubelet            Readiness probe failed: 2024-06-27 12:11:38.695 [INFO][267] confd/health.go 202: Number of node(s) with BGP peering established = 0</span><br><span class="line">calico/node is not ready: BIRD is not ready: BGP not established with 150.158.xx.xx</span><br><span class="line">Warning  Unhealthy  89s  kubelet  Readiness probe failed: 2024-06-27 12:12:08.702 [INFO][301] confd/health.go 202: Number of node(s) with BGP peering established = 0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io">Joker Xin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io/2026/05/28/tool/kubernetes/init-cluster/">https://jokerxin.github.io/2026/05/28/tool/kubernetes/init-cluster/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jokerxin.github.io" target="_blank">Joker Xin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/null" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/05/28/tool/latex/vscode-docker/" title="使用VSCode+Docker搭建LaTex环境，可配copilot"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">使用VSCode+Docker搭建LaTex环境，可配copilot</div></div><div class="info-2"><div class="info-item-1">使用VSCode+Docker搭建LaTex环境，可配copilot前置要求：  Windows下安装好 WSL2 ，Windows10&#x2F;11一键安装命令：wsl --install；或者有云服务器（推荐），使用ssh进行连接。 WSL2或云服务器中安装好Docker，阿里云一键安装命令：curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun  一、VSCode插件 WSL （连接WSL）或者Remote - SSH（连接服务器） Dev Containers （连接Docker容器）  二、配置Docker权限创建docker组，一般安装时已创建： 1sudo groupadd docker  将当前用户加入docker组： 12345678sudo usermod -aG docker $USER这个命令的各个部分具体意义：sudo：这个命令用于以超级用户（root）的权限执行后面的命令。usermod：这是一个用于修改用户账户设置的命令。-aG：这个选项是 usermod 命令的两个参数...</div></div></div></a><a class="pagination-related" href="/2026/05/28/tool/git/submodule/" title="Git 子模块"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Git 子模块</div></div><div class="info-2"><div class="info-item-1">Git 子模块一、问题有种情况我们经常会遇到：某个工作中的项目需要包含并使用另一个项目。 也许是第三方库，或者你独立开发的，用于多个父项目的库。 现在问题来了：你想要把它们当做两个独立的项目，同时又想在一个项目中使用另一个。 二、解决方案子模块（git submodule）允许你将一个 Git 仓库作为另一个 Git 仓库的子目录。 它能让你将另一个仓库克隆到自己的项目中，同时还保持提交的独立。 三、现有仓库中加入子模块 以下命令可在现有仓库中添加子模块 1git submodule add https://github.com/username/repo  命令执行后，仓库根目录下增加了一个文件和一个目录：.gitmodules和repo文件夹  .gitmodules文件内容如下： 123[submodule &quot;repo&quot;]    path = repo    url = https://github.com/username/repo  四、克隆包含子模块的仓库 方法一：克隆项目，并且初始化子模块，更新子模块代码 1234567# 1.克隆项目，子模块目...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-%E6%90%AD%E5%BB%BA-k8s-%E9%9B%86%E7%BE%A4-%E5%85%AC%E7%BD%91%EF%BC%8C%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E7%89%88"><span class="toc-number">1.</span> <span class="toc-text">Ubuntu 搭建 k8s 集群 ( 公网，详细讲解版 )</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC"><span class="toc-number">1.1.</span> <span class="toc-text">一、软件版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.</span> <span class="toc-text">二、系统设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-SELinux"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 SELinux</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-DNS"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 内核模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-1-%E7%9B%B4%E6%8E%A5%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">2.4.1 直接关闭防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E6%88%96%E8%80%85%E5%BC%80%E5%90%AF%E7%9B%B8%E5%85%B3%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">2.4.2 或者开启相关端口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%EF%BC%88%E9%BB%98%E8%AE%A4%E5%8F%AF%E7%94%A8%EF%BC%8C%E6%A3%80%E6%9F%A5%E4%B8%80%E4%B8%8B%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 虚拟内存（默认可用，检查一下）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-1-%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">2.5.1 检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E5%85%B3%E9%97%AD"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">2.5.2 关闭</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5%EF%BC%88%E9%BB%98%E8%AE%A4%E5%8F%AF%E7%94%A8%EF%BC%8C%E6%A3%80%E6%9F%A5%E4%B8%80%E4%B8%8B%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">2.6 时钟同步（默认可用，检查一下）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-1-%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">2.6.1 检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">2.6.2 设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%EF%BC%88%E9%BB%98%E8%AE%A4%E5%8F%AF%E7%94%A8%EF%BC%8C%E6%A3%80%E6%9F%A5%E4%B8%80%E4%B8%8B%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">2.7 网络配置（默认可用，检查一下）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-1-%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.7.1.</span> <span class="toc-text">2.7.1 检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-2-%E5%BC%80%E5%90%AF"><span class="toc-number">1.2.7.2.</span> <span class="toc-text">2.7.2 开启</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-IPVS-%E5%8F%AF%E9%80%89"><span class="toc-number">1.2.8.</span> <span class="toc-text">2.8 IPVS (可选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">三、软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Docker"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Containerd"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 Containerd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Kubernetes"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 Kubernetes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%85%8D%E7%BD%AE-Master"><span class="toc-number">1.4.</span> <span class="toc-text">四、配置 Master</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%87%8D%E7%BD%AE"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 重置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%B7%BB%E5%8A%A0-Worker"><span class="toc-number">1.5.</span> <span class="toc-text">五、添加 Worker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%8E%B7%E5%8F%96-token"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 获取 token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%8A%A0%E5%85%A5%E9%9B%86%E7%BE%A4"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 加入集群</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%BD%91%E7%BB%9C%E6%8F%92%E4%BB%B6-Calico-failed"><span class="toc-number">1.6.</span> <span class="toc-text">六、网络插件 Calico (failed)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%88%9B%E5%BB%BA-tigera-operator"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 创建 tigera-operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%90%AF%E5%8A%A8-calico"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 启动 calico</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3 遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E8%AF%A5%E9%97%AE%E9%A2%98%E6%B2%A1%E6%9C%89%E8%A7%A3%E5%86%B3"><span class="toc-number">1.6.4.</span> <span class="toc-text">6.4 该问题没有解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9AIP%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.5.</span> <span class="toc-text">6.5 找到指定IP的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-%E8%AF%A5%E9%97%AE%E9%A2%98%E8%BF%98%E6%B2%A1%E6%9C%89%E8%A7%A3%E5%86%B3"><span class="toc-number">1.6.6.</span> <span class="toc-text">6.6 该问题还没有解决</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

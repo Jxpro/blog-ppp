@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Joker Xin's Blog - 系统、编程与工具笔记</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joker Xin&#39;s Blog">
+<meta property="og:url" content="https://jokerxin.github.io/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Joker Xin 的系统、编程、工具、区块链笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Joker Xin's Blog",
+  "alternateName": [
+    "系统、编程与工具笔记",
+    "jokerxin.github.io"
+  ],
+  "url": "https://jokerxin.github.io/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Joker Xin\'s Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">Joker Xin's Blog</h1></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span></div><div class="content">Introduction The repo was set up to backup my markdown notes written by typora It includes things like Linux, Docker, Blockchain, ROS, Golang, JavaScript, Python and so on If you have any questions, please feel free to contact me  Theme of typora My typora css file github-night-dimmed.css is modified by myself based on Github-Night in official theme website Another css file onedark.css is s modified by myself based on OneDark in official theme website Another css file dyzj.css is s modified b...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a></span></div><div class="content">区块链下的图灵完备一、什么是图灵完备 图灵完备，图灵完全性通常指具有无限存储能力的通用物理机器或编程语言。图灵完备意味着你的语言可以做到能够用图灵机能做到的所有事情，可以解决所有的可计算问题。 它带来了强大的处理能力，图灵完备的数字货币更加智能。例如以太坊，就是图灵完备的编程语言，这也极大帮助了以太坊智能合约的部署。简单来说，一切可计算的问题都能计算，这样的虚拟机或者编程语言就叫图灵完备的。当然，图灵完备也可能因为陷入死循环而导致程序崩溃。因为图灵完备保证的是计算的可行性，但并不保证计算的效率及代码的可理解性、可维护性。 一个图灵完备系统意味着在这个系统中写程序能够找到解决方法(尽管不保证运行时和内存)。在某些场景中图灵完备需要限制语言，有循环执行语句，判断分支语句等。因此，如果有人说，我的新东西是图灵完备的，意思是在原则上(尽管不是经常在实践上)它能够用来解决任何计算性的问题。这里举个例子，比如有人讲，我的东西是图灵完备的，也就是意味着在理论上这个东西能够用来解决任何计算性的问题。 与图灵完备相反的就是图灵不完备，图灵不完备指不允许或限制循环。也就是可以保证每段程序都不会死循环...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Bitcoin/">Bitcoin</a></span></div><div class="content">比特币脚本及交易分析 - 智能合约雏形 大家都有转过账，每笔交易是这样的：张三账上减￥200，李四账上加￥200。 在比特币区块链中，交易不是这么简单，交易实际是通过脚本来完成，以承载更多的功能个，这也是为什么比特币被称为是一种“可编程的货币”。 本文就来分析一下交易是如何实现可编程的。  当谈及智能合约时，大多数人都会下意识地把比特币排除在讨论范围之外，因为当下流行的观点是比特币不具有智能合约的能力。但是今天想跟大家介绍的内容则正好与此相反：即比特币从诞生之日即拥有支持智能合约的能力   一、图灵不完备   比特币脚本语言不是图灵完备的，具有一定的局限性，它没有循环语句和复杂的条件控制语句。由于语言存在这种局限性，我们也就没办法使用这种语言写一些死循环或者一些能够导致DOS攻击的恶意代码，从而也就避免了比特币网络受到DOS攻击。每一个全节点，都会对交易进行验证。具有这种局限性的脚本语言，使人们无法把这种验证机制看成一个攻击比特币网络的缺陷。  二、未花费的交易输出(UTXO)比特币底层采用了一个很特别的交易模型设计，即 UTXO（Unspent Transaction Outp...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Ethereum/">Ethereum</a></span></div><div class="content">Geth部署私链测试网络一、克隆仓库12345678910$ git clone https://github.com/ethereum/go-ethereum.git...$ cd go-ethereum$ lsaccounts      cmd        COPYING         Dockerfile.alltools  ethstats  interfaces.go  Makefile  oss-fuzz.sh  rpc          trieappveyor.yml  common     COPYING.LESSER  docs                 event     internal       metrics   p2p          SECURITY.mdAUTHORS       consensus  core            eth                  go.mod    les            miner     params       signerbuild         console    c...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Ethereum/">Ethereum</a></span></div><div class="content">以太坊简介一、以太坊特点 以太坊是“世界计算机”，这代表它是一个开源的、全球分布的计算基础设施 执行称为智能合约（smart contract）的程序 使用区块链来同步和存储系统状态以及名为以太币（ether）的加密货币，以计量和约束执行资源成本 本质是一个基于交易的状态机（transaction-based state machine） 以太坊平台使开发人员能够构建具有内置经济功能的强大去中心化应用程序（DApp）；在持续自我正常运行的同时，它还减少或消除了审查，第三方界面和交易对手风险  二、以太坊的组成部分 P2P网络以太坊在以太坊主网络上运行，该网络可在TCP端口30303上寻址，并运行一个名为ÐΞVp2p的协议。 交易（Transaction）以太坊交易是网络消息，其中包括发送者（sender），接收者（receiver），值（value） 和数据的有效载荷（payload）。 以太坊虚拟机（EVM）以太坊状态转换由以太坊虚拟机（EVM）处理，这是一个执行字节码（机器语言指令）的 基于堆栈的虚拟机。 数据库（Blockchain）以太坊的区块链作为数据库（通常是 Goo...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/ethereum/3-account/" title="以太坊账户">以太坊账户</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Ethereum/">Ethereum</a></span></div><div class="content">以太坊账户一、从UTXO谈起 比特币在基于UTXO的结构中存储有关用户余额的数据：系统的整个状态就是一组UTXO的集合，每个UTXO都有一个所有者和一个面值（就像不同的硬币），而交易会花费若干个输入的UTXO，并根据规则创建若干个新的UTXO： 每个引用的输入必须有效且尚未花费；对于一个交易，必须包含有与每个输入的所有者匹配的签名；总输入必须大于等于总输出值 所以，系统中用户的余额（balance）是用户具有私钥的 UTXO 的总值  二、以太坊的做法 以太坊的“状态”，就是系统中所有帐户的列表 每个账户都包括了一个余额（balance），和以太坊特殊定义的数据（代码和内部存储） 如果发送帐户有足够的余额来支付，则交易有效；在这种情况下发送帐户先扣款，而收款帐户将记入这笔收入 如果接收帐户有相关代码，则代码会自动运行，并且它的内部存储也可能被更改，或者代码还可能向其他帐户发送额外的消息，这就会导致进一步的借贷资金关系  三、UTXO的优点 更高程度的隐私性：如果用户为他们收到的每笔交易使用新地址，那么通常很难将帐户相互链接。这很大程度上适用于货币，但不太适用于任意dapps，因为...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/ethereum/4-transaction/" title="以太坊交易">以太坊交易</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Ethereum/">Ethereum</a></span></div><div class="content">以太坊交易一、交易的本质 交易是由外部拥有的账户发起的签名消息，由以太坊网络传输，并被序列化后记录在以太坊区块链上。 交易是唯一可以触发状态更改或导致合约在EVM中执行的事物。 以太坊是一个全局单例状态机，交易是唯一可以改变其状态的东西。 合约不是自己运行的，以太坊也不会“在后台”运行。以太坊上的一切变化都始于交易。  二、交易数据结构交易是包含以下数据的序列化二进制消息：  nonce：由发起人EOA发出的序列号，用于防止交易消息重播。 gas price：交易发起人愿意支付的gas单价（wei）。 start gas（gas limit）：交易发起人愿意支付的最大gas量。 to：目的以太坊地址。 value：要发送到目的地的以太数量。 data：可变长度二进制数据负载（payload）。 v,r,s：发起人EOA的ECDSA签名的三个组成部分。  交易消息的结构使用递归长度前缀（RLP）编码方案进行序列化，该方案专为在以太坊中准确和字节完美的数据序列化而创建 三、交易中的nonce 黄皮书定义： 一个标量值，等于从这个地址发送的交易数，或者对于关联code的帐户来说，是这个...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/fabric/1-env-setup-2-3/" title="HyperLedger Fabric 开发环境搭建">HyperLedger Fabric 开发环境搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Fabric/">Fabric</a></span></div><div class="content">HyperLedger Fabric 开发环境搭建一、软硬件版本   名称 版本    系统版本 Ubuntu 18.04.6 LTS (GNU&#x2F;Linux 4.15.0-48-generic x86_64)   Fabric 2.3.3   go go1.16.9 linux&#x2F;amd64   docker 20.10.10   docker-compose 1.29.2, build 5becea4c   二. 安装 Git 和 Curl123apt updateapt install gitapt install curl  三. 安装 Golang1234567891011121314151617181920apt install libtool libltdl-devwget https://studygolang.com/dl/golang/go1.17.6.linux-amd64.tar.gztar -C /usr/local -zxf  go1.17.6.linux-amd64.tar.gzvim ~/.profileexport GOROOT=...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/fabric/2-demo-test-network/" title="Fabric案例 - test-network">Fabric案例 - test-network</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Fabric/">Fabric</a></span></div><div class="content">Fabric案例 - test-network一、network.sh 命令帮助123456789101112131415161718192021222324252627282930313233343536373839404142434445./network.sh -h# 输出结果Usage:  network.sh &lt;Mode&gt; [Flags]    Modes:      up - Bring up Fabric orderer and peer nodes. No channel is created      up createChannel - Bring up fabric network with one channel      createChannel - Create and join a channel after the network is created      deployCC - Deploy a chaincode to a channel (defaults to asset-transfer-basic)      down...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/05/28/blockchain/ethereum/5-evm/" title="以太坊虚拟机（EVM）">以太坊虚拟机（EVM）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/">Blockchain</a><i class="fas fa-angle-right article-meta-link"></i><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Blockchain/Ethereum/">Ethereum</a></span></div><div class="content">以太坊虚拟机（EVM）一、作用和地位 以太坊虚拟机 EVM 是智能合约的运行环境 作为区块验证协议的一部分，参与网络的每个节点都会运行 EVM 。他们会检查正在验证的块中列出的交易，并运行由 EVM 中的交易触发的代码 EVM不仅是沙盒封装的，而且是完全隔离的，也就是说在 EVM 中运行的代码是无法访问网络、文件系统和其他进程的，甚至智能合约之间的访问也是受限的 合约以字节码的格式（EVM bytecode）存在于区块链上 合约通常以高级语言（solidity）编写，通过EVM编译器编译为字节码，最终通过客户端上载部署到区块链网络中  二、EVM和账户 以太坊中有两类账户： 外部账户和合约账户，它们共用 EVM中同一个地址空间 无论帐户是否存储代码，这两类账户对 EVM 来说处理方式是完全一样的 每个账户在EVM中都有一个键值对形式的持久化存储。其中 key 和 value 的长度都是256位，称之为存储空间  三、EVM和交易 交易可以看作是从一个帐户发到另一个帐户的消息，它可以包含二进制数据（payload）和以太币 如果目标账户含有代码，此代码会在EVM中执行，并以payl...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/"><span class="card-category-list-name">Blockchain</span><span class="card-category-list-count">13</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Bitcoin/"><span class="card-category-list-name">Bitcoin</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Ethereum/"><span class="card-category-list-name">Ethereum</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Blockchain/Fabric/"><span class="card-category-list-name">Fabric</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/"><span class="card-category-list-name">Program</span><span class="card-category-list-count">19</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Assembly/"><span class="card-category-list-name">Assembly</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Program/Golang/"><span class="card-category-list-name">Golang</span><span class="card-category-list-count">3</span></a></li></ul></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">91</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">91</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-08T11:49:37.343Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

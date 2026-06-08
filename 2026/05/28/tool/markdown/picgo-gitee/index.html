@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Typora下配置图床 | Joker Xin's Blog</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Typora下配置图床一、安装PicGo-Core错误安装： 123# 不能如下通过**npm**安装# 因为npm安装以后没有exe文件，无法通过typora运行PicGonpm install picgo -g  正确安装：  二、准备Gitee（github）仓库 创建或选择一个gitee（github）仓库 需要保证仓库公开，不然可以上传，但是无法下载显示，因为没公开 需要保证有READM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typora下配置图床">
+<meta property="og:url" content="https://jokerxin.github.io/2026/05/28/tool/markdown/picgo-gitee/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Typora下配置图床一、安装PicGo-Core错误安装： 123# 不能如下通过**npm**安装# 因为npm安装以后没有exe文件，无法通过typora运行PicGonpm install picgo -g  正确安装：  二、准备Gitee（github）仓库 创建或选择一个gitee（github）仓库 需要保证仓库公开，不然可以上传，但是无法下载显示，因为没公开 需要保证有READM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223421.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223429.png">
+<meta property="article:published_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:modified_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223421.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Typora下配置图床",
+  "url": "https://jokerxin.github.io/2026/05/28/tool/markdown/picgo-gitee/",
+  "image": "",
+  "datePublished": "2026-05-28T01:22:25.000Z",
+  "dateModified": "2026-05-28T01:22:25.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Joker Xin",
+      "url": "https://jokerxin.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/2026/05/28/tool/markdown/picgo-gitee/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Typora下配置图床',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Typora下配置图床</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Typora下配置图床</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-28T01:22:25.000Z" title="更新于 2026-05-28 09:22:25">2026-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tool/">Tool</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Tool/Markdown/">Markdown</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="Typora下配置图床"><a href="#Typora下配置图床" class="headerlink" title="Typora下配置图床"></a>Typora下配置图床</h1><h2 id="一、安装PicGo-Core"><a href="#一、安装PicGo-Core" class="headerlink" title="一、安装PicGo-Core"></a>一、安装PicGo-Core</h2><p><strong>错误</strong>安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">不能如下通过**npm**安装</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">因为npm安装以后没有exe文件，无法通过typora运行PicGo</span></span><br><span class="line">npm install picgo -g</span><br></pre></td></tr></table></figure>
+
+<p><strong>正确</strong>安装：</p>
+<p><img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223421.png" alt="img"></p>
+<h2 id="二、准备Gitee（github）仓库"><a href="#二、准备Gitee（github）仓库" class="headerlink" title="二、准备Gitee（github）仓库"></a>二、准备Gitee（github）仓库</h2><ol>
+<li><strong>创建或选择</strong>一个gitee（github）仓库<ul>
+<li>需要保证<strong>仓库公开</strong>，不然可以上传，但是无法下载显示，因为没公开</li>
+<li>需要保证有README.md，文件或者不为空仓库，不然无法删除，原因未知（还能删除？忘记当时怎么想了，TODO 验证一下）</li>
+</ul>
+</li>
+<li>生成私人令牌<code>Token</code>，权限选择<code>projects</code>即可（github选择public_repo），其他可不选</li>
+</ol>
+<blockquote>
+<p>  ！！！ gitee目前好像加了访问限制，使用github或其他图床</p>
+</blockquote>
+<h2 id="三、配置PicGo"><a href="#三、配置PicGo" class="headerlink" title="三、配置PicGo"></a>三、配置PicGo</h2><p>进入Typora安装的picgo.exe目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd C:\Users\username\AppData\Roaming\Typora\picgo\win64\</span><br></pre></td></tr></table></figure>
+
+<p>安装相关插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用于格式化图片名称，防止重复</span></span><br><span class="line">.\picgo install super-prefix</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">PicGo Gitee图床插件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">不用gitee可以不用装了</span></span><br><span class="line">.\picgo install gitee-uploader</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>CLI</code>配置<code>Gitee</code>仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置配置文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按上下键找到gitee，回车</span></span><br><span class="line">./picgo set uploader</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>  可选项说明：</p>
+<ul>
+<li><p><strong>repo</strong>：用户名&#x2F;仓库名，注意不是整个https地址！！！</p>
+<ul>
+<li><p><strong>错误</strong>示范：repo : <a target="_blank" rel="noopener" href="https://gitee.com/username/reponame">https://gitee.com/username/reponame</a></p>
+</li>
+<li><p><strong>正确</strong>示范：repo : username&#x2F;reponame</p>
+</li>
+</ul>
+</li>
+<li><p><strong>token</strong>：刚才生成的token</p>
+</li>
+<li><p><strong>path</strong>：路径，图片存储于 reponame&#x2F;${path} 下</p>
+</li>
+<li><p><strong>custompath</strong>：用于配置path，customPath为占位符</p>
+<p>示例：path：blog&#x2F;${customPath}</p>
+<ul>
+<li><p>customPath选择年<a href="year">^1</a>，则实际的path值为blog&#x2F;2021</p>
+</li>
+<li><p>customPath选择年季<a href="yearQuarter">^2</a>，则实际的path值为blog&#x2F;2021&#x2F;summer</p>
+</li>
+<li><p>customPath选择年月<a href="yearMonth">^3</a>，则实际的path值为blog&#x2F;2021&#x2F;01</p>
+</li>
+</ul>
+</li>
+<li><p><strong>customURL</strong>: 不用填，保持默认（ 不能乱填 ）</p>
+</li>
+</ul>
+</blockquote>
+<p>配置完后使用Gitee仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用配置好的文件（配置文件在~/.picgo/config.json）</span></span><br><span class="line">./picgo use uploader</span><br></pre></td></tr></table></figure>
+
+<p>打开 ~&#x2F;.picgo&#x2F;config.json，结尾追加以下参数，用于配置图片路径重命名参数</p>
+<blockquote>
+<p>  <code>&quot;prefixFormat&quot;:&quot;YYYY/MM/DD/&quot;</code>这条不能加，修改路径会导致图片无法显示</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;picgo-plugin-super-prefix&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;fileFormat&quot;</span><span class="punctuation">:</span> <span class="string">&quot;YYYY-MM-DD-HHmmss&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>  或者直接打开配置文件，复制粘贴以下配置（没安装gitee-uploader请删除gitee相关部分）：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;picBed&quot;: &#123;</span><br><span class="line">    &quot;uploader&quot;: &quot;github&quot;,</span><br><span class="line">    &quot;current&quot;: &quot;github&quot;,</span><br><span class="line">    &quot;transformer&quot;: &quot;path&quot;,</span><br><span class="line">    &quot;github&quot;: &#123;</span><br><span class="line">      &quot;repo&quot;: &quot;username/reponame&quot;,</span><br><span class="line">      &quot;branch&quot;: &quot;master&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;token&quot;,</span><br><span class="line">      &quot;path&quot;: &quot;path&quot;, // 以 &#x27;/&#x27; 结尾，比如 md/new/</span><br><span class="line">      &quot;customUrl&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">      &quot;gitee&quot;: &#123;</span><br><span class="line">      &quot;repo&quot;: &quot;username/reponame&quot;,</span><br><span class="line">      &quot;branch&quot;: &quot;master&quot;,</span><br><span class="line">      &quot;token&quot;: &quot;token&quot;,</span><br><span class="line">      &quot;path&quot;: &quot;md/$customPath&quot;,</span><br><span class="line">      &quot;customPath&quot;: &quot;yearMonth&quot;,</span><br><span class="line">      &quot;customUrl&quot;: &quot;&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;picgoPlugins&quot;: &#123;</span><br><span class="line">    &quot;picgo-plugin-gitee-uploader&quot;: true,</span><br><span class="line">    &quot;picgo-plugin-super-prefix&quot;: true</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;picgo-plugin-super-prefix&quot;: &#123;</span><br><span class="line">    &quot;fileFormat&quot;: &quot;YYYY-MM-DD-HHmmss&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>
+<p>打开Typora，验证图片上传，查看是否成功</p>
+<p><img src="https://raw.githubusercontent.com/Jxpro/PicBed/master/md/2021/10/29-223429.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io">Joker Xin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io/2026/05/28/tool/markdown/picgo-gitee/">https://jokerxin.github.io/2026/05/28/tool/markdown/picgo-gitee/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jokerxin.github.io" target="_blank">Joker Xin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/null" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/05/28/tool/markdown/demo/" title="一级标题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">一级标题</div></div><div class="info-2"><div class="info-item-1">一级标题二级标题三级标题四级标题五级标题六级标题标题样式来自[zj主题][1]^[1]^（这是一个参考链接，按住ctrl键并点击将自动打开浏览器并跳转至相关链接，其中上标[1]只是一个额外的标注） 注：部分样式需要在偏好设置中开启，如上下标、行内公式、图表等。Markdown写法参考说明文档🚀，试用其他如印象等在线Markdown编辑器[Ref 1,Ref 2,Ref 3,Ref 4] 行内公式：$\lim\limits_{x \to \infty} \exp(-x)&#x3D;0$，行间公式：$$E_0 &#x3D; mc^2 \\quad\text{—— Albert Einstein}$$ 推荐：latex手写公式识别、latex公式编辑器 可以直接用尖括号包裹URL链接或邮箱：https://emojixd.com/  提示块标签  嵌套提示块    无序列表1  无序列表2    有序列表1^1 有序列表2  &#x3D;&#x3D;文本高亮&#x3D;&#x3D;，加粗，斜体，&#x3D;&#x3D;斜体高亮加粗&#x3D;&#x3D;，删除线，下划线。&lt;fo...</div></div></div></a><a class="pagination-related" href="/2026/05/28/tool/latex/zotero-bib/" title="Zotero配置Bib文献引用"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Zotero配置Bib文献引用</div></div><div class="info-2"><div class="info-item-1">Zotero配置Bib文献引用Zotero Better BibTeX（简称ZBB）是一个Zotero插件，专为改善其在处理BibTeX和BibLaTeX文献引用方面的体验而设计，它可以生成更精确和个性化的cited key，具有自动更新的功能和更丰富的文献信息。 一、安装插件 下载xpi文件https://github.com/retorquere/zotero-better-bibtex/releases 在Zotero中选择，工具 &gt; 附加组件 &gt; lnstall Add-on From File，选择并安装下载好的ZBB插件文件  二、配置插件在Zotero中选择，工具 &gt; Better BibTeX &gt; 打开Better BibTeX首选项，进行如下配置：  修改cited key格式为：auth + shorttitle(2) + shortyear，然后进入主目录，选择“我的文库”，全选右侧的全部文献，右键选择Better Bibtex &gt; Refresh Bibtex Key，手动刷新一下cited key。 更详细的配置见官网教程：...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Typora%E4%B8%8B%E9%85%8D%E7%BD%AE%E5%9B%BE%E5%BA%8A"><span class="toc-number">1.</span> <span class="toc-text">Typora下配置图床</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85PicGo-Core"><span class="toc-number">1.1.</span> <span class="toc-text">一、安装PicGo-Core</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%87%86%E5%A4%87Gitee%EF%BC%88github%EF%BC%89%E4%BB%93%E5%BA%93"><span class="toc-number">1.2.</span> <span class="toc-text">二、准备Gitee（github）仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AEPicGo"><span class="toc-number">1.3.</span> <span class="toc-text">三、配置PicGo</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Windows从零配置 | Joker Xin's Blog</title><meta name="author" content="Joker Xin"><meta name="copyright" content="Joker Xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Windows从零配置前言Windows 激活Windows11 专业版密钥，（报0x80072efd 连接错误就更换网络） 1J8WVF-9X3GM-4WVYC-VDHQG-42CXT  激活未成功使用下面命令，选择选项1 1irm https:&#x2F;&#x2F;massgrave.dev&#x2F;get | iex  typora 破解Typora 补丁最后可用一版 12https:&#x2F;&#x2F;download.typor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows从零配置">
+<meta property="og:url" content="https://jokerxin.github.io/2026/05/28/system/windows/initial-config/index.html">
+<meta property="og:site_name" content="Joker Xin&#39;s Blog">
+<meta property="og:description" content="Windows从零配置前言Windows 激活Windows11 专业版密钥，（报0x80072efd 连接错误就更换网络） 1J8WVF-9X3GM-4WVYC-VDHQG-42CXT  激活未成功使用下面命令，选择选项1 1irm https:&#x2F;&#x2F;massgrave.dev&#x2F;get | iex  typora 破解Typora 补丁最后可用一版 12https:&#x2F;&#x2F;download.typor">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:modified_time" content="2026-05-28T01:22:25.000Z">
+<meta property="article:author" content="Joker Xin">
+<meta property="article:tag" content="Joker Xin, Hexo, Linux, Docker, Git, Python, Blockchain">
+<meta name="twitter:card" content="summary"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Windows从零配置",
+  "url": "https://jokerxin.github.io/2026/05/28/system/windows/initial-config/",
+  "image": "",
+  "datePublished": "2026-05-28T01:22:25.000Z",
+  "dateModified": "2026-05-28T01:22:25.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Joker Xin",
+      "url": "https://jokerxin.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jokerxin.github.io/2026/05/28/system/windows/initial-config/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Windows从零配置',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Joker Xin's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Windows从零配置</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Windows从零配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-28T01:22:25.000Z" title="更新于 2026-05-28 09:22:25">2026-05-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/System/">System</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/System/Windows/">Windows</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h1 id="Windows从零配置"><a href="#Windows从零配置" class="headerlink" title="Windows从零配置"></a>Windows从零配置</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="Windows-激活"><a href="#Windows-激活" class="headerlink" title="Windows 激活"></a>Windows 激活</h3><p>Windows11 专业版密钥，（报0x80072efd 连接错误就更换网络）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">J8WVF-9X3GM-4WVYC-VDHQG-42CXT</span><br></pre></td></tr></table></figure>
+
+<p>激活未成功使用下面命令，选择选项1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irm https://massgrave.dev/get | iex</span><br></pre></td></tr></table></figure>
+
+<h3 id="typora-破解"><a href="#typora-破解" class="headerlink" title="typora 破解"></a>typora 破解</h3><p>Typora 补丁最后可用一版</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://download.typora.io/windows/typora-setup-x64-1.7.5.exe</span><br><span class="line">https://www.123pan.com/s/HQeA-UX1Sh</span><br></pre></td></tr></table></figure>
+
+<p>最新破解程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/743859910/Typora_Unlocker</span><br></pre></td></tr></table></figure>
+
+<h3 id="系统设置"><a href="#系统设置" class="headerlink" title="系统设置"></a>系统设置</h3><ul>
+<li>存储，高级存储设置，保存新内容的地方，全部修改为D盘；或者分区给C盘多点空间</li>
+<li>windows更新，高级选项，传递优化，关闭</li>
+</ul>
+<h3 id="uTools"><a href="#uTools" class="headerlink" title="uTools"></a>uTools</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.u.tools/</span><br></pre></td></tr></table></figure>
+
+<h2 id="一、clash-for-window"><a href="#一、clash-for-window" class="headerlink" title="一、clash for window"></a>一、clash for window</h2><blockquote>
+<p>  没有 7z 解压工具可以使用在线 7z 转 zip：<a target="_blank" rel="noopener" href="https://convertio.co/zh/7z-zip/">https://convertio.co/zh/7z-zip/</a></p>
+<p>  注意在安装目录下新建data文件，这样不会把数据存到c盘！</p>
+</blockquote>
+<p>GitHub已删库，archive地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://www.clash.la/releases/</span><br><span class="line">https://github.com/Z-Siqi/Clash-for-Windows_Chinese/releases</span><br></pre></td></tr></table></figure>
+
+<p>0.20.39 sha256sum (原版拷贝)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">linux-arm64-targz: e328abfe68c122c396f7296bb610934f9ca407af97b0f50d99ff62d43aaf63e0</span><br><span class="line">linux-amd64-targz: e07c5e358bce99511c103262ba0d6d0167c70242f2e68827b09f7a2918d43dc0</span><br><span class="line">mac-arm64-7z: fab650bed23604702302a67042e1d210331bcb482107838717b19e8883f746f9</span><br><span class="line">arm64-dmg: 479d9cef5932d70506592869b01e6e12a4c61411307c0d83615ba3f6c2b41631</span><br><span class="line">mac-7z: c703d3b404941ee09be68a78ea9542f4d2183b9f3e0d389599c37c2df98bd89a</span><br><span class="line">dmg: 5b6bec7cc143f4d95b6ed4d830b20347000aad06edb3d8e5e95daa97481d83af</span><br><span class="line">arm64-exe: bfc3e984f88c35e9f77ed89559ac5374b7d387ec8d980ce600aeeabfac6074f1</span><br><span class="line">arm64-7z: 504acb6bee6f0eadb47b4f7787c3707ca58ddc8a8177802486cf15fad27f7f65</span><br><span class="line">ia32-exe: 951e79041d6eb815efcc2f9171883f67a635e04274ce69a5d202f7fee3872f63</span><br><span class="line">ia32-7z: c9846fbd309eac5bebb40937120f6b716000b38f3fa5e5ea7674c4fbb55e04ee</span><br><span class="line">exe: 477274ce22d30559ae5df8d41b0adb0a8461be0501d26a0500452ab68c650608</span><br><span class="line">7z: 88db22840497c067c073ab2415fff6fe71f633d64af2fca62c37859ffba1640c</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、Powershell"><a href="#二、Powershell" class="headerlink" title="二、Powershell"></a>二、Powershell</h2><p>查看版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">psversiontable</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>winget</code>自动安装 PowerShell</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winget install --id Microsoft.Powershell --source winget</span><br></pre></td></tr></table></figure>
+
+<p>使用MSI包手动安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/PowerShell/PowerShell/releases</span><br></pre></td></tr></table></figure>
+
+<p>在Windows终端中取消显示版本：设置 - powershell - 命令行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\PowerShell\7\pwsh.exe&quot; -Nologo</span><br></pre></td></tr></table></figure>
+
+<p>图标美化，历史命令列表显示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Install-Module -Name Terminal-Icons -Repository PSGallery</span><br><span class="line"></span><br><span class="line">notepad $PROFILE</span><br><span class="line"></span><br><span class="line">Import-Module -Name Terminal-Icons</span><br><span class="line">try &#123; Set-PSReadLineOption -PredictionViewStyle ListView &#125; catch &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、Scoop"><a href="#三、Scoop" class="headerlink" title="三、Scoop"></a>三、Scoop</h2><blockquote>
+<p>  网络错误可先到第二步挂上梯子</p>
+</blockquote>
+<p>设置<code>PowerShell</code>执行策略</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</span><br></pre></td></tr></table></figure>
+
+<p>下载配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">irm get.scoop.sh -outfile &#x27;install.ps1&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>自定义安装</p>
+<blockquote>
+<p>  scoop配置文件位于”~\.config\scoop\config.json”</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\install.ps1 -ScoopDir &#x27;D:\Scoop&#x27; -ScoopGlobalDir &#x27;D:\Scoop\global&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>添加缩写别名</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Install app</span></span><br><span class="line">scoop alias add i &#x27;scoop install $args[0]&#x27; &#x27;Innstall app&#x27;</span><br><span class="line">scoop alias add add &#x27;scoop install $args[0]&#x27; &#x27;Install app&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Uninstall app</span></span><br><span class="line">scoop alias add rm &#x27;scoop uninstall $args[0]&#x27; &#x27;Uninstall app&#x27;</span><br><span class="line">scoop alias add remove &#x27;scoop uninstall $args[0]&#x27; &#x27;Uninstall app&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Remove old version of app</span></span><br><span class="line">scoop alias add c &#x27;scoop cleanup $args[0]&#x27; &#x27;Remove old version of app&#x27;</span><br><span class="line">scoop alias add clean &#x27;scoop cleanup $args[0]&#x27; &#x27;Remove old version of app&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">List apps</span></span><br><span class="line">scoop alias add ls &#x27;scoop list&#x27; &#x27;List installed apps&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Update</span></span><br><span class="line">scoop alias add u &#x27;scoop update $args[0]&#x27; &#x27;Update apps, or Scoop itself&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Check <span class="keyword">for</span> update</span></span><br><span class="line">scoop alias add st &#x27;scoop status&#x27; &#x27;Check for update&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>检查问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\xin&gt; scoop checkup</span><br><span class="line">WARN  LongPaths support is not enabled.</span><br><span class="line">  You can enable it by running:</span><br><span class="line">    sudo Set-ItemProperty &#x27;HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem&#x27; -Name &#x27;LongPathsEnabled&#x27; -Value 1</span><br><span class="line">  (Requires &#x27;sudo&#x27; command. Run &#x27;scoop install sudo&#x27; if you don&#x27;t have it.)</span><br><span class="line">WARN  Windows Developer Mode is not enabled. Operations relevant to symlinks may fail without proper rights.</span><br><span class="line">  You may read more about the symlinks support here:</span><br><span class="line">  https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/</span><br><span class="line">ERROR &#x27;7-Zip&#x27; is not installed! It&#x27;s required for unpacking most programs. Please Run &#x27;scoop install 7zip&#x27; or &#x27;scoop install 7zip-zstd&#x27;.</span><br><span class="line">ERROR &#x27;Inno Setup Unpacker&#x27; is not installed! It&#x27;s required for unpacking InnoSetup files. Please run &#x27;scoop install innounp&#x27;.</span><br><span class="line">ERROR &#x27;dark&#x27; is not installed! It&#x27;s required for unpacking installers created with the WiX Toolset. Please run &#x27;scoop install dark&#x27; or &#x27;scoop install wixtoolset&#x27;.</span><br><span class="line">WARN  Found 5 potential problems.</span><br></pre></td></tr></table></figure>
+
+<p>修复问题</p>
+<ol>
+<li>安装命令行工具</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scoop install git 7zip innounp dark sudo aria2 vim lsd which touch</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置注册表</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\Scoop\apps\7zip\current\install-context.reg</span><br><span class="line">D:\Scoop\apps\git\current\install-context.reg</span><br><span class="line">D:\Scoop\apps\git\current\install-context.reg</span><br><span class="line">D:\Scoop\apps\vim\current\install-context.reg</span><br><span class="line">sudo Set-ItemProperty &#x27;HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem&#x27; -Name &#x27;LongPathsEnabled&#x27; -Value 1</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>设置，系统，打开开发者模式（可能需要专业版）</li>
+</ol>
+<p>aria2配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scoop config aria2-enabled true</span><br><span class="line">scoop config aria2-warning-enabled false</span><br><span class="line">scoop config aria2-retry-wait 4</span><br><span class="line">scoop config aria2-min-split-size 4M</span><br><span class="line">scoop config aria2-max-connection-per-server 16</span><br><span class="line">scoop config aria2-split 32</span><br></pre></td></tr></table></figure>
+
+<p>aria2 玄学命令，一般是用于解决SSL错误（详请见下方），但好像有时一些unknown的错误也莫名其妙好了，报错可以一试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">命令:</span><br><span class="line">scoop config aria2-options --check-certificate=false</span><br><span class="line"></span><br><span class="line">错误:</span><br><span class="line">D0ownload: -&gt; [SocketCore.cc:1021] errorCode=1 SSL/TLS handshake failure: Error: 由于吊销服务器已脱机，吊销功能无法检查吊销。</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Git"><a href="#四、Git" class="headerlink" title="四、Git"></a>四、Git</h2><p>设置认证客户端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper manager</span><br></pre></td></tr></table></figure>
+
+<p>设置名称，邮箱和默认分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;name&quot;</span><br><span class="line">git config --global user.email &quot;email&quot;</span><br><span class="line">git config --global init.defaultBranch main</span><br></pre></td></tr></table></figure>
+
+<p>生成公私钥</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">...（直接一路回车）</span><br></pre></td></tr></table></figure>
+
+<p>查看公钥并上传至github</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br><span class="line">ssh-rsa...</span><br></pre></td></tr></table></figure>
+
+<p>测试连接（有warning直接yes就行）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、WSL"><a href="#五、WSL" class="headerlink" title="五、WSL"></a>五、WSL</h2><p>在家目录下新建.wslconfig</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .wslconfig</span><br></pre></td></tr></table></figure>
+
+<p>输入下面内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[experimental]</span><br><span class="line">autoProxy=false</span><br></pre></td></tr></table></figure>
+
+<p>防止报错：”检测到 localhost 代理配置，但未镜像到 WSL。NAT 模式下的 WSL 不支持代理。”</p>
+<p>然后以管理员运行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --install</span><br></pre></td></tr></table></figure>
+
+<p>设置好账户以后使用以下命令，去除提示：”See “man sudo_root” for details.”</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch ~/.sudo_as_admin_successful</span><br></pre></td></tr></table></figure>
+
+<p>使用下面命令替换 DNS 服务器，并禁止 Windows 重新生成，解决可能遇到的网络问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;nameserver 8.8.8.8&#x27; | sudo tee /etc/resolv.conf &gt; /dev/null</span><br><span class="line">echo &#x27;\n[network]\ngenerateResolvConf = false&#x27; | sudo tee -a /etc/wsl.conf &gt; /dev/null</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、其他"><a href="#六、其他" class="headerlink" title="六、其他"></a>六、其他</h2><p>字体，记得在设置里修改字体</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scoop bucket add nerd-fonts</span><br><span class="line">scoop install Meslo-NF FiraCode-NF</span><br></pre></td></tr></table></figure>
+
+<p>软件，一键安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">scoop bucket add java</span><br><span class="line">scoop bucket add games</span><br><span class="line">scoop bucket add extras</span><br><span class="line">scoop bucket add versions</span><br><span class="line"></span><br><span class="line">scoop install nvm maven steam tabby wechat zotero ffmpeg mathpix rustdesk starship openjdk17 miniconda3 everything dismplusplus vcredist2022 translucenttb sublime-text treesize-free</span><br><span class="line"></span><br><span class="line">(Google在校园网不稳定，需要切换移动热点，或者切换梯子节点，所以分开下)</span><br><span class="line">scoop install go googlechrome</span><br><span class="line"></span><br><span class="line">(文件太大了，且容易有bug，推荐安装包)</span><br><span class="line">scoop install goland</span><br><span class="line">scoop install idea-ultimate</span><br><span class="line">scoop install pycharm-professional</span><br></pre></td></tr></table></figure>
+
+<p>手动设置项</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注册表 设置</span></span><br><span class="line">D:\Scoop\apps\everything\current\install-context.reg</span><br><span class="line">D:\Scoop\apps\sublime-text\current\install-context.reg</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">starship 设置</span></span><br><span class="line">notepad $PROFILE</span><br><span class="line">Invoke-Expression (&amp;starship init powershell)</span><br><span class="line">curl -o C:\Users\xin\.config\starship.toml https://gist.githubusercontent.com/Jxpro/0a5729ac38d4b17a99142c4d71f27d8a/raw/2c0cdb47972979007ceb253531d773b379e9d3b2/starship.toml</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">nvm 设置，重启终端</span></span><br><span class="line">nvm install 22.11.0</span><br><span class="line">nvm use 22.11.0</span><br><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure>
+
+<p>命令提示符（CMD）下执行，保证<code>Chrome</code>数据一致性：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir &quot;C:\Users\xin\AppData\Local\Google\Chrome&quot;</span><br><span class="line">mklink /d &quot;C:\Users\xin\AppData\Local\Google\Chrome\User Data&quot; &quot;D:\Scoop\persist\googlechrome\User Data&quot;</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>Chrome</code>快捷方式，保持固定到任务栏的图标一致性：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">位置:</span><br><span class="line">C:\Users\xin\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Scoop Apps</span><br><span class="line"></span><br><span class="line">属性中的目标:</span><br><span class="line">D:\Scoop\apps\googlechrome\current\chrome.exe --user-data-dir=&quot;D:\Scoop\apps\googlechrome\current\User Data&quot;</span><br><span class="line">去掉 --user-data-dir=&quot;D:\Scoop\apps\googlechrome\current\User Data&quot; </span><br></pre></td></tr></table></figure>
+
+<h2 id="七、余项"><a href="#七、余项" class="headerlink" title="七、余项"></a>七、余项</h2><ol>
+<li>IDM破解版（管理员权限执行绿化）：<a target="_blank" rel="noopener" href="https://www.123pan.com/s/HQeA-Ml4Sh">https://www.123pan.com/s/HQeA-Ml4Sh</a></li>
+<li>有道词典：<a target="_blank" rel="noopener" href="https://fanyi.youdao.com/download-Windows">https://fanyi.youdao.com/download-Windows</a></li>
+<li>搜狗输入法：<a target="_blank" rel="noopener" href="https://pinyin.sogou.com/windows/?r=mac&t=pinyin">https://pinyin.sogou.com/windows/?r=mac&amp;t=pinyin</a></li>
+<li>IObit Unlocker：<a target="_blank" rel="noopener" href="https://www.123pan.com/s/HQeA-Rc1Sh">https://www.123pan.com/s/HQeA-Rc1Sh</a></li>
+<li>Pixpin：<a target="_blank" rel="noopener" href="https://pixpinapp.com/">https://pixpinapp.com/</a></li>
+<li>Cursor：<a target="_blank" rel="noopener" href="https://www.cursor.com/">https://www.cursor.com/</a></li>
+<li>Bandizip安装包：<a target="_blank" rel="noopener" href="https://www.bandisoft.com/bandizip">https://www.bandisoft.com/bandizip</a></li>
+<li>Bandizip破解：<a target="_blank" rel="noopener" href="https://www.123pan.com/s/HQeA-TN1Sh">https://www.123pan.com/s/HQeA-TN1Sh</a></li>
+<li>Bandizip配置：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o config.reg https://gist.githubusercontent.com/Jxpro/2b40d4cc5e3ccdb550fcf74ca18e44b7/raw/c9986ec32bc30b936de60c3a1962c40c3044bfbf/Bandizip</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io">Joker Xin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://jokerxin.github.io/2026/05/28/system/windows/initial-config/">https://jokerxin.github.io/2026/05/28/system/windows/initial-config/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://jokerxin.github.io" target="_blank">Joker Xin's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/null" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/05/28/system/windows/service/" title="Windows服务进程配置文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Windows服务进程配置文件</div></div><div class="info-2"><div class="info-item-1">Windows服务进程配置文件以RustDesk为例，正常前台运行的程序配置文件位于： C:\Users\username\AppData\Roaming\RustDesk\config\RustDesk.toml 但是当其注册为服务进程，在后台运行时，其使用的配置文件位于，且会覆盖上面的文件： C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\RustDesk\config\RustDesk.toml </div></div></div></a><a class="pagination-related" href="/2026/05/28/system/windows/mklink/" title="Windows下mklink用法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Windows下mklink用法</div></div><div class="info-2"><div class="info-item-1">Windows下mklink用法123456789MKLINK [[/D] | [/H] | [/J]] Link Target        /D      创建目录符号链接。默认为文件                符号链接。        /H      创建硬链接而非符号链接。        /J      创建目录联接。        Link    指定新的符号链接名称。        Target  指定新链接引用的路径                (相对或绝对)。 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Joker Xin</div><div class="author-info-description">系统、编程、工具与区块链笔记。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows%E4%BB%8E%E9%9B%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">Windows从零配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-%E6%BF%80%E6%B4%BB"><span class="toc-number">1.1.1.</span> <span class="toc-text">Windows 激活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#typora-%E7%A0%B4%E8%A7%A3"><span class="toc-number">1.1.2.</span> <span class="toc-text">typora 破解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">系统设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uTools"><span class="toc-number">1.1.4.</span> <span class="toc-text">uTools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81clash-for-window"><span class="toc-number">1.2.</span> <span class="toc-text">一、clash for window</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Powershell"><span class="toc-number">1.3.</span> <span class="toc-text">二、Powershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Scoop"><span class="toc-number">1.4.</span> <span class="toc-text">三、Scoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Git"><span class="toc-number">1.5.</span> <span class="toc-text">四、Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81WSL"><span class="toc-number">1.6.</span> <span class="toc-text">五、WSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-number">1.7.</span> <span class="toc-text">六、其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%BD%99%E9%A1%B9"><span class="toc-number">1.8.</span> <span class="toc-text">七、余项</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/readme/" title="Introduction">Introduction</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/turing-complete/" title="区块链下的图灵完备">区块链下的图灵完备</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/bitcoin/script/" title="比特币脚本及交易分析 - 智能合约雏形">比特币脚本及交易分析 - 智能合约雏形</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/2-geth-setup/" title="Geth部署私链测试网络">Geth部署私链测试网络</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/28/blockchain/ethereum/1-introduction/" title="以太坊简介">以太坊简介</a><time datetime="2026-05-28T01:22:25.000Z" title="发表于 2026-05-28 09:22:25">2026-05-28</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Joker Xin</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
